@@ -217,6 +217,35 @@ Coombs elects **B** in precinct 1 (eliminating D, A, C) and **B** in precinct 2 
 on the combined 38 ballots B has the most last-place votes (12) and is eliminated *first*, and **C** wins.
 Two precincts that agree, overruled by their own sum.
 
+## The calculator (explored 2026-08-01)
+
+[calc.html](https://www.cs.angelo.edu/~rlegrand/rbvote/calc.html) is pure client-side JavaScript — no
+server, no applet, so it still works and can be read as source. Input is one ballot per line, optionally
+`count:A>B>C`, with `#` comments. Three options worth knowing:
+
+- **Candidates to ignore** — treats them as having dropped out *after* the ballots were cast. The fastest
+  way to demonstrate a spoiler or clone failure: run it, remove the spoiler, run it again.
+- **Tiebreaking ranking** — supply one and results become deterministic and reproducible. Leave it blank
+  and it draws a random ballot, so *the same input can give different winners on different clicks*.
+  Winners decided this way are flagged with an asterisk in the output — always check for it.
+- **Reverse all rankings** — flips every ballot, for testing reverse-symmetry violations.
+
+Three things the page doesn't tell you, found by reading the source:
+
+- **Four methods refuse equal-rank ballots.** Hare, Bucklin, Carey and Coombs all abort with *"…require
+  fully-ranked ballots with no tied preferences."* `calcall()` silently *omits* them from the results
+  table rather than warning you — so a run on ballots with any `=` quietly reports 11 methods instead of
+  15, with nothing saying why. Every pairwise method handles ties fine (half a vote each way).
+- **There is a 17th method, and it's dormant.** A `LeGrand` button exists in the HTML, but it's commented
+  out — as is its call inside `calcall()`, *and* the function body itself. Its real name is
+  `calclegrandschulze`, and reading it shows a Schulze variant that compares **strongest beatpaths of
+  length at most k**, iterating k from 1 to n−1, rather than beatpaths of any length. Revived by hand on
+  a test election it runs correctly, so this is finished work that was switched off, not a stub.
+- **Rouse isn't there either** — described on desc.html, absent from both the calculator and eval.html.
+
+A worked cross-check using it — 12 ballots where nine of eleven methods tie and only Borda decides — is in
+[ranked-robin-results-explained.md](ranked-robin-results-explained.md).
+
 ## Caveats and corrections
 
 - **"Dodgson" here is not Dodgson's method.** The classical Dodgson rule (Charles Dodgson / Lewis Carroll)

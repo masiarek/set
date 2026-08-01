@@ -157,6 +157,76 @@ Upstream issue status:
 - [#1432](https://github.com/Equal-Vote/bettervoting/issues/1432) — open; surface tie-break explanations in exports too
 - [#1168](https://github.com/Equal-Vote/bettervoting/issues/1168) — open; document that Ranked Robin uses Copeland tie-breaking
 
+## Cross-check: LeGrand's calculator (run 2026-08-01)
+
+Ran the same 12 ballots through [LeGrand's ranked-ballot calculator](https://www.cs.angelo.edu/~rlegrand/rbvote/calc.html)
+(background: [legrand-ranked-ballot-methods.md](legrand-ranked-ballot-methods.md)). Translated to his
+notation — unranked candidates fall below every ranked one and tie each other:
+
+```
+5:Ann>Bob>Cal      # ballots 1,2,5,6,7
+2:Cal>Bob>Ann      # ballots 3,8
+1:Bob=Cal>Ann      # ballot 4
+1:Bob>Ann>Cal      # ballot 9
+1:Ann=Bob=Cal      # ballot 10
+1:Bob>Ann=Cal      # ballot 11
+1:Cal>Ann=Bob      # ballot 12
+```
+
+His pairwise matrix — tied preferences count as **half a vote each way**, so the 5–5 draw with 2 equals
+above appears here as 6–6:
+
+| for \ against | Ann | Bob | Cal |
+|---|---|---|---|
+| **Ann** | — | 6 | **7** |
+| **Bob** | 6 | — | **8** |
+| **Cal** | 5 | 4 | — |
+
+The verdict line: **"There is no Condorcet winner. The Smith set is {Ann, Bob}."** The tie is structural,
+not a BetterVoting bug.
+
+| Winner | Methods |
+|---|---|
+| **Bob**, outright | Black, Borda |
+| tie → random-ballot tiebreaker | Baldwin, Copeland, Dodgson, Nanson, Raynaud, Schulze, Simpson, Small, Tideman |
+
+Nine of the eleven methods that ran fall through to the tiebreaker. Supplying `Ann>Bob>Cal` as the
+tiebreaking ranking elects Ann in all nine; supplying `Bob>Ann>Cal` elects Bob in all nine. So this
+election defeats essentially every Condorcet completion rule, not just Ranked Robin's — which is the
+strongest possible defense of BetterVoting here: there is no "better tabulator" that would have found a
+winner on the ballots.
+
+With one exception. Borda decides it outright (and Black only because it falls back to Borda when no
+Condorcet winner exists):
+
+| | Ann | Bob | Cal |
+|---|---|---|---|
+| Borda score | 2 | **4** | −6 |
+
+The reason is exactly Copeland's blind spot. Ann and Bob are perfectly tied head-to-head, so the only
+remaining evidence is *how decisively* each handles Cal — **Bob beats Cal 8–4, Ann only 7–5**. Copeland
+counts wins and cannot see margins, so it ties; Borda counts margins and doesn't.
+
+That reframes the instability documented above. The two BetterVoting elections built from these same 12
+ballots disagree — p6vr9k's shuffle elects **Bob**, mj26yj's elects **Ann** — while Borda picks **Bob**
+from the ballots alone, every time. The disagreement isn't noise around a genuinely unknowable answer;
+it's a margin-blind score discarding the one piece of evidence that separates the two candidates. Good
+argument for [#1063](https://github.com/Equal-Vote/bettervoting/issues/1063): a margin-aware rung (Borda,
+or Copeland//Borda) before the random one would settle this election deterministically, and would have
+made both elections agree.
+
+### IRV can't count this election at all
+
+Hare (IRV), Bucklin, Carey and Coombs each refuse the ballots outright:
+
+> Hare elections require fully-ranked ballots with no tied preferences. Please correct the ranked ballots
+> and try again or try another method.
+
+Four of the 12 ballots carry equal ranks (`Bob=Cal>Ann`, `Ann=Bob=Cal`, and the two truncated ballots,
+whose unranked candidates tie at the bottom), and every first-preference-counting method in the
+calculator rejects the whole set rather than guess a convention. Whatever Ranked Robin's results page
+gets wrong presentationally, it *accepts* ballots that IRV's counting rule has no defined answer for.
+
 ## Common misreadings (the traps I fell into)
 
 - **"I expected 6 wins and 6 wins."** 6 is the number of *ballots* preferring Ann in her winning
