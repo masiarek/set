@@ -76,7 +76,9 @@ All three are Condorcet methods (they elect the Condorcet winner when one exists
     lesser-evil pressure of plurality.
 
   LeGrand's structural point: Hare, Carey and Coombs "consider the smallest amount of ballot information at
-  any one time" of any method here.
+  any one time" of any method here. The sharpest demonstration of that — Hare and Carey eliminating a
+  two-to-one Condorcet winner in round 1, and a better-built example on the same page — is in
+  [hare-center-squeeze-examples.md](hare-center-squeeze-examples.md).
 
 ### Cumulative
 
@@ -284,5 +286,7 @@ A worked cross-check using it — 12 ballots where nine of eleven methods tie an
 ## Related local material
 
 - [rcv-and-core-support.md](rcv-and-core-support.md) — the ordinal/cardinal argument these methods can't reach
+- [hare-center-squeeze-examples.md](hare-center-squeeze-examples.md) — two of this calculator's built-in
+  examples worked in full, and how much a constructed worst case is actually worth
 - [ranked-robin-results-explained.md](ranked-robin-results-explained.md) — Copeland scoring in a live tabulator
 - [glossary.md](glossary.md) — every term above, defined in one place
