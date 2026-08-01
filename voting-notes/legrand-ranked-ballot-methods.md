@@ -240,8 +240,25 @@ Three things the page doesn't tell you, found by reading the source:
   out — as is its call inside `calcall()`, *and* the function body itself. Its real name is
   `calclegrandschulze`, and reading it shows a Schulze variant that compares **strongest beatpaths of
   length at most k**, iterating k from 1 to n−1, rather than beatpaths of any length. Revived by hand on
-  a test election it runs correctly, so this is finished work that was switched off, not a stub.
+  a test election it runs correctly, so this is finished work that was switched off, not a stub. Note the
+  button calls `calclegr`, which is defined nowhere — so even un-commenting the button alone would throw
+  `ReferenceError`. That mismatch suggests it was disabled during a rename rather than deliberately
+  retired. The method is named for the author himself and appears nowhere in the descriptions, so it may
+  simply be an unpublished idea he chose to withhold.
 - **Rouse isn't there either** — described on desc.html, absent from both the calculator and eval.html.
+
+### Where the calculator actually lives now
+
+The Angelo State page is no longer the maintained copy. Rob LeGrand (now a retired CS professor) keeps a
+rewrite at [rob-legrand.github.io/ranked-ballot-voting-calculator](https://rob-legrand.github.io/ranked-ballot-voting-calculator/),
+source at [rob-legrand/ranked-ballot-voting-calculator](https://github.com/rob-legrand/ranked-ballot-voting-calculator)
+(last pushed 2025-10-07, issues enabled, none open). It splits the JS into `script.js` and adds examples
+referencing methods the old page never had — Heitzig, and a `schulzeincr` variant.
+
+Both quirks above survive verbatim in that rewrite: the four equal-rank refusals with the same silent
+omission from `calcall()`, and the LeGrand method still commented out at all three levels with the same
+`calclegr` name mismatch. So neither is an artifact of a stale university page. Checked 2026-08-01;
+deliberately not filed upstream.
 
 A worked cross-check using it — 12 ballots where nine of eleven methods tie and only Borda decides — is in
 [ranked-robin-results-explained.md](ranked-robin-results-explained.md).
