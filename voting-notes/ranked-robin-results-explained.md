@@ -82,7 +82,8 @@ breaks ties in this order:
 
 1. **Most matchup wins** (Copeland score) — Ann and Bob tied, so continue.
 2. **If exactly two are tied: their own head-to-head** ("preferred over X in runoff") — but
-   Ann–Bob was itself a 5–5 draw, so continue.
+   Ann–Bob was itself a 5–5 draw, so continue. *(This rung is BetterVoting's, not the official
+   spec's — see [Deployed ladder vs. official spec](#deployed-ladder-vs-official-spec) below.)*
 3. **Random pick.** The code logs: *"picked in random tie-breaker, more robust tiebreaker not yet
    implemented"* and sets `tieBreakType: 'random'`.
 
@@ -101,6 +102,35 @@ order was determined from shuffling the original candidate list"* — and the ch
 candidate the header names. The winner is stable across repeated fetches (the shuffle is stored
 per election), and the results API exposes `tied: [Bob, Ann]` and `tieBreakType: "random"`.
 Screenshots of the new display are in the [live retest section](#live-retest-2026-08-01-election-bv1550-r1) below.
+
+### Deployed ladder vs. official spec
+
+**(Found 2026-08-01, sandbox; filed as [#1469](https://github.com/Equal-Vote/bettervoting/issues/1469).)**
+Rung 2 above is BetterVoting's invention, and rung 3 arrives too early. The official spec
+([electowiki, "Degrees of ties"](https://electowiki.org/wiki/Ranked_Robin#Degrees_of_ties)) says
+*all* candidates tied on matchup wins become finalists, and the finalist with the greatest **sum
+of pairwise win margins over the other finalists** is elected — the 1st Degree, the method's
+founding "Copeland+Margins" idea ([origins](ranked-robin-origins.md)). For exactly two finalists
+that reduces to their head-to-head, so rung 2 silently matches the spec; but for **3+ tied
+finalists `RankedRobin.ts` has no branch at all** — the margin sums are never computed and the
+tie drops straight to the random rung.
+
+Sandbox proof: Ranked Robin, candidates `Dre,Edith,Frank`, votes `2:1,2,3` / `4:3,1,2` /
+`5:2,3,1` — 11 ballots forming a cycle (Dre>Edith 7–4, Edith>Frank 6–5, Frank>Dre 9–2), all tied
+at 1 win. The spec elects **Frank** deterministically (margin sums: Frank +6 = +54.5% points,
+Edith −2, Dre −4). The sandbox said "Tied! **Dre** won after tiebreaker" with the random-shuffle
+tooltip; re-listing the candidates as `Edith,Frank,Dre` (same ballots, columns permuted) switched
+the winner to **Edith**. In the sandbox the "random" rung is literally first-listed-wins —
+`sandboxController.ts` sets `tieBreakOrder` to input order and never calls
+`shuffleCandidatesForRandomTiebreak` (hosted elections do get the per-election seeded shuffle,
+which is why p6vr9k and mj26yj are stable-but-different).
+
+Bonus irony: the official ladder would also have settled *this page's* election
+deterministically. Ann–Bob exit the 1st Degree still tied (two finalists, 5–5 draw → both margin
+sums 0), but the 2nd Degree — margins over *all* candidates — gives Ann +2 vs **Bob +4**: the
+same Bob that Borda picks in the cross-check below, for the same margin-awareness reason.
+Neither degree is implemented, so both random-winner elections (p6vr9k → Bob, mj26yj → Ann) were
+coin flips the spec would have decided.
 
 ## Live retest, 2026-08-01 (election BV1550-R1)
 
@@ -157,6 +187,7 @@ Upstream issue status:
 - [#886](https://github.com/Equal-Vote/bettervoting/issues/886) — who won, Bob or Ann? Was the tie disclosed? **Closed 2026-08-01 as completed** after verifying the fix above
 - [#1063](https://github.com/Equal-Vote/bettervoting/issues/1063) — open; deterministic tie-breaking using candidate lot numbers (the random rung is still random — `RankedRobin.ts` still says "more robust tiebreaker not yet implemented")
 - [#1432](https://github.com/Equal-Vote/bettervoting/issues/1432) — open; surface tie-break explanations in exports too
+- [#1469](https://github.com/Equal-Vote/bettervoting/issues/1469) — open (filed 2026-08-01); 3+-way Copeland ties skip the official 1st-Degree margins tiebreaker entirely — see [Deployed ladder vs. official spec](#deployed-ladder-vs-official-spec)
 - [#1168](https://github.com/Equal-Vote/bettervoting/issues/1168) — open; document that Ranked Robin uses Copeland tie-breaking
 
 ## Cross-check: LeGrand's calculator (run 2026-08-01)

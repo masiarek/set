@@ -230,12 +230,18 @@ explainable").
 - **VSE, published:** the thread's numbers are a DM screenshot; whether Huang's or Ogren's runs
   were ever published anywhere citable is still unverified (my search agents for this got cut off
   — worth one more pass).
-- **3+-way Copeland ties in production:** the thread's showcase examples are a 3-way and a 5-way
-  tie decided by total margins (the official 1st Degree), but BetterVoting's `RankedRobin.ts`
-  ladder (per the [BV1550 note](ranked-robin-results-explained.md)) applies head-to-head only when
-  *exactly two* tie, then falls to random — for a 3-way tie like the thread's own example, does
-  the deployed tabulator actually run the margins stage, or skip straight to the random rung?
-  Needs a source dive; if it skips, that's a spec-vs-implementation gap worth filing upstream.
+- **3+-way Copeland ties in production — resolved 2026-08-01: the margins stage doesn't exist.**
+  The thread's showcase examples are a 3-way and a 5-way tie decided by total margins (the
+  official 1st Degree), but `RankedRobin.ts` never computes a margin sum for any tie size: one
+  branch handles *exactly two* tied (their head-to-head — which coincides with the 1st Degree
+  when there are only two finalists), and 3+ tied falls straight to the random rung. Verified in
+  the sandbox with an 11-ballot Dre/Edith/Frank rock-paper-scissors (margins +3/+1/+7, a
+  miniature of the thread's own 3-cycle): the spec elects Frank (total advantage +54.5%), the
+  sandbox elected Dre — and re-listing the candidates as Edith,Frank,Dre elected Edith, because
+  the sandbox's "random" rung is literally input order (`sandboxController.ts` never shuffles;
+  hosted elections use the per-election seeded shuffle). Filed as
+  [#1469](https://github.com/Equal-Vote/bettervoting/issues/1469); full worked repro in the
+  [BV1550 note](ranked-robin-results-explained.md#deployed-ladder-vs-official-spec).
 - **Field testing of ballot language** — proposed repeatedly, never reported.
 
 ## Links
