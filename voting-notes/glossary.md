@@ -99,8 +99,10 @@ the Smith set).
   several European cities, parties and open-source projects.
 - **Tideman** **[LeGrand]** — **ranked pairs**: lock in pairwise victories strongest→weakest, skipping any
   that would contradict an already-locked stronger one. Produces a full ordering, not just a winner.
-- **Ranked Robin** — Equal Vote's Condorcet method; scores by matchup wins (Copeland) with a documented
-  tie-break ladder. [→ [ranked-robin-results-explained](ranked-robin-results-explained.md)]
+- **Ranked Robin** — Equal Vote's Condorcet method; scores by matchup wins (Copeland), then breaks ties by
+  greatest sum of pairwise margins among the tied (their "total advantage"). Debuted Oct 2021 as **Ranked
+  Advantage Voting**, renamed Nov 2021. [→ [ranked-robin-results-explained](ranked-robin-results-explained.md),
+  [ranked-robin-origins](ranked-robin-origins.md)]
 - **Top Two IRV** — only the two first-choice leaders reach the runoff.
   [→ [rcv-and-core-support](rcv-and-core-support.md)]
 

@@ -5,6 +5,8 @@ Source: BetterVoting's Ranked Robin results screen — the screenshots from
 [tcvc7r](https://bettervoting.com/tcvc7r/results)) and
 [bettervoting#886](https://github.com/Equal-Vote/bettervoting/issues/886) (election
 [p6vr9k](https://bettervoting.com/p6vr9k/results), test case BV1550, 3 candidates, 12 ballots).
+*(Where the method itself came from — the 2021 "Ranked Advantage Voting" thread, its first VSE
+numbers, and errata in its showcase examples: [ranked-robin-origins.md](ranked-robin-origins.md).)*
 
 ## The short answer
 
