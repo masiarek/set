@@ -98,6 +98,45 @@ tiebreaker information to the frontend", "Apply tiebreaker logic to all methods"
 order was determined from shuffling the original candidate list"* — and the chart stars the same
 candidate the header names. The winner is stable across repeated fetches (the shuffle is stored
 per election), and the results API exposes `tied: [Bob, Ann]` and `tieBreakType: "random"`.
+Screenshots of the new display are in the [live retest section](#live-retest-2026-08-01-election-bv1550-r1) below.
+
+## Live retest, 2026-08-01 (election BV1550-R1)
+
+To confirm end-to-end (not just on the old election), I created a fresh hosted election through
+BetterVoting's public API — as an anonymous guest (`temp_id` cookie), the JSON-payload equivalent
+of sending BV a YAML — and cast the same 12 ballots with rotating voter identities:
+
+- Election: **BV1550-R1 - Ranked Robin - 3 cand - 12 ballots - RRBN retest** →
+  [bettervoting.com/mj26yj/results](https://bettervoting.com/mj26yj/results) (still open for voting,
+  so treat the link as a live sandbox; the screenshots below are the 12-ballot state)
+- API check: `elected: [Ann]`, `tied: [Ann, Bob]`, `tieBreakType: "random"`,
+  `copelandScore: Ann 1.5, Bob 1.5, Cal 0`
+
+**The header now discloses the tie** — "Tied!", then the winner labeled as a tiebreak result, and
+the chart stars the same candidate the header names:
+
+![Results header: Tied!, Ann won after tiebreaker, 12 voters, chart Ann 75% Bob 75%](img/bv1550-r1-overview.png)
+
+**The ⓘ tooltip explains the tiebreaker** — and note it names *this* election's shuffled order
+(Ann, Bob, Cal), while p6vr9k's tooltip says (Bob, Ann, Cal): each election stores its own shuffle,
+which is why the winner is stable per election but differs between elections with identical ballots:
+
+![Tooltip: Random Tiebreaker Order, shuffled candidate list](img/bv1550-r1-tooltip.png)
+
+**Ties now score ½ win.** Clicking the chart toggles percent ↔ count: Ann and Bob show **1.5**
+matchup wins (1 win over Cal + ½ for their 5–5 draw), not the 1 from the 2025 screenshots:
+
+![Wins chart in count mode: Ann 1.5, Bob 1.5, Cal 0](img/bv1550-r1-wins-count.png)
+
+**The Race Details table** shows the same — # Wins 1.5 / Win Rate 75% (1.5 of 2 possible), with the
+winner's row highlighted:
+
+![Table: Ann 1.5 wins 75%, Bob 1.5 wins 75%, Cal 0 wins 0%](img/bv1550-r1-table.png)
+
+**The matchup data is unchanged from 2025** — Ann–Bob 42% / 17% / 42% (5–5 with 2 equal) and
+Ann–Cal 50% / 17% / 33% (6–4 with 2 equal), matching the hand counts earlier in this page:
+
+![Head-to-head matchups: Ann vs Bob 42/17/42, Ann vs Cal 50/17/33](img/bv1550-r1-matchups.png)
 
 **Residual bug (found 2026-08-01, sandbox; filed as
 [#1468](https://github.com/Equal-Vote/bettervoting/issues/1468)):** when a Copeland tie is broken by rung 2 (the tied
