@@ -99,7 +99,8 @@ order was determined from shuffling the original candidate list"* — and the ch
 candidate the header names. The winner is stable across repeated fetches (the shuffle is stored
 per election), and the results API exposes `tied: [Bob, Ann]` and `tieBreakType: "random"`.
 
-**Residual bug (found 2026-08-01, sandbox):** when a Copeland tie is broken by rung 2 (the tied
+**Residual bug (found 2026-08-01, sandbox; filed as
+[#1468](https://github.com/Equal-Vote/bettervoting/issues/1468)):** when a Copeland tie is broken by rung 2 (the tied
 pair's own head-to-head) instead of rung 3, the header names the runoff winner but the chart still
 sorts by `tieBreakOrder` and stars row 0 — so header and star can disagree. Repro in the
 [sandbox](https://bettervoting.com/sandbox): Ranked Robin, candidates `A,B,C,D,E`, votes
