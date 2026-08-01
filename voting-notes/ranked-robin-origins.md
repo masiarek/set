@@ -89,6 +89,18 @@ the work. Sass also mentioned Ogren had run Borda-strategy attacks against it, w
 held up well against — those numbers were never posted, and the promised John Huang VSE run never
 appeared in the thread either.
 
+**As far as I can tell, this screenshot is the only VSE data for Ranked Robin in existence.** A
+2026-08-01 sweep found nothing published: Jameson Quinn's
+[vse-sim](https://github.com/electionscience/vse-sim) has never contained a Copeland or Ranked
+Robin method (full git history and all branches checked — its only Condorcet entries are Schulze
+and Ranked Pairs); Huang's [votesim](https://github.com/johnh865/election_sim) *implements*
+`copeland()` but no benchmark ever ran it, and his Feb 2021 summary report has no Copeland row;
+Ogren's *Candidate Incentive Distributions* paper skips it (and uses CID, not VSE); and the
+Wolk/Quinn/Ogren 2023 STAR paper's lone Condorcet method is Smith//Minimax. Equal Vote's accuracy
+claims for Ranked Robin lean on Quinn's numbers for *other* Condorcet methods. Closest published
+proxies: Quinn's Ranked Pairs/Schulze at ~98% honest-ballot VSE (Ranked Pairs ~86% under
+strategy), and Huang's ranked_pairs at 0.849 averaged across strategy profiles.
+
 ## The worked examples, transcribed
 
 Both examples use six candidates (Dre, Edith, Frank, Ben, Abby, Cici). Pair totals vary from pair
@@ -175,13 +187,30 @@ meant as an approachable umbrella name for Condorcet voting generally, not only 
 procedure — the brand loosening back toward the thread's original pitch ("Condorcet, made
 explainable").
 
+The loosening is now official policy: the current
+[equal.vote/ranked_robin](https://equal.vote/ranked_robin) page (checked 2026-08-01) no longer
+fixes the margins rule at all. It describes the head-to-head core, then offers jurisdictions a
+**menu of cycle tiebreakers** — Copeland (tied candidate with the most matchup wins), Favorite
+(top-ranked on the most ballots; sourced to Vermont's 2024 bill H.424), and Smith-Minimax
+(smallest worst-loss margin) — with advice to pick one transparent rule in advance and stick with
+it. "Total advantage" and the five presentation levels appear nowhere on it. So the thread's
+specific design survives in electowiki's 1st Degree and in BetterVoting's tabulator, while the
+equal.vote brand has become the Condorcet umbrella Wolk described.
+
 ## What the thread teaches
 
 - **The Copeland gate is the whole firewall against Borda pathologies.** The finalist stage is
   mathematically tournament-Borda (Sass concedes the equivalence, and the "best average rank"
-  one-liner leans on it). Drop the gate and sum margins over *all* candidates — Jack Waugh's 2022
-  simplification — and you have literally reinvented Borda (post 40), with its teaming and burying
-  problems. Marylander's framing (post 22): it's easier to attack Copeland directly than the Borda
+  one-liner leans on it). The identity is classical — Duncan Black (1958) already noted a Borda
+  score can be read off the pairwise matrix as a row sum, and the margins row-sum is an
+  order-preserving affine transform of it (sources collected in the notes of
+  [electowiki's Borda article](https://electowiki.org/wiki/Borda_count): Levin & Nalebuff; Wright
+  & Barry). Two fine points: the identity stays exact under equal ranks and truncation only with
+  the half-point "tournament" convention on both sides, and summing margins *within the finalist
+  set* computes the Borda count of the reduced election among finalists — a different quantity
+  from full-election Borda, which is precisely what the gate changes. Drop the gate and sum
+  margins over *all* candidates — Jack Waugh's 2022 simplification — and you have literally
+  reinvented Borda (post 40), with its teaming and burying problems. Marylander's framing (post 22): it's easier to attack Copeland directly than the Borda
   count *inside the tied set*. Sass's list of differences from classic Borda: finalists only,
   equal ranks allowed, skipped ranks ignored, no completion requirement, tournament-style
   counting. Compare the [BV1550 post-mortem](ranked-robin-results-explained.md): Copeland is
@@ -225,11 +254,13 @@ explainable").
 
 - **Burying/compromising inside the finalist set** — Jack Waugh's Gibbard-flavored challenge.
   Ogren's Borda-strategy runs were mentioned secondhand but never posted, and no published
-  strategy-resistance numbers for Ranked Robin turned up in this pass (the electowiki article
-  offers criteria arguments, not simulation results).
-- **VSE, published:** the thread's numbers are a DM screenshot; whether Huang's or Ogren's runs
-  were ever published anywhere citable is still unverified (my search agents for this got cut off
-  — worth one more pass).
+  strategy-resistance numbers for Ranked Robin exist (the electowiki article offers criteria
+  arguments, not simulation results).
+- ~~VSE, published~~ — **resolved, negatively (2026-08-01):** nothing citable was ever published
+  anywhere; the thread's DM screenshot is the only known VSE data for the method (details in the
+  VSE section above). Running Ranked Robin through a current fork of vse-sim or votesim would be
+  a genuine contribution — Huang's votesim even has an unused `copeland()` sitting there as a
+  starting point.
 - **3+-way Copeland ties in production:** the thread's showcase examples are a 3-way and a 5-way
   tie decided by total margins (the official 1st Degree), but BetterVoting's `RankedRobin.ts`
   ladder (per the [BV1550 note](ranked-robin-results-explained.md)) applies head-to-head only when
