@@ -68,7 +68,9 @@ Final standings (the "# Wins" chart):
 | Cal (C) | 0 | 0% |
 
 A drawn matchup gives **neither** candidate a win — that's why 1 + 1 + 0 = 2 wins total instead of
-3. (Some Copeland variants award ½ for a draw; BetterVoting's does not.)
+3. *(That was the April 2025 behavior in the screenshots. Since the tiebreaker overhaul merged
+2026-05-12, BetterVoting's Copeland score awards **½ for a drawn matchup**, so the same election
+today shows Ann 1.5 / Bob 1.5 / Cal 0 — displayed as 75% / 75% / 0%.)*
 
 ## So who won — and why it looked "unstable"
 
@@ -83,14 +85,37 @@ breaks ties in this order:
    implemented"* and sets `tieBreakType: 'random'`.
 
 That third rung is why identical ballots produced different winners on different runs (the
-"unstable tie breaking" I reported in #885), and why the header cheerfully says "A wins!" without
-disclosing that a coin flip decided it. Both problems are tracked upstream:
+"unstable tie breaking" I reported in #885), and why in April 2025 the header cheerfully said
+"A wins!" — or even starred a different candidate than the header named — without disclosing that
+a coin flip decided it.
 
-- [#886](https://github.com/Equal-Vote/bettervoting/issues/886) — who won, Bob or Ann? Was the tie disclosed?
-- [#1063](https://github.com/Equal-Vote/bettervoting/issues/1063) — deterministic tie-breaking using candidate lot numbers
-- [#1432](https://github.com/Equal-Vote/bettervoting/issues/1432) — surface tie-break explanations in results UI + exports
-- [#1168](https://github.com/Equal-Vote/bettervoting/issues/1168) — document that Ranked Robin uses Copeland tie-breaking
-- [#885](https://github.com/Equal-Vote/bettervoting/issues/885) — closed as not-planned (the numbers were correct; this page is the explanation I wished the UI had)
+**Fixed as of mid-2026.** The tiebreaker overhaul (branch `JacksonLoper/tiebreaker`: "Expose
+tiebreaker information to the frontend", "Apply tiebreaker logic to all methods"; merged
+2026-05-12) reworked the results page. Verified 2026-08-01 on the live
+[p6vr9k](https://bettervoting.com/p6vr9k/results) election and on fresh sandbox runs of the same
+12 ballots: the page now says **"Tied!"**, then **"Bob won after tiebreaker"** with an ⓘ tooltip —
+*"Random ties are broken from highest to lowest priority in the order Bob, Ann, and Cal. This
+order was determined from shuffling the original candidate list"* — and the chart stars the same
+candidate the header names. The winner is stable across repeated fetches (the shuffle is stored
+per election), and the results API exposes `tied: [Bob, Ann]` and `tieBreakType: "random"`.
+
+**Residual bug (found 2026-08-01, sandbox):** when a Copeland tie is broken by rung 2 (the tied
+pair's own head-to-head) instead of rung 3, the header names the runoff winner but the chart still
+sorts by `tieBreakOrder` and stars row 0 — so header and star can disagree. Repro in the
+[sandbox](https://bettervoting.com/sandbox): Ranked Robin, candidates `A,B,C,D,E`, votes
+`10:2,1,3,4,5` / `10:5,4,3,1,2` / `3,2,5,4,1` → B and E tie at 3 wins, E beats B 11–10
+head-to-head, header says "E wins!" but the chart stars B. Cause: `RankedRobin.ts` passes no
+`evaluate` callback to `runBlocTabulator` (STAR passes one that hoists the elected candidate to
+row 0), so `summaryData.candidates` stays sorted by (copelandScore, tieBreakOrder) and
+`ResultsBarChart stars={1}` stars the wrong row.
+
+Upstream issue status:
+
+- [#885](https://github.com/Equal-Vote/bettervoting/issues/885) — closed 2026-08-01 as not-planned (the numbers were correct; this page is the explanation I wished the UI had)
+- [#886](https://github.com/Equal-Vote/bettervoting/issues/886) — who won, Bob or Ann? Was the tie disclosed? **Closed 2026-08-01 as completed** after verifying the fix above
+- [#1063](https://github.com/Equal-Vote/bettervoting/issues/1063) — open; deterministic tie-breaking using candidate lot numbers (the random rung is still random — `RankedRobin.ts` still says "more robust tiebreaker not yet implemented")
+- [#1432](https://github.com/Equal-Vote/bettervoting/issues/1432) — open; surface tie-break explanations in exports too
+- [#1168](https://github.com/Equal-Vote/bettervoting/issues/1168) — open; document that Ranked Robin uses Copeland tie-breaking
 
 ## Common misreadings (the traps I fell into)
 
