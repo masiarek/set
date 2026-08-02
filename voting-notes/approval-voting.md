@@ -129,10 +129,17 @@ single verdict.
 | Zero information | ✗ | ✓ | ✗ | ✗ | ✗ | ✓ | ✓ | ✗ |
 | Leader rule | ✓ | ✓ | ✓ | ✗ | — | — | ✓ | ✗ |
 | Trembling ballots | ✓ | ✓ | ✓ | ✗ | — | — | ✓ | ✗ |
-| Binary (dichotomous) preferences | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Binary (dichotomous) preferences † | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 
 (Wikipedia flags this table as incomplete; the blanks are blank there. ✗ on IIA for the three realistic rows
 is the honest headline.)
+
+† The all-✓ row understates the case. Approval doesn't merely *pass* these criteria on the dichotomous
+domain — [Brandl & Peters (2022)](https://www.dominik-peters.de/publications/av.pdf) show it is the **only**
+rule that does: add consistency with variable electorates to any one of strategyproofness, majority
+agreement, clone independence, or invariance under removing inferior alternatives, and approval is forced.
+Four of the columns in this row are therefore characterizations, not compliances. The row's weakness is its
+premise, not its checkmarks.
 
 - **Sincere favorite is satisfied in every row** — approval never punishes you for approving your favorite.
   That is its strongest formal claim and the direct answer to
