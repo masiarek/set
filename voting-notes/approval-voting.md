@@ -217,6 +217,67 @@ gen-ed textbook that does exactly this, and then advertises the result as a majo
   16% two, 5% three, 1% four. Winner had **1,267 approvals = 32%**. Even among mathematicians who chose the
   method, four out of five bullet voted.
 
+## How the advocacy organizations present it
+
+Both campaigning organizations were read on 2026-08-01. Neither page is balanced, and they fail in mirror-image
+ways: **each states a property that holds only under a favorable assumption as though it held unconditionally.**
+Everything needed to adjudicate them is already above, so this section is mostly a lookup table.
+
+### CES — ["What is Approval Voting?"](https://www.electionscience.org/library/approval-voting/) (Chris Raleigh, Jun 2024)
+
+~300 words, seven bullets, no citations, no numbers, no acknowledged trade-off.
+
+| Claim | Verdict | Adjudicated by |
+|---|---|---|
+| "It eliminates vote-splitting … no candidate can ever be a *spoiler*" | **False as stated** | IIA is ✗ in three of the four rows of the compliance table, ✓ only under dichotomous preferences. Worked example 2 above *is* a spoiler: drop A under a floating cutoff and the winner moves C → B |
+| "The candidate with the broadest support across the electorate wins" | **Conditional** | Zero-information Tennessee elects Memphis, the Condorcet *loser*, on 42 approvals with more voters disapproving than approving. Holds under the leader rule and trembling ballots, not in general |
+| "Candidates dividing the electorate is not a viable strategy" | **False** | The Burr/chicken dilemma is exactly that strategy; Fargo candidates campaigned on "just vote once" |
+| "It makes every voter more powerful" | **Unqualified** | Kimball's St. Louis finding — majority-White wards cast multiple approvals at higher rates — is unequal power, contingent on who understands the cutoff |
+| "Voters can support candidates who may not be their first choice" | **True** | Sincere favorite passes in *every* row of the table. Approval's strongest formal claim |
+| "It can run on our current machines" | **True** | Summability |
+
+Bullet voting — the documented practical failure mode, and the best-evidenced thing on this page's subject
+(Dartmouth 41% and 32% winners with >80% approving exactly one; MAA 79%) — goes unmentioned, as do the Burr
+dilemma and cutoff indeterminacy. The library still shelves "Success Stories: Fargo Before and After Approval
+Voting" although the April 2025 statewide ban ended approval voting in Fargo; the flagship success story is now a
+repeal.
+
+### FairVote — ["Ranked Choice Voting vs. Approval Voting"](https://fairvote.org/resources/electoral-systems/ranked_choice_voting_vs_approval_voting/)
+
+Longer, sourced, and genuinely checkable — but its only argument section is titled "Advantages of RCV compared to
+approval voting," with no counterpart, and its RCV evidence is overwhelmingly FairVote's own data pages while the
+approval critiques cite outsiders. Data stops at August 2022.
+
+**Where it is right, and these are not small:**
+
+- Bullet voting is approval's core weakness, and Nagel's *Burr Dilemma* is cited legitimately.
+- Approval cannot express strength of preference between two approved candidates — the later-no-harm trade above,
+  stated accurately.
+- "Ranking another candidate second will not hurt your first choice" is **true**: IRV satisfies later-no-harm and
+  approval does not. Honestly stated, and the one criterion where approval is strictly worse.
+- St. Louis Ward 17: the approval leader at 69% lost the head-to-head runoff. A real observed data point.
+- The Fargo candidate quotes are real, and damning.
+
+**Where it mirrors CES:**
+
+| Claim | Problem |
+|---|---|
+| "RCV is a majority system"; the count "continues until there's a majority winner" | A majority of *continuing* ballots in the final round, not of ballots cast — exhausted ballots routinely put the winner below half (Maine CD-2, 2018). The page is internally inconsistent: it dings approval for "no guarantee that the winner will have the support of at least half of the voters," then claims RCV supplies exactly that guarantee |
+| "Approval voting has no majority criterion" | The criterion is defined over ranked ballots; and compliance here is model-dependent — ✗ under zero-information, ✓ under the other three rows |
+| 60% bullet voting in Fargo proves approval "reverts to plurality-like dynamics" | Its own headline stat is that 71% of RCV voters rank multiple candidates — i.e. ~29% bullet vote there too, which is what produces exhausted ballots. Same behaviour, opposite framing |
+| "No sustained evidence finds that approval voting increases representation" | Absence of evidence from two cities over ~2 years, presented as a contrast in findings — while the same page correctly says approval lacks data |
+
+Selective disclosure is the real tell: approval's manipulability gets a full section, while IRV's
+non-monotonicity, favorite betrayal and center squeeze are never named — though the page's own
+"doesn't elect broadly-supported candidates" argument applies to IRV at least as forcefully
+([hare-center-squeeze-examples](hare-center-squeeze-examples.md),
+[lumen-75-ballot-four-winners](lumen-75-ballot-four-winners.md), and Burlington 2009 / Alaska 2022 in
+[rcv-and-core-support](rcv-and-core-support.md)).
+
+**Net:** FairVote's page is the better document — one-sided but falsifiable, and correct about approval's actual
+weakness. CES's is marketing copy whose headline claim its own movement's literature contradicts. Read as a matched
+pair, each names the other's real problem accurately and denies its own.
+
 ## How it sits against the rest of these notes
 
 - **vs. IRV/Hare**: approval cannot center-squeeze the way Hare does
