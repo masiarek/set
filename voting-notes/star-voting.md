@@ -106,19 +106,32 @@ Finalists Nashville (293) and Chattanooga (237). Runoff: Memphis and Nashville v
 higher (2>1 and 5>2), Chattanooga and Knoxville voters both score Chattanooga higher — **Nashville 68,
 Chattanooga 32**. Nashville wins, and Nashville is the real capital and the Condorcet winner.
 
-**The slip.** The article states its own scoring rule — 5 for your home city, 0 for the farthest, the rest
-"proportional to their relative distance" — and hides the mileage table in an HTML comment. Applying that
-rule to all sixteen cells with round-half-up reproduces fifteen of them exactly. The sixteenth doesn't:
-Knoxville voters' score for Nashville is printed as **2**, but
+**One cell doesn't follow the article's own rule.** It states the rule — 5 for your home city, 0 for the
+farthest, the rest "proportional to their relative distance" — and hides the mileage table in an HTML
+comment. Applying that rule with round-half-up reproduces fifteen of the sixteen cells exactly. The
+sixteenth doesn't: Knoxville voters' score for Nashville is printed as **2**, but
 
     5 × (1 − 159.5 / 345.1) = 2.689 → 3
 
-and every other borderline cell in the table rounds the same way (Nashville voters give Knoxville
-0.89 → 1; Chattanooga voters give Nashville 2.85 → 3). So it should be 3.
+and every other borderline cell rounds that way (Nashville voters give Knoxville 0.89 → 1; Chattanooga
+voters give Nashville 2.85 → 3).
 
-**It changes nothing.** With the corrected cell, Nashville's total goes 293 → 310, the finalists are still
-Nashville and Chattanooga, and the runoff is still 68–32. Worth knowing before anyone reuses that table as
-test data — the totals column is what a tabulator test would assert on, and one of those totals is wrong.
+**Why — it's double rounding, not a typo.** The [score voting article](score-voting.md) carries the same
+example on a 0–10 scale, and *this table is that one halved with round-half-to-even*. All sixteen cells match
+under that rule, including the two that otherwise look arbitrary:
+
+| | 0–10 | halved | round-half-to-even | printed here |
+|---|---|---|---|---|
+| Knoxville → Nashville | 5 | 2.5 | **2** | 2 |
+| Knoxville → Chattanooga | 7 | 3.5 | **4** | 4 |
+
+So the chain is `5.378 → 5 → 2.5 → 2`, where deriving 0–5 straight from the distances gives `2.689 → 3`.
+The one discrepant cell is the only one where the two routes straddle a boundary differently. The lesson is
+the useful part: **don't rescale a rounded table, rescale the source.**
+
+**It changes nothing here.** Derived directly, Nashville's total goes 293 → 310, the finalists are still
+Nashville and Chattanooga, and the runoff is still 68–32. But the totals column is exactly what a tabulator
+test would assert on, so it matters to anyone reusing this table as fixture data.
 
 **Same ballots, six methods** (all verified):
 
@@ -230,18 +243,65 @@ beats B. Exactly the mechanism Woodall's footnote describes. The practical lesso
 STAR, the strategically dangerous act is not scoring your favorite too low, it's **scoring everyone else
 0** — you may delete the very opponent your favorite could have beaten.
 
+## What the runoff costs: participation
+
+The usual framing is that STAR strictly improves on plain score. It doesn't — the runoff is a trade, and
+participation is part of the price. Plain score satisfies participation; STAR fails it:
+
+| Voters | A | B | C |
+|---|---|---|---|
+| 44 | 2 | 3 | 2 |
+| 20 | 4 | 1 | 5 |
+| **11** | **1** | **3** | **5** |
+
+Without the last 11: totals A 168, B 152, C 188 → finalists C and A → **C wins**.
+With them: A 179, B 185, C 243 → finalists C and **B** → **B wins 44–31**.
+
+Those 11 voters score C at 5 and B at 3. **By showing up they replaced their favourite with their second
+choice** — staying home would have served them better. Same mechanism as the later-no-harm failure above:
+their B=3 lifted B past A into the runoff, where B beat C.
+
+Plain score also keeps monotonicity *and* IIA, both of which STAR loses. Set against what STAR buys —
+resistance to min-maxing — the ledger is genuinely two-sided. Details in [score-voting](score-voting.md).
+
+## Equal Vote ships two methods, and they disagree
+
+Equal Vote promotes STAR (2014) and Ranked Robin (2021). On the same ballots these are not interchangeable.
+
+The clone profile from example 2 is a case in point: **STAR elects A1, Ranked Robin elects B** — and B is
+the Condorcet winner and the strict favourite of an absolute majority. Across 58,952 random three-candidate
+profiles the two methods **disagree 3.1% of the time**, and STAR fails to elect an existing Condorcet winner
+in **1.6%** of the profiles that have one.
+
+Both readings are fair:
+
+- **For STAR**: 3.1% is small — they agree 97% of the time. The disagreements need an intensity gap wide
+  enough to override a pairwise majority, and STAR's advocates argue that override is the *point*, in the
+  same terms Brams uses for approval. If you think an intense minority should sometimes beat a mild
+  majority, this is the feature working, and rarely.
+- **Against**: the disagreement isn't noise, it is **systematically the Condorcet winner losing** — and
+  Equal Vote's other method exists to guarantee that never happens. Shipping both means shipping two answers
+  to "can a pairwise majority lose?", a values question, presented as a choice of implementation.
+
+Caveat on the percentages: three random blocs with uniform random scores is a crude model, good for showing
+the disagreement is common enough to meet in practice, not for estimating its real-world rate. The spatial
+votesim harness in [ranked-robin-vse-run](ranked-robin-vse-run.md) is the right tool, and putting STAR
+through it is the obvious next job.
+
 ## How it sits against the rest of these notes
 
+- **vs. [score voting](score-voting.md)** — STAR is score plus a runoff, and the runoff is why: honest score
+  elects the Condorcet winner on Tennessee, min-maxed score elects the Condorcet *loser* on the same
+  preferences. That failure mode is STAR's entire reason for existing. What it costs is participation, IIA,
+  and monotonicity's neighbour, all of which plain score keeps.
 - **vs. [approval](approval-voting.md)** — the same family, one bit vs. six levels. Approval passes sincere
   favorite outright and fails later-no-harm absolutely; STAR fails both partially and calls that an
   improvement. Approval's open question is *where do I put my cutoff*; STAR's is *how do I spend my middle
   scores*. The Independent Party of Oregon walked this exact path in 2020, approval → STAR, which is the
   single best piece of evidence either way and it points at STAR.
-- **vs. [Ranked Robin](ranked-robin-results-explained.md)** — both are Equal Vote's, and they disagree.
-  Ranked Robin elects the Condorcet winner unconditionally from the pairwise matrix; STAR can leave the
-  Condorcet winner out of the runoff entirely, as example 2 shows. Equal Vote promoting both is a real
-  position (different ballots, different jurisdictions), but they are not interchangeable, and my clone
-  profile is a case where they pick different winners.
+- **vs. [Ranked Robin](ranked-robin-results-explained.md)** — Equal Vote's other method, quantified in the
+  section above: Ranked Robin elects the Condorcet winner unconditionally from the pairwise matrix, STAR can
+  leave them out of the runoff entirely.
 - **vs. [IRV/Hare](hare-center-squeeze-examples.md)** — STAR's headline claim. On Tennessee, IRV elects
   Knoxville and STAR elects Nashville. STAR has no eliminations, so no ballot's information is ever
   discarded mid-count, and centre candidates can't be squeezed out on first preferences. What STAR
@@ -290,6 +350,7 @@ STAR, the strategically dangerous act is not scoring your favorite too low, it's
 ## Related local material
 
 - [`code/star-voting/verify.py`](code/star-voting/verify.py) — every claim above, checked
+- [score-voting](score-voting.md) — what STAR is built on, what the runoff fixes, and what it costs
 - [approval-voting](approval-voting.md) — the one-bit end of the same family
 - [ranked-robin-results-explained](ranked-robin-results-explained.md),
   [ranked-robin-origins](ranked-robin-origins.md) — Equal Vote's other method, and its Condorcet guarantee

@@ -130,9 +130,22 @@ the Smith set).
   the tabulation: Condorcet-consistent under the leader rule or dichotomous preferences, capable of electing
   the Condorcet loser under a naive above-average cutoff. Used in Fargo ND 2018–2025 (banned statewide April
   2025) and in St. Louis since 2020. [→ [approval-voting](approval-voting.md)]
-- **Score voting (range voting)** — sum 0–5 (or 0–10) scores, highest total wins. Approval with more levels.
-  Its strategy problem — min-maxing — is what STAR's runoff was designed to blunt.
-  [→ [star-voting](star-voting.md)]
+- **Score voting (range voting)** — score everyone on a fixed scale, highest total wins. Approval with more
+  levels. The only method here that satisfies **IIA** (a candidate's total depends only on scores given to
+  them) — but only if voters score absolutely rather than renormalising to the field. Honest score is
+  excellent and strategic score is plurality: on Tennessee, sincere scores elect the Condorcet winner and
+  min-maxed scores elect the Condorcet loser. That gap is what STAR's runoff exists to close.
+  [→ [score-voting](score-voting.md), [star-voting](star-voting.md)]
+- **Sum vs. average vs. average-with-quorum** — three rules sharing the name "score voting". Identical while
+  every voter rates every candidate, different the moment a ballot has a blank, and they can elect different
+  winners. Pirate Party Bavaria uses average-with-quorum. [→ [score-voting](score-voting.md)]
+- **Blank vs. zero** — an unrated candidate versus one rated 0: the same mark on paper, different states in
+  a tabulator, and the thing sum-vs-average turns on. [→ [score-voting](score-voting.md)]
+- **Absolute vs. normalised scoring** — score against a fixed internal standard, or rescale so your favourite
+  gets the max and your worst the min? Score voting's IIA survives the first and dies on the second — the
+  same conditional as approval's fixed-vs-floating cutoff. [→ [score-voting](score-voting.md)]
+- **Reweighted range voting (Thiele's method)** — proportional multi-winner score. Used by the Academy for
+  the Best Visual Effects nominees and by Pirate Party Germany. [→ [score-voting](score-voting.md)]
 - **STAR (Score Then Automatic Runoff)** — score 0–5; the two highest totals become finalists; elect
   whichever finalist more ballots score higher. Proposed Oct 2014 by Mark Frohnmayer as **Score Runoff
   Voting**, Equal Vote's flagship. Monotonic in the mono-raise sense, but fails majority, Condorcet, clone
@@ -167,8 +180,10 @@ Every one of these appears as a row in LeGrand's compliance table with no defini
 - **Nonmanipulability (strategy-proofness)** **[LeGrand]** — no voter ever gains by ranking insincerely.
   **Every** ranked method fails this; see Gibbard–Satterthwaite.
 - **Independence of irrelevant alternatives (IIA)** — adding or removing a losing candidate must not change
-  who wins. No ranked method satisfies it (Arrow); approval satisfies it only if voters keep a *fixed*
-  cutoff. [→ [approval-voting](approval-voting.md)]
+  who wins. No ranked method satisfies it (Arrow). **Score voting does**, since a candidate's total depends
+  only on the scores given to them — but only under absolute scoring; voters who renormalise to the field
+  break it, exactly as a floating approval cutoff does. STAR loses it again to the runoff.
+  [→ [score-voting](score-voting.md), [approval-voting](approval-voting.md), [star-voting](star-voting.md)]
 - **Later-no-harm** — expressing support for a later choice must not hurt your earlier ones. Approval
   necessarily fails it — that failure is the same fact as its monotonicity, seen from the other side.
   STAR fails it too: a mid-range score can lift a rival into the runoff *past* your favorite.
@@ -183,7 +198,9 @@ Every one of these appears as a row in LeGrand's compliance table with no defini
   narrowly: equal-rating your favorite with a compromise usually suffices, and a genuine violation needs a
   profile where it doesn't. [→ [approval-voting](approval-voting.md), [star-voting](star-voting.md)]
 - **Participation criterion** — casting a sincere ballot must never make the result worse for you than
-  staying home. Approval passes.
+  staying home. Approval and score pass; **STAR fails** — a bloc's middle score can lift a rival into the
+  runoff past their own favorite, so turning out costs them the win.
+  [→ [score-voting](score-voting.md), [star-voting](star-voting.md)]
 - **Decisiveness** — how often a method needs a tiebreaker at all. Black is the most decisive of LeGrand's
   set, Copeland the least.
 - **Strategic straightforwardness** — how easy it is to vote honestly without regret; a softer, practical
@@ -264,6 +281,9 @@ All from [rcv-and-core-support](rcv-and-core-support.md).
   the model-dependent compliance table [→ [approval-voting](approval-voting.md)]
 - [*STAR voting* (Wikipedia)](https://en.wikipedia.org/wiki/STAR_voting) — thin and advocacy-sourced; the
   criteria failures are worked out locally instead [→ [star-voting](star-voting.md)]
+- [*Score voting* (Wikipedia)](https://en.wikipedia.org/wiki/Score_voting) — the baseline the other two are
+  defined against; uncited properties section and an unsettled sum-vs-average definition
+  [→ [score-voting](score-voting.md)]
 - [Equal Vote Coalition](https://www.equal.vote/) / [STAR Voting](https://www.starvoting.org/) — origin of
   both STAR and Ranked Robin
 - [Equal Vote / BetterVoting](https://bettervoting.com) — Ranked Robin in production
