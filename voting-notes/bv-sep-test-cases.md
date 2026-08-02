@@ -150,9 +150,11 @@ contribution should follow the existing shape in that file rather than the impor
 > ballots, overvotes — but has no test for the method's documented pathologies. Grepping the suite for
 > `condorcet|monoton|no-show|paradox|cycle` returns nothing.
 >
-> Proposing two fixtures, both from Eric Pacuit's *Voting Methods* entry in the Stanford Encyclopedia
-> of Philosophy (§3.2 and §2.1), so the expected values have a citable source rather than being
-> whatever the implementation happened to return when the test was written.
+> Proposing three fixtures. The first two are taken from Eric Pacuit's *Voting Methods* entry in the
+> Stanford Encyclopedia of Philosophy (§3.2 and §2.1), so their expected values have a citable source
+> rather than being whatever the implementation happened to return when the test was written. The
+> third is derived from a theorem the same entry states (§3.3) and computed against this repo's own
+> tabulator.
 >
 > **1. Monotonicity (17 ballots, no tiebreak).** Two profiles differing only in two voters who move A
 > from 2nd to 1st. Profile 1: `6:A>B>C, 5:C>A>B, 4:B>C>A, 2:B>A>C` → eliminate C, **A wins 11–6**.
