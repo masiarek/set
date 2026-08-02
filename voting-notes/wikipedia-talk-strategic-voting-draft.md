@@ -12,7 +12,9 @@ Two things follow.
 
 **Our verified counterexamples are unusable.** Everything in `code/star-strategy/verify.py` is [original research](https://en.wikipedia.org/wiki/Wikipedia:No_original_research). And the very first thread on that talk page has an editor complaining about "small sets of contrived, anecdotal examples." Offering constructed profiles would confirm the worst assumption about where the post is coming from. The draft says so explicitly, which turns a liability into a credibility signal.
 
-So the post leads with two sourcing problems that have nothing to do with STAR — including a flat internal contradiction anyone can check in thirty seconds — and puts the STAR addition last, pre-hedged, with a fallback that drops the contested claim entirely. Points 1 and 2 are likely to land on their merits. Point 3 is a coin flip, and the fallback is the part worth fighting for.
+So the post leads with two sourcing problems that have nothing to do with STAR and puts the STAR addition last, pre-hedged, with a fallback that drops the contested claim entirely.
+
+Point 1 is the strongest thing in the post and it is not an advocacy point at all: the article cites one note for two lines that contradict each other, and the note itself — quoted in the draft, verifiable from the PDF the citation already links — says which line is wrong. It is checkable in under a minute by anyone, requires no judgement about simulation quality, and the fix removes a claim that happens to *favor* rated methods. A COI editor whose first substantive contribution deletes a pro-rated-methods claim is in a considerably better position when the third point comes up. Point 2 should land on its merits. Point 3 is a coin flip, and the fallback is the part worth fighting for.
 
 ---
 
@@ -27,12 +29,25 @@ Paste as a new section at the bottom of [Talk:Strategic voting](https://en.wikip
 
 Points 1 and 2 are about the [[Strategic voting#Common types of strategic voting|Common types]] section and need no new sources.
 
-'''1. Score voting is listed as both affected by and immune to compromising, citing the same source at the same location.''' In the ''Compromise'' entry:
+'''1. Score voting is listed as both affected by and immune to compromising, citing the same source at the same location — and the source settles it.''' In the ''Compromise'' entry:
 
 * ''Also affected:'' Borda, '''Score''', approval voting.<ref name="Armytage-SVN" />{{rp|at=prop. 4, note}}
-* ''Immune:'' Coombs' method, antiplurality, rated voting rules (e.g. '''score voting''')
+* ''Immune:'' Coombs' method, antiplurality, '''rated voting rules (e.g. score voting)'''
 
-Both lines cite Green-Armytage 2014 at prop. 4's note. One of them is a misreading. Could an editor with the paper to hand check which? I would guess the note distinguishes cases the two lines have collapsed, but I have not read it and am not proposing a fix I can't source.
+Both cite Green-Armytage 2014 at prop. 4's note. That note, in full ([https://mpra.ub.uni-muenchen.de/32200/1/MPRA_paper_32200.pdf MPRA working-paper version], p. 27, immediately below the proof of Proposition 4):
+
+<blockquote>Note: The ‗anti-plurality‘ system, which elects the candidate with the fewest last choice votes, is another method that is immune to compromising. Plurality, runoff, Hare, minimax, Borda, approval, and range are all vulnerable to compromising.</blockquote>
+
+"Range" is [[score voting]]. So the ''Also affected'' line reports the note accurately, and the ''Immune'' line contradicts it: the cited note names exactly two immune methods, Coombs (the proposition itself) and anti-plurality, and expressly lists approval and range among the vulnerable.
+
+I don't think this is vandalism or carelessness so much as a definitional collision built into the entry. Section 4.2.2 of the same paper (p. 14) defines the compromising test as taking the sincere winner and checking, for each other candidate, whether that candidate would win if the voters preferring them gave them "the best possible ranking or rating." In a rated method, giving a compromise candidate the maximum rating does not require lowering your favorite — both can sit at the top — so a method can be vulnerable to compromising in this paper's sense while still never requiring a voter to rank a compromise ''above'' their sincere favorite. The paper does not use the term "favorite betrayal" anywhere in its 38 pages; that framing has been added on Wikipedia's side, and this entry's heading bundles ''Compromise'', ''Compromising'' and ''Favorite betrayal'' together under a single citation.
+
+Suggested fix, in preference order:
+
+# Remove "rated voting rules (e.g. score voting)" from the ''Immune'' line. What remains — Coombs and antiplurality — is exactly what the cited note supports.
+# If the immunity claim is worth keeping, it needs its own source and its own wording, because it is a claim about favorite betrayal in the strict sense (never having to rank a compromise above your favorite), not about compromising as this source defines and tests it. Those are different propositions and the entry currently uses one citation for both.
+
+I'd note for completeness that the strict claim is also not unconditionally true — rated methods with an elimination stage can present cases where equal top ratings are not sufficient — which is a further reason not to leave it standing on a citation that doesn't say it.
 
 '''2. The pushover immunity claim is uncited and broader than its examples.''' The ''Turkey-raising'' entry ends:
 
@@ -59,6 +74,7 @@ Happy to convert whichever of these gets agreement into a formal {{tl|edit COI}}
 
 - [ ] Rewrite the disclosure to match your actual relationship to Equal Vote — "volunteer contributor to software used by" is my guess from the bettervoting work, not something you told me. Understating it is the one unrecoverable mistake here.
 - [ ] Decide whether to post all three points together or split them. Together is honest about where the post comes from; splitting points 1–2 into their own section would get them judged on merit, but posting the STAR request separately afterwards looks like a setup. I'd keep them together.
-- [ ] Check whether Green-Armytage 2014 prop. 4's note actually resolves point 1 before you post it — if it plainly supports one line over the other, say which and the fix is trivial.
+- [x] ~~Check whether Green-Armytage 2014 prop. 4's note resolves point 1~~ — done, it does, decisively. The note names Coombs and anti-plurality as immune and lists approval and range among the vulnerable. Quote and page number are in the draft; verify against the [MPRA PDF](https://mpra.ub.uni-muenchen.de/32200/1/MPRA_paper_32200.pdf) yourself before posting, since I'm quoting an OCR'd text layer and the odd character mangling in it (`‗anti-plurality‘`) is the PDF's, not mine.
+- [ ] Decide whether to cite the MPRA working paper or the published *Social Choice and Welfare* version (42(1), 111–138, [doi:10.1007/s00355-013-0725-3](https://doi.org/10.1007/s00355-013-0725-3)). The article's own `{{rp|at=prop. 4, note}}` is pagination-independent, so the proposition number carries across either way; my p. 27 / p. 14 references are to the MPRA PDF the citation links.
 - [ ] Confirm the Independent Party of Oregon 2020 claim is sourced somewhere citable, or cut the clause. It's currently doing rhetorical work ("commonly-used") and is the one factual assertion in the post that a hostile reader would check first.
 - [ ] Expect Affinepplan. Point 3 is the target; points 1 and 2 are defensible on their own and shouldn't be conceded as a package deal if point 3 is rejected.
