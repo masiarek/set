@@ -61,3 +61,5 @@ Should politicians care mainly about their core supporters, or about all voters 
 - `Voting 2021 mbair/` — STAR Voting tabulator project and background links
 - [approval-voting](approval-voting.md) — the simplest cardinal method, and the one place where "which
   ballot you cast sincerely" is itself an open question
+- [star-voting](star-voting.md) — the method Ogren argues from, on the same 0–5 star ballots as his
+  core × broad and threshold proposals

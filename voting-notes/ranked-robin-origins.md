@@ -283,4 +283,7 @@ equal.vote brand has become the Condorcet umbrella Wolk described.
 - Image uploads transcribed above: [ballot language](https://www.votingtheory.org/forum/assets/uploads/files/1635211207586-ballot-language-1.0-resized.png) · [Condorcet-winner display](https://www.votingtheory.org/forum/assets/uploads/files/1635211235473-condorcet-winner.png) · [3-cycle](https://www.votingtheory.org/forum/assets/uploads/files/1635211254794-3-cycle.png) · [5-cycle](https://www.votingtheory.org/forum/assets/uploads/files/1635211268576-5-cycle.png) · [VSE screenshot](https://www.votingtheory.org/forum/assets/uploads/files/1635347455186-img_4086.png)
 - Where it landed: [Ranked Robin on electowiki](https://electowiki.org/wiki/Ranked_Robin) (incl. a worked example needing all four tiebreak degrees, with a [live BetterVoting election](https://bettervoting.com/3r3yf7/results)) · [equal.vote/ranked_robin](https://equal.vote/ranked_robin) · [BetterVoting results explainer](ranked-robin-results-explained.md)
 - Kin: [Reverse STAR (topic 130)](https://www.votingtheory.org/forum/topic/130/star-like-method-reverse-star) · Dasgupta & Maskin, "The Fairest Vote of All", *Scientific American* 290(3), 2004
+- [star-voting](star-voting.md) — Equal Vote's *other* method, seven years older and cardinal. Worth
+  reading alongside this: Ranked Robin elects the Condorcet winner unconditionally, STAR can leave them out
+  of the runoff entirely, and the same organisation promotes both.
 - [Glossary](glossary.md) — Copeland score, margin, Borda, Ranked Robin

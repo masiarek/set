@@ -218,10 +218,12 @@ support in [rcv-and-core-support](rcv-and-core-support.md), arriving from the op
   ([ranked-robin-results-explained](ranked-robin-results-explained.md)) gets there unconditionally from the
   pairwise matrix. Approval's counterargument is that the ranked ballot never had the intensity information in
   the first place.
-- **vs. STAR**: STAR is the "more expressive" branch — 0–5 scores plus an automatic runoff. The Independent
-  Party of Oregon walked exactly that path in 2020 after approval failed to produce a nominee. Whether the
-  extra levels help or just invite more strategy is the live disagreement; the criticism section here is
-  precisely that binary is under-expressive, and the reply is that grading invites strategy.
+- **vs. [STAR](star-voting.md)**: the "more expressive" branch — 0–5 scores plus an automatic runoff. The
+  Independent Party of Oregon walked exactly that path in 2020 after approval failed to produce a nominee.
+  Whether the extra levels help or just invite more strategy is the live disagreement; the criticism section
+  here is precisely that binary is under-expressive, and the reply is that grading invites strategy. The
+  criteria trade is sharp: approval passes sincere favorite outright and fails later-no-harm absolutely,
+  while STAR fails both only partially and argues that is the better bargain.
 - **vs. LeGrand's ranked-only world**: he prefers approval and never covers it, which is why his site can't
   speak to the cardinal-vs-ordinal argument at all.
 
@@ -280,3 +282,4 @@ support in [rcv-and-core-support](rcv-and-core-support.md), arriving from the op
 - [legrand-ranked-ballot-methods](legrand-ranked-ballot-methods.md) — the ranked-only site whose author
   prefers approval to everything on it
 - [hare-center-squeeze-examples](hare-center-squeeze-examples.md) — the failure mode approval is immune to
+- [star-voting](star-voting.md) — the six-level end of the same family, with worked criterion failures

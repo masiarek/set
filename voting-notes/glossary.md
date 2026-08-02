@@ -130,6 +130,15 @@ the Smith set).
   the tabulation: Condorcet-consistent under the leader rule or dichotomous preferences, capable of electing
   the Condorcet loser under a naive above-average cutoff. Used in Fargo ND 2018–2025 (banned statewide April
   2025) and in St. Louis since 2020. [→ [approval-voting](approval-voting.md)]
+- **Score voting (range voting)** — sum 0–5 (or 0–10) scores, highest total wins. Approval with more levels.
+  Its strategy problem — min-maxing — is what STAR's runoff was designed to blunt.
+  [→ [star-voting](star-voting.md)]
+- **STAR (Score Then Automatic Runoff)** — score 0–5; the two highest totals become finalists; elect
+  whichever finalist more ballots score higher. Proposed Oct 2014 by Mark Frohnmayer as **Score Runoff
+  Voting**, Equal Vote's flagship. Monotonic in the mono-raise sense, but fails majority, Condorcet, clone
+  independence, later-no-harm and favorite betrayal. No public government election has ever adopted it:
+  both Oregon ballot measures lost (Lane County 2018 at 47.5%, Oakridge 2024 at 46%).
+  [→ [star-voting](star-voting.md)]
 - **Unified primary** — nonpartisan primary run by approval, top two advance to the general. St. Louis'
   Proposition D variant. [→ [approval-voting](approval-voting.md)]
 
@@ -162,10 +171,17 @@ Every one of these appears as a row in LeGrand's compliance table with no defini
   cutoff. [→ [approval-voting](approval-voting.md)]
 - **Later-no-harm** — expressing support for a later choice must not hurt your earlier ones. Approval
   necessarily fails it — that failure is the same fact as its monotonicity, seen from the other side.
-  [→ [approval-voting](approval-voting.md)]
+  STAR fails it too: a mid-range score can lift a rival into the runoff *past* your favorite.
+  IRV passes it, which is exactly why it can ignore backup preferences and center-squeeze.
+  [→ [approval-voting](approval-voting.md), [star-voting](star-voting.md)]
+- **mono-raise vs. mono-raise-delete** **[Woodall]** — two monotonicity variants that come apart under STAR.
+  *mono-raise*: raising a candidate must not hurt them (STAR passes). *mono-raise-delete*: raising them
+  **and zeroing everyone now below them** must not hurt them (STAR fails — deleting a candidate can swap the
+  runoff for one your favorite loses). [→ [star-voting](star-voting.md)]
 - **Sincere favorite (favorite-betrayal) criterion** — supporting your true favorite must never be
-  counterproductive. Approval passes under every voter model; Hare fails it.
-  [→ [approval-voting](approval-voting.md)]
+  counterproductive. Approval passes under every voter model; Hare fails it. STAR fails it too, but only
+  narrowly: equal-rating your favorite with a compromise usually suffices, and a genuine violation needs a
+  profile where it doesn't. [→ [approval-voting](approval-voting.md), [star-voting](star-voting.md)]
 - **Participation criterion** — casting a sincere ballot must never make the result worse for you than
   staying home. Approval passes.
 - **Decisiveness** — how often a method needs a tiebreaker at all. Black is the most decisive of LeGrand's
@@ -191,6 +207,16 @@ Every one of these appears as a row in LeGrand's compliance table with no defini
   [→ [approval-voting](approval-voting.md)]
 - **Compromising** — approving a candidate you find unacceptable to block a worse one. Unlike favorite
   betrayal it never requires demoting your favorite. [→ [approval-voting](approval-voting.md)]
+- **Runoff monopolisation** — STAR's clone failure: two near-identical candidates take *both* finalist
+  slots, so the runoff is decided among allies and everyone else is locked out. The mirror image of Borda's
+  clone problem — Borda rewards flooding the field, STAR rewards flooding its top.
+  [→ [star-voting](star-voting.md)]
+- **Runoff abstention** — under STAR, scoring both finalists equally removes your ballot from the runoff.
+  The hidden cost of equal-rating, and why an all-5s ballot is nearly worthless.
+  [→ [star-voting](star-voting.md)]
+- **Tactical maximisation (min-maxing)** — scoring only 5s and 0s under score voting, since every point
+  given to a rival counts against your favorite. The specific problem STAR's runoff was added to blunt.
+  [→ [star-voting](star-voting.md)]
 - **Indeterminacy (Saari–Van Newenhizen)** — with voter preferences fixed, approval can *sincerely* elect
   any candidate, Condorcet winner or Condorcet loser, depending only on where voters put their cutoffs.
   Read as a defect by Saari, as responsiveness to intensity by Brams. [→ [approval-voting](approval-voting.md)]
@@ -236,4 +262,8 @@ All from [rcv-and-core-support](rcv-and-core-support.md).
 - [Ogren, *RCV and core support*](https://voting-in-the-abstract.medium.com/rcv-and-core-support-e0d1780a9184)
 - [*Approval voting* (Wikipedia)](https://en.wikipedia.org/wiki/Approval_voting) — history, use, strategy,
   the model-dependent compliance table [→ [approval-voting](approval-voting.md)]
+- [*STAR voting* (Wikipedia)](https://en.wikipedia.org/wiki/STAR_voting) — thin and advocacy-sourced; the
+  criteria failures are worked out locally instead [→ [star-voting](star-voting.md)]
+- [Equal Vote Coalition](https://www.equal.vote/) / [STAR Voting](https://www.starvoting.org/) — origin of
+  both STAR and Ranked Robin
 - [Equal Vote / BetterVoting](https://bettervoting.com) — Ranked Robin in production
