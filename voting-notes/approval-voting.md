@@ -80,6 +80,9 @@ does.
   as a defect that is "robust, not isolated"; they also wrote the rebuttal arguing it is really
   responsiveness to cardinal utility rather than a bug. Brams' position is blunter: voters' pragmatic
   judgments about who is *acceptable* should outrank the Condorcet criterion.
+  A compact worked instance on a real ranked profile is in
+  [lumen-75-ballot-four-winners](lumen-75-ballot-four-winners.md): 75 ballots, and top-1 / top-2 / top-3 cutoffs
+  elect the plurality winner, the Borda winner, and (tied) the Condorcet winner — three answers, all sincere.
 - **Bullet voting / the chicken (Burr) dilemma** — approve only your favorite so you don't help your
   second choice beat them. If both frontrunners' camps do it, a weaker third candidate wins. The Fargo 2020
   poll run *by opponents* of approval found **30% of bullet voters did so strategically, 57% sincerely** —
@@ -193,6 +196,13 @@ fixed standard of acceptability gives approval IIA for free; a voter who recalib
 not. That is the same "your values shouldn't depend on who else is running" point Ogren makes about core
 support in [rcv-and-core-support](rcv-and-core-support.md), arriving from the opposite direction.
 
+A corollary worth stating, because textbooks trip on it: **a ranked profile cannot determine an approval result.**
+Ranked ballots carry no utilities, so the fixed cutoff — the well-behaved one — isn't computable from them; top-*k*
+is the only cutoff a ranking can express, and top-*k* is floating. Any exercise that "runs approval voting" on a
+preference schedule is therefore reporting its own stipulation, not the method's answer. Worked out against a
+gen-ed textbook that does exactly this, and then advertises the result as a majority-criterion failure, in
+[lumen-75-ballot-four-winners](lumen-75-ballot-four-winners.md).
+
 ## Empirical comparisons
 
 - **2002 French presidential, first round.** Actual: Chirac 19.9%, Le Pen 16.9%, Jospin 16.2% — Jospin
@@ -212,7 +222,10 @@ support in [rcv-and-core-support](rcv-and-core-support.md), arriving from the op
 - **vs. IRV/Hare**: approval cannot center-squeeze the way Hare does
   ([hare-center-squeeze-examples](hare-center-squeeze-examples.md)) — nothing is eliminated, so no backup
   support is ever discarded — and it passes sincere favorite outright. It pays for that with cutoff
-  indeterminacy, which IRV doesn't have.
+  indeterminacy, which IRV doesn't have. The trade is visible on a single electorate in
+  [lumen-75-ballot-four-winners](lumen-75-ballot-four-winners.md): IRV returns one answer but the wrong one —
+  eliminating the Condorcet winner by a single vote, non-monotonically, while rewarding favorite betrayal —
+  and approval's answer is right only if you pick the right cutoff, which the ballots don't give you.
 - **vs. Condorcet (Ranked Robin, Schulze, …)**: approval only reaches the Condorcet winner *conditionally* —
   under the leader rule, trembling ballots, or dichotomous preferences. Ranked Robin
   ([ranked-robin-results-explained](ranked-robin-results-explained.md)) gets there unconditionally from the
@@ -282,4 +295,6 @@ support in [rcv-and-core-support](rcv-and-core-support.md), arriving from the op
 - [legrand-ranked-ballot-methods](legrand-ranked-ballot-methods.md) — the ranked-only site whose author
   prefers approval to everything on it
 - [hare-center-squeeze-examples](hare-center-squeeze-examples.md) — the failure mode approval is immune to
+- [lumen-75-ballot-four-winners](lumen-75-ballot-four-winners.md) — cutoff indeterminacy worked on a ranked
+  profile, and a textbook that mistakes one stipulated cutoff for the method
 - [star-voting](star-voting.md) — the six-level end of the same family, with worked criterion failures

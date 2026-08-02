@@ -138,12 +138,27 @@ Three assumptions, three answers, and the third is an exact 75–75 tie (neither
 ballot). The top-2 row is also numerically identical to Bucklin at depth 2, which is where Bucklin stops — so
 Bucklin gives a fifth reading of the same electorate.
 
-This is precisely the objection to the module's own
+This isn't a quirk of the profile; it is [approval's cutoff indeterminacy](approval-voting.md) showing up in
+miniature. Each row above is a **floating top-*k* cutoff**, the family that
+[approval-voting.md](approval-voting.md) identifies as the IIA-breaking kind, and Saari and Van Newenhizen's
+result is that with preferences held fixed approval can sincerely elect essentially anyone — here, three of the
+four candidates including both the Condorcet winner and the plurality winner. Every one of these ballots is
+sincere in the Brams–Fishburn sense; nobody is voting insincerely in any row.
+
+There is a sharper reason the module *couldn't* have included approval here even if it had wanted to: **a ranked
+profile carries no utilities, so a fixed cutoff isn't computable from it at all.** A voter with a genuine standard
+of acceptability ("anyone I'd rate above 50") gives approval IIA for free — but nothing in `Garcia>Lee>Nguyen>Smith`
+says where that voter's line falls. Top-*k* is the only cutoff a ranked ballot can express, and it is precisely the
+cutoff rule that misbehaves.
+
+That is the objection to the module's own
 ["What's Wrong with Approval Voting?"](https://courses.lumenlearning.com/wmopen-mathforliberalarts/chapter/introduction-approval-voting/)
-section, which "proves" a majority-criterion violation by *stipulating* that "every voter marked approval of their
-top two candidates." Pick a different stipulation and you get a different winner; the stipulation is doing all the
-work. A ranked profile does not determine an approval outcome, and that — not the textbook's rigged example — is
-the real difficulty with approval voting.
+page, which "proves" a majority-criterion violation by *stipulating* that "every voter marked approval of their top
+two candidates." It picks one floating cutoff, gets the failure that cutoff produces, and reports it as a property
+of the method. Per the model-dependent compliance table in [approval-voting.md](approval-voting.md), approval fails
+the majority criterion under the **zero-information** model and satisfies it under the leader rule, trembling
+ballots, and dichotomous preferences — three of four rows. The textbook states the ✗ row as though it were the
+whole table.
 
 ## Is it a useful example?
 
@@ -177,6 +192,8 @@ then punish the voters who tried to help the eventual winner. Keep Alaska 2022 f
 
 - [hare-center-squeeze-examples.md](hare-center-squeeze-examples.md) — the two constructed examples this one is
   measured against
+- [approval-voting.md](approval-voting.md) — cutoff indeterminacy, the fixed-vs-floating distinction, and the
+  model-dependent compliance table that the section above leans on
 - [ranked-robin-vse-run.md](ranked-robin-vse-run.md) — the margins step's aggregate neutrality, which the
   wins/margins disagreement above qualifies
 - [ranked-robin-results-explained.md](ranked-robin-results-explained.md) — Copeland matchup wins vs. ballot counts
