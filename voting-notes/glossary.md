@@ -127,6 +127,19 @@ the Smith set).
   place. It also cannot be run at all without a truncation convention: a ballot ranking two of five
   candidates has to be told who counts as last. [→ [mdi-trivia-cards](mdi-trivia-cards.md)]
 
+- ***k*-Approval** — the scoring rule (1, …, 1, 0, …, 0) with *k* ones: a point to everyone ranked *k*th or
+  higher. Plurality is *k* = 1 and antiplurality is *k* = *m* − 1, so the whole family above interpolates
+  between them by moving one boundary. Worth keeping as a family because the boundary decides the election:
+  on `2 ADBC, 2 BDAC, 1 CABD`, 1-approval elects {A, B}, 2-approval elects D and 3-approval elects {A, B}
+  again — and the Condorcet winner is A. The cutoff-dependence of approval, stated as a difference between
+  *rules* rather than between voters. [→ [sep-voting-methods](sep-voting-methods.md)]
+- **Quota rule (single-winner)** — fix *q* between 0 and 1 and elect everyone with at least *q* × (number of
+  voters) votes. Majority rule is *q* = 0.5, unanimity rule is *q* = 1. Its defect is the obvious one and it
+  is worth stating plainly: **quota rules frequently elect nobody**, which is why every real use of one is
+  paired with a runoff or a fallback. (Not the multi-winner quota of the STV entries below, nor the
+  apportionment quota rule of §8 — three unrelated uses of the word.)
+  [→ [sep-voting-methods](sep-voting-methods.md)]
+
 ### Borda-based recursive elimination
 
 - **Nanson** **[LeGrand]** — repeatedly eliminate *all* candidates with a negative Borda score. Condorcet, Smith.
@@ -265,6 +278,23 @@ scale. Equal ratings are allowed and blanks are meaningful, neither of which a r
   such that at least an *s*-sized share of voters rate the candidate ≥ *s* — an intersection rule, not a
   sum), **Majority Choice Approval** and **Majority Approval Voting** (median rules on binary ballots).
   [→ [cardinal-voting-systems](cardinal-voting-systems.md)]
+
+### Pricing and delegation
+
+Two methods that adjust *how much say* a voter has rather than how the ballots are counted. Both are aimed
+at referenda more than at electing people. All from [sep-voting-methods](sep-voting-methods.md).
+
+- **Negative voting** — vote *for* one candidate (+1) or *against* one candidate (−1). Equivalent to
+  approving either a single candidate or everyone but one, so it is approval voting restricted to the two
+  extreme ballot shapes.
+- **Quadratic voting (Weyl)** — buy *v* votes for *v*² dollars, with the proceeds redistributed pro rata.
+  An answer to tyranny of the majority that lets an intense minority outbid a lukewarm majority without
+  handing anyone a veto, which is what raising the quota would do. The standard objections are both about
+  wealth: whether the outcome beats majority rule in utilitarian terms once incomes differ, and whether any
+  vote-buying mechanism can meet a legitimacy requirement (Laurence and Sher 2017).
+- **Liquid democracy** — proxy voting where proxies may **re-delegate**, so votes flow transitively to whoever
+  is left holding them. Direct democracy without the demand that everyone study every issue. The open
+  problems are structural: delegation cycles, and vote mass concentrating on a handful of super-proxies.
 
 ### Multi-winner
 
@@ -478,7 +508,29 @@ of approval voting. [→ [brandl-peters-approval-characterizations](brandl-peter
   elects Left while the Condorcet winner and the score winner are both Center, because its tiebreak rewards
   the larger homogeneous wing. [→ [majority-judgment](majority-judgment.md)]
 - **No-show paradox** — a bloc turns out and gets a worse result than by staying home; the concrete form of
-  a participation failure. [→ [majority-judgment](majority-judgment.md)]
+  a participation failure. [→ [majority-judgment](majority-judgment.md),
+  [sep-voting-methods](sep-voting-methods.md)]
+
+The four axioms every characterization result starts from, and the two it usually cannot have. All from
+[sep-voting-methods](sep-voting-methods.md).
+
+- **Anonymity** — swapping two voters' ballots changes nothing; the outcome depends only on *how many* cast
+  each ballot. Usually not an axiom at all in practice but a **choice of domain**: work with anonymized
+  profiles (a function from ballots to counts) and anonymity is the type signature rather than a condition.
+- **Neutrality** — swapping two candidates on every ballot swaps them in the result. The candidate-side
+  mirror of anonymity, and stronger than it looks: it alone rules out resoluteness, since a profile that is
+  its own image under a rotation of the candidates must have a winner *set* that is too, and no singleton is.
+- **Universal domain** — the method is a total function; no profile may be refused.
+- **Unanimity (Pareto)** — if every voter ranks A above B, B does not win.
+- **Positive responsiveness** — a candidate who is winning or tied and then gains ground on some ballot
+  becomes the **unique** winner. Strictly stronger than monotonicity, and the axiom that does the work in
+  May's Theorem.
+- **Resoluteness** — always exactly one winner, no ties. **Incompatible** with universal domain + anonymity
+  + neutrality + unanimity once there are three or more candidates, so every method here is really a
+  set-valued rule plus a tiebreak that lives outside the theory.
+- **Reinforcement (consistency across districts)** — if two disjoint electorates share a winner, the
+  combined electorate's winners are exactly the shared ones. Scoring rules satisfy it because scores add;
+  **every Condorcet consistent method fails it**, which is the multiple-districts paradox.
 - **Proportionality for solid coalitions (PSC)** — if a group ranks some set of candidates above all others
   on every ballot and is worth *k* quotas, that set gets at least *k* seats. STV's actual formal guarantee,
   and weaker than "proportional" in the everyday sense: it says nothing about voters who don't form solid
@@ -559,6 +611,33 @@ of approval voting. [→ [brandl-peters-approval-characterizations](brandl-peter
   are exposed to: single-member systems are immune to it by construction, which is why the reweighting rule
   is where multi-winner strategy lives. [→ [cardinal-voting-systems](cardinal-voting-systems.md)]
 
+Paradoxes of aggregating *issues* rather than candidates, plus two pieces of vocabulary for talking about how
+often any of this happens. All from [sep-voting-methods](sep-voting-methods.md).
+
+- **Condorcet's other paradox (Fishburn 1974)** — a profile where electing the Condorcet winner requires a
+  scoring rule that gives **more points for second place than for first**. Condorcet's 81-voter example is
+  the original: Score(A) − Score(B) = −8(s₁ − s₂), so A can only win if s₂ > s₁.
+- **Multiple elections paradox (Brams, Kilgour & Zwicker 1998)** — vote on propositions separately and the
+  winning *package* can be one that **no voter cast**. Thirteen voters, three propositions, N wins 7–6 on
+  each, and the outcome NNN has zero supporters. Aggregating issue by issue and aggregating packages are
+  different questions with different answers.
+- **Anscombe's paradox (1976)** — a majority of voters can be on the losing side of a majority of issues.
+  Five voters, three issues, and voters 1, 2 and 3 each lose two of the three.
+- **Ostrogorski's paradox (1902)** — the same profile with candidates instead of referenda: the candidate
+  holding the **minority** position on every issue wins 3–2, because voters back whoever agrees with them on
+  most issues. The party-platform version of the multiple elections paradox.
+- **Condorcet component** — a perfectly symmetric majority cycle: *n* voters for each of `ABC`, `BCA`, `CAB`.
+  Contributes an equal score to every candidate under any positional rule, and a 2:1 margin around the cycle
+  in the majority relation — so it is invisible to Borda and decisive for Condorcet. In the 81-voter example
+  the Condorcet winner's margin is **+1**, assembled from +10 contributed by a 30-voter component and −1 by a
+  3-voter reverse component against a real −8 among the voters in no cycle.
+- **Impartial culture** — the standard null model: every ranking equally likely, independently per voter. It
+  gives the quoted paradox frequencies (five candidates and seven voters: 21.5% chance of no Condorcet
+  winner, rising to 25.1% as the electorate grows), and it is a **worst case** — Tsetlin et al. 2003 show any
+  deviation lowers the cycle probability, and Regenwetter's empirical datasets find the usual methods
+  agreeing outright. Quote a paradox probability without naming a distribution and this is the one being
+  assumed.
+
 ## 7. Concepts from the values argument
 
 All from [rcv-and-core-support](rcv-and-core-support.md).
@@ -623,10 +702,56 @@ fixed number of seats."
   Droop/Hare threshold) **nor the quota rule of §8** (apportionment) — three unrelated uses of the word.
   What the theorem really says is that the entire subject is a consequence of having three or more
   candidates: with two, the answer is settled and provably unique.
-  [→ [mdi-trivia-cards](mdi-trivia-cards.md)]
+  A third axiom list is in circulation: the SEP entry states it as **neutrality + anonymity + unanimity +
+  positive responsiveness**, and the unanimity is redundant — brute force over every neutral rule on
+  anonymized two-candidate profiles (n = 3…6) leaves exactly one rule standing without it, and that rule is
+  simple majority. Three sources, three lists, one theorem.
+  [→ [mdi-trivia-cards](mdi-trivia-cards.md), [sep-voting-methods](sep-voting-methods.md)]
 - **Gibbard–Satterthwaite theorem** — no deterministic ranked method with three or more candidates can be both
   non-dictatorial and strategy-proof. This is why LeGrand's "nonmanipulable?" row is uniformly NO: the design
   target is making manipulation *hard*, not impossible.
+- **Fishburn's theorem (1974)** — for every *m* ≥ 3 there is a profile with a Condorcet winner such that
+  **every** scoring rule ranks at least *m* − 2 candidates above them. The general form of what the worked
+  examples keep showing one profile at a time: no positional rule is Condorcet consistent, and not merely by
+  a whisker. For *m* = 3 the smallest witness takes **11 voters** — `2 ACB, 3 BAC, 2 BCA, 4 CBA`, where the
+  Condorcet winner C is beaten by exactly one point under every scoring vector, because B has one more first
+  place and the same number of seconds. Condorcet's own 81-voter example is *not* a witness: at s₁ = s₂ it
+  ties. [→ [sep-voting-methods](sep-voting-methods.md)]
+- **Moulin's theorem (1988)** — with **four or more** candidates, every Condorcet consistent method is
+  susceptible to the **no-show paradox**. The ordinal twin of Balinski and Laraki's participation result for
+  point-summing methods. The bound is on candidates, not a safety guarantee below it: minimax survived all
+  12,369 three-candidate profiles up to 11 voters, while Black's Procedure — equally Condorcet consistent —
+  fails on three candidates and eight voters. [→ [sep-voting-methods](sep-voting-methods.md)]
+- **Young's characterization of scoring rules (1975)** — anonymity + neutrality + **reinforcement** +
+  continuity, if and only if the method is a scoring rule. Since reinforcement is exactly the
+  multiple-districts property, this says the **scoring rules are precisely the district-safe methods** — and
+  with Zwicker's converse (every Condorcet consistent method fails reinforcement) it splits the ranked
+  methods cleanly in two. [→ [sep-voting-methods](sep-voting-methods.md)]
+- **Fishburn (1978b) / Alós-Ferrer (2006)** — on approval ballots, **faithfulness + cancellation +
+  reinforcement** characterize approval voting, and neutrality comes free (Alós-Ferrer). The variable-domain
+  ancestor of the eight Brandl–Peters characterizations.
+  [→ [brandl-peters-approval-characterizations](brandl-peters-approval-characterizations.md),
+  [sep-voting-methods](sep-voting-methods.md)]
+- **Myerson's abstract scoring rules (1995)** — treat a ballot as a function from candidates to numbers and
+  score by summing. Plurality, approval, Borda, range, cumulative voting and "formal utilitarian" are then
+  one family distinguished only by which functions count as legal ballots, characterized by reinforcement,
+  universal domain, neutrality and continuity. The frame in which the ordinal/cardinal split stops being a
+  split. [→ [sep-voting-methods](sep-voting-methods.md)]
+- **Balinski–Laraki cancellation result (2010)** — **no Condorcet consistent method cancels properly**, where
+  *cancelling properly* means that adding a **Condorcet component** (a perfectly symmetric majority cycle,
+  each ranking held by equally many voters) never changes the winner. Saari's argument that such a component
+  is noise, turned into an impossibility. Borda cancels properly by construction — a component gives every
+  candidate the same score — which is the sharpest available statement of the Borda-vs-Condorcet
+  disagreement. [→ [sep-voting-methods](sep-voting-methods.md)]
+- **Condorcet Jury Theorem** — the one result here from the **epistemic** side of the subject rather than the
+  procedural one. If each voter independently has probability > ½ of picking the objectively better of two
+  options, the probability that the majority picks it rises to certainty with the electorate. Condorcet 1785,
+  first proved by Laplace. So majority rule is singled out twice over on two candidates — by May's Theorem on
+  fairness grounds and by this on accuracy grounds. Young extended the idea past two options and showed
+  **Borda count is the maximum-likelihood estimator** of the best candidate under a natural noise model,
+  which is a wholly different argument for Borda than any compliance table gives. Its two premises —
+  independence and uniform competence — are the standard targets (Dietrich 2008).
+  [→ [sep-voting-methods](sep-voting-methods.md)]
 - **Myerson–Weber voting equilibrium** — rational-voter model for approval: approve every candidate with a
   positive **prospective rating** (utility weighted by the probability your vote is pivotal in each pairwise
   tie). Approving your favorite and rejecting your least favorite are dominant strategies.
@@ -769,6 +894,10 @@ contains rather than which candidate a *method* elects. Nothing here names a win
   *Amer. Math. Monthly* 117 (2010) — Helly's theorem read as voting; agreement numbers, (k,m)-agreeability,
   and the interval/perfect-graph machinery. With Burkhart's 2012 HMC thesis on a third approval level
   [→ [agreeable-societies](agreeable-societies.md)]
+- [Pacuit, *Voting Methods*](https://plato.stanford.edu/entries/voting-methods/), *Stanford Encyclopedia of
+  Philosophy* (rev. 2019) — the characterization theorems (May, Young, Fishburn, Moulin, Myerson), the
+  epistemic reading of voting and the Condorcet Jury Theorem, the issue-aggregation paradoxes, and impartial
+  culture [→ [sep-voting-methods](sep-voting-methods.md)]
 - [Equal Vote Coalition](https://www.equal.vote/) / [STAR Voting](https://www.starvoting.org/) — origin of
   both STAR and Ranked Robin
 - [Equal Vote / BetterVoting](https://bettervoting.com) — Ranked Robin in production

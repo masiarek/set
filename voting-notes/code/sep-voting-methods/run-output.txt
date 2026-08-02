@@ -1,0 +1,606 @@
+
+==============================================================================
+1. The 21-voter example (Section 1): Borda vs Condorcet
+==============================================================================
+PASS  electorate
+        got  21
+        want 21
+PASS  plurality scores
+        got  {'B': 7, 'D': 0, 'A': 8, 'C': 6}
+        want {'A': 8, 'B': 7, 'C': 6, 'D': 0}
+PASS  voters ranking A last
+        got  13
+        want 13
+PASS  C vs A
+        got  (13, 8)
+        want (13, 8)
+PASS  C vs B
+        got  (11, 10)
+        want (11, 10)
+PASS  C vs D
+        got  (14, 7)
+        want (14, 7)
+PASS  B vs A
+        got  (13, 8)
+        want (13, 8)
+PASS  B vs C
+        got  (10, 11)
+        want (10, 11)
+PASS  B vs D
+        got  (21, 0)
+        want (21, 0)
+PASS  Condorcet winner
+        got  C
+        want C
+PASS  Condorcet loser
+        got  A
+        want A
+PASS  Borda scores
+        got  {'A': 24, 'B': 44, 'C': 38, 'D': 20}
+        want {'A': 24, 'B': 44, 'C': 38, 'D': 20}
+PASS  sum of pairwise support == positional Borda
+        got  {'A': 24, 'B': 44, 'C': 38, 'D': 20}
+        want {'A': 24, 'B': 44, 'C': 38, 'D': 20}
+PASS  Borda total is n*C(k,2)
+        got  126
+        want 126
+PASS  no majority winner exists (quota rules are indecisive here)
+        got  False
+        want False
+
+==============================================================================
+2. Borda 1784: plurality elects the Condorcet loser (Section 2)
+==============================================================================
+PASS  plurality scores
+        got  {'B': 7, 'A': 8, 'C': 6}
+        want {'A': 8, 'B': 7, 'C': 6}
+PASS  B vs A
+        got  (13, 8)
+        want (13, 8)
+PASS  C vs A
+        got  (13, 8)
+        want (13, 8)
+PASS  C vs B
+        got  (13, 8)
+        want (13, 8)
+PASS  Condorcet loser is the plurality winner
+        got  A
+        want A
+PASS  plurality order exactly reverses the majority order
+        got  (['A', 'B', 'C'], ['C', 'B', 'A'])
+        want (['A', 'B', 'C'], ['C', 'B', 'A'])
+
+==============================================================================
+3. k-Approval and Approval (Sections 2.1, 2.2)
+==============================================================================
+PASS  1-approval winners
+        got  frozenset({'B', 'A'})
+        want frozenset({'B', 'A'})
+PASS  2-approval winners
+        got  frozenset({'D'})
+        want frozenset({'D'})
+PASS  3-approval winners
+        got  frozenset({'B', 'A'})
+        want frozenset({'B', 'A'})
+PASS  2-approval scores
+        got  {'A': 3, 'B': 2, 'C': 1, 'D': 4}
+        want {'A': 3, 'B': 2, 'C': 1, 'D': 4}
+PASS  Condorcet winner
+        got  A
+        want A
+PASS  approval scores for the entry's ballot profile
+        got  {'A': 3, 'B': 2, 'C': 1, 'D': 0}
+        want {'A': 3, 'B': 2, 'C': 1, 'D': 0}
+PASS  that approval profile elects the Condorcet winner
+        got  frozenset({'A'})
+        want frozenset({'A'})
+
+==============================================================================
+4. Plurality-with-Runoff vs Hare vs Coombs, 19 voters (Section 2.1)
+==============================================================================
+PASS  plurality scores
+        got  {'B': 5, 'D': 4, 'A': 7, 'C': 3}
+        want {'A': 7, 'B': 5, 'C': 3, 'D': 4}
+PASS  Plurality with Runoff winner
+        got  frozenset({'A'})
+        want frozenset({'A'})
+PASS  Hare winner
+        got  frozenset({'D'})
+        want frozenset({'D'})
+PASS  Coombs winner
+        got  frozenset({'B'})
+        want frozenset({'B'})
+PASS  Borda scores
+        got  {'A': 24, 'B': 37, 'C': 30, 'D': 23}
+        want {'A': 24, 'B': 37, 'C': 30, 'D': 23}
+PASS  Borda winner
+        got  frozenset({'B'})
+        want frozenset({'B'})
+PASS  Condorcet winner
+        got  None
+        want None
+PASS  Copeland win-loss records
+        got  {'A': -1, 'B': 1, 'C': 1, 'D': -1}
+        want {'A': -1, 'B': 1, 'C': 1, 'D': -1}
+PASS  the C-first group (CDAB) transfers to
+        got  A
+        want A
+PASS  the D-first group (DBCA) transfers to
+        got  B
+        want B
+NOTE  entry says
+        'the groups voting for candidates C and D transfer their support to candidates B and A, respectively' -- the pairing is reversed; C's group transfers to A and D's group to B.  The printed total (A wins 10-9) is right: 7+3 = 10 and 5+4 = 9
+PASS  runoff tally A vs B
+        got  (10, 9)
+        want (10, 9)
+
+==============================================================================
+5. The tie convention: Hare and Coombs on the entry's own paradox profile
+==============================================================================
+PASS  plurality scores are a perfect three-way tie
+        got  {'B': 1, 'A': 1, 'C': 1}
+        want {'A': 1, 'B': 1, 'C': 1}
+PASS  Hare, as the entry defines it, returns
+        got  frozenset()
+        want frozenset()
+PASS  Coombs, as the entry defines it, returns
+        got  frozenset()
+        want frozenset()
+PASS  Plurality with Runoff returns
+        got  frozenset({'B', 'A', 'C'})
+        want frozenset({'B', 'A', 'C'})
+NOTE  so
+        on the profile the entry uses to state Condorcet's paradox, its own Hare and Coombs definitions elect nobody: every candidate ties for fewest first places, all are deleted in round one, and the fallback clause ('the remaining candidate(s) are declared the winners') has nothing left to name
+NOTE  3-candidate profiles scanned (1..9 voters)
+        5004
+NOTE  profiles where Hare and Plurality-with-Runoff disagree
+        501
+NOTE  profiles where Hare, as defined, elects nobody
+        501
+PASS  every disagreement is a Hare profile with no winner at all
+        got  []
+        want []
+PASS  so the two methods agree whenever Hare returns anyone
+        got  501
+        want 501
+NOTE  smallest examples (profile, Hare, Plurality-with-Runoff)
+        [([(1, 'BCA'), (1, 'CBA')], [], ['B', 'C']), ([(1, 'BCA'), (1, 'CAB')], [], ['B', 'C']), ([(1, 'BAC'), (1, 'CBA')], [], ['B', 'C'])]
+NOTE  so
+        the identification of the two methods on three candidates holds wherever Hare is decisive; the 10% of profiles where it is not are the ones its stated deletion rule wipes out
+
+==============================================================================
+6. Score Voting vs Majority Judgement, 5 voters (Section 2.2)
+==============================================================================
+PASS  mean grades
+        got  {'A': '13/5', 'B': '9/5', 'C': '12/5'}
+        want {'A': '13/5', 'B': '9/5', 'C': '12/5'}
+PASS  means as decimals
+        got  [2.6, 1.8, 2.4]
+        want [2.6, 1.8, 2.4]
+PASS  median grades
+        got  {'A': 2, 'B': 3, 'C': 2}
+        want {'A': 2, 'B': 3, 'C': 2}
+PASS  Score Voting winner
+        got  frozenset({'A'})
+        want frozenset({'A'})
+PASS  Majority Judgement winner
+        got  frozenset({'B'})
+        want frozenset({'B'})
+PASS  Condorcet winner of the induced rankings
+        got  C
+        want C
+PASS  C beats A and C beats B, 3-2
+        got  ((3, 2), (3, 2))
+        want ((3, 2), (3, 2))
+PASS  after manipulation, mean of A
+        got  2.4
+        want 2.4
+PASS  after manipulation, mean of C
+        got  2.6
+        want 2.6
+PASS  Score Voting now elects C
+        got  frozenset({'C'})
+        want frozenset({'C'})
+PASS  the medians did not move
+        got  {'A': 2, 'B': 3, 'C': 2}
+        want {'A': 2, 'B': 3, 'C': 2}
+PASS  after MJ manipulation, medians
+        got  {'A': 4, 'B': 3, 'C': 2}
+        want {'A': 4, 'B': 3, 'C': 2}
+PASS  Majority Judgement now elects A
+        got  frozenset({'A'})
+        want frozenset({'A'})
+PASS  and the manipulator really does prefer A to B
+        got  True
+        want True
+NOTE  wording
+        the entry calls this voter 'the voter in the middle column' twice; the voters are the rows of that table, the columns are candidates
+
+==============================================================================
+7. Condorcet's 81-voter example (Section 3.1.1)
+==============================================================================
+PASS  electorate
+        got  81
+        want 81
+PASS  A vs B
+        got  (41, 40)
+        want (41, 40)
+PASS  A vs C
+        got  (60, 21)
+        want (60, 21)
+PASS  B vs C
+        got  (69, 12)
+        want (69, 12)
+PASS  Condorcet winner
+        got  A
+        want A
+PASS  Borda scores
+        got  {'A': 101, 'B': 109, 'C': 33}
+        want {'A': 101, 'B': 109, 'C': 33}
+PASS  Borda winner
+        got  frozenset({'B'})
+        want frozenset({'B'})
+PASS  first-place counts (the entry's 31 / 39 / 11)
+        got  {'A': 31, 'B': 39, 'C': 11}
+        want {'A': 31, 'B': 39, 'C': 11}
+PASS  second-place counts (the entry's 39 / 31 / 11)
+        got  {'A': 39, 'B': 31, 'C': 11}
+        want {'A': 39, 'B': 31, 'C': 11}
+PASS  A never outscores B unless s2 > s1
+        got  [False, False, False, True]
+        want [False, False, False, True]
+PASS  at s1 = s2 (2-approval) A and B TIE rather than B winning
+        got  {'A': 70, 'B': 70, 'C': 22}
+        want {'A': 70, 'B': 70, 'C': 22}
+NOTE  so
+        this profile is not itself a witness for the m=3 case of Fishburn's theorem: 2-approval leaves no candidate with a *greater* score than the Condorcet winner.  The entry does not claim it is, but it presents the theorem as a generalisation of this example
+NOTE  smallest 3-candidate Fishburn witness found (search: n <= 12)
+        (11, [(2, 'ACB'), (3, 'BAC'), (2, 'BCA'), (4, 'CBA')])
+NOTE  its Condorcet winner / plurality / Borda / 2-approval winners
+        ('C', ['B'], ['B'], ['B'])
+
+==============================================================================
+8. Saari's decomposition of the 81 voters (Section 3.1.1)
+==============================================================================
+PASS  the three groups reconstruct the profile
+        got  [(1, 'ACB'), (1, 'CBA'), (10, 'BCA'), (10, 'CAB'), (29, 'BAC'), (30, 'ABC')]
+        want [(1, 'ACB'), (1, 'CBA'), (10, 'BCA'), (10, 'CAB'), (29, 'BAC'), (30, 'ABC')]
+PASS  group sizes
+        got  (30, 3, 48)
+        want (30, 3, 48)
+PASS  group 3 elects B
+        got  (28, 20)
+        want (28, 20)
+PASS  each component gives every candidate the same Borda score
+        got  (1, 1)
+        want (1, 1)
+PASS  Borda is therefore decided by group 3 alone
+        got  {'A': 101, 'B': 109, 'C': 33}
+        want {'A': 101, 'B': 109, 'C': 33}
+PASS  component margins on A vs B (group1, group2, group3)
+        got  (10, -1, -8)
+        want (10, -1, -8)
+PASS  they sum to A's one-vote win
+        got  1
+        want 1
+NOTE  so
+        A's Condorcet win over B is a margin of exactly 1, assembled from +10 contributed by the 30-voter cycle and -1 by the 3-voter reverse cycle against a genuine -8 in the 48 voters who are not in any cycle
+
+==============================================================================
+9. Monotonicity failure of Plurality with Runoff (Section 3.2)
+==============================================================================
+PASS  scenario 1 plurality scores
+        got  {'B': 6, 'A': 6, 'C': 5}
+        want {'A': 6, 'B': 6, 'C': 5}
+PASS  scenario 1 winner
+        got  frozenset({'A'})
+        want frozenset({'A'})
+PASS  scenario 1 runoff tally A vs B
+        got  (11, 6)
+        want (11, 6)
+PASS  scenario 2 plurality scores
+        got  {'B': 4, 'A': 8, 'C': 5}
+        want {'A': 8, 'B': 4, 'C': 5}
+PASS  scenario 2 winner
+        got  frozenset({'C'})
+        want frozenset({'C'})
+PASS  scenario 2 runoff tally C vs A
+        got  (9, 8)
+        want (9, 8)
+PASS  the two voters who promoted A rank C last
+        got  C
+        want C
+PASS  neither scenario has a Condorcet winner
+        got  (None, None)
+        want (None, None)
+PASS  both scenarios carry the same majority cycle A > B > C > A
+        got  ({('C', 'A'), ('A', 'B'), ('B', 'C')}, {('C', 'A'), ('A', 'B'), ('B', 'C')})
+        want ({('C', 'A'), ('A', 'B'), ('B', 'C')}, {('C', 'A'), ('A', 'B'), ('B', 'C')})
+PASS  Borda elects A in both, so the promotion costs A nothing under Borda
+        got  (frozenset({'A'}), frozenset({'A'}))
+        want (frozenset({'A'}), frozenset({'A'}))
+PASS  Borda scores in the two scenarios
+        got  ({'A': 19, 'B': 18, 'C': 14}, {'A': 21, 'B': 16, 'C': 14})
+        want ({'A': 19, 'B': 18, 'C': 14}, {'A': 21, 'B': 16, 'C': 14})
+NOTE  so
+        the entry's monotonicity example is built on a majority cycle: there is no Condorcet winner in either scenario, so nothing adjudicates between A and C on Condorcet grounds.  The scoring rule that Section 4.2 will show fails IIA is the one that behaves monotonically here
+
+==============================================================================
+10. The no-show paradox (Section 3.3)
+==============================================================================
+PASS  11-voter plurality scores
+        got  {'B': 3, 'A': 4, 'C': 4}
+        want {'A': 4, 'B': 3, 'C': 4}
+PASS  11-voter winner
+        got  frozenset({'C'})
+        want frozenset({'C'})
+PASS  runoff tally C vs A
+        got  (7, 4)
+        want (7, 4)
+PASS  9-voter plurality scores
+        got  {'B': 3, 'A': 2, 'C': 4}
+        want {'A': 2, 'B': 3, 'C': 4}
+PASS  9-voter winner
+        got  frozenset({'B'})
+        want frozenset({'B'})
+PASS  runoff tally B vs C
+        got  (5, 4)
+        want (5, 4)
+PASS  the absentees rank B above C
+        got  True
+        want True
+
+==============================================================================
+11. The multiple districts paradox (Section 3.3)
+==============================================================================
+PASS  district 1 last-place counts
+        got  {'B': 3, 'A': 4, 'C': 3}
+        want {'A': 4, 'B': 3, 'C': 3}
+PASS  district 1 Coombs winner
+        got  frozenset({'B'})
+        want frozenset({'B'})
+PASS  district 1 second round B vs C
+        got  (6, 4)
+        want (6, 4)
+PASS  district 2 Coombs winner
+        got  frozenset({'B'})
+        want frozenset({'B'})
+PASS  combined last-place counts
+        got  {'B': 3, 'A': 4, 'C': 8}
+        want {'A': 4, 'B': 3, 'C': 8}
+PASS  combined Coombs winner
+        got  frozenset({'A'})
+        want frozenset({'A'})
+PASS  combined second round A vs B
+        got  (8, 7)
+        want (8, 7)
+PASS  Zwicker district 1 has no Condorcet winner
+        got  None
+        want None
+PASS  Zwicker district 2 Condorcet winner
+        got  B
+        want B
+PASS  Zwicker combined Condorcet winner
+        got  A
+        want A
+NOTE  so
+        a Condorcet consistent V must elect B in district 2 and A in the combination, so B cannot be among V's winners in district 1; permuting the labels in district 2 rules out A and C the same way, leaving V with no winner at all in district 1
+PASS  district 1 is a Condorcet component
+        got  True
+        want True
+PASS  scoring rules failing reinforcement in 2000 random district pairs
+        got  0
+        want 0
+
+==============================================================================
+12. The multiple elections paradox, Anscombe, Ostrogorski (Section 3.4)
+==============================================================================
+PASS  electorate
+        got  13
+        want 13
+PASS  per-proposition tallies
+        got  [(6, 7), (6, 7), (6, 7)]
+        want [(6, 7), (6, 7), (6, 7)]
+PASS  the winning package
+        got  NNN
+        want NNN
+PASS  voters who cast that package
+        got  0
+        want 0
+PASS  majority position on each issue
+        got  ('Y', 'N', 'Y')
+        want ('Y', 'N', 'Y')
+PASS  voters on the losing side of a majority of issues
+        got  [1, 2, 3]
+        want [1, 2, 3]
+PASS  Ostrogorski: the minority-position candidate wins
+        got  {'A': 2, 'B': 3}
+        want {'A': 2, 'B': 3}
+
+==============================================================================
+13. Agenda control and Borda manipulation (Section 4.1)
+==============================================================================
+PASS  every voter prefers B to D
+        got  (3, 0)
+        want (3, 0)
+PASS  round 1, A vs B
+        got  (2, 1)
+        want (2, 1)
+PASS  round 2, A vs C
+        got  (2, 1)
+        want (2, 1)
+PASS  round 3, C vs D
+        got  (2, 1)
+        want (2, 1)
+NOTE  so
+        the agenda elects D, which every voter ranks below B
+PASS  scenario 1 Borda scores
+        got  {'A': 9, 'B': 5, 'C': 10, 'D': 6}
+        want {'A': 9, 'B': 5, 'C': 10, 'D': 6}
+PASS  scenario 1 winner
+        got  frozenset({'C'})
+        want frozenset({'C'})
+PASS  scenario 2 Borda scores
+        got  {'A': 9, 'B': 6, 'C': 8, 'D': 7}
+        want {'A': 9, 'B': 6, 'C': 8, 'D': 7}
+PASS  scenario 2 winner
+        got  frozenset({'A'})
+        want frozenset({'A'})
+PASS  the manipulator's sincere ranking prefers A to C
+        got  True
+        want True
+PASS  voters in the example
+        got  5
+        want 5
+PASS  candidates in the example
+        got  4
+        want 4
+NOTE  entry says
+        'Consider the following two election scenarios with 7 voters and 3 candidates' -- the table beneath it has 5 voters and 4 candidates, and every Borda score printed is for 5 voters and 4 candidates
+NOTE  what the manipulation is
+        the third voter moves C from second to last while leaving her favourite A on top: burial, the same move our star-strategy note verifies against the STAR pages
+
+==============================================================================
+14. Borda and IIA (Section 4.2)
+==============================================================================
+PASS  scenario 1 Borda scores
+        got  {'A': 15, 'B': 14, 'C': 13, 'X': 0}
+        want {'A': 15, 'B': 14, 'C': 13, 'X': 0}
+PASS  scenario 2 Borda scores
+        got  {'A': 11, 'B': 12, 'C': 13, 'X': 6}
+        want {'A': 11, 'B': 12, 'C': 13, 'X': 6}
+PASS  the A/B/C sub-rankings are identical in both scenarios
+        got  [(2, 'BCA'), (2, 'CAB'), (3, 'ABC')]
+        want [(2, 'BCA'), (2, 'CAB'), (3, 'ABC')]
+PASS  yet the Borda order reverses
+        got  (['A', 'B', 'C'], ['C', 'B', 'A'])
+        want (['A', 'B', 'C'], ['C', 'B', 'A'])
+PASS  the A/B/C part is itself a majority cycle
+        got  {('C', 'A'), ('A', 'B'), ('B', 'C')}
+        want {('C', 'A'), ('A', 'B'), ('B', 'C')}
+
+==============================================================================
+15. No resolute anonymous neutral method (Section 4.2)
+==============================================================================
+PASS  the Condorcet component is fixed by the candidate 3-cycle
+        got  [(1, 'ABC'), (1, 'BCA'), (1, 'CAB')]
+        want [(1, 'ABC'), (1, 'BCA'), (1, 'CAB')]
+PASS  no singleton winner set is fixed by that 3-cycle
+        got  [False, False, False]
+        want [False, False, False]
+NOTE  so
+        on anonymized profiles - the convention the entry adopts in 1.1 - Neutrality alone kills Resoluteness here: the profile is its own image under the rotation, so the winner set must be too, and no singleton is.  The entry's three-table argument re-derives the Anonymity it has already built into the domain
+
+==============================================================================
+16. May's Theorem: is Unanimity doing any work? (Section 4.2)
+==============================================================================
+PASS  n=3: rules satisfying Neutrality + Positive Responsiveness
+        got  1
+        want 1
+PASS  n=3: ... how many of those also satisfy Unanimity
+        got  1
+        want 1
+PASS  n=3: the survivor is majority rule
+        got  True
+        want True
+PASS  n=4: rules satisfying Neutrality + Positive Responsiveness
+        got  1
+        want 1
+PASS  n=4: ... how many of those also satisfy Unanimity
+        got  1
+        want 1
+PASS  n=4: the survivor is majority rule
+        got  True
+        want True
+PASS  n=5: rules satisfying Neutrality + Positive Responsiveness
+        got  1
+        want 1
+PASS  n=5: ... how many of those also satisfy Unanimity
+        got  1
+        want 1
+PASS  n=5: the survivor is majority rule
+        got  True
+        want True
+PASS  n=6: rules satisfying Neutrality + Positive Responsiveness
+        got  1
+        want 1
+PASS  n=6: ... how many of those also satisfy Unanimity
+        got  1
+        want 1
+PASS  n=6: the survivor is majority rule
+        got  True
+        want True
+NOTE  so
+        Unanimity is redundant in the entry's statement of May's Theorem: Anonymity (built into the anonymized domain), Neutrality and Positive Responsiveness already pin down majority rule, and May's own 1952 statement uses exactly those three
+
+==============================================================================
+17. Moulin's threshold: Condorcet consistency and participation
+==============================================================================
+NOTE  3-candidate profiles scanned exhaustively (2..11 voters)
+        12369
+PASS  minimax no-show violations with 3 candidates
+        got  None
+        want None
+PASS  Black's Procedure on 8 voters: no Condorcet winner, so Borda decides
+        got  (None, {'A': 5, 'B': 10, 'C': 9})
+        want (None, {'A': 5, 'B': 10, 'C': 9})
+PASS  Black elects B
+        got  frozenset({'B'})
+        want frozenset({'B'})
+PASS  with the ACB voter absent, C becomes the Condorcet winner
+        got  C
+        want C
+PASS  Black then elects C
+        got  frozenset({'C'})
+        want frozenset({'C'})
+PASS  and the absentee ranks C above B
+        got  True
+        want True
+PASS  Black on 6 voters elects
+        got  frozenset({'B'})
+        want frozenset({'B'})
+PASS  with the ACBD voter absent, Black elects
+        got  frozenset({'C'})
+        want frozenset({'C'})
+PASS  and that absentee ranks C above B
+        got  True
+        want True
+PASS  no Black no-show paradox on 4 candidates with 5 or fewer voters
+        got  True
+        want True
+PASS  minimax on 11 voters has a no-show paradox
+        got  True
+        want True
+NOTE  witness (profile, bloc that stays home, winner with them, winner without)
+        ([(2, 'ADCB'), (2, 'BCAD'), (2, 'CADB'), (1, 'CBAD'), (1, 'DABC'), (1, 'DBAC'), (2, 'DBCA')], '2 x ADCB', 'C', 'D')
+NOTE  so
+        Moulin's theorem is about what is *possible*, not about what every method does: minimax survived all 12369 three-candidate profiles up to 11 voters and fails on four, while Black's Procedure - also Condorcet consistent - already fails on three candidates and 8 voters
+
+==============================================================================
+18. Impartial culture: how likely is a Condorcet cycle? (Section 5.1)
+==============================================================================
+NOTE  P(no Condorcet winner), 5 candidates, 7 voters, 200k trials
+        0.2143  (entry: 21.5%)
+PASS  within 0.5 points of the entry's 21.5%
+        got  True
+        want True
+NOTE  P(no Condorcet winner), 5 candidates, 151 voters, 30k trials
+        0.2507  (entry's limiting value: 25.1%)
+PASS  within 1 point of the entry's 25.1%
+        got  True
+        want True
+NOTE  with 7 voters fixed, P(no Condorcet winner) as candidates grow
+        [(3, 0.073), (5, 0.213), (10, 0.425), (20, 0.609)]
+PASS  it rises monotonically toward 1
+        got  True
+        want True
+NOTE  with 3 candidates fixed, P over odd electorates (limit 8.77%)
+        [(3, 0.0573), (5, 0.0695), (9, 0.0782), (25, 0.0837), (101, 0.0874)]
+PASS  it rises with the electorate but not to certainty
+        got  True
+        want True
+
+==============================================================================
+Summary
+==============================================================================
+185 checks recorded, 0 discrepancies with the entry:
