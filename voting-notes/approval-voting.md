@@ -259,10 +259,11 @@ gen-ed textbook that does exactly this, and then advertises the result as a majo
 
 ## How the advocacy organizations present it
 
-Seven pages read on 2026-08-01 — three CES, one FairVote, two RCVRC, one CRV. **Six of the seven discuss no
-downside of the method their organization exists to support**, and the seventh is the exception that explains the
-rule: CRV promotes *range* voting, so approval is its second choice and conceding approval's limits is how it
-sells the upgrade. The two campaigning orgs fail in mirror-image ways: each states a property that holds only
+Eight pages read on 2026-08-01 — three CES, one FairVote, two RCVRC, one CRV, one electowiki. **Six of the eight
+discuss no downside of the method their source exists to promote**, and the two exceptions each have a reason:
+CRV promotes *range* voting, so approval is its second choice and conceding approval's limits is how it sells the
+upgrade; electowiki is a wiki whose declared policy tells readers to go to Wikipedia for neutral information. The
+two campaigning orgs fail in mirror-image ways: each states a property that holds only
 under a favorable assumption as though it held unconditionally. CES: "no candidate can ever be a spoiler" (true
 only under dichotomous preferences). FairVote: "RCV is a majority system" (true only of continuing ballots).
 Everything needed to adjudicate them is already above, so this is mostly a lookup table.
@@ -274,10 +275,13 @@ sourced than all three CES pages combined and is right about approval's real wea
 its own method's central claim. And the most accurate pages of all belong to RCVRC, an organization that is
 *less* balanced than FairVote by construction, because it is scoped to one method and says so.
 
-Ranked by accuracy rather than balance: **RCVRC > CES "Differences" > FairVote > CRV > CES head-to-head > CES
-explainer.** CRV lands mid-table for a reason no other page manages: it repeats CES's false spoiler claim *and*
-names approval's cutoff problem in the same document, and it is the only page here that makes a checkable
-quantitative claim — so its errors are provable rather than arguable.
+Ranked by accuracy rather than balance: **RCVRC > CES "Differences" > FairVote > CRV > electowiki > CES
+head-to-head > CES explainer.** CRV lands mid-table for a reason no other page manages: it repeats CES's false
+spoiler claim *and* names approval's cutoff problem in the same document, and it is the only page here that makes
+a checkable quantitative claim — so its errors are provable rather than arguable. electowiki is the hardest to
+place and the ranking undersells it: it has the survey's best single section (indeterminacy, worked and
+double-cited) sitting beside its worst sourcing (an unsourced claim that China's NPC uses approval voting, and a
+whole section resting on a `[citation needed]`). **Depth and reliability came apart on one page.**
 
 ### CES — ["What is Approval Voting?"](https://electionscience.org/education/approval-voting) (Chris Raleigh, Jun 2024)
 
@@ -566,20 +570,82 @@ Two of those are the Brams–Herschbach predictions listed under empirical compa
 above, marked unevidenced by a sympathetic source. And the fourth note shows the mechanism plainly: the
 correction terminates in range voting. **CRV concedes accurately, and every concession is an advertisement.**
 
+### electowiki — ["Approval voting"](https://electowiki.org/wiki/Approval_voting)
+
+Not an organization — a community wiki, running since 2005, and **the only source in this survey that declares
+its own bias and tells you where to go instead.** From
+[Electowiki:Policy](https://electowiki.org/wiki/Electowiki:Policy), under the "EPOV" (electowiki point-of-view)
+heading:
+
+> "We have a point of view. electowiki tries to be a general resource for experts to get complete information,
+> but makes no promises about neutrality. **Other sources, such as Wikipedia, should be used to obtain neutral
+> information.**"
+
+[Electowiki:About](https://electowiki.org/wiki/Electowiki:About) repeats it — "we don't pretend to have a
+dispassionate 'neutral point of view'" — and `Electowiki:Neutral_point_of_view` 404s. EPOV does commit to "err on
+the side of neutrality" and to "not rewrite history," and reserves "latitude to editorialize on other positions."
+So the balance question is answered by the site's own policy; what is left is whether the article is *good*, and
+the answer splits cleanly.
+
+**Technically the most honest treatment in the survey:**
+
+- **"Indeterminacy of outcome" is the best section on any page here.** A concrete 15-voter, 3-candidate profile
+  where *any* candidate wins with every voter honest, the advocates' rebuttal quoted fairly ("AV responds
+  positively to distinctions voters make among candidates that ordinal preference rankings do not mirror"), and
+  then Niemi's criticism cited — the method "almost begs voters to behave strategically." Thesis, antithesis,
+  footnotes. This is the Saari–Van Newenhizen material above, worked concretely.
+- **Names the chicken dilemma** and gives a favorite-betrayal example (10 `A>B`, 41 `B>A`, 49 `C>A`) that it
+  explicitly labels an averted center squeeze.
+- **Concedes against its own side on summability** — the one advantage CES leans on hardest. Proportional
+  approval is *not* precinct-summable, because the winner needs to know which candidates each ballot approved,
+  not just per-candidate totals. No other page qualifies this.
+- **The Equilibrium section is genuinely sophisticated**, including that "it is not possible to figure out who
+  the CW is from Approval ballots."
+
+**And the worst factual hygiene in the survey:**
+
+- **It contradicts itself on IIA within two paragraphs.** "Criterion compliance" asserts flatly that approval
+  satisfies "Independence of irrelevant alternatives"; the next section says "in Approval voting the implication
+  does not necessarily hold… the rule may lead the election outcome to depend on what non-winning candidates were
+  present." The compliance table above is the resolution it lacks: ✓ only under fixed/dichotomous cutoffs, ✗ under
+  all three realistic models.
+- **Its Tennessee example picks the flattering cutoff** — "supposing that voters voted for their two favorite
+  candidates" → Nashville 68, the Condorcet winner. Worked example 1 above runs the zero-information rule on the
+  same electorate and elects Memphis, the Condorcet *loser*, on 42.
+
+  Worth keeping as a pair: **Lumen picks top-2 to make approval fail the majority criterion
+  ([lumen-75-ballot-four-winners](lumen-75-ballot-four-winners.md)); electowiki picks top-2 to make approval elect
+  the Condorcet winner.** Identical floating cutoff, opposite morals — which is the indeterminacy thesis
+  demonstrating itself across two sources that never cite each other.
+- **Unsourced and strange usage claims.** "China's National People's Congress… has been elected via, essentially,
+  Approval Voting since 1979" — "essentially" load-bearing for a body whose elections are indirect and
+  uncontested, no citation. "Approval voting was widely used with introducing democracy in the Soviet Union
+  started by M.S. Gorbachev" — unsourced and garbled. An entire section, "Relation to effectiveness of choices,"
+  rests on "Operations research has shown… sigmoidally related to the level of approval **[citation needed]**"
+  and stands anyway.
+- Invokes a "unanimous consensus criterion" and "greatest possible consensus criterion" that are not standard
+  social-choice criteria; "Effect on elections" gives the criticism one clause and the rebuttal four sentences;
+  Fargo is still listed as current usage with no mention of the April 2025 ban.
+
+**Two discrepancies against this note**, unresolved — check before citing either: electowiki dates the
+Brams–Herschbach *Science* paper to **2000** (this note, from Wikipedia, says 2001) and the Greek parliament
+usage to **1864–1926** (this note says 1864–1923).
+
 ### Net
 
-Scored across all seven pages, the four organizations are wrong in different registers.
+Scored across all eight pages, the four organizations and one wiki are wrong in different registers.
 
-| | CES | FairVote | RCVRC | CRV |
-|---|---|---|---|---|
-| Role | Approval advocacy | RCV advocacy | RCV implementation support | **Range** advocacy; approval is its second choice |
-| Audience | Voters | Voters, legislators | Election administrators | Reform-curious generalists, online voting-theory readers |
-| Sourcing | None on any of three pages | Extensive, though RCV evidence is largely self-citation — and `rankedchoicevoting.org` is the same org under another domain, so it can read as corroboration it isn't | Thin, and routes impact research to FairVote | None inline, but sub-pages carry real citations (five NYT pieces for the USSR claim) and the arithmetic is shown, so it is checkable |
-| Best page | The neutral explainer | The comparison page — one-sided but falsifiable | The FAQ and the UOCAVA material | The hosted Brams column, for the editor's notes correcting it |
-| Worst failure | Alaska misdiagnosed as vote-splitting; "no spoiler ever" | "RCV is a majority system"; omits exhaustion entirely | "Why adopt RCV?" with no counterpart; center squeeze never named | "Spoilers do not happen"; a voting-power table wrong in every odd row and one even one |
-| Concedes anything? | Yes — "RCV does not inherently favor any group" | No | Yes — exhaustion, "strong plurality", election-night uncertainty | Yes — the cutoff problem and multiwinner unsuitability, in Brams's borrowed words |
-| Right about the opponent? | Yes on summability, count opacity, round-1-is-plurality | Yes on bullet voting, later-no-harm, cutoff subjectivity | Declines to discuss other methods at all | Right about *approval* — bullet voting, the cutoff, IEEE's reversal are all documented on the site, just not on this page |
-| Currency | Fargo still shelved as a success story post-ban (Apr 2025) | Data stops Aug 2022 | Current (2025 UOCAVA figures) | IEEE listed as a user 24 years after it quit; **Fargo and St. Louis appear nowhere on the page** |
+| | CES | FairVote | RCVRC | CRV | electowiki |
+|---|---|---|---|---|---|
+| Role | Approval advocacy | RCV advocacy | RCV implementation support | **Range** advocacy; approval is its second choice | Community wiki with a *declared* point of view |
+| Audience | Voters | Voters, legislators | Election administrators | Reform-curious generalists, online voting-theory readers | Experts and activists already inside the field |
+| Sourcing | None on any of three pages | Extensive, though RCV evidence is largely self-citation — and `rankedchoicevoting.org` is the same org under another domain, so it can read as corroboration it isn't | Thin, and routes impact research to FairVote | None inline, but sub-pages carry real citations (five NYT pieces for the USSR claim) and the arithmetic is shown, so it is checkable | Bimodal: real footnotes on the strategy sections, nothing at all on usage history, one section on an unresolved `[citation needed]` |
+| Best page | The neutral explainer | The comparison page — one-sided but falsifiable | The FAQ and the UOCAVA material | The hosted Brams column, for the editor's notes correcting it | "Indeterminacy of outcome" — best section in the survey |
+| Worst failure | Alaska misdiagnosed as vote-splitting; "no spoiler ever" | "RCV is a majority system"; omits exhaustion entirely | "Why adopt RCV?" with no counterpart; center squeeze never named | "Spoilers do not happen"; a voting-power table wrong in every odd row and one even one | Asserts IIA compliance, then refutes it two paragraphs later; China's NPC cited as an approval-voting user |
+| Concedes anything? | Yes — "RCV does not inherently favor any group" | No | Yes — exhaustion, "strong plurality", election-night uncertainty | Yes — the cutoff problem and multiwinner unsuitability, in Brams's borrowed words | Yes — indeterminacy, the chicken dilemma, and that proportional approval is *not* summable |
+| Right about the opponent? | Yes on summability, count opacity, round-1-is-plurality | Yes on bullet voting, later-no-harm, cutoff subjectivity | Declines to discuss other methods at all | Right about *approval* — bullet voting, the cutoff, IEEE's reversal are all documented on the site, just not on this page | Cites its critics by name (Niemi) rather than paraphrasing them away |
+| Currency | Fargo still shelved as a success story post-ban (Apr 2025) | Data stops Aug 2022 | Current (2025 UOCAVA figures) | IEEE listed as a user 24 years after it quit; **Fargo and St. Louis appear nowhere on the page** | Fargo listed as current usage, no mention of the April 2025 ban |
+| Admits its bias? | No | No | Implicitly — states its scope, not its slant | Implicitly — the range preference is the whole page | **Yes, in writing, and names Wikipedia as the fix** |
 
 **The two campaigners each name the other's real problem accurately and deny their own.** FairVote correctly
 identifies that approval's cutoff is subjective and that bullet voting collapses it toward plurality — the two

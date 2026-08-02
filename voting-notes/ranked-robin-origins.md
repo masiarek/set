@@ -167,6 +167,18 @@ Ranked Robin results display.
 
 ## What the official spec became (electowiki, checked 2026-08-01)
 
+> **Scope note on electowiki as a source.** electowiki has a *declared* point of view — its
+> [policy page](https://electowiki.org/wiki/Electowiki:Policy) says so outright: "We have a point of view…
+> makes no promises about neutrality. Other sources, such as Wikipedia, should be used to obtain neutral
+> information." That matters for evaluative claims (criterion compliance, which method is better, usage
+> history — see the survey in [approval-voting](approval-voting.md), where its approval article asserts IIA
+> compliance and then refutes it two paragraphs later). It does **not** undermine the use made of it here.
+> What follows is *descriptive*: what the method's own specification says, on the page its authors maintain.
+> For "what is Ranked Robin defined to do," a partisan wiki is the primary source, not a biased secondary one —
+> the ladder below is normative text, not a claim about the world. Every *evaluative* claim in these notes is
+> checked against ballots or code instead ([ranked-robin-vse-run](ranked-robin-vse-run.md),
+> [ranked-robin-thread-claims-checked](ranked-robin-thread-claims-checked.md)).
+
 The thread's step 4 is only the first rung of what the
 [electowiki article](https://electowiki.org/wiki/Ranked_Robin) formalized as **degrees of
 tiebreakers** (post 28 already points readers to the wiki for the 2nd Degree):
