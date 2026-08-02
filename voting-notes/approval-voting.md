@@ -94,6 +94,25 @@ headline one does not survive.
   second choice beat them. If both frontrunners' camps do it, a weaker third candidate wins. The Fargo 2020
   poll run *by opponents* of approval found **30% of bullet voters did so strategically, 57% sincerely** —
   which cuts both ways as evidence.
+  - **The best rebuttal is CRV's, and it is a real argument**
+    ([BurrSummary](https://www.rangevoting.org/BurrSummary.html)): the dilemma assumes *asymmetric* strategic
+    sophistication. If A and B voters are canny enough to withhold approval from each other, C's voters are
+    canny enough not to bullet-vote a candidate who can't win — they would approve C plus their preferred of
+    {A, B}, and the split stops mattering. "It is unsymmetrical/illogical to presume only the {A,B}-supporters
+    would strategically exaggerate but not the C-supporters… If the problem is genuine it is because of
+    unsymmetrical/illogical human psychology, not logical strategy." Nagel's answer is that the asymmetry is
+    supplied by the two allies' infighting — a "retaliatory spiral" between A and B that C's camp has no
+    equivalent of.
+  - **The rebuttal's second leg is weaker than the first**, and is worth naming because it recurs: "the problem
+    is lessened with better pre-election polling — if the voters knew C was likely to win, then A and B would
+    not be the two frontrunners." That is the AppCW hypothesis again (see the CRV section), i.e. *assume the
+    poll is right*, which is the one thing approval ballots cannot supply.
+  - **One candidate real-world instance, and it is a counterfactual.** CRV's own answer to "where has this
+    happened" is "the only fairly-clear example known to me": **Portugal 1986**. First round — Freitas do
+    Amaral (right) 46.3%, then Soares 25.4%, Zenha 20.9%, Pintasilgo 7.4%, the left split three ways; runoff —
+    **Soares beat Freitas do Amaral 51.18% to 48.82%** (verified 2026-08-01; CRV rounds it 51.3–48.7). A left
+    majority, a right plurality leader, and two near-tied allies: under approval with both left camps bullet
+    voting, Freitas do Amaral wins. Approval was not used, so this is a reconstruction, not a case.
 - **Compromising** — approving someone you find unacceptable to stop someone worse. Approval's honest-favorite
   version of lesser-evil voting; it never requires you to *demote* your favorite.
 - **What approval is immune to**: burying and push-over. You cannot reverse two candidates' order on an
@@ -657,7 +676,38 @@ recorded as CRV's claim).
 presumes there are two plausible winners. The Burr situation is the three-viable-candidate case, where no such
 pair exists — so the theorem is silent precisely where approval's best-documented pathology lives. CRV knows
 this: its own [range-vs-approval page](https://rangevoting.org/rangeVapp.html) lists Burr's dilemma as item 13,
-one item after "A failure of approval voting in the real world." The two pages never meet.
+one item after "A failure of approval voting in the real world."
+
+#### …and the Burr page answers Nagel with the same assumption
+
+[BurrSummary](https://www.rangevoting.org/BurrSummary.html) gives CRV's reply to the chicken dilemma, and it has
+two legs. The first is a genuine argument — the asymmetry objection, worked into the strategy section above, and
+the strongest thing anyone in this survey says in approval's defence. The second is: "**Problem also lessened
+with better pre-election polling**: if the voters knew C was thus-likely to win, then A and B would not be the
+two 'frontrunners'… and the problem would disappear or diminish."
+
+That is AppCW's hypothesis, restated for a different objection. So **CRV's answers to approval's two best-known
+problems — that it need not elect the Condorcet winner, and that it has a chicken dilemma — are the same
+assumption used twice: the poll is right.** The witness above is what that assumption costs when it isn't: a
+wrong pair, honest voters, the theorem's own strategy, and a third candidate winning on every ballot. This note's
+Tennessee example makes the same point from the other end — expectations don't perturb an approval result, they
+determine it.
+
+Two things on that page worth keeping regardless:
+
+- **The name is probably wrong, and CRV says so first.** "It is probably misnamed since this problem actually
+  did not happen in the Burr 1800 election — Burr & Jefferson still placed top." Correct: 1800 produced a
+  **73–73 tie** with Adams back on 65, which is a coordination failure, not a third candidate slipping through.
+  It answers the disaster mode rather than the mechanism — Nagel's claim is about the chicken *tension*, and the
+  tie is what that tension produced. CRV pushes further, and this part is sharp: the campaign to savage Burr was
+  organised by **Hamilton**, their opponent, so the 1800 strategising was done by the *C* camp — "exactly the
+  opposite of Nagel's thinking."
+- **A methodological concession about CRV's flagship number.** "Because our Bayesian regret computer simulations
+  employed thus-logical strategic voters… the BR measurements were unable to see this whole problem (or only saw
+  a small effect from it)." Bayesian regret is the quantitative backbone of the entire site, and here its author
+  states that it is blind to the one pathology named in the literature — because the simulated voters are too
+  rational to fall into it. Then concludes anyway that the dilemma "seems not to cause a great deal of Bayesian
+  regret."
 
 > **A second disabled passage, same pattern as EarlyUS.** An HTML comment on AppCW records Mike Ossipoff
 > pointing out that the result may already appear in Niemi & Riker, "The Choice of Voting Systems", *Scientific
@@ -883,7 +933,9 @@ are the substitutes.
 - **Bullet voting** — approving only your favorite. The mechanism by which approval degenerates into
   plurality.
 - **Chicken dilemma / Burr dilemma** — two allied frontrunners' camps each bullet-vote to protect their own
-  candidate and hand the win to a third. Named for the Jefferson–Burr tie of 1800.
+  candidate and hand the win to a third. Named for the Jefferson–Burr tie of 1800, and **probably misnamed**:
+  1800 produced a 73–73 tie, not a third-candidate win. Nagel 2007; the standing rebuttal is CRV's asymmetry
+  argument, and the one candidate real-world instance is a Portugal 1986 counterfactual.
 - **Compromising** — approving an unacceptable candidate to block a worse one. The honest-favorite cousin of
   lesser-evil voting.
 - **Prospective rating (Myerson–Weber)** — utility weighted by the probability your vote is pivotal in each

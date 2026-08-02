@@ -492,8 +492,10 @@ of approval voting. [→ [brandl-peters-approval-characterizations](brandl-peter
   Dartmouth's student elections, and ~80% at the IEEE — which is the reason IEEE gave for repealing approval
   in 2002. Three measured electorates, all near four in five. [→ [approval-voting](approval-voting.md)]
 - **Chicken dilemma / Burr dilemma** — two allied frontrunners' camps each bullet-vote to avoid helping the
-  other, and a third candidate wins. Named for the Jefferson–Burr tie of 1800.
-  [→ [approval-voting](approval-voting.md)]
+  other, and a third candidate wins. Named for the Jefferson–Burr tie of 1800 — and **probably misnamed**,
+  as CRV points out: 1800 was a 73–73 tie with Adams back on 65, a coordination failure rather than a third
+  candidate slipping through. Nagel 2007. The standing rebuttal is that it assumes *asymmetric* strategic
+  sophistication — canny A and B camps, naive C camp. [→ [approval-voting](approval-voting.md)]
 - **Compromising** — approving a candidate you find unacceptable to block a worse one. Unlike favorite
   betrayal it never requires demoting your favorite. [→ [approval-voting](approval-voting.md)]
 - **Runoff monopolisation** — STAR's clone failure: two near-identical candidates take *both* finalist
