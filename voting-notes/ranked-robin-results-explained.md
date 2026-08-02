@@ -229,6 +229,47 @@ whose unranked candidates tie at the bottom), and every first-preference-countin
 calculator rejects the whole set rather than guess a convention. Whatever Ranked Robin's results page
 gets wrong presentationally, it *accepts* ballots that IRV's counting rule has no defined answer for.
 
+## The ranked ballot is separable from the tabulation rule
+
+The subsection above makes this point from the counting side: the same twelve ballots that Ranked Robin scores
+without complaint are refused outright by Hare, Bucklin, Carey and Coombs. There is a second, more useful version
+of it from the *infrastructure* side, and it is the one worth carrying into any adoption argument.
+
+**Six states already mail ranked ballots — and none of them uses IRV.** As of 2025, Alabama, Arkansas, Georgia,
+Louisiana, Mississippi and South Carolina send ranked ballots to military and overseas (UOCAVA) voters for
+runoffs, as does Springfield, IL
+([RCVRC](https://www.rcvresources.org/why-adopt-rcv); surveyed in [approval-voting](approval-voting.md)). The
+reason is logistical, not ideological: runoffs need a second round-trip through international mail, federal law
+requires at least 45 days between rounds in federal elections, and many state and local runoffs are held a week
+or so after the first round — which disenfranchises deployed voters outright. A ranked ballot fixes it in one
+mailing: the overseas voter ranks everyone once, and in the runoff the ballot counts for whichever finalist they
+ranked highest.
+
+**None of that is an argument for instant-runoff tabulation.** These are plurality-runoff states. The ranked
+ballot is doing one narrow job — carrying a contingency preference across a mail delay — inside a system with no
+interest in IRV whatsoever. So the ballot-side prerequisites Ranked Robin needs (statutory authorization for
+ranked ballots, ballot layouts, voter instructions, administrator familiarity, vendors that can print and scan
+them) are already deployed in six states that would reject IRV on sight. That is a real and under-used adoption
+asset, and it is orthogonal to every argument in these notes about tabulation rules.
+
+**And the truncation asymmetry points the same way.** UOCAVA voters are the population *most* likely to return a
+partial ranking — voting early, from abroad, on a field they may not fully know. Under IRV a truncated ballot
+eventually **exhausts**: once its ranked candidates are eliminated it stops counting, which is exactly the
+mechanism behind the "majority of continuing ballots" caveat. Under Ranked Robin nothing exhausts, because a
+pairwise matrix only needs *relative* order — a ballot ranking `A>B` with `C`, `D` unranked contributes to A–C,
+A–D, B–C and B–D, and simply abstains from C–D. The ballot participates in every matchup where it expressed a
+preference and no more.
+
+So the population that ranked ballots were adopted to protect is precisely the population whose ballots IRV
+handles worst and Condorcet methods handle best. If the ranked ballot is going to exist for UOCAVA reasons
+anyway, the choice of what to do with it afterwards is a separate decision — and that is the whole opening.
+
+> **Scope note.** The refusals quoted in the subsection above are LeGrand's *calculator* declining to guess a
+> convention, not a claim that fielded IRV cannot process imperfect ballots. Real IRV jurisdictions do accept
+> truncation and handle it by exhausting the ballot, and most have some rule for equal ranks (commonly: the
+> ballot counts up to the tied ranking and stops). The asymmetry above is about exhaustion, which is real in
+> every IRV implementation — not about ballot rejection, which is the calculator's stricter behaviour.
+
 ## Common misreadings (the traps I fell into)
 
 - **"I expected 6 wins and 6 wins."** 6 is the number of *ballots* preferring Ann in her winning
