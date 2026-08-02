@@ -219,13 +219,21 @@ gen-ed textbook that does exactly this, and then advertises the result as a majo
 
 ## How the advocacy organizations present it
 
-Both campaigning organizations were read on 2026-08-01. Neither page is balanced, and they fail in mirror-image
-ways: **each states a property that holds only under a favorable assumption as though it held unconditionally.**
-Everything needed to adjudicate them is already above, so this section is mostly a lookup table.
+Four pages read on 2026-08-01 — three CES, one FairVote. None is balanced, and the two organizations fail in
+mirror-image ways: **each states a property that holds only under a favorable assumption as though it held
+unconditionally.** CES: "no candidate can ever be a spoiler" (true only under dichotomous preferences).
+FairVote: "RCV is a majority system" (true only of continuing ballots). Everything needed to adjudicate them is
+already above, so this is mostly a lookup table.
 
-### CES — ["What is Approval Voting?"](https://www.electionscience.org/library/approval-voting/) (Chris Raleigh, Jun 2024)
+The useful surprise is that neither org is uniformly worse. CES's flagship explainer is the weakest document
+here and its head-to-head page contains the worst single factual error; CES's neutral explainer is the most
+accurate page of the four. FairVote's single page is better sourced than all three CES pages combined and is
+right about approval's real weakness — while being wrong about its own method's central claim.
 
-~300 words, seven bullets, no citations, no numbers, no acknowledged trade-off.
+### CES — ["What is Approval Voting?"](https://electionscience.org/education/approval-voting) (Chris Raleigh, Jun 2024)
+
+~300 words, seven bullets, no citations, no numbers, no acknowledged trade-off. (CES's `/library/…` URLs all
+redirect to `/education/…`; canonical paths used throughout.)
 
 | Claim | Verdict | Adjudicated by |
 |---|---|---|
@@ -241,6 +249,60 @@ Bullet voting — the documented practical failure mode, and the best-evidenced 
 dilemma and cutoff indeterminacy. The library still shelves "Success Stories: Fargo Before and After Approval
 Voting" although the April 2025 statewide ban ended approval voting in Fargo; the flagship success story is now a
 repeal.
+
+### CES — ["Why CES Advocates for Approval Voting Instead of RCV"](https://electionscience.org/education/approval-voting-vs-rcv) (Chris Raleigh, Jun 2024)
+
+CES's actual answer to FairVote: seven self-chosen criteria, approval and RCV assessed under each. No citations
+again, and the criteria are picked by the advocate — but three of the seven are **substantively correct and are
+FairVote's genuine weak points**, which makes this the more serious document of the two CES pages.
+
+**Where it lands:**
+
+- **Summability and count transparency.** "Votes cannot be counted until all are received, leading to long
+  delays… difficult to follow where a voter's vote actually landed." This is true and it is structural, not
+  rhetorical: approval reports one integer per candidate per precinct, IRV requires full cast vote records
+  centrally. Recount behaviour follows from the same fact. FairVote's page never engages it.
+- **Machines and cost.** Broadly right, and the reason approval keeps clearing procurement hurdles RCV doesn't.
+- **"First place selections are essentially the same as plurality votes, as they are mutually exclusive."**
+  Sharp, and correct. It is the cleanest one-line statement of why IRV's round 1 inherits plurality's pathologies
+  — the exact mechanism behind [center squeeze](hare-center-squeeze-examples.md).
+- **"RCV does not inherently favor any group, despite what may be claimed."** An unforced concession against
+  interest. Worth noticing; FairVote's page contains no equivalent.
+
+**Where it repeats the overclaim:** "Vote splitting is eliminated in approval voting elections. The 'spoiler
+effect' is negated." Same false flat statement as the explainer, same refutation — IIA ✗ in three of four rows.
+And "voters have multiple, clear strategies to stop hyperpartisans by approving multiple candidates" is precisely
+the situation the Burr dilemma describes, in which those strategies conflict.
+
+**The Alaska claim is the substantive error.** CES writes: "In the 2022 Alaska congressional election, two
+Republicans and a Democrat ran. Despite 60% of voters preferring a Republican, their votes split between the two
+candidates. This fragmentation allowed the Democrat, initially with only 40% support, to win." Three problems:
+
+1. **Wrong mechanism.** This was a center squeeze, not vote-splitting. Begich was the *Condorcet winner* — he beat
+   both Peltola and Palin head-to-head — and IRV eliminated him first
+   ([rcv-and-core-support](rcv-and-core-support.md)). Naming it "fragmentation" describes the plurality failure
+   IRV is designed to address, and misses the failure IRV actually committed.
+2. **Backwards causation.** Peltola led round 1 outright, so **plurality would have elected her too.** IRV did not
+   *enable* the outcome; it failed to *prevent* it. As written the sentence implies the reverse.
+3. **"60% preferring a Republican" conflates first preferences with preference.** 60% ranked a Republican first;
+   enough Begich voters preferred Peltola to Palin that Peltola won the runoff — which is the whole mechanism, and
+   is the thing "core support" arguments get wrong in the other direction.
+
+The honest version of this example cuts at CES too: approval elects Begich under the leader rule, but under the
+bullet-voting behaviour actually observed in Fargo, Dartmouth and the MAA it degenerates toward plurality, and
+plurality elected Peltola. CES cites the right election for the wrong reason.
+
+### CES — ["How Approval Voting and RCV Are Different"](https://electionscience.org/education/differences) (Jul 2024)
+
+A short neutral explainer, and **the most accurate page any advocacy organization has on this list.** It describes
+both mechanics without disparaging either, correctly names exhausted ballots ("their ballots are removed from the
+entire process, or 'exhausted'"), and states the stopping rule as "until someone gets 50% of **the remaining
+votes**." It closes: "Every person is entitled to like approval voting, ranked choice voting (RCV) or both."
+
+That formulation is the punchline of this whole section. **Approval voting's campaign arm describes IRV's majority
+threshold more accurately than FairVote does** — FairVote's page claims RCV runs until "a majority winner (a
+candidate won with more than half of the vote)" and never mentions exhaustion at all. When the opposing advocate
+states your method's guarantee more precisely than you do, that is a fact about your page, not about the method.
 
 ### FairVote — ["Ranked Choice Voting vs. Approval Voting"](https://fairvote.org/resources/electoral-systems/ranked_choice_voting_vs_approval_voting/)
 
@@ -274,9 +336,29 @@ non-monotonicity, favorite betrayal and center squeeze are never named — thoug
 [lumen-75-ballot-four-winners](lumen-75-ballot-four-winners.md), and Burlington 2009 / Alaska 2022 in
 [rcv-and-core-support](rcv-and-core-support.md)).
 
-**Net:** FairVote's page is the better document — one-sided but falsifiable, and correct about approval's actual
-weakness. CES's is marketing copy whose headline claim its own movement's literature contradicts. Read as a matched
-pair, each names the other's real problem accurately and denies its own.
+### Net
+
+Scored across all four pages, the two organizations are wrong in different registers.
+
+| | CES | FairVote |
+|---|---|---|
+| Sourcing | None on any of three pages | Extensive, though RCV evidence is largely self-citation |
+| Best page | The neutral explainer — most accurate of the four | The comparison page — one-sided but falsifiable |
+| Worst failure | Alaska misdiagnosed as vote-splitting; "no spoiler ever" | "RCV is a majority system"; omits exhaustion entirely |
+| Concedes anything? | Yes — "RCV does not inherently favor any group" | No |
+| Right about the opponent? | Yes on summability, count opacity, round-1-is-plurality | Yes on bullet voting, later-no-harm, cutoff subjectivity |
+| Currency | Fargo still shelved as a success story post-ban (Apr 2025) | Data stops Aug 2022 |
+
+**Each names the other's real problem accurately and denies its own.** FairVote correctly identifies that
+approval's cutoff is subjective and that bullet voting collapses it toward plurality — the two things this note
+documents best — while claiming a majority guarantee its own method does not deliver. CES correctly identifies
+that IRV is unsummable, opaque to audit, and plurality-like in round 1 — all true — while claiming a
+spoiler-freedom its own compliance table denies.
+
+Practical use: for approval's genuine weaknesses read FairVote; for IRV's genuine weaknesses read the CES
+head-to-head, then correct its Alaska paragraph before quoting it. Neither is usable as a summary of the
+comparison, and the disagreement between them is narrower than either admits — both are arguing against
+plurality, and both are right about that.
 
 ## How it sits against the rest of these notes
 
