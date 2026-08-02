@@ -109,11 +109,17 @@ does.
   the compliance claim, which makes the dichotomous row read like an assumption chosen to flatter approval.
   [Brandl & Peters (2022)](https://www.dominik-peters.de/publications/av.pdf) is the stronger result:
   restricted to dichotomous preferences, approval voting is **uniquely characterized** — eight separate
-  characterizations, each combining **consistency with variable electorates** (if two disjoint electorates
-  both choose some set of alternatives, the merged electorate chooses exactly the alternatives they agree
-  on) with one further axiom — strategyproofness, agreement with majority opinions, independence of cloned
-  alternatives, or invariance under removing inferior alternatives. Any of those, plus consistency, forces
-  approval. The authors unify all eight under one base theorem.
+  characterizations (their Theorems 2–9), every one built on **consistency with variable electorates** (if
+  two disjoint electorates both choose some alternatives in common, the merged electorate chooses exactly
+  the ones they agree on) plus one headline axiom: strategyproofness, choosing Condorcet winners, avoiding
+  Condorcet losers, respecting unanimous majorities, independence of clones, independence of losers,
+  independence of dominated alternatives, or independence of never-approved alternatives. All eight reduce
+  to one base theorem (Theorem 1: consistency + faithfulness + disjoint equality).
+  - **The headline axiom is never sufficient by itself.** Each theorem also carries housekeeping axioms —
+    anonymity, neutrality, faithfulness, continuity, non-triviality — and *which* ones differs per theorem.
+    Their Table 1 is the map, with a numbered counterexample against each axiom proving it can't be dropped.
+    "Consistency plus strategyproofness forces approval" is not what the paper says; Theorem 2 also needs
+    anonymity, neutrality and non-triviality.
   - What this does *not* do is rescue the row for real electorates. It relocates the argument: the question
     stops being "is approval good on this domain" (settled, and settled in approval's favor) and becomes
     "how far from dichotomous are actual voters," which is the empirical question the rest of this note is
@@ -134,12 +140,14 @@ single verdict.
 (Wikipedia flags this table as incomplete; the blanks are blank there. ✗ on IIA for the three realistic rows
 is the honest headline.)
 
-† The all-✓ row understates the case. Approval doesn't merely *pass* these criteria on the dichotomous
-domain — [Brandl & Peters (2022)](https://www.dominik-peters.de/publications/av.pdf) show it is the **only**
-rule that does: add consistency with variable electorates to any one of strategyproofness, majority
-agreement, clone independence, or invariance under removing inferior alternatives, and approval is forced.
-Four of the columns in this row are therefore characterizations, not compliances. The row's weakness is its
-premise, not its checkmarks.
+† The all-✓ row understates the case, and one ✓ here is not the coincidence it looks like. Under dichotomous
+preferences the majority relation is **transitive** (Inada 1969) and orders candidates exactly by approval
+score — so Condorcet cycles cannot arise at all, and the Condorcet ✓ is structural rather than lucky.
+Beyond passing, [Brandl & Peters (2022)](https://www.dominik-peters.de/publications/av.pdf) show approval is
+the **only** rule passing several of these: strategyproofness, Condorcet, clone independence and reversal
+symmetry each appear as the headline axiom of a characterization theorem (each also needing housekeeping
+axioms — see the bullet above; consistency alone plus one criterion does not do it). So parts of this row are
+uniqueness results, not compliance results. The row's weakness is its premise, not its checkmarks.
 
 - **Sincere favorite is satisfied in every row** — approval never punishes you for approving your favorite.
   That is its strongest formal claim and the direct answer to
@@ -239,16 +247,21 @@ gen-ed textbook that does exactly this, and then advertises the result as a majo
 
 ## How the advocacy organizations present it
 
-Four pages read on 2026-08-01 — three CES, one FairVote. None is balanced, and the two organizations fail in
-mirror-image ways: **each states a property that holds only under a favorable assumption as though it held
-unconditionally.** CES: "no candidate can ever be a spoiler" (true only under dichotomous preferences).
-FairVote: "RCV is a majority system" (true only of continuing ballots). Everything needed to adjudicate them is
-already above, so this is mostly a lookup table.
+Six pages read on 2026-08-01 — three CES, one FairVote, two RCVRC. **None of the six discusses a downside of the
+method its organization exists to support.** The two campaigning orgs fail in mirror-image ways: each states a
+property that holds only under a favorable assumption as though it held unconditionally. CES: "no candidate can
+ever be a spoiler" (true only under dichotomous preferences). FairVote: "RCV is a majority system" (true only of
+continuing ballots). Everything needed to adjudicate them is already above, so this is mostly a lookup table.
 
-The useful surprise is that neither org is uniformly worse. CES's flagship explainer is the weakest document
-here and its head-to-head page contains the worst single factual error; CES's neutral explainer is the most
-accurate page of the four. FairVote's single page is better sourced than all three CES pages combined and is
-right about approval's real weakness — while being wrong about its own method's central claim.
+The useful surprise is that no org is uniformly worse, and that **accuracy does not track balance**. CES's
+flagship explainer is the weakest document here and its head-to-head page carries the worst single factual error,
+yet CES's neutral explainer is the most accurate page either campaigner produced. FairVote's page is better
+sourced than all three CES pages combined and is right about approval's real weakness — while being wrong about
+its own method's central claim. And the most accurate pages of all belong to RCVRC, an organization that is
+*less* balanced than FairVote by construction, because it is scoped to one method and says so.
+
+Ranked by accuracy rather than balance: **RCVRC > CES "Differences" > FairVote > CES head-to-head > CES
+explainer.**
 
 ### CES — ["What is Approval Voting?"](https://electionscience.org/education/approval-voting) (Chris Raleigh, Jun 2024)
 
@@ -373,29 +386,89 @@ non-monotonicity, favorite betrayal and center squeeze are never named — thoug
 [lumen-75-ballot-four-winners](lumen-75-ballot-four-winners.md), and Burlington 2009 / Alaska 2022 in
 [rcv-and-core-support](rcv-and-core-support.md)).
 
+### RCVRC — [rcvresources.org](https://www.rcvresources.org/), ["Why adopt RCV?"](https://www.rcvresources.org/why-adopt-rcv) and the [FAQ](https://www.rcvresources.org/frequently-asked-questions)
+
+The **Ranked Choice Voting Resource Center**, a division of the Election Administration Resource Center
+(nonpartisan 501(c)(3)) — the org whose old domain FairVote now serves (see the callout above). Aimed at election
+administrators rather than voters, and that changes the failure mode: it is *less* balanced than FairVote by
+construction and *more* accurate in practice, because operational questions have answers that aren't contested.
+
+**Not balanced, and candid about why.** There is a "Why adopt RCV?" page and no counterpart. Asked in the FAQ
+whether it covers approval, STAR, score or Borda, the answer is: "No, we do not… we are focused on the
+implementation of ranked choice voting (RCV) and no other voting methods. If you are interested in any of these
+methods, we encourage you to start your own resource center." Snippy, but it is a clearer scope declaration than
+either campaigner makes.
+
+**Where it is more honest than FairVote, on exactly the points FairVote gets wrong:**
+
+- **Exhausted ballots, stated plainly and unprompted, twice.** "If you do not rank any other candidates and your
+  first-choice candidate gets eliminated, your ballot becomes exhausted and will not count in any later rounds."
+  FairVote's comparison page never uses the word. This is the largest honesty gap in the survey.
+- **No flat majority claim.** RCV yields "a majority or, **at least**, strong plurality winners" — precisely the
+  hedge FairVote drops. Its Portland 2024 example locates the number correctly: Wilson on 34% of first choices,
+  "59% of the vote in the final round of tabulation."
+- **Election-night timing answered without defensiveness.** "Some RCV winners will be known on election night,
+  while others may not be known until all ballots are counted," with the real bottleneck identified as ballot
+  scanning — common to every election. A better answer to CES's delay attack than a campaigner could write.
+- **Audits, concretely**: Minneapolis and San Francisco, plus risk-limiting audit pilots in 2019–2020. No other
+  page in this survey has any audit content.
+- **UOCAVA is the best material on any of the six pages.** Runoffs disenfranchise deployed and overseas voters
+  when the second round comes faster than international mail; ranked ballots fix it in one mailing. Six states do
+  this as of 2025 — AL, AR, GA, LA, MS, SC — plus Springfield, IL. Genuine administrative substance with no
+  ideological load, and it is an argument for *ranked ballots as infrastructure* rather than for IRV as a rule.
+
+**Where it is still campaigning:**
+
+- **It cites FairVote as its evidence base** — "reports on the impact of RCV on civility in elections are
+  available from FairVote." With the domain finding above, the circle tightens rather than widens: the
+  administration-facing resource routes its impact research to the advocacy org. Not independent corroboration.
+- **"Won't RCV confuse voters? No."** Flat denial, immediately followed by the honest concession that
+  "tabulation of RCV results can be more involved." The "No" does the advocacy; the next sentence does the work.
+- **Same selective disclosure, milder.** "Does ranking more than one candidate weaken my first-choice vote? No"
+  is *true* — later-no-harm. But nothing on the site says that ranking your true favorite **first** can hurt you.
+  Alaska 2022 appears as evidence for campaign civility; its center squeeze goes unmentioned
+  ([rcv-and-core-support](rcv-and-core-support.md)).
+- Self-description as "the premier source… nationally recognized for our expertise."
+
 ### Net
 
-Scored across all four pages, the two organizations are wrong in different registers.
+Scored across all six pages, the three organizations are wrong in different registers.
 
-| | CES | FairVote |
-|---|---|---|
-| Sourcing | None on any of three pages | Extensive, though RCV evidence is largely self-citation — and `rankedchoicevoting.org` is the same org under another domain, so it can read as corroboration it isn't |
-| Best page | The neutral explainer — most accurate of the four | The comparison page — one-sided but falsifiable |
-| Worst failure | Alaska misdiagnosed as vote-splitting; "no spoiler ever" | "RCV is a majority system"; omits exhaustion entirely |
-| Concedes anything? | Yes — "RCV does not inherently favor any group" | No |
-| Right about the opponent? | Yes on summability, count opacity, round-1-is-plurality | Yes on bullet voting, later-no-harm, cutoff subjectivity |
-| Currency | Fargo still shelved as a success story post-ban (Apr 2025) | Data stops Aug 2022 |
+| | CES | FairVote | RCVRC |
+|---|---|---|---|
+| Role | Approval advocacy | RCV advocacy | RCV implementation support |
+| Audience | Voters | Voters, legislators | Election administrators |
+| Sourcing | None on any of three pages | Extensive, though RCV evidence is largely self-citation — and `rankedchoicevoting.org` is the same org under another domain, so it can read as corroboration it isn't | Thin, and routes impact research to FairVote |
+| Best page | The neutral explainer | The comparison page — one-sided but falsifiable | The FAQ and the UOCAVA material |
+| Worst failure | Alaska misdiagnosed as vote-splitting; "no spoiler ever" | "RCV is a majority system"; omits exhaustion entirely | "Why adopt RCV?" with no counterpart; center squeeze never named |
+| Concedes anything? | Yes — "RCV does not inherently favor any group" | No | Yes — exhaustion, "strong plurality", election-night uncertainty |
+| Right about the opponent? | Yes on summability, count opacity, round-1-is-plurality | Yes on bullet voting, later-no-harm, cutoff subjectivity | Declines to discuss other methods at all |
+| Currency | Fargo still shelved as a success story post-ban (Apr 2025) | Data stops Aug 2022 | Current (2025 UOCAVA figures) |
 
-**Each names the other's real problem accurately and denies its own.** FairVote correctly identifies that
-approval's cutoff is subjective and that bullet voting collapses it toward plurality — the two things this note
-documents best — while claiming a majority guarantee its own method does not deliver. CES correctly identifies
-that IRV is unsummable, opaque to audit, and plurality-like in round 1 — all true — while claiming a
-spoiler-freedom its own compliance table denies.
+**The two campaigners each name the other's real problem accurately and deny their own.** FairVote correctly
+identifies that approval's cutoff is subjective and that bullet voting collapses it toward plurality — the two
+things this note documents best — while claiming a majority guarantee its own method does not deliver. CES
+correctly identifies that IRV is unsummable, opaque to audit, and plurality-like in round 1 — all true — while
+claiming a spoiler-freedom its own compliance table denies.
+
+**RCVRC is the lesson about what "balanced" buys you.** It is the narrowest of the three — one method, by
+charter, with a "why adopt" page and no "why not" — and it is also the most accurate, because its questions are
+operational and operational questions have uncontested answers. Balance and accuracy came apart here: the page
+most willing to say "your ballot becomes exhausted and will not count" is the one least interested in comparing
+methods at all.
 
 Practical use: for approval's genuine weaknesses read FairVote; for IRV's genuine weaknesses read the CES
-head-to-head, then correct its Alaska paragraph before quoting it. Neither is usable as a summary of the
-comparison, and the disagreement between them is narrower than either admits — both are arguing against
-plurality, and both are right about that.
+head-to-head, then correct its Alaska paragraph before quoting it; for anything about how RCV is actually run —
+ballot design, tabulation, audits, UOCAVA — read RCVRC and ignore its "why adopt" page. None is usable as a
+summary of the comparison, and the disagreement between the campaigners is narrower than either admits: both are
+arguing against plurality, and both are right about that.
+
+**The gap none of them fills.** Across six pages and three organizations, not one discusses a downside of the
+method it exists to support. Nothing here surveys the field neutrally, and nothing here reports a failure of its
+own method — which is why this section is a lookup table rather than a reading list. For that, the academic
+sources above and the Bipartisan Policy Center's
+[*Reform Meets Reality*](https://bipartisanpolicy.org/report/reform-meets-reality-how-ranked-choice-voting-impacts-election-administration/)
+are the substitutes.
 
 ## How it sits against the rest of these notes
 
