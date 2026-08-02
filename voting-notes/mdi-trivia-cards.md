@@ -73,7 +73,7 @@ It is the only listed topic with nothing behind it, which is probably where the 
 ## What's actually new relative to `glossary.md`
 
 Checked term by term against the glossary and the rest of the notes. Absent everywhere — the first
-two have since been written up, the rest are still gaps:
+four have since been written up, the rest are still gaps:
 
 - **May's Theorem** — anonymity + neutrality + monotonicity ⇒ a *quota method* for two candidates;
   add "nearly decisive" and the quota is forced to exactly half, i.e. simple majority. It's the
@@ -89,13 +89,27 @@ two have since been written up, the rest are still gaps:
   saturation` in §6 are its mechanism at the scale of a single election. **Now in `glossary.md`
   §6**, with the standing exceptions (Canada, India, the pre-2015 UK) noted — the mechanism is
   durable, the prediction isn't.
-- **Antiplurality** — fewest last-place votes wins. Currently only a passing mention in the
-  Wikipedia talk draft. It's Coombs' scoring rule without the elimination, and the card's own
-  example is a good one: 42 `A>B>C>D`, 26 `B>C>D>A`, 15 `C>D>B>A`, 17 `D>C>B>A` → A is last on 58
-  ballots, B and C on none, so the tie between B and C is broken by re-running antiplurality
-  head-to-head (C is below B on 68) → **B wins, where plurality elects A on 42 first preferences**.
+- **Antiplurality** — fewest last-place votes wins; previously only a passing mention in the
+  Wikipedia talk draft. Coombs' scoring rule without the elimination, and the card's own example is
+  a good one: 42 `A>B>C>D`, 26 `B>C>D>A`, 15 `C>D>B>A`, 17 `D>C>B>A` → A is last on 58 ballots, B
+  and C on none, so the rule ties immediately and the card re-runs it head-to-head (C is below B on
+  68) → **B wins, where plurality elects A on 42 first preferences**. **Now in `glossary.md` §4**
+  under Point count, next to Borda, since it's the positional rule (1, …, 1, 0) — plurality's mirror
+  image with Borda at the midpoint. Two things worth more than the card gives them: that immediate
+  tie is structural, not bad luck (*n* voters supply only *n* last-place votes, so most of a field
+  larger than three sits on zero), and antiplurality **can elect the Condorcet loser** —
+  `2:B>A>C, 2:C>A>B, 1:C>B>A` elects A, who loses 3–2 to both rivals, because A is second on four of
+  five ballots. Borda is the only positional rule that never does that, which turns the mirror-image
+  framing into an actual argument for the middle of the family.
 - **Discrete cumulative voting** — cumulative voting with indivisible tokens rather than a
-  fractional budget. §4 has cumulative but not the discrete variant.
+  fractional budget. My first pass said §4 already had cumulative voting and only lacked the
+  discrete variant; that was wrong. The **Cumulative** heading in §4 covers Bucklin's cumulative
+  *tallying* of preference levels, an unrelated sense, and cumulative voting had no entry at all
+  beyond a passing (1, ½, ⅓, …) in §5. **Both are now in `glossary.md` §4** under Multi-winner,
+  next to SNTV — which is what cumulative voting generalizes — with the three-way collision on the
+  word "cumulative" flagged, the VRA-remedy and Illinois 1870–1980 history, and the reason the
+  discrete form is the one actually deployed: fractional budgets that fail to sum to 1 are how these
+  elections generate invalid ballots.
 - **Electoral College mechanics** — the "+2 effect" (two senatorial electors regardless of size)
   and the 12th-Amendment contingent election on a tie. `whoops.md` has plenty of misfiring
   elections but nothing on this.
