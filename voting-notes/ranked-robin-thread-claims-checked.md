@@ -197,9 +197,27 @@ From five candidates up they come apart: at m=5, 14.5% of cycle profiles still h
 Copeland winner (m=6: 25.8%), and the tiebreaker never runs. The practical consequence points the
 other way from how the tiebreaker is usually discussed — in the three- and four-candidate races that
 make up most real elections, the 1st-degree margins rule is not an exotic corner case, it is the
-*entire* cycle path. Which sharpens the open question in the origins note about BetterVoting's
-`RankedRobin.ts` applying head-to-head only when exactly two candidates tie
-([BV1550 note](ranked-robin-results-explained.md)).
+*entire* cycle path.
+
+### Which is what makes BetterVoting's gap matter
+
+That settles the open question the origins note left about the deployed tabulator. `RankedRobin.ts`
+handles one winner, or *exactly two* tied with a decisive head-to-head, and sends everything else to
+a random pick — the 1st-degree margins rule is not implemented at any tie size. Filed upstream as
+[Equal-Vote/bettervoting#1469](https://github.com/Equal-Vote/bettervoting/issues/1469). The theorem
+above says how much that costs: with three candidates and no drawn matchups, **every** cycle is a
+3-way tie, so the implemented two-way branch can never fire on a cycle at all — it only catches
+draw-induced ties like the [BV1550 Ann/Bob case](ranked-robin-results-explained.md). Given a cycle:
+
+| candidates | no Condorcet winner | → 2-way (handled) | → 3+-way (**random**) | → unique Copeland winner |
+|---:|---:|---:|---:|---:|
+| 3 | 8.7% | 0.0% | **100.0%** | 0.0% |
+| 4 | 17.3% | 50.1% | **49.9%** | 0.0% |
+| 5 | 24.7% | 58.9% | **26.8%** | 14.3% |
+| 6 | 31.0% | 54.1% | **19.4%** | 26.5% |
+
+With equal ranks and truncation switched on — BetterVoting's actual ballot rules — three candidates
+split 37.9% two-way / **32.0% three-way** / 30.1% resolved outright.
 
 **Caveat on the generator.** Impartial culture is the worst case for cycles — real electorates are
 structured, and my [spatial-model VSE run](ranked-robin-vse-run.md) found ties there are ~95% clone

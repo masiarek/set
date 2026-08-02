@@ -115,4 +115,30 @@ C4  Tie rates against electorate size, 4 candidates, impartial culture
   confirmed: the extra information Ranked Robin keeps is exactly what
   converts a persistent tie rate into a vanishing one.
 
+==========================================================================
+Appendix  Given no Condorcet winner, which tiebreak branch fires?
+          (BetterVoting handles 1 winner, or exactly 2 with a decisive
+           head-to-head; everything else goes random -- issue #1469)
+==========================================================================
+  strict complete rankings
+  cands  no Condorcet w  2-way (h2h)  3+-way (random)  unique Copeland
+      3           8.7%        0.0%          100.0%            0.0%
+      4          17.3%       50.1%           49.9%            0.0%
+      5          24.7%       58.9%           26.8%           14.3%
+      6          31.0%       54.1%           19.4%           26.5%
+
+  equal ranks + truncation (BetterVoting's actual ballot rules)
+  cands  no Condorcet w  2-way (h2h)  3+-way (random)  unique Copeland
+      3          11.8%       37.9%           32.0%           30.1%
+      4          20.5%       41.5%           22.4%           36.1%
+      5          27.5%       41.7%           15.2%           43.1%
+      6          34.1%       38.6%           10.6%           50.8%
+
+  The no-Condorcet-winner column reproduces the standard impartial-culture
+  paradox rates (8.77%, 17.55%, 25.13%, 31.52% for 3-6 candidates), which is
+  the check that the generator is behaving.
+  Headline: with 3 candidates and no drawn matchups, 100% of cycles are
+  3-way Copeland ties, so BetterVoting's implemented head-to-head branch
+  cannot fire on a cycle at all -- the random rung is the entire cycle path.
+
 All assertions passed.

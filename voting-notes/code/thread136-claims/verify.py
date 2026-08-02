@@ -439,6 +439,56 @@ def c4():
     print("  converts a persistent tie rate into a vanishing one.")
 
 
+# --------------------------------------------------------------------------
+# Appendix. Which branch of BetterVoting's singleWinnerRankedRobin fires,
+# given a cycle? Severity evidence for Equal-Vote/bettervoting#1469.
+# --------------------------------------------------------------------------
+
+def appendix_branch_split():
+    report("Appendix  Given no Condorcet winner, which tiebreak branch fires?\n"
+           "          (BetterVoting handles 1 winner, or exactly 2 with a decisive\n"
+           "           head-to-head; everything else goes random -- issue #1469)")
+    for strict in (True, False):
+        print("  " + ("strict complete rankings"
+                      if strict else
+                      "equal ranks + truncation (BetterVoting's actual ballot rules)"))
+        print(f"  {'cands':>5} {'no Condorcet w':>15} {'2-way (h2h)':>12}"
+              f" {'3+-way (random)':>16} {'unique Copeland':>16}")
+        for m in (3, 4, 5, 6):
+            cs = [chr(ord("A") + i) for i in range(m)]
+            rng = random.Random(1469 + m)
+            trials = 20000
+            nocw = two = three = uniq = 0
+            for _ in range(trials):
+                p = random_profile(rng, cs, 101,
+                                   allow_equal=not strict, allow_trunc=not strict)
+                sc = copeland(matrix(p, cs), cs)
+                top = max(sc.values())
+                if top >= m - 1:
+                    continue
+                nocw += 1
+                k = sum(1 for c in cs if sc[c] == top)
+                if k == 1:
+                    uniq += 1
+                elif k == 2:
+                    two += 1
+                else:
+                    three += 1
+            if strict and m <= 4:
+                assert uniq == 0, "m<=4 with no CW must never have a unique Copeland winner"
+            if strict and m == 3:
+                assert two == 0 and three == nocw, "every 3-candidate cycle ties 3 ways"
+            print(f"  {m:>5} {nocw/trials:>14.1%} {two/nocw:>11.1%}"
+                  f" {three/nocw:>15.1%} {uniq/nocw:>15.1%}")
+        print()
+    print("  The no-Condorcet-winner column reproduces the standard impartial-culture")
+    print("  paradox rates (8.77%, 17.55%, 25.13%, 31.52% for 3-6 candidates), which is")
+    print("  the check that the generator is behaving.")
+    print("  Headline: with 3 candidates and no drawn matchups, 100% of cycles are")
+    print("  3-way Copeland ties, so BetterVoting's implemented head-to-head branch")
+    print("  cannot fire on a cycle at all -- the random rung is the entire cycle path.")
+
+
 if __name__ == "__main__":
     c1a()
     c1b()
@@ -446,4 +496,5 @@ if __name__ == "__main__":
     c2()
     c3()
     c4()
+    appendix_branch_split()
     print("\nAll assertions passed.")
