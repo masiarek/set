@@ -1,0 +1,92 @@
+# BetterVoting issues ↔ these notes
+
+The join between this folder and [Equal-Vote/bettervoting](https://github.com/Equal-Vote/bettervoting)'s
+tracker. **Not an index of everything filed** — there are 257 issues authored there, 160 of them open,
+and listing them here would duplicate the tracker badly and go stale within a week. What this page
+covers is the intersection worth curating: **the issues these notes back with recomputation**, and the
+findings in these notes that could become issues but haven't.
+
+The reason to keep it: an issue's credibility rests on whether the number in it was checked or
+eyeballed, and that fact lives here rather than in the tracker. If a maintainer pushes back on any row
+below, the verifier named in it is the answer.
+
+Checked against the tracker on **2026-08-02**; states drift, so re-check before leaning on the status
+column.
+
+---
+
+## Filed, and backed by a verifier here
+
+| # | state | what it claims | backed by |
+|---|---|---|---|
+| [885](https://github.com/Equal-Vote/bettervoting/issues/885) | closed *(not planned)* | Unstable tie-breaking in Ranked Robin. **Closed on my own re-reading** — the original report misread a Copeland win. | [ranked-robin-results-explained](ranked-robin-results-explained.md) |
+| [886](https://github.com/Equal-Vote/bettervoting/issues/886) | closed *(completed)* | "Who won — Bob or Ann?" on test case BV1550, 3 candidates, 12 ballots. Fixed by the `JacksonLoper/tiebreaker` merge of 2026-05-12; results pages now show "Tied!" / "won after tiebreaker". | [ranked-robin-results-explained](ranked-robin-results-explained.md) |
+| [1468](https://github.com/Equal-Vote/bettervoting/issues/1468) | **open** | Chart stars the wrong candidate when a Copeland tie is broken by the head-to-head runoff: header uses `results.elected`, chart renders row 0 of the `(copelandScore desc, tieBreakOrder asc)` pre-sort because `RankedRobin.ts` passes no `evaluate` to `runBlocTabulator`. | [ranked-robin-results-explained](ranked-robin-results-explained.md); five-ballot runoff-rung fixture in [bv-sep-test-cases](bv-sep-test-cases.md) + [`ranked_robin_noshow.py`](code/sep-voting-methods/ranked_robin_noshow.py) |
+| [1469](https://github.com/Equal-Vote/bettervoting/issues/1469) | **open** | 3+-way Copeland ties skip the official 1st-Degree margins tiebreaker and fall straight to random — the margins rule is not implemented at any tie size. | [ranked-robin-thread-claims-checked](ranked-robin-thread-claims-checked.md) + [`code/thread136-claims/verify.py`](code/thread136-claims/verify.py) |
+
+The proof that makes #1469 bite is in the thread-claims note: with three candidates and no drawn
+matchups **every cycle is a 3-way tie**, so the implemented two-way branch can never fire on a cycle
+at all — it only catches draw-induced ties like the BV1550 Ann/Bob case.
+
+## Filed by others, relevant here
+
+| # | state | why it matters to these notes |
+|---|---|---|
+| [1063](https://github.com/Equal-Vote/bettervoting/issues/1063) | **open** | Deterministic tie-breaking via candidate lot numbers. The standing fix for every random-rung finding below; [ranked-robin-vse-run](ranked-robin-vse-run.md) puts a number on how often the rung fires. |
+| [1168](https://github.com/Equal-Vote/bettervoting/issues/1168) | **open** | @jacksonloper: document that Ranked Robin uses Copeland tie-breaking. [ranked-robin-origins](ranked-robin-origins.md) is the history that documentation would need. |
+| [1432](https://github.com/Equal-Vote/bettervoting/issues/1432) | **open** | Surface tie-break explanations in the results UI and JSON/CSV export. |
+| [1379](https://github.com/Equal-Vote/bettervoting/issues/1379) | **open** | BV555, STAR scoring-round 3-way tie — the STAR-side twin of the Ranked Robin tie work. |
+
+## Posted as comments, not issues
+
+- **[#1468 comment, 2026-08-02](https://github.com/Equal-Vote/bettervoting/issues/1468#issuecomment-5160176044)**
+  — a five-ballot, four-candidate profile that exercises the same pairwise-runoff rung as the issue
+  (smaller than its own 21-ballot repro), plus the same profile minus one ballot as a second
+  runoff-rung case. The pair is also a **no-show paradox**, flagged explicitly as *not a bug*: Moulin's
+  theorem guarantees it for any Condorcet-consistent method at four or more candidates. Text as sent:
+  [bv-1468-comment-posted](bv-1468-comment-posted.md).
+
+  Stated in the comment and worth repeating: the **tabulation** was computed and hand-checked, the
+  **display** behaviour was not tested against this profile.
+
+## Checked and deliberately *not* filed
+
+Recording these matters as much as the filings — it stops the same non-bug being re-reported later.
+
+- **BV's IRV does not inherit the SEP entry's "eliminate everyone" defect.** Pacuit's printed Hare and
+  Coombs definitions return ∅ on a perfect three-way first-place tie. `IRV.ts` pops exactly one
+  candidate per round and sets `tieBreakType: 'random'` when the last two are level, so the degenerate
+  profile is safe. Filing it would have been wrong. [sep-voting-methods](sep-voting-methods.md),
+  finding 1.
+- **The Ranked Robin no-show paradox is not a defect.** Guaranteed by Moulin's theorem for any
+  Condorcet-consistent method at m ≥ 4; no tie-breaking change can remove it. Worth a regression
+  fixture, not a bug report.
+- **Ranked Robin is clean at three candidates.** No no-show paradox in any of the 12,375 anonymized
+  3-candidate profiles up to 11 voters, so a three-candidate test would assert the wrong thing.
+
+## Not filed yet — candidates
+
+- **Two IRV regression fixtures**: a 17-ballot monotonicity failure (raising A loses A the election;
+  no tiebreak involved) and a 19-ballot profile giving three different winners across
+  Plurality-runoff / IRV / Coombs / Borda. Kept out of #1468 because they are unrelated to that
+  display bug. Draft text in [bv-sep-test-cases](bv-sep-test-cases.md).
+- **`IRV.test.ts` has no pathology coverage at all** — five tests, all ballot plumbing, and the suite
+  greps clean for `condorcet|monoton|no-show|paradox|cycle`. The gap itself may be worth raising
+  separately from any particular fixture.
+
+## Live test elections
+
+- **mj26yj** — [results](https://bettervoting.com/mj26yj/results), "BV1550-R1 — Ranked Robin — 3 cand —
+  12 ballots — RRBN retest", created 2026-08-01 via the public API as a guest, still open. Owner is
+  the guest `temp_id` `61abacb9-15a6-49f2-b8bd-16c8764783f4`; administering or closing it needs that
+  set as the `temp_id` cookie on bettervoting.com, or the election claimed from a signed-in account.
+
+## Related local material
+
+- [ranked-robin-results-explained](ranked-robin-results-explained.md) — the results-page note where
+  most of this work started, and BetterVoting's tie-break ladder in full
+- [ranked-robin-thread-claims-checked](ranked-robin-thread-claims-checked.md) — the cycle/tie theorem
+  behind #1469
+- [bv-sep-test-cases](bv-sep-test-cases.md) — the SEP-derived fixtures and what fits where
+- [sep-voting-methods](sep-voting-methods.md) — Moulin's theorem, and the no-show witness
+- [glossary](glossary.md) — Copeland, the tie-break ladder, no-show paradox

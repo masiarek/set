@@ -202,6 +202,8 @@ anywhere.
   is recomputed
 - [`code/sep-voting-methods/ranked_robin_noshow.py`](code/sep-voting-methods/ranked_robin_noshow.py) —
   Ranked Robin as BV implements it, and the no-show search behind item 3
+- [bettervoting-issues](bettervoting-issues.md) — the issue-by-issue index: what is filed, what is
+  backed by a verifier, and what was checked and deliberately not filed
 - [ranked-robin-results-explained](ranked-robin-results-explained.md) — BV's tie-break ladder, and
   issue #1468, the closest existing work to item 3
 - [sep-star-suggestion-email](sep-star-suggestion-email.md) — the other outbound draft from this note
