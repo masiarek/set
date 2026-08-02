@@ -55,6 +55,11 @@ verifier.
 - **"The article has an error"** was too strong for the STAR score table. It's a double-rounding artifact
   inherited from rescaling the 0–10 table, which is a more useful diagnosis — and only visible once the
   score article was read. Corrected in place. [score-voting](score-voting.md)
+- **Two wrong guesses in the STV verifier**, both caught by the assertions rather than by me. I asserted that
+  *S* candidates can always reach the Droop quota — false for small electorates (3 votes, 2 seats: quota 2,
+  and 2×2 > 3); the theorem is only the upper bound plus minimality. And I predicted the 3-seat winners on
+  the Lumen ballots would be Garcia/Nguyen/Smith; the real answer is Smith/Garcia/Lee, which turned out to be
+  the better finding. [single-transferable-vote](single-transferable-vote.md)
 
 ## What the pattern says
 
@@ -69,6 +74,10 @@ Three things recur often enough to be worth naming:
    survive its first few elections."
 3. **The errors cluster in worked examples, not prose.** Every source error above is in a table, a diagram,
    or a percentage — the parts readers skim and reuse. That's the argument for the verifiers.
+4. **Tie rules decide real elections, and nobody writes them down.** Three separate times now: Ranked
+   Robin's tie ladder, the STAR scoring-round tie I got wrong and then caught, and STV — where swapping a
+   backward tiebreak for an alphabetical one makes one-seat STV and IRV disagree on 15 of 4,000 profiles.
+   The tiebreak is usually a footnote in the spec and the deciding rule in the count.
 
 ## Related
 

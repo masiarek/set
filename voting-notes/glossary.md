@@ -40,8 +40,9 @@ those definitions are filled in here from the standard social-choice literature.
   Note too that on this domain the majority relation is **transitive** (Inada 1969) and orders candidates by
   approval score, so Condorcet cycles cannot occur at all. [→ [approval-voting](approval-voting.md)]
 - **Summability** — a precinct can report one integer per candidate and the totals just add. Plurality and
-  approval are summable; IRV is not, because eliminations need the whole ballot set. Administrative, not a
-  fairness property — but it drives adoption.
+  approval are summable; IRV and STV are not, because eliminations and transfers need the whole ballot set in
+  one place. Administrative, not a fairness property — but it drives adoption, and it is why STV counts are
+  centralised and slow. [→ [single-transferable-vote](single-transferable-vote.md)]
 
 ## 2. Pairwise machinery
 
@@ -182,6 +183,36 @@ the Smith set).
 - **Unified primary** — nonpartisan primary run by approval, top two advance to the general. St. Louis'
   Proposition D variant. [→ [approval-voting](approval-voting.md)]
 
+### Multi-winner
+
+Everything above elects one person. These fill several seats, and the question changes from "who should win"
+to "who should be represented".
+
+- **STV (single transferable vote)** — one transferable ranked vote per voter in a multi-seat district. Set
+  a quota; elect whoever reaches it; transfer their **surplus**; when nobody reaches it, eliminate the lowest
+  and transfer their pile. **With one seat it is exactly IRV.** Ireland since 1922, Malta, the Australian
+  Senate, Tasmania, Scottish and NI local government, Cambridge MA, and the Academy Award nominees.
+  [→ [single-transferable-vote](single-transferable-vote.md)]
+- **Quota** — the votes that guarantee a seat. **Droop** = ⌊V/(S+1)⌋+1 is the smallest *safe* quota: S+1
+  candidates can't all reach it, and one lower isn't safe. **Hare** = V/S is larger, so a *harder* bar.
+  The choice changes the winning set in ~15% of random 3-seat profiles.
+  [→ [single-transferable-vote](single-transferable-vote.md)]
+- **Surplus transfer** — moving an elected candidate's above-quota votes onward. The rule varies by
+  jurisdiction — whole-vote/random (Cambridge), **basic Gregory** on the last parcel only (Ireland Senate,
+  NI), **WIGM** over all papers (Scotland), **Meek** recomputing the quota as ballots exhaust. WIGM and basic
+  Gregory disagree ~12% of the time, which is why "STV" names a family.
+  [→ [single-transferable-vote](single-transferable-vote.md)]
+- **SNTV (single non-transferable vote)** — STV's ballot without the ranking or the transfers: first
+  preferences, top *S* win. Semi-proportional, and the baseline STV must beat — it elects the same set
+  ~62% of the time. [→ [single-transferable-vote](single-transferable-vote.md)]
+- **District magnitude** — seats per district. The real determinant of how proportional a result is; three
+  seats means a 25% threshold. Shrinking districts is how a government tunes STV toward large parties
+  without appearing to change the rules. [→ [single-transferable-vote](single-transferable-vote.md)]
+- **Block approval / reweighted range / sequential proportional approval** — the cardinal multi-winner
+  family. Block approval (top *k* totals) is not proportional; the others reweight ballots that already
+  elected someone, which is the surplus transfer's cardinal analogue. Reweighted range picks the Academy's
+  Visual Effects nominees. [→ [score-voting](score-voting.md), [approval-voting](approval-voting.md)]
+
 ## 5. Criteria and properties
 
 Every one of these appears as a row in LeGrand's compliance table with no definition given.
@@ -241,6 +272,17 @@ Every one of these appears as a row in LeGrand's compliance table with no defini
   the larger homogeneous wing. [→ [majority-judgment](majority-judgment.md)]
 - **No-show paradox** — a bloc turns out and gets a worse result than by staying home; the concrete form of
   a participation failure. [→ [majority-judgment](majority-judgment.md)]
+- **Proportionality for solid coalitions (PSC)** — if a group ranks some set of candidates above all others
+  on every ballot and is worth *k* quotas, that set gets at least *k* seats. STV's actual formal guarantee,
+  and weaker than "proportional" in the everyday sense: it says nothing about voters who don't form solid
+  blocs. [→ [single-transferable-vote](single-transferable-vote.md)]
+- **Backward tiebreak** — resolve a tie on current counts by looking at an earlier round's counts (usually
+  first preferences). Decides round 4 of the STV article's worked example; swapping it for an alphabetical
+  rule makes one-seat STV and IRV disagree on 15 of 4,000 profiles.
+  [→ [single-transferable-vote](single-transferable-vote.md)]
+- **Exhausted ballot** — no usable preference left, so it stops transferring and sits out the rest of the
+  count. Enough exhaustion lets STV candidates win on partial quotas.
+  [→ [single-transferable-vote](single-transferable-vote.md)]
 - **Decisiveness** — how often a method needs a tiebreaker at all. Black is the most decisive of LeGrand's
   set, Copeland the least.
 - **Strategic straightforwardness** — how easy it is to vote honestly without regret; a softer, practical
@@ -327,6 +369,9 @@ All from [rcv-and-core-support](rcv-and-core-support.md).
 - [*Majority judgment* (Wikipedia)](https://en.wikipedia.org/wiki/Majority_judgment) — the median answer,
   Balinski and Laraki's point-summing theorem, and Laslier's median-voter critique
   [→ [majority-judgment](majority-judgment.md)]
+- [*Single transferable vote* (Wikipedia)](https://en.wikipedia.org/wiki/Single_transferable_vote) — the
+  first multi-winner method here; quotas, surplus transfers, and a century of real use
+  [→ [single-transferable-vote](single-transferable-vote.md)]
 - [Equal Vote Coalition](https://www.equal.vote/) / [STAR Voting](https://www.starvoting.org/) — origin of
   both STAR and Ranked Robin
 - [Equal Vote / BetterVoting](https://bettervoting.com) — Ranked Robin in production
