@@ -1,0 +1,171 @@
+
+Sequentially Spent Score (SSS) — checking electowiki's claims and one engine bug.
+
+Sources under test:
+  * https://electowiki.org/wiki/Sequentially_Spent_Score  (fetched 2026-08-02 via action=raw)
+  * https://electowiki.org/wiki/Vote_unitarity            (same)
+  * BUG_sss_verbosity.md / larryhastings/starvote#17, via the vendored fork in
+    masiarek/star-voting-library
+
+Pure Python, no dependencies. Exact rational arithmetic throughout (Fraction), so
+every printed total is the real number and not a float artefact — the electowiki
+page prints rounded intermediates and two of them are wrong, which only shows up
+if you keep the fractions.
+
+WHAT THIS SCRIPT CAN AND CANNOT ESTABLISH
+-----------------------------------------
+  * A FAILURE is a finite witness and is exact.
+  * A SATISFACTION is only "no counterexample in the window searched"; windows are
+    stated per check.
+  * Checks 5-7 sample random profiles with a fixed seed, so they are reproducible
+    but not exhaustive.
+
+THE METHOD (scaling variant, from the page's own reference implementation)
+--------------------------------------------------------------------------
+  quota = V / W                       (on ballots normalised to [0,1])
+  repeat W times:
+      w  = argmax over remaining candidates of  sum_i  s[i][c] * weight[i]
+      surplus_factor = max(total[w] / quota, 1)
+      spent[i]  = s[i][w] * weight[i] / surplus_factor
+      weight[i] = clip(weight[i] - spent[i], 0, 1)
+
+==============================================================================
+CHECK 1 — what the reweighting step is worth (the starvote verbosity bug)
+==============================================================================
+  21 ballots: a 13-voter majority bloc (Alice/Ben/Cara) and an 8-voter
+  minority bloc (Dan/Eve). 3 seats. 8/21 = 38% of the electorate, so the
+  minority is worth 1.14 Hare quotas and is owed a seat.
+
+    SSS, reweighting on      -> ['Alice', 'Ben', 'Dan']
+    SSS, reweighting removed -> ['Alice', 'Ben', 'Cara']
+    Bloc Score               -> ['Alice', 'Ben', 'Cara']
+
+    reweighting-removed SSS == Bloc Score: True
+    minority bloc represented, with reweighting:    True
+    minority bloc represented, without reweighting: False
+
+  These are the exact winner sets the bug report records for verbosity=0
+  and verbosity>=1. The engine was not mis-tabulating SSS; at verbosity=0
+  it was running a DIFFERENT METHOD -- the non-proportional one.
+
+  RESULT: PASS
+
+==============================================================================
+CHECK 2 — the participation failure, and the page's printed arithmetic
+==============================================================================
+  Case 1 (40 voters):  winners ['A1', 'A2']
+  Case 2 (41 voters, one added A=1 C=10 voter):  winners ['A1', 'B1']
+
+  by candidate type: case 1 -> ['A', 'A'], case 2 -> ['A', 'B']
+  The added voter scored A above B, and their turning out cost A a seat.
+  Participation failure reproduced: True
+
+  The page also prints the round-2 totals. Recomputing them exactly:
+    Case 1: A(2nd) = 101.60  (page prints 100.66), B = 99.34  (page prints 99.33)
+    Case 2: A(2nd) = 98.22  (page prints 98.36), B = 99.32  (page prints 99.32)
+
+  Both A figures omit the small-score voters' surviving contribution to the
+  second A clone. The comparison, and so the finding, is unaffected -- but the
+  printed intermediates are not what the stated procedure produces.
+
+  RESULT: PASS — the participation failure is real.
+
+==============================================================================
+CHECK 3 — the capping variant fails Justified Representation
+==============================================================================
+  58 voters, 17 candidates, 6 seats. Hare quota = 58/6 = 9.67 voters.
+  The first 10 voters all score A at 3; they are 10/58 = 17.2% of the
+  electorate, more than one sixth, so JR entitles them to representation.
+
+    capping variant: ['B1', 'B2', 'B3', 'B4', 'C1', 'C2']
+    scaling variant: ['A', 'B1', 'B2', 'B3', 'C1', 'C2']
+
+    capping result matches the page's claim ['B1', 'B2', 'B3', 'B4', 'C1', 'C2']: True
+    A elected under capping: False
+    A elected under scaling: True
+
+  RESULT: PASS — the page's stated reason for abandoning
+          the capping variant reproduces exactly.
+
+==============================================================================
+CHECK 4 — the surplus-handling centrist bias ('only Bs are elected')
+==============================================================================
+  102 voters, 5 seats, three blocs 41 / 20 / 41. The page states, under
+  'Sorted Surplus Handling Variant', that here 'only Bs are elected'.
+
+  proportional entitlement at 5 seats: A 2.01   B 0.98   C 2.01
+
+    scaling : ['B1', 'B2', 'B3', 'A1', 'C1']
+              by bloc ['B', 'B', 'B', 'A', 'C'] — B takes 3/5, 'only Bs' = False
+    capping : ['B1', 'B2', 'B3', 'B4', 'B5']
+              by bloc ['B', 'B', 'B', 'B', 'B'] — B takes 5/5, 'only Bs' = True
+
+  The claim holds for the CAPPING variant and not for the SCALING one —
+  and scaling is the current method; the same page says capping 'was
+  abandoned'. So the example is inherited from the superseded variant.
+
+  The bias it illustrates is real either way: the 20% centre bloc is owed
+  0.98 seats and takes 3 under the current method — about 3x
+  over-representation, not 5x. Both 41% wings are owed 2.01 and get 1 each.
+  The strategic incentive the page draws from it (wings truncate B to 0)
+  survives at the smaller magnitude.
+
+  RESULT: PASS — claim reproduces only under capping.
+
+==============================================================================
+CHECK 5 — the page's criteria table, spot-checked
+==============================================================================
+  4,000 random 7-voter, 5-candidate, 2-seat profiles.
+
+    property               claimed   violations     verdict
+    monotone                   Yes            0  consistent
+    iia                        Yes            0  consistent
+    participation               No           16  consistent
+
+    a participation witness: the added voter's own score for the winner set
+    fell from 5 to 4 by voting.
+
+  RESULT: PASS — table consistent with the search.
+          Note IIA here is the multi-winner 'remove a loser' form and, as with
+          score voting, it is a property of ABSOLUTE scoring only.
+
+==============================================================================
+CHECK 6 — 'the natural extension of the Hamilton method'
+==============================================================================
+  2,000 random 3-party list profiles, 5 seats, every voter giving max
+  score to their own party's slate and 0 to everyone else.
+
+    SSS seat vector == Hamilton (largest remainders): 2,000/2,000  (100.0%)
+    SSS seat vector == D'Hondt:                       1,409/2,000  (70.5%)
+    SSS seat vector == Webster/Sainte-Lague:          1,898/2,000  (94.9%)
+
+  RESULT: PASS — the party-list signature is Hamilton's,
+          not a divisor method's, which is the claim in the taxonomy.
+
+==============================================================================
+CHECK 7 — the Vote Unitarity axioms VU1 and VU2, as stated on the wiki
+==============================================================================
+  3,000 random 6-voter, 4-candidate, 2-seat profiles, exact arithmetic.
+
+    VU1 (proportionate spending, p[i][c] <= s[i][c]) violations: 0
+    VU2 (residual budget == 1 - sum of payments)   violations: 0
+    profiles where the weight clip at 0 was load-bearing:       0
+
+  RESULT: PASS — SSS satisfies its own axioms exactly,
+          and the clip in the reference implementation never binds: spending is
+          s[i][w]*weight[i]/surplus <= weight[i] because s <= 1 and surplus >= 1.
+          Note the wiki's VU2 remark that 'no rule using multiplicative
+          reweighting can satisfy this condition' is about the BUDGET being
+          additive; SSS scales the ballot multiplicatively and tracks the budget
+          additively, which is why it passes.
+
+==============================================================================
+SUMMARY
+==============================================================================
+  [PASS] reweighting is the method (verbosity bug)
+  [PASS] participation failure real; printed totals off
+  [PASS] capping variant fails Justified Representation
+  [PASS] surplus-handling centrist bias
+  [PASS] criteria table spot-check
+  [PASS] party-list signature is Hamilton
+  [PASS] VU1 / VU2 hold exactly

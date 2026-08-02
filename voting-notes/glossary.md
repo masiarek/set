@@ -332,6 +332,33 @@ to "who should be represented".
 - **Hare Quota Criterion** — a solid coalition worth a Hare quota must win a seat. What the reweighting phase
   is aiming at, and the cardinal counterpart of PSC.
   [→ [cardinal-voting-systems](cardinal-voting-systems.md)]
+- **Sequentially Spent Score (SSS)** — the Vote Unitarity method. Score ballots; each round elect the
+  highest weighted total, then every voter **spends** exactly the stars they gave that winner, with
+  "change" returned if the winner drew more than a Hare quota of score. Keith Edmonds; also Sequentially
+  Subtracted Score or Unitary Cardinal Voting. **Strip the spending step and it is exactly Bloc Score** —
+  which is what a `verbosity`-gated engine bug did in production, costing a 38% minority bloc its
+  proportional seat. Its party-list case is **Hamilton**, verified at 100% agreement over 2,000 profiles.
+  [→ [sequentially-spent-score](sequentially-spent-score.md)]
+- **Vote unitarity** — vote weight as a *conserved budget*: (VU1) **proportionate spending**, the cost of
+  electing a candidate never exceeds the score you gave them; (VU2) **unitary transformation**, residual
+  budget is always the initial unit minus what has been spent. Written to sit between the two ways
+  reweighting goes wrong — STV and Allocated Score **over**-remove influence (a 1-of-5 supporter can be
+  allocated entirely), RRV **under**-removes it (a max-score supporter keeps half a ballot they already
+  used). [→ [sequentially-spent-score](sequentially-spent-score.md)]
+- **Scaling vs. capping** — the two ways to apply a reduced ballot weight to the candidates still standing.
+  Scaling multiplies every remaining score by the weight; capping truncates each score *at* the weight.
+  Capping is the more intuitive reading and **fails Justified Representation**, which is why SSS abandoned
+  it. [→ [sequentially-spent-score](sequentially-spent-score.md)]
+- **Justified Representation (JR)** — a cohesive group worth a quota must get *someone* they support. The
+  standard fairness floor for multi-winner approval/score rules, and the axiom that killed SSS's capping
+  variant. Weaker than proportionality, and much easier to check.
+  [→ [sequentially-spent-score](sequentially-spent-score.md)]
+- **Priceability** — a winner set is priceable if voters' budgets can be assigned to winners consistently at
+  a common price per seat. Plain SSS is not; its Sequentially Shrinking Quota variant is.
+  [→ [sequentially-spent-score](sequentially-spent-score.md)]
+- **Vickrey quota** — the smaller of a Hare quota and the runner-up's total score. Charging a winner only
+  what it took to beat the field, by analogy with Vickrey auctions.
+  [→ [sequentially-spent-score](sequentially-spent-score.md)]
 - **Optimal proportional methods** — choose the whole winner *set* at once by maximising a quality function,
   usually by trying every set: Proportional Approval Voting (PAV), Monroe's method, Ebert's method,
   max-Phragmén, Harmonic Voting, PAMSAC. Combinatorial in the seat count. **Ebert's method fails
