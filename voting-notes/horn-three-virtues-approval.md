@@ -270,10 +270,12 @@ paper is, in effect, an argument for cardinal ballots that has been labelled as 
 | 9 | §I | Gibbard 1973 described as being about "multi-winner"/"multi-seat" schemes | Gibbard–Satterthwaite is single-winner, ≥3 alternatives |
 | — | §IV, fn. 20 | 12 scenarios; 2 wins, 8 ties, 2 losses | **correct as printed** |
 
-Five reviewers, an average of 3.40, and a peer-approval statement praising the paper's treatment of all three
-virtues. None of the above appears to have been raised. That is the reason this note exists in the form it
-does: the arithmetic in a peer-approved paper on a preprint server with open review is worth ten minutes of
-`python3`.
+Five reviewers, an average of 3.40, and a peer-approval statement that praises the paper's treatment of all
+three virtues by name. (Qeios publishes reviewer reports, but I could not retrieve the five for this paper —
+they aren't linked from the article page and aren't exposed by the API endpoints the page itself calls, so I
+can't say what the reviewers did or didn't raise. The approval statement is the only review artefact I read.)
+Either way, the reason this note exists in the form it does: the arithmetic in a peer-approved paper is worth
+ten minutes of `python3`.
 
 ## What survives
 

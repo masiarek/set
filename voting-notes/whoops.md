@@ -44,6 +44,11 @@ Found by recomputing rather than by reading. Where a note has a verifier, the er
 | **A tightness witness that isn't continuous.** Appendix B argues Example 8 satisfies continuity because "the most-frequent ballots in *P* become the most-frequent ballots in *P′* + *kP* for large enough *k*." They can instead shrink to a *proper subset*: with P = 2{a}+2{a,b} and Q = {a,b}, f(P) = {a} but f(Q+kP) = {a,b} for every k. | Brandl & Peters, *JET* 205 (2022) | **No theorem affected.** It costs Example 8 one of its two cited roles — it can't witness Thm 5, which has a continuity axiom — and Ex 6 witnesses that cell instead | [brandl-peters-approval-characterizations](brandl-peters-approval-characterizations.md) |
 | **A criterion failure manufactured by an assumption.** Approval "very easily violates the Majority Criterion" — demonstrated by *supposing* every voter approves their top two. Bullet-vote the same profile and approval elects the majority winner; approve-all and there's no winner at all. | *Math in Society* §2.14 (Lippman/LibreTexts) | The cutoff, not the tabulation, is doing all the work — the [approval](approval-voting.md) indeterminacy finding, in a textbook that doesn't notice | [math-in-society-lippman](math-in-society-lippman.md) |
 | **A weighted-voting example that drops a sitting member.** The 2007 Scottish Parliament given as `[65: 47,46,17,16,2]`, total 128; the parliament has 129 — one independent is missing. | *Math in Society* §3.4 (Lippman/LibreTexts) | The lesson survives (LibDems and Greens still tie), but the dropped member is **not a dummy** — 1/28 ≈ 3.6% of the Banzhaf power, in a chapter about who has none | [math-in-society-lippman](math-in-society-lippman.md) |
+| **A bloc of 132 spent 165 times.** "Of the 132 big taxers, 99 approve of both *x* and *y*; and 66 approve of *x* and *z*." The printed totals 232/296/293 reproduce only from 165, so the worked election runs on a 459-member House. | Horn, *Three Unique Virtues of Approval Voting* §III (Qeios, peer-approved) | Winner unchanged, but the "very narrow victory" of **3 votes** that the section's own hedge is built on is really **36 or 69** | [horn-three-virtues-approval](horn-three-virtues-approval.md) |
+| **Four ballots the paper's own inference rule forbids.** §II.B says approving X and not Y entails X > Y. The 66 big taxers rank *x > y > z* and approve {*x*, *z*}; and one cell in every row of the §IV table is {favourite, worst}, skipping the middle. | Horn, *Three Unique Virtues* §§III–IV | Those 66 approvals are the whole of *z*'s near-win; and footnote 20's **12 scenarios become 4** once the forbidden cells go — 1 win, 3 ties, 0 losses | [horn-three-virtues-approval](horn-three-virtues-approval.md) |
+| **A "generalizable" result in which the largest total loses.** "*Ax* … is greater than either *Ay* or *Az*; and (*Ay* + *Az*) is greater than *Ax*, then *y* will prevail." Approval elects the argmax. Exhaustive search to 40 finds zero satisfying triples; (2, 1, 2) kills the disjunctive reading too. | Horn, *Three Unique Virtues* §III | The example offered as an instance doesn't satisfy the antecedent either — *Ax* = 232 is the **smallest** of the three totals | [horn-three-virtues-approval](horn-three-virtues-approval.md) |
+| **An impossibility claim refuted two paragraphs above it.** "Such distortions of democracy cannot occur under AV" — against the author's own "a very small change in the breakdown … would flip it, allowing for the status quo to again prevail." | Horn, *Three Unique Virtues* §III | Enumerating all 32 sincere Rule-(1) cutoff profiles on the paper's own ballots elects the **status quo in 3 and the Condorcet loser in 5**, against a 77% majority for change — no strategy, no agenda. The [approval](approval-voting.md) cutoff indeterminacy again, in the paper that denies it | [horn-three-virtues-approval](horn-three-virtues-approval.md) |
+| **Arrow's theorem restated as "cycles are unavoidable"** under "every type of minimally democratic preferentist voting mechanism." | Horn, *Three Unique Virtues* §IV | Borda returns 3–3–3 on the standard cycle; ranked pairs and Schulze are transitive by construction. The intransitivity belongs to the **pairwise majority relation**, not to every ranked method — the same over-reading as §2.12 of Lippman above, from the opposite direction | [horn-three-virtues-approval](horn-three-virtues-approval.md) |
 
 ## Part 3 — my own
 
@@ -72,10 +77,16 @@ verifier.
   and 2×2 > 3); the theorem is only the upper bound plus minimality. And I predicted the 3-seat winners on
   the Lumen ballots would be Garcia/Nguyen/Smith; the real answer is Smith/Garcia/Lee, which turned out to be
   the better finding. [single-transferable-vote](single-transferable-vote.md)
+- **Two bugs in the Horn verifier, caught by the paper being right.** I counted "prefers some increase to the
+  status quo" as the blocs ranking *z* last, which misses the 130 who rank it second, and I built the
+  strategic amendment tally by adding all 97 anti-taxers to everyone already preferring *x*, double-counting
+  the 49. Both surfaced as failed assertions against Horn's own printed numbers — 229–197 and 227–199 are
+  correct in the paper. The checks that matter cut both ways or they aren't checks.
+  [horn-three-virtues-approval](horn-three-virtues-approval.md)
 
 ## What the pattern says
 
-Three things recur often enough to be worth naming:
+Five things recur often enough to be worth naming:
 
 1. **Nearly every failure is a middle candidate problem.** Center squeeze, the clone taking a runoff slot,
    the majority favourite who never reaches round 2, majority judgment handing a left–right election to the
@@ -84,12 +95,21 @@ Three things recur often enough to be worth naming:
 2. **Adoption reverses more often than it sticks.** IEEE, Dartmouth twice, the Independent Party of Oregon,
    Fargo by state pre-emption. The interesting question is rarely "does the method work" but "does it
    survive its first few elections."
-3. **The errors cluster in worked examples, not prose.** Every source error above is in a table, a diagram,
-   or a percentage — the parts readers skim and reuse. That's the argument for the verifiers.
+3. **The errors cluster where a source generalizes.** Not in the prose explaining what a method does, but in
+   the worked example meant to demonstrate it and in the sentence afterwards saying what the example proves —
+   a table, a diagram, a percentage, or a "thus, in general." Horn's paper has both halves in one section: a
+   miscounted bloc, and then a stated generalization the example doesn't satisfy. Those are the parts readers
+   skim and reuse. That's the argument for the verifiers.
 4. **Tie rules decide real elections, and nobody writes them down.** Three separate times now: Ranked
    Robin's tie ladder, the STAR scoring-round tie I got wrong and then caught, and STV — where swapping a
    backward tiebreak for an alphabetical one makes one-seat STV and IRV disagree on 15 of 4,000 profiles.
    The tiebreak is usually a footnote in the spec and the deciding rule in the count.
+5. **Refereeing reads arguments; it doesn't rerun examples.** The two peer-reviewed papers here carry the
+   most checkable claims of anything in this folder, and both have errata found by recomputation: a *Journal
+   of Economic Theory* tightness witness that fails the continuity it is argued to have, and a paper
+   peer-approved by five reviewers at 3.40 whose worked election spends a 132-member bloc 165 times. Neither
+   needed anything past arithmetic. Open review didn't obviously help either: Qeios publishes its reviews,
+   and the platform's peer-approval statement for that paper praises all three virtues by name.
 
 ## Related
 
