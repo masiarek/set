@@ -177,6 +177,38 @@ the Smith set).
 
 ### Cardinal
 
+Also **evaluative**, **rated**, **graded**, **range**: evaluate each candidate independently on a common
+scale. Equal ratings are allowed and blanks are meaningful, neither of which a ranking permits.
+[→ [cardinal-voting-systems](cardinal-voting-systems.md)]
+
+- **Pure vs. semi-cardinal** — pure (approval, score) means the winner is a function of the score columns
+  alone, which is what makes monotonicity and rated-IIA immediate. Semi-cardinal (STAR, MJ's tiebreak,
+  everything else) adds a stage reading *across* columns, and all of those properties are back in play.
+  **"Cardinal" on its own predicts nothing about a method with a second stage** — which is the whole
+  distance between the [score](score-voting.md) and [STAR](star-voting.md) compliance rows.
+  [→ [cardinal-voting-systems](cardinal-voting-systems.md)]
+- **Gradation** — the number of steps *inside* the scale, as against its endpoints. Where the family gets its
+  name: a cardinal ballot out-informs a ranking only when the gradations **exceed the candidate count**, so a
+  0–5 ballot in a 7-way race is strictly *less* expressive than a ranking.
+  [→ [cardinal-voting-systems](cardinal-voting-systems.md)]
+- **Scale invariance** — multiplying every score by a constant must not change the result. The *range*
+  ([0,1] vs [0,100] vs [−42,7]) is irrelevant under sum, average and median; reweighting is where it stops
+  being free — RRV fails it, SPAV + KP transform recovers it.
+  [→ [cardinal-voting-systems](cardinal-voting-systems.md)]
+- **KP (Kotze–Pereira) transform** — split a rated ballot into fractional approval ballots: scored *k* of *m*
+  ⇒ approved on *k* of the *m* unit sub-ballots. So score voting **is** approval voting over *m*
+  sub-electorates. Verified exact over 20,000 profiles, and the bridge that carries the
+  approval-characterization results to score.
+  [→ [cardinal-voting-systems](cardinal-voting-systems.md),
+  [brandl-peters-approval-characterizations](brandl-peters-approval-characterizations.md)]
+- **Approval rating** — a candidate's total as a percentage of the maximum attainable total. The clean way to
+  compare totals across methods using different scales.
+  [→ [cardinal-voting-systems](cardinal-voting-systems.md)]
+- **Utilitarian winner** — the sum-maximising candidate. What score voting is *for*, and what the
+  majoritarian criteria are traded against. [→ [cardinal-voting-systems](cardinal-voting-systems.md)]
+- **Rated pairwise preference ballot** — a format addressing the one thing rating cannot express: a maximal
+  preference between *every* pair once there are more than two candidates.
+  [→ [cardinal-voting-systems](cardinal-voting-systems.md)]
 - **Approval** — approve any number of candidates, most approvals wins. Weber named it in 1971,
   Brams and Fishburn formalised it in 1978. Its compliance depends on *how voters set their cutoff*, not on
   the tabulation: Condorcet-consistent under the leader rule or dichotomous preferences, capable of electing
@@ -228,6 +260,11 @@ the Smith set).
   the tiebreak decides real elections. [→ [majority-judgment](majority-judgment.md)]
 - **Unified primary** — nonpartisan primary run by approval, top two advance to the general. St. Louis'
   Proposition D variant. [→ [approval-voting](approval-voting.md)]
+- **Minor cardinal rules** — the rest of electowiki's single-winner table, listed so the names resolve:
+  **Reciprocal Score Voting** (sum, >2 grades), **Chiastic Score Voting** (elect on the highest score *s*
+  such that at least an *s*-sized share of voters rate the candidate ≥ *s* — an intersection rule, not a
+  sum), **Majority Choice Approval** and **Majority Approval Voting** (median rules on binary ballots).
+  [→ [cardinal-voting-systems](cardinal-voting-systems.md)]
 
 ### Multi-winner
 
@@ -251,13 +288,54 @@ to "who should be represented".
 - **SNTV (single non-transferable vote)** — STV's ballot without the ranking or the transfers: first
   preferences, top *S* win. Semi-proportional, and the baseline STV must beat — it elects the same set
   ~62% of the time. [→ [single-transferable-vote](single-transferable-vote.md)]
+- **Cumulative voting** — SNTV with the single vote made divisible: each voter gets a budget of voting weight
+  and may **pile it onto one candidate** or spread it, top *S* win. Two forms in circulation — one vote per
+  seat, each cast whole ("plumping" all of them on one candidate is the point), or one vote split into
+  fractions that must sum to 1. Semi-proportional by self-organisation rather than by construction: a
+  cohesive minority that concentrates while the majority spreads can seat a candidate on well under a
+  majority, which is why it keeps being adopted as a **Voting Rights Act settlement remedy** in US county
+  and school-board districts, and why Illinois used it for its legislature from 1870 to 1980. Most corporate
+  boards still elect this way, weight being shares. The costs are real: the arithmetic is on the voter, so
+  spoilage rises and turnout falls; and it is strategically brutal in the way SNTV is — weight given to your
+  second choice is weight taken from your first, so concentrating too hard wastes votes and spreading too
+  thin elects nobody, and the optimal play needs a poll. Note the §4 heading **Cumulative** above covers
+  something unrelated: Bucklin's cumulative *tallying* of preference levels, not a divisible vote. The
+  approval-ballot literature also uses "cumulative" for a third thing — the (1, ½, ⅓, …) equal-split
+  scoring rule in §5.
+- **Discrete cumulative voting** — cumulative voting with **indivisible tokens** instead of a fractional
+  budget: *k* whole votes, distributed however you like. The variant nearly every real implementation uses,
+  because fractions are what generate invalid ballots — a voter whose shares fail to sum to 1 has spoiled
+  theirs, while tokens can only be miscounted, not mis-normalised. The tradeoff is granularity: *k* tokens
+  over *m* candidates is a coarse cardinal ballot, and with small *k* it collapses toward SNTV.
+  [→ [mdi-trivia-cards](mdi-trivia-cards.md)]
 - **District magnitude** — seats per district. The real determinant of how proportional a result is; three
   seats means a 25% threshold. Shrinking districts is how a government tunes STV toward large parties
   without appearing to change the rules. [→ [single-transferable-vote](single-transferable-vote.md)]
-- **Block approval / reweighted range / sequential proportional approval** — the cardinal multi-winner
-  family. Block approval (top *k* totals) is not proportional; the others reweight ballots that already
-  elected someone, which is the surplus transfer's cardinal analogue. Reweighted range picks the Academy's
-  Visual Effects nominees. [→ [score-voting](score-voting.md), [approval-voting](approval-voting.md)]
+- **Bloc methods (bloc approval / bloc score / bloc STAR)** — top *k* totals win, no reweighting. The
+  cardinal analogue of block plurality, and **not proportional**: a coherent majority takes every seat. The
+  reason the sequential family below exists. [→ [cardinal-voting-systems](cardinal-voting-systems.md)]
+- **Sequential proportional cardinal methods** — elect one at a time, **reweighting** ballots that already
+  helped elect someone, which is the surplus transfer's cardinal analogue. RRV (picks the Academy's Visual
+  Effects nominees), SPAV, Sequentially Spent Score, Allocated Score, Sequential Monroe, Sequential
+  Phragmén, Sequential Ebert. [→ [cardinal-voting-systems](cardinal-voting-systems.md),
+  [score-voting](score-voting.md), [approval-voting](approval-voting.md)]
+- **Thiele / Monroe / Phragmén / Vote Unitarity** — the four reweighting philosophies, i.e. four theories of
+  what proportionality *is*. Thiele: influence decays harmonically in how many winners you already got
+  (diminishing returns on satisfaction). Monroe: each winner is assigned a quota of voters who are then
+  spent (representation as partition). Phragmén: winners impose a load spread over their supporters,
+  minimise the maximum load (fairness as evenness of burden). Vote Unitarity: one vote's worth of influence,
+  spent down. **The diagnostic is the party-list degenerate case** — Thiele methods collapse to a
+  **highest-averages** divisor rule, Monroe and Vote Unitarity to **Hamilton**, which drags the whole
+  Balinski–Young quota-vs-monotonicity trade into cardinal PR.
+  [→ [cardinal-voting-systems](cardinal-voting-systems.md),
+  [math-in-society-lippman](math-in-society-lippman.md)]
+- **Hare Quota Criterion** — a solid coalition worth a Hare quota must win a seat. What the reweighting phase
+  is aiming at, and the cardinal counterpart of PSC.
+  [→ [cardinal-voting-systems](cardinal-voting-systems.md)]
+- **Optimal proportional methods** — choose the whole winner *set* at once by maximising a quality function,
+  usually by trying every set: Proportional Approval Voting (PAV), Monroe's method, Ebert's method,
+  max-Phragmén, Harmonic Voting, PAMSAC. Combinatorial in the seat count. **Ebert's method fails
+  monotonicity.** [→ [cardinal-voting-systems](cardinal-voting-systems.md)]
 
 ## 5. Criteria and properties
 
@@ -265,6 +343,11 @@ Every one of these appears as a row in LeGrand's compliance table with no defini
 
 - **Pareto-optimality (unanimity)** **[LeGrand]** — if every voter ranks A over B, B must not win.
 - **Majority criterion** **[LeGrand]** — a candidate ranked first by an absolute majority must win.
+- **Majority criterion for rated ballots** — the cardinal weakening: if a candidate is preferred *and*
+  max-scored by an absolute majority, that candidate must win. Strictly weaker than the line above, and the
+  cleanest statement of majority judgment's position — **MJ satisfies this while failing the ordinary
+  majority criterion.** [→ [cardinal-voting-systems](cardinal-voting-systems.md),
+  [majority-judgment](majority-judgment.md)]
 - **Mutual majority criterion** **[LeGrand]** — if a majority ranks every member of a set S above every
   non-member, the winner must come from S. The multi-candidate generalization of the majority criterion.
 - **Condorcet criterion** **[LeGrand]** — a Condorcet winner, when one exists, must win.
@@ -442,6 +525,10 @@ of approval voting. [→ [brandl-peters-approval-characterizations](brandl-peter
   [→ [approval-voting](approval-voting.md), [horn-three-virtues-approval](horn-three-virtues-approval.md)]
 - **Bland-winner objection** — the claim that Condorcet methods elect inoffensive nobodies.
   [→ [rcv-and-core-support](rcv-and-core-support.md)]
+- **Free riding** — in a multi-winner method, withholding support from a candidate who is going to win
+  anyway so your ballot keeps its weight for the next seat. The strategy that only *proportional* methods
+  are exposed to: single-member systems are immune to it by construction, which is why the reweighting rule
+  is where multi-winner strategy lives. [→ [cardinal-voting-systems](cardinal-voting-systems.md)]
 
 ## 7. Concepts from the values argument
 
@@ -573,6 +660,19 @@ fixed number of seats."
   Balinski–Laraki [majority judgment](majority-judgment.md).
   [→ [math-in-society-lippman](math-in-society-lippman.md)]
 
+- **Sen's Theorem 8\*2 (1970)** — the result that prices the cardinal escape from Arrow. Cardinal
+  **measurability alone is not enough**: under *cardinal non-comparability* (the social ranking must survive
+  replacing each voter's utility *u* by *aᵢu + bᵢ*, *aᵢ* > 0, independently per voter) the Arrow
+  impossibility survives untouched. Utilities must also be **interpersonally comparable**. So score voting
+  and majority judgment do not *satisfy* Arrow's conditions — they decline the premise, by assuming your 5
+  and my 5 are the same quantity. Verified concretely: independent affine rescaling changes score voting's
+  winner in **20.9%** of random 5-voter profiles. Strengthened by d'Aspremont & Gevers (1977). This is the
+  theorem electowiki's *Cardinal voting systems* page needs and does not cite.
+  [→ [cardinal-voting-systems](cardinal-voting-systems.md)]
+- **Dutta–Peters–Sen (2007)** — the cardinal counterpart of Gibbard–Satterthwaite. Assuming weak unanimity
+  and that voters do not report utilities with infinite precision, the **only** strategy-proof cardinal
+  decision scheme is **random ballot**. Nondeterminism buys almost nothing.
+  [→ [cardinal-voting-systems](cardinal-voting-systems.md)]
 ---
 
 ## 10. Agreement models
@@ -605,6 +705,9 @@ contains rather than which candidate a *method* elects. Nothing here names a win
 
 ## Sources
 
+- [*Cardinal voting systems* (electowiki)](https://electowiki.org/wiki/Cardinal_voting_systems) — the class
+  taxonomy and the proportional-cardinal family; declared point of view, and one bad Arrow inference checked
+  in [cardinal-voting-systems](cardinal-voting-systems.md)
 - [LeGrand, *Ranked-ballot voting methods*](https://www.cs.angelo.edu/~rlegrand/rbvote/) — methods, examples,
   criterion table, calculator
 - [Ogren, *RCV and core support*](https://voting-in-the-abstract.medium.com/rcv-and-core-support-e0d1780a9184)
