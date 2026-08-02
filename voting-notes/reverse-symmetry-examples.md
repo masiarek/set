@@ -150,7 +150,12 @@ whoever's worst pairwise defeat is smallest:
 
 Reversing the ballots transposes the pairwise matrix, so every other candidate's worst defeat changes — but a 6–6 tie
 transposes to a 6–6 tie. Seth's score is *invariant under reversal by construction*, and he wins both times.
-Dodgson lands on Seth in both directions too.
+
+Dodgson falls out of the same fact. LeGrand's Dodgson is the smallest **sum of defeat margins** (not Carroll's
+adjacent-swap version — see [glossary.md](glossary.md)), and Seth, tying everything, is the only candidate with *no*
+defeats at all: his score is 0 forward and 0 reversed, while Rosa, Tara and Umar each lose at least one contest in
+each direction. Any method whose score is built only from a candidate's defeats will do this to a universally tied
+candidate.
 
 ## Coverage
 
