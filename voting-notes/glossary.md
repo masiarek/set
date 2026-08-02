@@ -30,8 +30,13 @@ those definitions are filled in here from the standard social-choice literature.
   [→ [approval-voting](approval-voting.md)]
 - **Dichotomous preferences** — candidates fall into exactly two indifference classes, acceptable and not,
   with no ranking inside either. Under this model approval is strategyproof *and* Condorcet-consistent;
-  Brams and Fishburn concede it is unrealistic beyond a handful of voters.
-  [→ [approval-voting](approval-voting.md)]
+  Brams and Fishburn concede it is unrealistic beyond a handful of voters. But the domain does more than
+  flatter approval — on it approval is the *only* rule left standing. Brandl and Peters (2022) give eight
+  characterizations, each pairing **consistency with variable electorates** (merge two electorates and the
+  commonly chosen alternatives are what the merged electorate chooses) with one further axiom:
+  strategyproofness, majority agreement, independence of clones, or invariance under removing inferior
+  alternatives. Read the assumption as a *domain restriction with a uniqueness theorem attached*, not as a
+  thumb on the scale. [→ [approval-voting](approval-voting.md)]
 - **Summability** — a precinct can report one integer per candidate and the totals just add. Plurality and
   approval are summable; IRV is not, because eliminations need the whole ballot set. Administrative, not a
   fairness property — but it drives adoption.
@@ -96,6 +101,8 @@ the Smith set).
 
 - **Bucklin** **[LeGrand]** — add second, then third, … preferences to the first-place counts until someone
   passes 50%. If several cross in the same round, the largest wins — which can be a pairwise loser.
+  Progressive-Era US, and reportedly **the first highest-median rule** — the same rule majority judgment
+  reaches from the cardinal side. [→ [majority-judgment](majority-judgment.md)]
 
 ### Pairwise
 
@@ -152,6 +159,15 @@ the Smith set).
   independence, later-no-harm and favorite betrayal. No public government election has ever adopted it:
   both Oregon ballot measures lost (Lane County 2018 at 47.5%, Oakridge 2024 at 46%).
   [→ [star-voting](star-voting.md)]
+- **Majority judgment (MJ)** — grade everyone on a verbal scale (Excellent … Reject); highest **median**
+  grade wins, ties broken by stripping median grades until they separate. Balinski & Laraki, 2007/2010.
+  Passes monotonicity, later-no-help and **IIA**; fails Condorcet, majority, consistency and
+  **participation** — the last of these provably, by their own theorem. The median is what buys its
+  strategy resistance: a bloc that min-maxes swings score totals by 80 points and moves no median at all.
+  [→ [majority-judgment](majority-judgment.md)]
+- **Highest median rule** — the family: elect the best median grade. Majority judgment, graduated majority
+  judgment, usual judgment, and (reportedly) Bucklin. They differ only in how they break median ties, and
+  the tiebreak decides real elections. [→ [majority-judgment](majority-judgment.md)]
 - **Unified primary** — nonpartisan primary run by approval, top two advance to the general. St. Louis'
   Proposition D variant. [→ [approval-voting](approval-voting.md)]
 

@@ -105,6 +105,19 @@ does.
   regardless of everyone else — and if all voters are like that, approval **always elects the Condorcet
   winner**. Brams–Fishburn's own caveat: with more than a handful of voters and three-plus candidates, this
   is not a realistic assumption.
+- **…and on that domain approval is the only rule, not merely a good one.** The Wikipedia article stops at
+  the compliance claim, which makes the dichotomous row read like an assumption chosen to flatter approval.
+  [Brandl & Peters (2022)](https://www.dominik-peters.de/publications/av.pdf) is the stronger result:
+  restricted to dichotomous preferences, approval voting is **uniquely characterized** — eight separate
+  characterizations, each combining **consistency with variable electorates** (if two disjoint electorates
+  both choose some set of alternatives, the merged electorate chooses exactly the alternatives they agree
+  on) with one further axiom — strategyproofness, agreement with majority opinions, independence of cloned
+  alternatives, or invariance under removing inferior alternatives. Any of those, plus consistency, forces
+  approval. The authors unify all eight under one base theorem.
+  - What this does *not* do is rescue the row for real electorates. It relocates the argument: the question
+    stops being "is approval good on this domain" (settled, and settled in approval's favor) and becomes
+    "how far from dichotomous are actual voters," which is the empirical question the rest of this note is
+    about — cutoffs, the Tennessee example, and the 2002/2012 French field experiments.
 
 ### Criterion compliance depends on the voter model, not the method
 
@@ -406,7 +419,11 @@ plurality, and both are right about that.
   The whole strategic content of an approval ballot. *Floating* (above-average, top-k) cutoffs break IIA;
   *fixed* (dichotomous) cutoffs don't.
 - **Dichotomous preferences** — candidates sort into two indifference classes, acceptable and not. Under this
-  model approval is strategyproof and Condorcet-consistent. Unrealistic at scale.
+  model approval is strategyproof and Condorcet-consistent, and by Brandl–Peters (2022) it is the *only*
+  rule that is. Unrealistic at scale.
+- **Consistency with variable electorates (reinforcement)** — split the voters in two; if both halves choose
+  some alternatives in common, the whole electorate must choose exactly those. The axiom every one of the
+  eight Brandl–Peters characterizations of approval is built on.
 - **Sincere vote (approval sense)** — any ballot that, if it approves X, also approves everything strictly
   above X. Deliberately admits many ballots per voter.
 - **Bullet voting** — approving only your favorite. The mechanism by which approval degenerates into
@@ -447,6 +464,15 @@ plurality, and both are right about that.
   [Multiwinner approval](https://en.wikipedia.org/wiki/Multiwinner_approval_voting) ·
   [Sequential proportional approval](https://en.wikipedia.org/wiki/Sequential_proportional_approval_voting) ·
   [Unified primary](https://en.wikipedia.org/wiki/Unified_primary)
+
+## Further reading — not cited by the article
+
+- [Brandl & Peters, "Approval voting under dichotomous preferences: A catalogue of characterizations" (2022)](https://www.dominik-peters.de/publications/av.pdf)
+  — *Journal of Economic Theory* 205, 105532, [doi:10.1016/j.jet.2022.105532](https://doi.org/10.1016/j.jet.2022.105532)
+  ([ScienceDirect, paywalled](https://www.sciencedirect.com/science/article/abs/pii/S0022053122001223); the
+  authors' PDF above is free). Eight characterizations of approval on the dichotomous domain, all resting on
+  consistency with variable electorates. The modern companion to Brams–Fishburn 1978 and the reason the
+  dichotomous row of the compliance table above is a uniqueness theorem rather than a favorable assumption.
 
 ## Related local material
 
