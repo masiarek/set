@@ -1,0 +1,143 @@
+
+Checking electowiki's claim that cardinal methods "meet all Arrow's criteria".
+
+The claim under test, from https://electowiki.org/wiki/Cardinal_voting_systems
+(section "Impossibility theorems", fetched 2026-08-01):
+
+    "Since Arrow's theorem only applies to ordinal voting and not cardinal voting
+     systems, several cardinal systems meet all these criteria. The typical
+     examples are score voting and majority judgment."
+
+The first clause is right and the second does not follow. This script separates
+the two by testing four distinct propositions, because "satisfies IIA" is being
+used for two different conditions and the equivocation is the whole error.
+
+WHAT THIS SCRIPT CAN AND CANNOT ESTABLISH
+-----------------------------------------
+  * A FAILURE is a finite witness and is exact. When a check reports a violating
+    profile, that profile is printed and can be recomputed by hand.
+  * A SATISFACTION is only "no counterexample in the window searched". Windows
+    are stated per check. Rated-IIA of score and of MJ are additionally true by a
+    one-line structural argument (a candidate's total/median reads only its own
+    column); the search is a regression test on the implementation, not a proof.
+
+CONVENTIONS
+-----------
+  * Utilities are drawn from a continuous distribution, so exact ties among a
+    single voter's utilities have probability zero and the min/max normalisation
+    is well defined. The hand-built witness profiles have no ties either.
+  * Scores are continuous on [0, MAXSCORE]. Discretising to 0..5 would only add
+    rounding artefacts of the kind already documented in star-voting.md; the
+    claim under test is about the methods, not about grid resolution.
+  * Majority judgment uses the lower median. All MJ profiles here use an odd
+    number of voters, so the choice does not bite.
+
+==============================================================================
+CHECK 1 — normalised score voting fails IIA; the spoiler is a loser
+==============================================================================
+Underlying utilities (unchanged throughout; nobody's opinion of A or B moves):
+    5 voters:  A=0.5  B=0.6  C=0.0
+    4 voters:  A=1.0  B=0.0  C=0.9
+
+  normalised scoring
+    with C:    A= 40.833  B= 25.000  C= 18.000   -> A > B > C
+    without C: A= 20.000  B= 25.000                 -> B > A
+    A vs B reverses when C is removed: True
+    C's place in the three-way race: True (C is last) -> C is an irrelevant alternative in the strict sense
+
+  absolute scoring
+    with C:    A= 32.500  B= 15.000  C= 18.000   -> A > C > B
+    without C: A= 32.500  B= 15.000                 -> A > B
+    A vs B reverses when C is removed: False
+
+  RESULT: PASS — normalisation breaks IIA, absolute scoring does not.
+
+==============================================================================
+CHECK 2 — frequency of IIA failure over random profiles
+==============================================================================
+  200,000 random 9-voter, 3-candidate profiles; C removed each time.
+  A-vs-B order reversed by removing C:
+
+    method                        violations      rate   C was last
+    score, absolute                        0    0.00%            -
+    score, normalised                 26,714   13.36%       11,956
+    majority judgment, absolute            0    0.00%            -
+    majority judgment, normalised      29,726   14.86%       12,397
+
+  RESULT: PASS — absolute rating never violates IIA in this window;
+          normalisation does, for both methods.
+
+==============================================================================
+CHECK 3 — same ordinal profile, two honest cardinal ballots, two winners
+==============================================================================
+
+  score (absolute scoring, so IIA is not in play):
+    orderings, profile 1: ['ABC', 'CBA']
+    orderings, profile 2: ['ABC', 'CBA']   identical: True
+    profile 1 total: A= 25.00  B= 40.50  C= 20.00   -> winner B
+    profile 2 total: A= 25.00  B=  4.50  C= 20.00   -> winner A
+    same orderings, different winner: True
+
+  majority judgment (absolute scoring, so IIA is not in play):
+    orderings, profile 1: ['ABC', 'BCA', 'CBA']
+    orderings, profile 2: ['ABC', 'BCA', 'CBA']   identical: True
+    profile 1 median: A=  0.00  B=  4.25  C=  4.50   -> winner C
+    profile 2 median: A=  0.00  B=  4.00  C=  1.00   -> winner B
+    same orderings, different winner: True
+
+  RESULT: PASS — the method is not a function of the
+          preference profile, which is the object Arrow's conditions quantify over.
+
+==============================================================================
+CHECK 4 — score voting is not invariant under individual affine rescaling
+==============================================================================
+  Sen's cardinal-non-comparability axiom: replacing voter i's utility u_i by
+  a_i*u_i + b_i (a_i > 0), independently per voter, must not change the social
+  ranking. Under that axiom the Arrow impossibility survives (Sen 1970, Thm 8*2).
+
+  100,000 random 5-voter profiles, each voter's utilities independently
+  rescaled by a positive affine map:
+    winner changed: 20,891 / 100,000  (20.9%)
+
+  first witness:
+    u = (0.7914, 0.5511, 0.1979)   ->  a=0.3799 b=-0.5155
+    u = (0.3043, 0.6248, 0.2556)   ->  a=2.0383 b=-0.7003
+    u = (0.1052, 0.8179, 0.8326)   ->  a=0.8304 b=+0.6093
+    u = (0.3452, 0.2158, 0.4073)   ->  a=1.6794 b=+0.8419
+    u = (0.1803, 0.3871, 0.8288)   ->  a=2.0556 b=-0.7134
+    winner before rescaling: B    after: C
+
+  RESULT: PASS — score voting reads the ballots as
+          interpersonally comparable. Strip that assumption and it is back
+          inside the impossibility, exactly as Sen's theorem says.
+
+==============================================================================
+CHECK 5 — KP transform: score over m levels == approval over m sub-electorates
+==============================================================================
+  20,000 random 7-voter profiles, 4 candidates, 0..5 scale.
+  score total x 5 != approval total over the 5 KP sub-ballots: 0
+
+  RESULT: PASS — the transform is exact, so any claim
+          proved for approval transfers to score at every scale. This is what
+          'scale invariance' buys and why the two rows of the compliance table
+          cannot come apart on anything the transform preserves.
+
+==============================================================================
+SUMMARY
+==============================================================================
+  [PASS] normalised score fails IIA, spoiler is a loser
+  [PASS] IIA failure rates over random profiles
+  [PASS] one ordering, many honest ballots, many winners
+  [PASS] not invariant under individual affine rescaling
+  [PASS] KP transform is exact
+
+  Verdict on the electowiki sentence:
+    'Arrow's theorem only applies to ordinal voting'      -> correct
+    'therefore several cardinal systems meet all these
+     criteria'                                            -> does not follow
+
+  Checks 3 and 4 give the reason. Cardinal methods are not rules on Arrow's
+  domain at all, and the extra thing they assume -- that one voter's 5 means
+  what another's 5 means -- is precisely the assumption Arrow's framework
+  withholds. Sen 1970 Thm 8*2: cardinal measurability WITHOUT interpersonal
+  comparability leaves the impossibility exactly where it was.
