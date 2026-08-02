@@ -137,6 +137,17 @@ headline one does not survive.
 This is the unusual bit — the compliance table has one row per *model of how voters set their cutoff*, not a
 single verdict.
 
+The sharpest statement of why is Horn's, and it is worth having before the table. Approval's instructions can
+be written two ways: **Rule (1)** — "vote for all and only those candidates you minimally approve of" — or
+**Rule (2)** — "vote by making a mark next to as many candidate names as you like." Same tabulation; only the
+first constrains what a mark *means*. Bullet voting your favorite violates (1) and complies perfectly with
+(2). So the rows below are not four theories about voter psychology so much as four answers to *which rule is
+actually in force*, and the last row is what Rule (1) gets you: an approval set that is an attitude, fixed
+before the field is known. **Assuming Rule (1) compliance is the dichotomous row, imposed procedurally rather
+than assumed of the voters.** That reframing is genuinely useful — and the note that makes it also shows what
+it costs, since every criterion it then proves is a property of the assumption rather than of the count.
+[→ [horn-three-virtues-approval](horn-three-virtues-approval.md)]
+
 | Voter model | Majority | Monotone + Participation | Condorcet + Smith | IIA | Clone indep. | Reversal sym. | Sincere favorite | Strategyproof |
 |---|---|---|---|---|---|---|---|---|
 | Zero information | ✗ | ✓ | ✗ | ✗ | ✗ | ✓ | ✓ | ✗ |
@@ -230,6 +241,22 @@ So approval's IIA failure isn't in the tabulation — it's entirely in the cutof
 fixed standard of acceptability gives approval IIA for free; a voter who recalibrates against the field does
 not. That is the same "your values shouldn't depend on who else is running" point Ogren makes about core
 support in [rcv-and-core-support](rcv-and-core-support.md), arriving from the opposite direction.
+
+This is also the whole of the published case that approval satisfies IIA. Horn's first "unique virtue" is the
+fixed-cutoff column above, asserted as a rule (approve exactly those you approve of, whoever else is running)
+rather than observed in voters — which makes it true by stipulation, and no more approval's property than
+score voting's, since score satisfies IIA under absolute scoring for the identical reason. What that paper
+adds is the concession: it distinguishes Arrow's actual Condition 3 from the popular add-or-remove reading
+(**IIA2**) and from the contraction form (**IIA2†**, Sen's property α), and grants that approval fails IIA2†.
+Its own footnote 14 then quotes Nagel pointing out that failing IIA2† reopens manipulation by *adding or
+subtracting candidates* — the third and fourth rows of the table above, in one sentence, unanswered.
+
+The stronger version of the demonstration below is in that note too. Take one 426-voter ranked profile,
+enumerate all 32 combinations of **sincere** cutoffs — each bloc approving its top one or top two, every
+ballot an upper set of its own ranking — and approval elects the Condorcet winner in 24, the Condorcet
+**loser** in 5, and the option a 77% majority opposes in 3. No floating cutoff, no recalibration, no
+strategy: just the fact that "sincere" doesn't pick out one ballot.
+[→ [horn-three-virtues-approval](horn-three-virtues-approval.md)]
 
 A corollary worth stating, because textbooks trip on it: **a ranked profile cannot determine an approval result.**
 Ranked ballots carry no utilities, so the fixed cutoff — the well-behaved one — isn't computable from them; top-*k*
@@ -829,6 +856,16 @@ are the substitutes.
   while STAR fails both only partially and argues that is the better bargain.
 - **vs. LeGrand's ranked-only world**: he prefers approval and never covers it, which is why his site can't
   speak to the cardinal-vs-ordinal argument at all.
+- **vs. the academic case for approval**: two papers, pulling opposite ways on the same premise. Brandl and
+  Peters take the dichotomous domain as a hypothesis and prove approval is the *only* rule on it, eight
+  times ([brandl-peters-approval-characterizations](brandl-peters-approval-characterizations.md)). Horn tries
+  to obtain the same domain by fiat — write the ballot instruction as Rule (1) and the restriction is
+  imposed rather than assumed — and claims three virtues follow
+  ([horn-three-virtues-approval](horn-three-virtues-approval.md)). The move is worth understanding and it
+  doesn't work: all three virtues are shared with score voting, and the paper's own worked example elects the
+  Condorcet loser and the status quo under sincere Rule (1) ballots. Between them they locate the real
+  question exactly — not *is the dichotomous domain nice* (it is, provably) but *can anything make an
+  electorate live on it*. The 79% MAA figure above is the answer so far.
 
 ## New ideas and terms
 
@@ -931,11 +968,22 @@ are the substitutes.
   cannot occur at all), and a price list for the bullet-voting collapse recorded above: the paper's
   Example 5 *is* plurality, the scoring rule (1, 0, …, 0), and it keeps 5 of the 17 axioms tracked there
   while losing 12.
+- [Horn, "Three Unique Virtues of Approval Voting" (2024)](https://www.qeios.com/read/ZETKEQ.2) — Qeios,
+  peer-approved, [doi:10.32388/ZETKEQ.2](https://doi.org/10.32388/ZETKEQ.2), CC BY. The case that approval
+  satisfies IIA, defeats agenda-setting, and escapes Arrow. Take the Rule (1) / Rule (2) distinction, which
+  is the best framing of the compliance table above that I have seen anywhere; leave the three virtues, all
+  of which score voting shares. **Checked line by line, with a verifier, in
+  [horn-three-virtues-approval](horn-three-virtues-approval.md)** — including nine errata in the worked
+  example, and the enumeration showing that the paper's own ballots elect the outcome it says approval makes
+  impossible.
 
 ## Related local material
 
 - [brandl-peters-approval-characterizations](brandl-peters-approval-characterizations.md) — the axiomatic
   half of this note: what approval is *forced* to be, and on what domain
+- [horn-three-virtues-approval](horn-three-virtues-approval.md) — the advocacy half, in a refereed paper
+  rather than on a campaign page: Rule (1) vs. Rule (2), the three readings of IIA, and what happens when the
+  cutoff indeterminacy documented here is run against an argument that denies it
 - [agreeable-societies](agreeable-societies.md) — the geometric half: approval sets as intervals on a
   political spectrum, asking how much agreement an *electorate* contains rather than which candidate wins.
   Its **(k,m)-agreeable** hypothesis is the same species of domain restriction as dichotomous preferences
