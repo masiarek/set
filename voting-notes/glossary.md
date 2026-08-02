@@ -335,7 +335,43 @@ All from [rcv-and-core-support](rcv-and-core-support.md).
   reason to court *every* voter.
 - **Core × broad method**, **threshold method** — proof-of-concept cardinal rules rewarding both.
 
-## 8. Theorems
+## 8. Weighted voting and apportionment
+
+All from [math-in-society-lippman](math-in-society-lippman.md). A separate literature from the rest of
+these notes: not "who wins," but "how much say does each player already have," and "how do you split a
+fixed number of seats."
+
+- **Weighted voting system** — written `[q: w₁, w₂, …]`, where *q* is the **quota** (the weight needed to
+  pass a motion) and *wᵢ* are the players' weights. The quota must be *more than* half the total weight,
+  or a proposal and its negation can both reach it.
+- **Coalition / winning coalition** — any group voting the same way; winning if its combined weight meets
+  quota.
+- **Critical player** — one whose departure turns a winning coalition into a losing one.
+- **Dictator / veto power / dummy** — a player who meets quota alone; a player critical in *every* winning
+  coalition; a player critical in *none*. A dummy has weight but no power.
+- **Banzhaf power index** — a player's share of all critical-player occurrences across every winning
+  coalition. Penrose 1946, reintroduced by Banzhaf 1965. In Nassau County's `[58: 31,31,28,21,2,2]` the
+  three largest districts hold ⅓ of the power each and the other three hold **none** — North Hempstead
+  has 18.3% of the weight and 0% of the power, which is the disparity Banzhaf litigated.
+- **Shapley–Shubik power index** — a player's share of the *n*! **sequential coalitions** in which they
+  are **pivotal** (the one whose joining reaches quota). Shapley & Shubik 1954. Usually close to Banzhaf,
+  not identical: order of joining matters here and does not there.
+- **Apportionment** — dividing a fixed whole number of seats among groups in proportion to population.
+- **Quota (apportionment)** — a group's exact proportional share, population ÷ **standard divisor**;
+  **lower quota** is its floor.
+- **Quota rule** — every group's final seat count is its lower or upper quota. Satisfied by Hamilton and
+  Lowndes; violable by every divisor method.
+- **Divisor methods** — adjust the divisor until the rounded quotas total correctly. **Jefferson** rounds
+  down (favors large states), **Adams** up (favors small), **Webster** to nearest, **Huntington–Hill** by
+  the geometric mean of the bracketing integers — the last is US law since 1941.
+- **Alabama paradox** — a group *loses* a seat when the total number of seats *increases*. Avoiding it is
+  **house monotonicity**.
+- **Population paradox** — a group whose population grows faster than another's transfers a seat *to* it.
+  Avoiding it is **population monotonicity**.
+- **New States paradox** — adding a new group with its own fair share changes the allocation among the
+  existing ones.
+
+## 9. Theorems
 
 - **Gibbard–Satterthwaite theorem** — no deterministic ranked method with three or more candidates can be both
   non-dictatorial and strategy-proof. This is why LeGrand's "nonmanipulable?" row is uniformly NO: the design
@@ -351,6 +387,16 @@ All from [rcv-and-core-support](rcv-and-core-support.md).
   Pareto, independence of irrelevant alternatives, and non-dictatorship. Applies to *methods*; arguments about
   an idealized preference-aggregation *standard* are not bound by it.
   [→ [rcv-and-core-support](rcv-and-core-support.md)]
+  **The word "ranked" is load-bearing** and textbooks drop it: cardinal methods take non-ordinal ballots,
+  so the theorem's hypothesis does not reach them. Lippman's *Math in Society* states it for "a voting
+  method" one page before introducing approval voting.
+  [→ [math-in-society-lippman](math-in-society-lippman.md)]
+- **Balinski–Young impossibility theorem** — no apportionment method satisfies the **quota rule** and
+  **population monotonicity** together. Often misquoted as ruling out quota plus *any* paradox: quota with
+  **house** monotonicity (no Alabama paradox) is achievable, and Balinski & Young built such a method
+  themselves (the Quota method, 1975; Still 1979 characterises the whole class). Same Balinski as
+  Balinski–Laraki [majority judgment](majority-judgment.md).
+  [→ [math-in-society-lippman](math-in-society-lippman.md)]
 
 ---
 
