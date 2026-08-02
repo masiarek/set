@@ -20,6 +20,15 @@ those definitions are filled in here from the standard social-choice literature.
 - **Cardinal preferences** — strength of preference; what any utility- or intensity-based argument requires.
 - **Approval ballot** — a 0/1 score per candidate: approve any number, no limit, so **overvoting is
   impossible**. [→ [approval-voting](approval-voting.md)]
+- **Disapproval ballot** — the same ballot inverted: everyone is approved unless you strike the name off.
+  Logically identical to approval, psychologically not, and the form actually used in the Soviet
+  multi-candidate elections of June 1987. [→ [approval-voting](approval-voting.md)]
+- **Voting power (pair-discrimination sense)** — not a criterion but an advocacy metric, from CRV: the number
+  of candidate pairs a ballot separates, *k*(*N*−*k*) for a ballot approving *k* of *N*. Plurality is the
+  *k* = 1 case, so both methods are the same function under different constraints, and approval's advantage is
+  a *maximum over ballots* — ⌊N/2⌋⌈N/2⌉, which is **no gain at all at three candidates** and goes unclaimed by
+  the bullet voters who are ~80% of every measured approval electorate.
+  [→ [approval-voting](approval-voting.md)]
 - **Approval / score / STAR** — cardinal methods, outside LeGrand's ranked-only scope. STAR = Score Then
   Automatic Runoff (score everyone 0–5, top two by total score go to an automatic pairwise runoff).
   Score voting is approval with more levels; **combined approval** uses three (−1, 0, +1).
@@ -140,6 +149,10 @@ the Smith set).
   the tabulation: Condorcet-consistent under the leader rule or dichotomous preferences, capable of electing
   the Condorcet loser under a naive above-average cutoff. Used in Fargo ND 2018–2025 (banned statewide April
   2025) and in St. Louis since 2020. [→ [approval-voting](approval-voting.md)]
+- **DYN (Delegable Yes/No) / SODA** — approval plus delegation: approve whom you like, or hand your ballot to
+  a candidate to place on your behalf. Forest Simmons and Jameson Quinn respectively. The selling point is
+  immunity to manipulated poll data, which matters because approval's leader rule makes the winner a function
+  of published expectations. [→ [approval-voting](approval-voting.md)]
 - **Score voting (range voting)** — score everyone on a fixed scale, highest total wins. Approval with more
   levels. The only method here that satisfies **IIA** (a candidate's total depends only on scores given to
   them) — but only if voters score absolutely rather than renormalising to the field. Honest score is
@@ -234,7 +247,10 @@ Every one of these appears as a row in LeGrand's compliance table with no defini
   [note](reverse-symmetry-examples.md).
 - **Reinforcement (consistency)** **[LeGrand]** — if the same candidate wins two separate electorates, they
   must win the combined electorate. **Borda is the only method on LeGrand's chart that satisfies it** — a
-  verified Coombs counterexample is in the [note](legrand-ranked-ballot-methods.md).
+  verified Coombs counterexample is in the [note](legrand-ranked-ballot-methods.md). On approval ballots the
+  same axiom (stated as `f(P) ∩ f(P′) = f(P + P′)` whenever the intersection is non-empty) is the engine of
+  every known characterization of approval voting.
+  [→ [brandl-peters-approval-characterizations](brandl-peters-approval-characterizations.md)]
 - **Nonmanipulability (strategy-proofness)** **[LeGrand]** — no voter ever gains by ranking insincerely.
   **Every** ranked method fails this; see Gibbard–Satterthwaite.
 - **Independence of irrelevant alternatives (IIA)** — adding or removing a losing candidate must not change
@@ -242,6 +258,32 @@ Every one of these appears as a row in LeGrand's compliance table with no defini
   only on the scores given to them — but only under absolute scoring; voters who renormalise to the field
   break it, exactly as a floating approval cutoff does. STAR loses it again to the runoff.
   [→ [score-voting](score-voting.md), [approval-voting](approval-voting.md), [star-voting](star-voting.md)]
+
+### Axioms from the approval-ballot literature
+
+Stated for **ballot aggregation functions** — rules mapping approval profiles to a non-empty set of winners,
+ties included as outputs rather than something to break. All of these appear in the eight characterizations
+of approval voting. [→ [brandl-peters-approval-characterizations](brandl-peters-approval-characterizations.md)]
+
+- **Faithfulness** — a one-voter electorate elects exactly that voter's approved set. `f(A) = A`. Its only
+  real job in the theorems is to exclude two jokes: **−AV** (elect the *least* approved) and **TRIV**.
+- **Disjoint equality** — two voters with non-overlapping ballots tie everything either approved.
+  `f(A + B) = A ∪ B` when `A ∩ B = ∅`.
+- **Continuity (overwhelming majority)** — if `f(P) = {a}`, then adding enough copies of `P` to any other
+  profile also elects `a`. Young's axiom; the same one Balinski–Laraki use against majority judgment
+  [→ [majority-judgment](majority-judgment.md)].
+- **Cancellation** — all approval scores equal ⇒ everything ties.
+- **Kelly's extension / Kelly-manipulability** — the weakest set-preference extension: you prefer set *Y* to
+  *Z* only if all of *Y* is approved or none of *Z* is. A manipulation under it is unambiguous. Approval is
+  immune to unilateral ones — but **not to coordinated ones**: in `{a} + {b} + 2{c}` approval elects *c*,
+  and the *a*- and *b*-voters both switching to `{a,b}` gives all three a share.
+- **Fishburn's extension** — a refinement of Kelly's under which approval is *still* strategyproof.
+- **Independence of clones / losers / Pareto dominated / never-approved alternatives** — four strengths of
+  "a candidate who can't win can't matter", the paper's formalization of the spoiler effect. Each one
+  characterizes approval when paired with consistency.
+- **Scoring rule on approval ballots** — a vector (s₁, …, s_m) scoring by ballot *size*. Approval is
+  (1, 1, …, 1); **plurality is (1, 0, …, 0)** — the rule that ignores every non-singleton ballot, and the
+  formal shadow of universal bullet voting; cumulative voting is (1, ½, ⅓, …).
 - **Later-no-harm** — expressing support for a later choice must not hurt your earlier ones. Approval
   necessarily fails it — that failure is the same fact as its monotonicity, seen from the other side.
   STAR fails it too: a mid-range score can lift a rival into the runoff *past* your favorite.
@@ -300,7 +342,8 @@ Every one of these appears as a row in LeGrand's compliance table with no defini
 - **Candidate saturation** — flooding a race with similar candidates to exploit a clone-dependent method.
 - **Bullet voting** — approving (or ranking) only your favorite. Approval's characteristic degeneracy: if
   everyone bullet votes, approval *is* plurality. 79% of voters did it in the 1987 MAA election, 80%+ in
-  Dartmouth's student elections. [→ [approval-voting](approval-voting.md)]
+  Dartmouth's student elections, and ~80% at the IEEE — which is the reason IEEE gave for repealing approval
+  in 2002. Three measured electorates, all near four in five. [→ [approval-voting](approval-voting.md)]
 - **Chicken dilemma / Burr dilemma** — two allied frontrunners' camps each bullet-vote to avoid helping the
   other, and a third candidate wins. Named for the Jefferson–Burr tie of 1800.
   [→ [approval-voting](approval-voting.md)]
@@ -387,6 +430,21 @@ fixed number of seats."
   Pareto, independence of irrelevant alternatives, and non-dictatorship. Applies to *methods*; arguments about
   an idealized preference-aggregation *standard* are not bound by it.
   [→ [rcv-and-core-support](rcv-and-core-support.md)]
+- **Inada's condition (1969)** — under **dichotomous preferences** the majority relation is **transitive**,
+  and it orders candidates exactly by approval score. So on that domain a Condorcet cycle cannot occur at
+  all, the approval winners are precisely the majority-maximal candidates, and every Smith/Schwartz/beatpath
+  construction in §3 above is idle. This is the fact the whole approval-characterization literature rests on.
+  [→ [brandl-peters-approval-characterizations](brandl-peters-approval-characterizations.md)]
+- **Young–Levenglick (1978)** — with **ranked** ballots, no rule that elects weak Condorcet winners when they
+  exist can satisfy consistency. Worth pairing with the line above: the *same* two axioms are incompatible on
+  the ranked domain and **jointly characterize approval** on the dichotomous one. The clearest available
+  statement of what the ballot format itself changes.
+  [→ [brandl-peters-approval-characterizations](brandl-peters-approval-characterizations.md)]
+- **Brandl–Peters characterizations (2022)** — eight of them, each pairing consistency with one headline
+  axiom (strategyproofness, Condorcet, avoiding Condorcet losers, unanimous majorities, or one of four
+  spoiler-independence conditions) plus housekeeping axioms that vary by theorem. All reduce to one base
+  theorem: **consistency + faithfulness + disjoint equality force approval voting**.
+  [→ [brandl-peters-approval-characterizations](brandl-peters-approval-characterizations.md)]
   **The word "ranked" is load-bearing** and textbooks drop it: cardinal methods take non-ordinal ballots,
   so the theorem's hypothesis does not reach them. Lippman's *Math in Society* states it for "a voting
   method" one page before introducing approval voting.
@@ -407,6 +465,9 @@ fixed number of seats."
 - [Ogren, *RCV and core support*](https://voting-in-the-abstract.medium.com/rcv-and-core-support-e0d1780a9184)
 - [*Approval voting* (Wikipedia)](https://en.wikipedia.org/wiki/Approval_voting) — history, use, strategy,
   the model-dependent compliance table [→ [approval-voting](approval-voting.md)]
+- [Brandl & Peters, *Approval Voting under Dichotomous Preferences*](https://www.dominik-peters.de/publications/av.pdf),
+  *JET* 205 (2022) — the axioms, the eight characterizations, and Inada's transitivity
+  [→ [brandl-peters-approval-characterizations](brandl-peters-approval-characterizations.md)]
 - [*STAR voting* (Wikipedia)](https://en.wikipedia.org/wiki/STAR_voting) — thin and advocacy-sourced; the
   criteria failures are worked out locally instead [→ [star-voting](star-voting.md)]
 - [*Score voting* (Wikipedia)](https://en.wikipedia.org/wiki/Score_voting) — the baseline the other two are

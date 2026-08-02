@@ -1,0 +1,245 @@
+Verifier for ../../brandl-peters-approval-characterizations.md
+
+Checks what is checkable in Brandl & Peters, "Approval Voting under Dichotomous
+Preferences: A Catalogue of Characterizations", Journal of Economic Theory 205
+(2022), 105532.
+
+WHAT BRUTE FORCE CAN AND CANNOT DO HERE
+---------------------------------------
+An axiom is a statement quantified over *all* profiles. So:
+
+  * A FAILURE is a finite witness. When this script reports that a rule fails an
+    axiom it prints the profile, and that result is exact.
+  * A SATISFACTION is not. "No counterexample among profiles with <= N voters on
+    <= 4 alternatives" is what we actually establish, and that is what gets
+    printed. It is a spot-check of the paper, not a proof of it.
+  * CONTINUITY is doubly bounded: it is an existential over k ("for some k"), so
+    a *failure* means "no k <= KMAX worked". Both directions are windowed.
+
+The characterization theorems themselves (uniqueness over the space of all
+ballot aggregation functions) are not brute-forceable at all and are not
+attempted. What IS mechanically checkable is the paper's Table 1: for each
+theorem and each axiom in it, Appendix B names an example rule that satisfies
+the theorem's *other* axioms and fails this one. That is a finite claim about
+17 concrete rules, and it is the bulk of what runs below.
+
+==============================================================================
+window: agendas 'abc' (<= 4 voters) and 'abcd' (<= 3 voters); continuity bound k <= 30
+==============================================================================
+  |Y|=3: 329 profiles
+  |Y|=4: 815 profiles
+
+== Check 1: Inada (1969) -- majority relation on the dichotomous domain ==
+[  ok  ] no intransitivity in 1144 profiles (would be a Condorcet cycle)
+[  ok  ] majority margin and approval-score gap agree in sign everywhere
+[  ok  ] majority-maximal set == approval winners everywhere
+
+== Check 2: AV satisfies every axiom in the catalogue ==
+[  ok  ] AV: neutrality
+[  ok  ] AV: consistency
+[  ok  ] AV: faithfulness
+[  ok  ] AV: continuity
+[  ok  ] AV: disjoint equality
+[  ok  ] AV: cancellation
+[  ok  ] AV: non-triviality
+[  ok  ] AV: chooses Condorcet winners
+[  ok  ] AV: avoids Condorcet losers
+[  ok  ] AV: respects unanimous majorities
+[  ok  ] AV: reversal symmetry
+[  ok  ] AV: Kelly-strategyproofness
+[  ok  ] AV: Fishburn-strategyproofness
+[  ok  ] AV: independence of clones
+[  ok  ] AV: independence of losers
+[  ok  ] AV: independence of dominated alt.
+[  ok  ] AV: independence of never-approved alt.
+
+== Check 3a: axiom profile of every Appendix B rule (. = holds, X = fails) ==
+
+rule                                          1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17
+                                              1  neutrality
+                                              2  consistency
+                                              3  faithfulness
+                                              4  continuity
+                                              5  disjoint equality
+                                              6  cancellation
+                                              7  non-triviality
+                                              8  chooses Condorcet winners
+                                              9  avoids Condorcet losers
+                                             10  respects unanimous majorities
+                                             11  reversal symmetry
+                                             12  Kelly-SP
+                                             13  Fishburn-SP
+                                             14  ind. clones
+                                             15  ind. losers
+                                             16  ind. dominated alt.
+                                             17  ind. never-approved alt.
+
+AV                                            .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+Ex  2  PO (Pareto optimal alternatives)       .  X  .  X  .  .  .  .  X  .  X  .  X  .  .  .  .
+Ex  3  AV_lex (lexicographically first AV winner)  X  .  X  X  X  X  .  .  .  .  X  .  .  X  .  .  .
+Ex  4  constant rule                          X  .  X  .  X  X  .  X  X  X  X  .  .  X  .  X  X
+Ex  5  plurality (ignores non-singleton ballots)  .  .  X  .  X  X  .  X  X  X  X  X  X  X  X  X  .
+Ex  6  CNL (all non-Condorcet-losers)         .  X  X  .  X  .  .  .  .  .  X  .  X  X  X  X  X
+Ex  7  AV then highest plurality score        .  .  .  X  X  X  .  .  .  .  X  X  X  X  X  X  .
+Ex  8  AV over most-frequent ballots only     .  X  .  X  .  .  .  .  X  .  .  X  X  .  X  X  .
+Ex  9  -AV (lowest approval score)            .  .  X  .  X  .  .  X  X  X  .  X  X  .  .  X  X
+Ex 10  TRIV (everything ties)                 .  .  X  .  X  .  X  .  X  .  .  .  .  .  .  .  .
+Ex 11  AV, plurality and veto ballots doubled  .  .  .  .  X  X  .  .  .  .  .  X  X  X  X  X  X
+Ex 12  AV, veto ballots doubled               .  .  .  .  X  X  .  .  .  .  X  X  X  X  X  X  X
+Ex 13  scoring rule |A|(|X|-|A|)              .  .  .  .  X  X  .  .  .  .  .  X  X  X  X  X  X
+Ex 14  AV except {a} spills 0.5 onto b and c  X  .  .  .  X  X  .  .  .  .  X  X  X  X  X  X  .
+Ex 15  consensus intersection, else {a}       X  .  .  X  X  X  .  X  X  X  X  .  .  X  .  X  X
+Ex 16  AV except a scores 2 / -1              X  .  X  .  .  X  .  X  X  .  X  .  .  X  .  X  .
+Ex 17  +1/-1 with a-vs-b ballots doubled      X  .  X  .  X  .  .  X  .  .  .  X  X  X  X  X  .
+
+== Check 3: Table 1 tightness -- is each cited example a valid witness? ==
+[  ok  ] Theorem 1 / drop 'consistency' -> Ex 2 (PO (Pareto optimal alternatives)) fails it
+              |Y|=3: P={a} f={a}; Q=3*{a} + {b} f={a,b}; f(P+Q)={a,b} != {a}
+[  ok  ] Theorem 1 / Ex 2 satisfies the other axioms of Theorem 1
+[  ok  ] Theorem 1 / drop 'disjoint equality' -> Ex 12 (AV, veto ballots doubled) fails it
+              |Y|=3: f({a}+{b,c})={b,c} != {a,b,c}
+[  ok  ] Theorem 1 / Ex 12 satisfies the other axioms of Theorem 1
+[  ok  ] Theorem 1 / drop 'faithfulness' -> Ex 16 (AV except a scores 2 / -1) fails it
+              |Y|=3: f({a,b})={a}
+[  ok  ] Theorem 1 / Ex 16 satisfies the other axioms of Theorem 1
+[  ok  ] Theorem 2 / drop 'Kelly-strategyproofness' -> Ex 9 (-AV (lowest approval score)) fails it
+              |Y|=3: R={a} reports {b,c} at P={a}: {b,c} -> {a,b,c}
+[  ok  ] Theorem 2 / Ex 9 satisfies the other axioms of Theorem 2
+[  ok  ] Theorem 2 / drop 'Kelly-strategyproofness' -> Ex 5 (plurality (ignores non-singleton ballots)) fails it
+              |Y|=3: R={b,c} reports {b} at P={a}: {a} -> {a,b}
+[  ok  ] Theorem 2 / Ex 5 satisfies the other axioms of Theorem 2
+[  ok  ] Theorem 2 / drop 'consistency' -> Ex 2 (PO (Pareto optimal alternatives)) fails it
+              |Y|=3: P={a} f={a}; Q=3*{a} + {b} f={a,b}; f(P+Q)={a,b} != {a}
+[  ok  ] Theorem 2 / Ex 2 satisfies the other axioms of Theorem 2
+[  ok  ] Theorem 2 / drop 'neutrality' -> Ex 3 (AV_lex (lexicographically first AV winner)) fails it
+              |Y|=3: P=2*{a} + 2*{b} perm={'a': 'b', 'b': 'a', 'c': 'c'} f(pi P)={a} != pi f(P)={b}
+[  ok  ] Theorem 2 / Ex 3 satisfies the other axioms of Theorem 2
+[  ok  ] Theorem 2 / drop 'neutrality' -> Ex 4 (constant rule) fails it
+              |Y|=3: P={a} perm={'a': 'b', 'b': 'a', 'c': 'c'} f(pi P)={a} != pi f(P)={b}
+[  ok  ] Theorem 2 / Ex 4 satisfies the other axioms of Theorem 2
+[  ok  ] Theorem 2 / drop 'neutrality' -> Ex 15 (consensus intersection, else {a}) fails it
+              |Y|=3: P=3*{a} + {b} perm={'a': 'b', 'b': 'a', 'c': 'c'} f(pi P)={a} != pi f(P)={b}
+[  ok  ] Theorem 2 / Ex 15 satisfies the other axioms of Theorem 2
+[  ok  ] Theorem 2 / drop 'non-triviality' -> Ex 10 (TRIV (everything ties)) fails it
+              |Y|=3: f(P)=X on every profile in the window
+[  ok  ] Theorem 2 / Ex 10 satisfies the other axioms of Theorem 2
+[  ok  ] Theorem 3 / drop 'chooses Condorcet winners' -> Ex 5 (plurality (ignores non-singleton ballots)) fails it
+              |Y|=3: CW=b not chosen in P={a} + {a,b} + 2*{b,c}, f(P)={a}
+[  ok  ] Theorem 3 / Ex 5 satisfies the other axioms of Theorem 3
+[  ok  ] Theorem 3 / drop 'consistency' -> Ex 6 (CNL (all non-Condorcet-losers)) fails it
+              |Y|=3: P={a} f={a,b,c}; Q={a} + 2*{b} + {c} f={a,b,c}; f(P+Q)={a,b} != {a,b,c}
+[  ok  ] Theorem 3 / Ex 6 satisfies the other axioms of Theorem 3
+[  ok  ] Theorem 3 / drop 'continuity' -> Ex 7 (AV then highest plurality score) fails it
+              |Y|=3: f(P)={a} for P=2*{a} + {b} + {b,c}, but no k<=30 gives f(Q+kP)={a} for Q={b}
+[  ok  ] Theorem 3 / Ex 7 satisfies the other axioms of Theorem 3
+[  ok  ] Theorem 4 / drop 'avoids Condorcet losers' -> Ex 5 (plurality (ignores non-singleton ballots)) fails it
+              |Y|=3: CL=c chosen in P={a} + {a,b} + {b} + {c}, f(P)={a,b,c}
+[  ok  ] Theorem 4 / Ex 5 satisfies the other axioms of Theorem 4
+[  ok  ] Theorem 4 / drop 'consistency' -> Ex 6 (CNL (all non-Condorcet-losers)) fails it
+              |Y|=3: P={a} f={a,b,c}; Q={a} + 2*{b} + {c} f={a,b,c}; f(P+Q)={a,b} != {a,b,c}
+[  ok  ] Theorem 4 / Ex 6 satisfies the other axioms of Theorem 4
+[  ok  ] Theorem 4 / drop 'continuity' -> Ex 7 (AV then highest plurality score) fails it
+              |Y|=3: f(P)={a} for P=2*{a} + {b} + {b,c}, but no k<=30 gives f(Q+kP)={a} for Q={b}
+[  ok  ] Theorem 4 / Ex 7 satisfies the other axioms of Theorem 4
+[  ok  ] Theorem 4 / drop 'neutrality' -> Ex 14 (AV except {a} spills 0.5 onto b and c) fails it
+              |Y|=4: P=2*{a} + {b} perm={'a': 'a', 'b': 'd', 'c': 'b', 'd': 'c'} f(pi P)={a} != pi f(P)={a,d}
+[  ok  ] Theorem 4 / Ex 14 satisfies the other axioms of Theorem 4
+[  ok  ] Theorem 5 / drop 'consistency' -> Ex 8 (AV over most-frequent ballots only) fails it
+              |Y|=3: P={a} f={a}; Q={a} + 3*{a,b} f={a,b}; f(P+Q)={a,b} != {a}
+[ FAIL ] Theorem 5 / Ex 8 satisfies the other axioms of Theorem 5
+              but Ex 8 also fails 'continuity' -- |Y|=3: f(P)={a} for P=2*{a} + 2*{a,b}, but no k<=30 gives f(Q+kP)={a} for Q={a,b} + {b}
+[  ok  ] Theorem 5 / drop 'continuity' -> Ex 7 (AV then highest plurality score) fails it
+              |Y|=3: f(P)={a} for P=2*{a} + {b} + {b,c}, but no k<=30 gives f(Q+kP)={a} for Q={b}
+[  ok  ] Theorem 5 / Ex 7 satisfies the other axioms of Theorem 5
+[  ok  ] Theorem 5 / drop 'neutrality' -> Ex 16 (AV except a scores 2 / -1) fails it
+              |Y|=3: P={a} + {b} + {c} perm={'a': 'b', 'b': 'a', 'c': 'c'} f(pi P)={b,c} != pi f(P)={a,c}
+[  ok  ] Theorem 5 / Ex 16 satisfies the other axioms of Theorem 5
+[  ok  ] Theorem 5 / drop 'respects unanimous majorities' -> Ex 5 (plurality (ignores non-singleton ballots)) fails it
+              |Y|=3: ballot {b,c} held by 2/3 but f(P)={a}
+[  ok  ] Theorem 5 / Ex 5 satisfies the other axioms of Theorem 5
+[  ok  ] Theorem 6 / drop 'consistency' -> Ex 2 (PO (Pareto optimal alternatives)) fails it
+              |Y|=3: P={a} f={a}; Q=3*{a} + {b} f={a,b}; f(P+Q)={a,b} != {a}
+[  ok  ] Theorem 6 / Ex 2 satisfies the other axioms of Theorem 6
+[  ok  ] Theorem 6 / drop 'faithfulness' -> Ex 9 (-AV (lowest approval score)) fails it
+              |Y|=3: f({a})={b,c}
+[  ok  ] Theorem 6 / Ex 9 satisfies the other axioms of Theorem 6
+[  ok  ] Theorem 6 / drop 'faithfulness' -> Ex 10 (TRIV (everything ties)) fails it
+              |Y|=3: f({a})={a,b,c}
+[  ok  ] Theorem 6 / Ex 10 satisfies the other axioms of Theorem 6
+[  ok  ] Theorem 6 / drop 'independence of clones' -> Ex 5 (plurality (ignores non-singleton ballots)) fails it
+              |Y|=3: clones b,c in P=2*{a} + 2*{b,c}: f_Z={a,b} != {a}
+[ FAIL ] Theorem 6 / Ex 5 satisfies the other axioms of Theorem 6
+              but Ex 5 also fails 'faithfulness' -- |Y|=3: f({a,b})={a,b,c}
+[  ok  ] Theorem 7 / drop 'consistency' -> Ex 2 (PO (Pareto optimal alternatives)) fails it
+              |Y|=3: P={a} f={a}; Q=3*{a} + {b} f={a,b}; f(P+Q)={a,b} != {a}
+[  ok  ] Theorem 7 / Ex 2 satisfies the other axioms of Theorem 7
+[  ok  ] Theorem 7 / drop 'faithfulness' -> Ex 9 (-AV (lowest approval score)) fails it
+              |Y|=3: f({a})={b,c}
+[  ok  ] Theorem 7 / Ex 9 satisfies the other axioms of Theorem 7
+[  ok  ] Theorem 7 / drop 'faithfulness' -> Ex 10 (TRIV (everything ties)) fails it
+              |Y|=3: f({a})={a,b,c}
+[  ok  ] Theorem 7 / Ex 10 satisfies the other axioms of Theorem 7
+[  ok  ] Theorem 7 / drop 'independence of losers' -> Ex 5 (plurality (ignores non-singleton ballots)) fails it
+              |Y|=3: P=2*{a} + {b} + {b,c}, Y=abc -> Z=ab: f_Z={a,b} != {a}
+[ FAIL ] Theorem 7 / Ex 5 satisfies the other axioms of Theorem 7
+              but Ex 5 also fails 'faithfulness' -- |Y|=3: f({a,b})={a,b,c}
+[  ok  ] Theorem 7 / drop 'neutrality' -> Ex 3 (AV_lex (lexicographically first AV winner)) fails it
+              |Y|=3: P=2*{a} + 2*{b} perm={'a': 'b', 'b': 'a', 'c': 'c'} f(pi P)={a} != pi f(P)={b}
+[ FAIL ] Theorem 7 / Ex 3 satisfies the other axioms of Theorem 7
+              but Ex 3 also fails 'faithfulness' -- |Y|=3: f({a,b})={a}
+[  ok  ] Theorem 8 / drop 'consistency' -> Ex 2 (PO (Pareto optimal alternatives)) fails it
+              |Y|=3: P={a} f={a}; Q=3*{a} + {b} f={a,b}; f(P+Q)={a,b} != {a}
+[  ok  ] Theorem 8 / Ex 2 satisfies the other axioms of Theorem 8
+[  ok  ] Theorem 8 / drop 'independence of dominated alt.' -> Ex 5 (plurality (ignores non-singleton ballots)) fails it
+              |Y|=3: P=2*{a} + {b} + {b,c}, Y=abc -> Z=ab: f_Z={a,b} != {a}
+[  ok  ] Theorem 8 / Ex 5 satisfies the other axioms of Theorem 8
+[  ok  ] Theorem 8 / drop 'neutrality' -> Ex 3 (AV_lex (lexicographically first AV winner)) fails it
+              |Y|=3: P=2*{a} + 2*{b} perm={'a': 'b', 'b': 'a', 'c': 'c'} f(pi P)={a} != pi f(P)={b}
+[  ok  ] Theorem 8 / Ex 3 satisfies the other axioms of Theorem 8
+[  ok  ] Theorem 9 / drop 'consistency' -> Ex 8 (AV over most-frequent ballots only) fails it
+              |Y|=3: P={a} f={a}; Q={a} + 3*{a,b} f={a,b}; f(P+Q)={a,b} != {a}
+[  ok  ] Theorem 9 / Ex 8 satisfies the other axioms of Theorem 9
+[  ok  ] Theorem 9 / drop 'independence of never-approved alt.' -> Ex 11 (AV, plurality and veto ballots doubled) fails it
+              |Y|=4: P={a} + {a,b} + {b,c}, Y=abcd -> Z=abc: f_Z={a,b} != {a}
+[  ok  ] Theorem 9 / Ex 11 satisfies the other axioms of Theorem 9
+[  ok  ] Theorem 9 / drop 'reversal symmetry' -> Ex 5 (plurality (ignores non-singleton ballots)) fails it
+              |Y|=3: P={a}: f(P)={a} meets f(P^c)={a,b,c}
+[  ok  ] Theorem 9 / Ex 5 satisfies the other axioms of Theorem 9
+
+== Check 3b: can a different Appendix B example witness those cells? ==
+[  ok  ] Theorem 5 / 'consistency': replacement for Ex 8
+              Ex 6 (CNL (all non-Condorcet-losers))
+[  ok  ] Theorem 6 / 'independence of clones': replacement for Ex 5
+              Ex 7 (AV then highest plurality score), Ex 11 (AV, plurality and veto ballots doubled), Ex 12 (AV, veto ballots doubled), Ex 13 (scoring rule |A|(|X|-|A|)), Ex 14 (AV except {a} spills 0.5 onto b and c), Ex 15 (consensus intersection, else {a})
+[  ok  ] Theorem 7 / 'independence of losers': replacement for Ex 5
+              Ex 7 (AV then highest plurality score), Ex 11 (AV, plurality and veto ballots doubled), Ex 12 (AV, veto ballots doubled), Ex 13 (scoring rule |A|(|X|-|A|))
+[  ok  ] Theorem 7 / 'neutrality': replacement for Ex 3
+              Ex 15 (consensus intersection, else {a})
+
+== Check 4: the paper's own worked witnesses, reproduced exactly ==
+[  ok  ] Ex 2: PO fails consistency via PO(a+c)={a,c}, PO(b+c)={b,c}, PO(a+b+2c)={a,b,c}
+[  ok  ] Ex 6: CNL fails consistency via f(a+b)={a,b}, f(a+c)={a,c}, f(2a+b+c)={a,b,c}
+[  ok  ] Ex 5: plurality elects a Condorcet loser -- f({a}+2{b,c})={a}
+[  ok  ] Ex 5: plurality fails independence of clones -- f(a+b)={a,b} but f(a+{b,c})={a}
+[  ok  ] Ex 5: plurality fails independence of losers -- f(a+{a,b}+c)={a,c} vs f(2a+c)={a}
+[  ok  ] Ex 7: fails continuity -- f(P')={a} but f(P+kP')={b} for every k<=30, P={b}, P'={a}+{a,b}+{b,c}
+[  ok  ] Ex 8: implementation reproduces the paper's own printed values -- f({a,b}+{a,c})={a}, f({a,b})={a,b}, f(2{a,b}+{a,c})={a,b}
+[  ok  ] Ex 8: CONTRADICTS its stated continuity -- f(P)={a} for P=2{a}+2{a,b}, yet f(Q+kP)={a,b} for every k<=30 with Q={a,b}. The tie between the two most-frequent ballots of P is broken by Q, so P's most-frequent SET shrinks rather than persists
+[  ok  ] Ex 11: fails independence of never-approved alt. -- f_abcd({a,b}+{c})={c} but f_abc({a,b}+{c})={a,b,c}
+[  ok  ] Ex 12: fails disjoint equality -- f({a}+{b,c})={b,c}, not {a,b,c}
+[  ok  ] Ex 13: fails cancellation on 3 voters -- f({a}+{b}+{c,d})={c,d} with |X|=4
+[  ok  ] Remark 2: AV is GROUP-manipulable -- {a}+{b}+2{c} elects c; the a- and b-voters both report {a,b} and reach a tie including their approved set
+
+== Check 5: dropping faithfulness leaves -AV and TRIV standing ==
+[  ok  ] Theorem 6 minus faithfulness: Ex 9 (-AV (lowest approval score)) satisfies consistency, independence of clones
+[  ok  ] Theorem 6 minus faithfulness: Ex 10 (TRIV (everything ties)) satisfies consistency, independence of clones
+[  ok  ] Theorem 7 minus faithfulness: Ex 9 (-AV (lowest approval score)) satisfies neutrality, consistency, independence of losers
+[  ok  ] Theorem 7 minus faithfulness: Ex 10 (TRIV (everything ties)) satisfies neutrality, consistency, independence of losers
+
+== Check 6: does TRIV survive Theorems 3 and 5 without non-triviality? ==
+[  ok  ] Theorem 3: TRIV satisfies consistency, continuity, chooses Condorcet winners -- so non-triviality (in the theorem statement, absent from Table 1) is load-bearing
+[  ok  ] Theorem 5: TRIV satisfies neutrality, consistency, continuity, respects unanimous majorities -- so non-triviality (in the theorem statement, absent from Table 1) is load-bearing
+
+==============================================================================
+passed 110, failed 4
+==============================================================================

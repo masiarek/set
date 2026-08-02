@@ -729,9 +729,17 @@ are the substitutes.
   authors' PDF above is free). Eight characterizations of approval on the dichotomous domain, all resting on
   consistency with variable electorates. The modern companion to Brams–Fishburn 1978 and the reason the
   dichotomous row of the compliance table above is a uniqueness theorem rather than a favorable assumption.
+  **Worked out in full, with a verifier, in
+  [brandl-peters-approval-characterizations](brandl-peters-approval-characterizations.md)** — including why
+  the Condorcet ✓ in that row is structural (Inada 1969: the majority relation is transitive here, so cycles
+  cannot occur at all), and a price list for the bullet-voting collapse recorded above: the paper's
+  Example 5 *is* plurality, the scoring rule (1, 0, …, 0), and it keeps 5 of the 17 axioms tracked there
+  while losing 12.
 
 ## Related local material
 
+- [brandl-peters-approval-characterizations](brandl-peters-approval-characterizations.md) — the axiomatic
+  half of this note: what approval is *forced* to be, and on what domain
 - [glossary.md](glossary.md) — all terms above are indexed there
 - [rcv-and-core-support](rcv-and-core-support.md) — the cardinal-vs-ordinal argument approval sits inside
 - [legrand-ranked-ballot-methods](legrand-ranked-ballot-methods.md) — the ranked-only site whose author
