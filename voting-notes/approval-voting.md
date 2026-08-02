@@ -310,6 +310,23 @@ Longer, sourced, and genuinely checkable — but its only argument section is ti
 approval voting," with no counterpart, and its RCV evidence is overwhelmingly FairVote's own data pages while the
 approval critiques cite outsiders. Data stops at August 2022.
 
+> **Watch the domain.** `rankedchoicevoting.org` is **FairVote**, not a second source. It serves FairVote's
+> homepage byte-identically — same SHA-1 as `fairvote.org`, `<title>Homepage - FairVote</title>`,
+> `<link rel="canonical" href="https://fairvote.org/">` — and browsers normalise the address bar to `fairvote.org`
+> on load. Checked 2026-08-01.
+>
+> This matters because that domain used to belong to someone else. The **Ranked Choice Voting Resource Center**
+> is a separate 501(c)(3) serving election *administrators* — implementation guidance, "RCV in a Box", state
+> assessments, officials' webinars — and search descriptions still identify `www.rankedchoicevoting.org` as its
+> website. RCVRC is now at [rcvresources.org](https://www.rcvresources.org/) (403s to `curl` from bot-blocking;
+> live in a browser). I could not establish when or how the domain moved, and make no claim of merger or
+> acquisition — only that the neutral-sounding domain now resolves to the advocacy org.
+>
+> Practical consequence: a citation to "rankedchoicevoting.org" and one to "fairvote.org" are **the same source**,
+> and counting them as two independent ones overstates corroboration. For non-advocacy material — ballot design,
+> tabulation logistics, audits, exhaustion as an operational fact rather than a talking point — use RCVRC or the
+> Bipartisan Policy Center's [*Reform Meets Reality*](https://bipartisanpolicy.org/report/reform-meets-reality-how-ranked-choice-voting-impacts-election-administration/).
+
 **Where it is right, and these are not small:**
 
 - Bullet voting is approval's core weakness, and Nagel's *Burr Dilemma* is cited legitimately.
@@ -342,7 +359,7 @@ Scored across all four pages, the two organizations are wrong in different regis
 
 | | CES | FairVote |
 |---|---|---|
-| Sourcing | None on any of three pages | Extensive, though RCV evidence is largely self-citation |
+| Sourcing | None on any of three pages | Extensive, though RCV evidence is largely self-citation — and `rankedchoicevoting.org` is the same org under another domain, so it can read as corroboration it isn't |
 | Best page | The neutral explainer — most accurate of the four | The comparison page — one-sided but falsifiable |
 | Worst failure | Alaska misdiagnosed as vote-splitting; "no spoiler ever" | "RCV is a majority system"; omits exhaustion entirely |
 | Concedes anything? | Yes — "RCV does not inherently favor any group" | No |
