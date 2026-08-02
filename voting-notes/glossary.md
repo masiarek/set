@@ -37,6 +37,15 @@ those definitions are filled in here from the standard social-choice literature.
   method with *many* sincere ballots per voter. A **fixed (dichotomous) cutoff** — "anyone I'd genuinely
   accept" — is IIA-safe; a **floating** one (above-average utility, top-k) is not.
   [→ [approval-voting](approval-voting.md)]
+- **Rule (1) vs. Rule (2)** *(Horn)* — approval's instructions written two ways. **Rule (1)**: "vote for all
+  and only those candidates you minimally approve of." **Rule (2)**: "vote by making a mark next to as many
+  candidate names as you like." Both describe the same tabulation; only the first constrains what a mark
+  *means*. Bullet voting your favorite violates (1) and complies perfectly with (2); (2) is violable only by
+  defacing the ballot. Worth having a name for, because approval's advocacy assumes (1), its criticism
+  attacks (2), and almost every argument about the method turns on which one is in play. Note what (1) buys:
+  it makes the approval set an *attitude* fixed before the field is known, which is IIA by construction —
+  so the properties proved under it are properties of the assumption, not of the count.
+  [→ [horn-three-virtues-approval](horn-three-virtues-approval.md), [approval-voting](approval-voting.md)]
 - **Dichotomous preferences** — candidates fall into exactly two indifference classes, acceptable and not,
   with no ranking inside either. Under this model approval is strategyproof *and* Condorcet-consistent;
   Brams and Fishburn concede it is unrealistic beyond a handful of voters. But the domain does more than
@@ -99,6 +108,24 @@ the Smith set).
 - **Borda** **[LeGrand]** — score = (times ranked above another) − (times ranked below another); equivalently
   positional points 0…*n*−1. Strong under sincere voting, easiest to manipulate, and *not* clone-independent —
   a party can win by running extra candidates.
+- **Antiplurality** (anti-plurality, veto rule) — the positional rule (1, 1, …, 1, 0): a point for every
+  ballot that does *not* rank you last, so **fewest last-place votes wins**. Plurality's mirror image —
+  (1, 0, …, 0) reads only the top of the ballot, this reads only the bottom — with **Borda** the midpoint of
+  the family between them. **Coombs** (below) is this rule applied recursively instead of once.
+  It fails the **majority criterion** flatly: `60:A>B>C, 40:B>C>A` elects B though A is the strict favourite
+  of 60%. It fails **Condorcet**, as every positional rule must. And it can elect the **Condorcet loser** —
+  `2:B>A>C, 2:C>A>B, 1:C>B>A` elects A, who loses 3–2 to both B and C, precisely because A is second on four
+  ballots of five and last on one. Borda is the only positional rule that never does this
+  (Fishburn–Gehrlein), which is the sharpest argument available for the middle of the family over either end.
+  Its structural weakness is arithmetic: *n* voters distribute only *n* last-place votes among *m*
+  candidates, so once the field is bigger than about three, most candidates sit on **zero** and the rule
+  ties. The IMD card's own example is a case — 42 `A>B>C>D`, 26 `B>C>D>A`, 15 `C>D>B>A`, 17 `D>C>B>A` leaves
+  both B and C on zero, so antiplurality is undecided at the first step and has to be re-run head-to-head
+  (giving B, the Condorcet winner, where plurality gives A). Everything the ballot said about the top is
+  discarded, so the rule reads "least objectionable" and nothing else — the **bland-winner objection** of §6
+  in its purest form — and the only strategy it admits is burying your favourite's strongest rival in last
+  place. It also cannot be run at all without a truncation convention: a ballot ranking two of five
+  candidates has to be told who counts as last. [→ [mdi-trivia-cards](mdi-trivia-cards.md)]
 
 ### Borda-based recursive elimination
 
@@ -264,6 +291,19 @@ Every one of these appears as a row in LeGrand's compliance table with no defini
   only on the scores given to them — but only under absolute scoring; voters who renormalise to the field
   break it, exactly as a floating approval cutoff does. STAR loses it again to the runoff.
   [→ [score-voting](score-voting.md), [approval-voting](approval-voting.md), [star-voting](star-voting.md)]
+- **IIA2 / IIA2\* / IIA2†** *(Horn's labels)* — the three things called IIA, kept apart. **Arrow's Condition
+  3** is about *reordering* candidates other than X and Y in the voters' rankings. **IIA2** is the popular
+  reading — *adding or removing* an alternative mustn't reverse a judgement between two others; this is what
+  the Morgenbesser apple/blueberry/cherry joke is about, and it is not Arrow's condition. **IIA2\*** is its
+  approval analogue, stated over approval statuses rather than rankings. **IIA2†** is the conditional,
+  property-α form: your approval of X is unchanged when the option set grows or shrinks. Approval fails
+  IIA2† — Horn concedes this and argues the failure isn't irrational, but Nagel's objection, quoted in the
+  paper's own footnote 14 and never answered, is that failing it reopens agenda control by *adding or
+  subtracting alternatives*. Which is the point of the compliance table's four rows: the cutoff is what moves.
+  [→ [horn-three-virtues-approval](horn-three-virtues-approval.md), [approval-voting](approval-voting.md)]
+- **Sen's property α (1970)** — if X is chosen from a set, X is chosen from every subset containing it.
+  Choice-theoretic rather than electoral, and the ancestor of IIA2†; the sharper of the two contraction
+  conditions people mean when they say "irrelevant alternatives."
 - **Anonymity** — the result depends only on how many voters cast each ballot, never on *which* voter cast
   it. Swap two voters' ballots and nothing changes. A dictatorship is the textbook failure: swap the
   dictator's ballot with anyone who voted differently and the winner moves.
@@ -383,9 +423,23 @@ of approval voting. [→ [brandl-peters-approval-characterizations](brandl-peter
 - **Tactical maximisation (min-maxing)** — scoring only 5s and 0s under score voting, since every point
   given to a rival counts against your favorite. The specific problem STAR's runoff was added to blunt.
   [→ [star-voting](star-voting.md)]
+- **Agenda-setting manipulation** — controlling the *order* in which options are voted on pairwise, so that a
+  sincere majority position is knocked out before the final round. The standard example is the 1956 Powell
+  Amendment: opponents of school aid vote *for* the anti-discrimination amendment to make the bill
+  unpassable, killing it against the status quo. Riker built a case against democracy on it; Mackie (2003)
+  and Gilmour (2001) argue no such manipulation has ever been conclusively demonstrated in Congress. Two
+  things worth keeping straight. The defence against it is **voting on all the options at once** — on the
+  standard profile plurality, Borda, IRV and pairwise majority all elect the compromise, so this is a
+  property of the agenda, not of the ballot. And it is distinct from **agenda control by adding or removing
+  alternatives**, which simultaneity does *not* cure; see IIA2† in §5.
+  [→ [horn-three-virtues-approval](horn-three-virtues-approval.md)]
 - **Indeterminacy (Saari–Van Newenhizen)** — with voter preferences fixed, approval can *sincerely* elect
   any candidate, Condorcet winner or Condorcet loser, depending only on where voters put their cutoffs.
-  Read as a defect by Saari, as responsiveness to intensity by Brams. [→ [approval-voting](approval-voting.md)]
+  Read as a defect by Saari, as responsiveness to intensity by Brams. The cheapest concrete instance is
+  Horn's own worked example: on one 426-voter profile, enumerating all 32 sincere cutoff combinations elects
+  the Condorcet winner in 24, the Condorcet **loser** in 5, and the status quo — the option a 77% majority
+  opposes — in 3. Approval's answer there is a function of the cutoffs, not of the preferences.
+  [→ [approval-voting](approval-voting.md), [horn-three-virtues-approval](horn-three-virtues-approval.md)]
 - **Bland-winner objection** — the claim that Condorcet methods elect inoffensive nobodies.
   [→ [rcv-and-core-support](rcv-and-core-support.md)]
 
@@ -467,7 +521,17 @@ fixed number of seats."
 - **Arrow's impossibility theorem** — no ranked method can simultaneously satisfy unrestricted domain,
   Pareto, independence of irrelevant alternatives, and non-dictatorship. Applies to *methods*; arguments about
   an idealized preference-aggregation *standard* are not bound by it.
-  [→ [rcv-and-core-support](rcv-and-core-support.md)]
+  Two over-readings worth naming, because both are in print. **Dropping "ranked"** turns it into a claim
+  about every voting method, which is how a textbook comes to condemn approval on the page before
+  introducing it. And **"Arrow proves cycles are unavoidable"** confuses the theorem with the Condorcet
+  paradox: the intransitivity belongs to the **pairwise majority relation**, which is one input a ranked
+  method may or may not consult. Borda returns a three-way tie on the standard cycle; ranked pairs and
+  Schulze emit a transitive order on every profile. Approval, score, STAR and majority judgment all escape
+  Arrow, identically and for the same uninteresting reason — his theorem quantifies over ordinal rules and
+  none of them is one. What the escape costs is that the winner then depends on information the preference
+  profile doesn't contain; see **Indeterminacy** in §6.
+  [→ [rcv-and-core-support](rcv-and-core-support.md), [math-in-society-lippman](math-in-society-lippman.md),
+  [horn-three-virtues-approval](horn-three-virtues-approval.md)]
 - **Inada's condition (1969)** — under **dichotomous preferences** the majority relation is **transitive**,
   and it orders candidates exactly by approval score. So on that domain a Condorcet cycle cannot occur at
   all, the approval winners are precisely the majority-maximal candidates, and every Smith/Schwartz/beatpath
@@ -546,6 +610,10 @@ contains rather than which candidate a *method* elects. Nothing here names a win
 - [Brandl & Peters, *Approval Voting under Dichotomous Preferences*](https://www.dominik-peters.de/publications/av.pdf),
   *JET* 205 (2022) — the axioms, the eight characterizations, and Inada's transitivity
   [→ [brandl-peters-approval-characterizations](brandl-peters-approval-characterizations.md)]
+- [Horn, *Three Unique Virtues of Approval Voting*](https://www.qeios.com/read/ZETKEQ.2), Qeios (2024) —
+  the Rule (1) / Rule (2) distinction and the three readings of IIA; its three claimed virtues are shared
+  with score voting and its worked example doesn't hold
+  [→ [horn-three-virtues-approval](horn-three-virtues-approval.md)]
 - [*STAR voting* (Wikipedia)](https://en.wikipedia.org/wiki/STAR_voting) — thin and advocacy-sourced; the
   criteria failures are worked out locally instead [→ [star-voting](star-voting.md)]
 - [*Score voting* (Wikipedia)](https://en.wikipedia.org/wiki/Score_voting) — the baseline the other two are

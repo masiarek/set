@@ -336,5 +336,7 @@ enforce.
   virtue 1 isn't unique
 - [math-in-society-lippman](math-in-society-lippman.md) — Arrow stated without the ordinal restriction, one
   page before approval is introduced; the same over-reading as erratum 8
-- [glossary.md](glossary.md) — IIA, Condorcet winner/loser, agenda-setting, Gibbard–Satterthwaite
+- [glossary.md](glossary.md) — everything above is indexed there: Rule (1)/Rule (2) in §1, IIA2/IIA2\*/IIA2†
+  and Sen's property α in §5, agenda-setting manipulation in §6 (next to the Saari–Van Newenhizen
+  indeterminacy entry this note instantiates), and the two Arrow over-readings in §9
 - [whoops](whoops.md) — errata 1–4 and 7 belong there
