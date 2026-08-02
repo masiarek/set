@@ -140,7 +140,24 @@ Index,rank1,rank2,rank3
 Unit fixtures in `IRV.test.ts` do not use CSV — they build ballot objects directly, so a test
 contribution should follow the existing shape in that file rather than the importer's.
 
-## Draft issue — NOT FILED
+## Status: item 3 posted to #1468; items 1–2 not filed
+
+The Ranked Robin material went to
+[Equal-Vote/bettervoting#1468](https://github.com/Equal-Vote/bettervoting/issues/1468#issuecomment-5160176044)
+on 2026-08-02, as a comment rather than a new issue. It fits there precisely: #1468 is about the
+**pairwise-runoff rung** in `singleWinnerRankedRobin`, and both winners in the five-ballot profile come
+off that same rung — so it is a smaller vehicle (5 ballots, 4 candidates) than the issue's own repro
+(21 ballots, 5 candidates) for asserting that the starred chart row equals `results.elected`.
+
+The comment is explicit that the tabulation was computed and hand-checked but the **display behaviour
+was not tested**, and that the no-show paradox is a guaranteed property rather than a bug.
+
+The two IRV fixtures below were deliberately **kept out** of that thread — they are unrelated to the
+Ranked Robin display bug, and dumping them into someone's specific bug report is how a useful comment
+becomes noise. They remain unfiled, and the draft below is still the text for them if they ever go
+anywhere.
+
+## Draft issue for items 1–2 — NOT FILED
 
 > **Title:** Add regression tests for known RCV pathologies (monotonicity, method disagreement)
 >
