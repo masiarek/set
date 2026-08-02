@@ -264,6 +264,15 @@ Every one of these appears as a row in LeGrand's compliance table with no defini
   only on the scores given to them — but only under absolute scoring; voters who renormalise to the field
   break it, exactly as a floating approval cutoff does. STAR loses it again to the runoff.
   [→ [score-voting](score-voting.md), [approval-voting](approval-voting.md), [star-voting](star-voting.md)]
+- **Anonymity** — the result depends only on how many voters cast each ballot, never on *which* voter cast
+  it. Swap two voters' ballots and nothing changes. A dictatorship is the textbook failure: swap the
+  dictator's ballot with anyone who voted differently and the winner moves.
+- **Neutrality** — the result depends only on the ballots, never on *which candidate is which*. Relabel the
+  candidates and the winner is relabelled with them. Failed by any default winner, and — quietly — by the
+  **tiebreaking ranking** of §2: a fixed candidate order used to settle ties is exactly a rule that treats
+  one candidate better than another for reasons no voter supplied.
+- **Near-decisiveness** — the method returns a single winner in every profile except an exact tie. Weaker
+  than demanding a winner always, and the form May's Theorem needs.
 
 ### Axioms from the approval-ballot literature
 
@@ -346,6 +355,15 @@ of approval voting. [→ [brandl-peters-approval-characterizations](brandl-peter
 - **Lesser-evil coordination pressure** — voters for similar candidates must agree in advance whom to back;
   the plurality pathology that Carey reproduces.
 - **Candidate saturation** — flooding a race with similar candidates to exploit a clone-dependent method.
+- **Duverger's Law** — single-member plurality districts tend toward a **two-party system**; the companion
+  *Duverger's hypothesis* is that proportional and multi-member systems tend toward more. Duverger, 1951.
+  This is the two entries above it at the scale of a party system rather than an election: lesser-evil
+  coordination pressure is the voter-side mechanism, candidate saturation the candidate-side one, and the
+  party system is what they compound into over repeated elections. Called a law, but it is an empirical
+  regularity with standing exceptions — Canada, India and the pre-2015 UK all run single-member plurality
+  and sustain more than two parties, usually where third parties are regionally concentrated enough to win
+  seats rather than merely votes. The mechanism is the durable part; the prediction is not.
+  [→ [mdi-trivia-cards](mdi-trivia-cards.md)]
 - **Bullet voting** — approving (or ranking) only your favorite. Approval's characteristic degeneracy: if
   everyone bullet votes, approval *is* plurality. 79% of voters did it in the 1987 MAA election, 80%+ in
   Dartmouth's student elections, and ~80% at the IEEE — which is the reason IEEE gave for repealing approval
@@ -422,6 +440,20 @@ fixed number of seats."
 
 ## 9. Theorems
 
+- **May's Theorem (1952)** — the floor under everything else in this section, and the only unqualified
+  *positive* result here. With exactly **two** candidates, **anonymity + neutrality + monotonicity**
+  characterize the **quota methods**: fix a threshold and elect whoever reaches it. Add
+  **near-decisiveness** and the threshold is forced to exactly half the electorate — **simple majority,
+  uniquely**. The squeeze is short: below half, both candidates can reach the quota; above half, neither
+  need to; only at half is exactly one guaranteed to, barring an exact tie.
+  Two cautions. May's own 1952 statement uses **positive responsiveness** (a strictly stronger monotonicity:
+  a candidate who gains a supporter and loses none must go from tie to win), which delivers simple majority
+  directly; the weaker plain-monotonicity version is what yields the quota-method family, and popular
+  presentations slide between the two. And **"quota method" here is not the quota of §4** (the multi-winner
+  Droop/Hare threshold) **nor the quota rule of §8** (apportionment) — three unrelated uses of the word.
+  What the theorem really says is that the entire subject is a consequence of having three or more
+  candidates: with two, the answer is settled and provably unique.
+  [→ [mdi-trivia-cards](mdi-trivia-cards.md)]
 - **Gibbard–Satterthwaite theorem** — no deterministic ranked method with three or more candidates can be both
   non-dictatorial and strategy-proof. This is why LeGrand's "nonmanipulable?" row is uniformly NO: the design
   target is making manipulation *hard*, not impossible.

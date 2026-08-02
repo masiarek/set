@@ -72,16 +72,23 @@ It is the only listed topic with nothing behind it, which is probably where the 
 
 ## What's actually new relative to `glossary.md`
 
-Checked term by term against the glossary and the rest of the notes. Absent everywhere:
+Checked term by term against the glossary and the rest of the notes. Absent everywhere — the first
+two have since been written up, the rest are still gaps:
 
 - **May's Theorem** — anonymity + neutrality + monotonicity ⇒ a *quota method* for two candidates;
-  add "nearly decisive" and the quota is forced to exactly half, i.e. simple majority. The glossary
-  has anonymity and neutrality only as ingredients of the Brandl–Peters approval axioms; the
-  two-candidate characterization isn't there, and it's the natural floor under everything else —
-  the one case where "which method?" has a proved answer. Note the collision: "quota method" here
-  means something different from the apportionment *quota rule* already in §8.
-- **Duverger's Law** — plurality tends to two parties. Nothing in the notes names it, though
-  `lesser-evil coordination pressure` and `candidate saturation` in §6 are its mechanism.
+  add "nearly decisive" and the quota is forced to exactly half, i.e. simple majority. It's the
+  natural floor under everything else — the one case where "which method?" has a proved answer, and
+  the reason the rest of the subject is really a consequence of having three or more candidates.
+  **Now in `glossary.md` §9**, along with anonymity, neutrality and near-decisiveness in §5, which
+  the glossary had been using without defining. Two things the card glosses over and the glossary
+  entry doesn't: May's 1952 statement uses *positive responsiveness*, strictly stronger than plain
+  monotonicity, and the quota-method family is what the weaker version buys; and "quota method"
+  collides with two unrelated senses of "quota" already in §4 and §8.
+- **Duverger's Law** — plurality tends to two parties; the companion *hypothesis* is that PR tends
+  to more. Nothing here named it, though `lesser-evil coordination pressure` and `candidate
+  saturation` in §6 are its mechanism at the scale of a single election. **Now in `glossary.md`
+  §6**, with the standing exceptions (Canada, India, the pre-2015 UK) noted — the mechanism is
+  durable, the prediction isn't.
 - **Antiplurality** — fewest last-place votes wins. Currently only a passing mention in the
   Wikipedia talk draft. It's Coombs' scoring rule without the elimination, and the card's own
   example is a good one: 42 `A>B>C>D`, 26 `B>C>D>A`, 15 `C>D>B>A`, 17 `D>C>B>A` → A is last on 58
