@@ -9,7 +9,7 @@ four eliminate-by-first-preferences hybrids can only ever be buried into an outc
 IRV would have produced anyway*. The fifth, BTR-IRV, is the instructive exception.
 
 Everything here is recomputed: the five methods run over the library's existing profiles
-([verify.py](code/condorcet-irv-hybrids/verify.py), 45 checks, exit 0), and a complete burial search
+([verify.py](code/condorcet-irv-hybrids/verify.py), 42 checks, exit 0), and a complete burial search
 over every three-candidate nine-voter election there is ([burial.py](code/condorcet-irv-hybrids/burial.py)).
 
 ---
@@ -29,15 +29,18 @@ electowiki, cited in [methods.py](code/condorcet-irv-hybrids/methods.py)):
 - **BTR-IRV** (bottom-two runoff) — each round, the two candidates with the fewest first preferences
   face off pairwise and the pairwise loser is eliminated. The only one of the five with no Smith
   computation at all — and the only one whose *eliminations* read the pairwise matrix, which turns out
-  to be its undoing under burial.
+  to be its undoing under burial. Originally proposed, per electowiki, by Rob LeGrand (2002) — the same
+  LeGrand whose [calculator](legrand-ranked-ballot-methods.md) supplies half the profiles below.
 - **Tideman's Alternative** (a.k.a. Alternative Smith) — repeat: restrict to the current Smith set; if
   one candidate remains, elect them; otherwise eliminate the fewest-first-preferences candidate and
   recompute. The gate is re-armed every round.
 
 A naming triangle to defuse before going further. In this library **"Tideman" means ranked pairs** —
 LeGrand's label, kept in the [glossary](glossary.md) and the [method survey](legrand-ranked-ballot-methods.md).
-Tideman's Alternative is a *different* method by the same Nicolaus Tideman, who also appears in the
-[STV note](single-transferable-vote.md) as the formalizer of PSC — three senses of one surname. Same
+Tideman's Alternative is a *different* method carrying the same Nicolaus Tideman's name — he defines it
+as "alternative Smith" in his 2006 book, though electowiki holds it is not his invention — and he also
+appears in the [STV note](single-transferable-vote.md) as the formalizer of PSC. Three senses of one
+surname. Same
 hazard with **Woodall**: until now he appears here as the criteria author (mono-raise-delete in
 [star-voting](star-voting.md), later-no-harm in [cardinal-voting-systems](cardinal-voting-systems.md));
 the method above is the same Douglas Woodall wearing a different hat. And the Lumen profile below has a
@@ -71,9 +74,9 @@ that rescues it under BTR, because BTR converts "last place on tallies" into "a 
 
 On the Lumen 75 ballots, BTR-IRV's first act is to eliminate **Nguyen — plain IRV's winner** — because
 the round-1 bottom two are Lee and Nguyen and nearly-everyone's-second-choice Lee beats him 56–19.
-Garcia then survives to a 39–36 final over Lee. Same ballots, same elimination *count*, opposite story —
-and the one-vote Garcia-vs-Nguyen elimination (23 v 24) that decides the whole election under plain IRV
-never happens at all.
+Garcia then survives to a 39–36 final over Lee. Same ballots, same elimination machinery, opposite
+story — and the one-vote Garcia-vs-Nguyen elimination (23 v 24) that decides the whole election under
+plain IRV never happens at all.
 
 ## Inside a cycle, they are (almost all) just IRV
 
@@ -95,8 +98,8 @@ from the existing notes:
   everybody — acts as a shield and then a casualty, rerouting the whole elimination order.
 - **5-cycle, 69 voters**: the others elect Ben; BTR elects **Edith — Ranked Robin's winner** from the
   [origin thread](ranked-robin-origins.md), the one with the best corrected margin sum (+20). Ben's own
-  cycle credentials are the *worst* of the five finalists but one (margin sum −1); he wins under the
-  other methods purely by elimination luck — plain IRV removes Frank on tallies, while BTR's round-3
+  cycle credentials are middling — third of the five, margin sum −1 against Edith's +20; he wins under
+  the other methods purely by elimination luck — plain IRV removes Frank on tallies, while BTR's round-3
   bottom two is Frank v Ben, Frank wins the matchup 37–32, and Ben is gone.
 
 One convention caveat, in the spirit of the [thread-claims note](ranked-robin-thread-claims-checked.md):
@@ -159,8 +162,9 @@ famous for.
 
 **4. BTR-IRV is the weak hybrid, and the reason generalizes.** 145 profiles — closer to minimax than to
 Benham. Its eliminations *consult the falsified matrix*, so burial steers who gets eliminated, not just
-whether the gate holds: in 806 of BTR's 1,290 successful scenarios (n = 2..11) the sincere winner was
-**not** the IRV winner — a genuine theft channel the gate hybrids provably lack. "Condorcet–Hare
+whether the gate holds: in 806 of BTR's 1,290 successful scenarios (n = 2..11) the buriers' favorite is
+**not** the sincere IRV winner — theft beyond anything sincere IRV would have done, a channel the gate
+hybrids provably lack. "Condorcet–Hare
 resistance" is specifically a property of *eliminating by first preferences*, which burial cannot touch —
 not of hybridization as such.
 
@@ -184,10 +188,12 @@ The burial changed exactly one number — the A-vs-C tally — and that is the w
 preferences still read A 2, B 4, C 3, C still beats B head-to-head, so the falsified cycle hands the
 election to an IRV stage that sees nothing wrong and quietly re-elects C.
 
-And the hybrids' own weak spot, minimal tie-free case, 5 voters — sincere profile `1 A>C>B, 2 B>A>C,
-2 C>A>B` (Condorcet winner A): one C>A>B voter flips to C>B>A, manufactures the cycle, and every hybrid
-eliminates A on tallies [A 1, B 2, C 2] and elects C. The tell, per finding 2: sincere plain IRV on this
-profile *already elects C*. The gate was the only thing protecting A, and burial dissolved it.
+And the hybrids' own weak spot, 5 voters — sincere profile `1 A>C>B, 2 B>A>C, 2 C>A>B` (Condorcet
+winner A): one C>A>B voter flips to C>B>A, manufactures the cycle, and the four gate hybrids eliminate
+A on tallies [A 1, B 2, C 2] and elect C — their minimal tie-free case. (BTR-IRV lands on the same
+winner here through a bottom-two matchup that needs the fixed-order tie-break; its first fully tie-free
+success takes 7 voters.) The tell, per finding 2: sincere plain IRV on this profile *already elects C*.
+The gate was the only thing protecting A, and burial dissolved it.
 
 Last: burial *backfires* — elects the bloc's sincere last choice — about **5×** as often as it succeeds
 under the gate hybrids (836 vs 164 scenarios), 3.4× under minimax, and under plain IRV it is all
@@ -202,16 +208,19 @@ Honest accounting, with verification status marked:
   Smith and drop the monotonicity guarantee. *Literature claim, not yet locally verified — building a
   worked mono-raise failure for each hybrid is the natural follow-up, and the
   [Lumen note](lumen-75-ballot-four-winners.md)'s non-monotonic profile is the place to start.*
-- **Later-no-harm** — gone, necessarily: Woodall's own result is that no Condorcet method satisfies it,
-  a price already discussed in [cardinal-voting-systems](cardinal-voting-systems.md). *Literature claim.*
+- **Later-no-harm** — gone, necessarily: no Condorcet method can satisfy it (Woodall 1997 — the same
+  Douglas Woodall a third time, and the exact result Green-Armytage 2011 cites for the price). The
+  criterion enters this library through his 1994 paper, cited in
+  [cardinal-voting-systems](cardinal-voting-systems.md). *Literature claim.*
 - **Summability** — the pairwise matrix is precinct-summable but the IRV stage is not, so the hybrids
   inherit IRV's centralized count. The ballot-vs-rule separability argument in
   [ranked-robin-results-explained](ranked-robin-results-explained.md) applies unchanged; what the
   hybrids lose relative to Ranked Robin is exactly the ability to hand-count matchups at the precinct.
-- **Decisiveness** — a quiet win: across all five profiles and the entire burial universe's headline
-  examples, **no tie-break ever fired**. The IRV stage is as decisive inside a cycle as Hare is
-  anywhere, where Copeland-family methods fall to tie ladders on the same profiles
-  ([BV1550](ranked-robin-results-explained.md) defeated essentially every completion).
+- **Decisiveness** — a quiet win: across all five library profiles and the 9-voter example,
+  **no tie-break ever fired** — and in the 5-voter example the four gate hybrids ran tie-free while
+  minimax, Ranked Robin and BTR-IRV each needed the fixed-order tie-break. The IRV stage is as decisive
+  inside a cycle as Hare is anywhere, where Copeland-family methods fall to tie ladders on the same
+  profiles ([BV1550](ranked-robin-results-explained.md) defeated essentially every completion).
 
 ## What this note did not do
 
@@ -232,7 +241,7 @@ arithmetic (integers; exact fractions where equal ranks force splitting):
 - `methods.py` — pairwise matrix, Condorcet winner, Smith set (Copeland-prefix computation
   cross-checked against brute-force smallest-dominant-set search on every profile), IRV, and the five
   hybrids, with electowiki citations.
-- `verify.py` — the five library profiles, all round-by-round traces, 45 PASS/FAIL checks, exit 0.
+- `verify.py` — the five library profiles, all round-by-round traces, 42 PASS/FAIL checks, exit 0.
   Engine validation includes the note-recorded numbers: Emil 65–34/66–33, Garcia's 39–36 final, the
   921 cycle's 623/610/609 and Cora's uniform 460–461, and the 5-cycle margin sums +20/+15/−1/−15/−19.
 - `burial.py` — the exhaustive burial search, deterministic (re-run verified byte-identical), every
@@ -241,8 +250,9 @@ arithmetic (integers; exact fractions where equal ranks force splitting):
 ## Sources
 
 - [Green-Armytage, "Four Condorcet-Hare hybrid methods for single-winner elections", *Voting matters* 29 (2011)](http://www.votingmatters.org.uk/ISSUE29/I29P1.pdf) —
-  the methods and the strategy-resistance argument this note tests by enumeration.
-- [Green-Armytage, "Strategic voting and nomination", *Public Choice* 158 (2014)](https://doi.org/10.1007/s11127-012-9956-6) —
+  the four gate hybrids (under his names: Woodall, Benham, Smith-AV, Tideman) and the
+  strategy-resistance argument this note tests by enumeration. BTR-IRV is not in the paper.
+- [Green-Armytage, "Strategic voting and nomination", *Social Choice and Welfare* 42 (2014)](https://doi.org/10.1007/s00355-013-0725-3) —
   the compromising/burial vulnerability lists, already read closely in
   [wikipedia-talk-strategic-voting-draft](wikipedia-talk-strategic-voting-draft.md).
 - [electowiki](https://electowiki.org/) — method definitions (Smith//IRV, Benham's method, Woodall's

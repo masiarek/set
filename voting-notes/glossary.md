@@ -202,8 +202,8 @@ the Smith set).
     burial.
   - **Tideman's Alternative** — a.k.a. Alternative Smith: restrict to the current Smith set, eliminate
     the fewest-first-preferences candidate, recompute; repeat until one remains. ⚠️ Not "Tideman" =
-    ranked pairs above — a different method by the same Nicolaus Tideman (whose third appearance here is
-    the PSC paper in [single-transferable-vote](single-transferable-vote.md)).
+    ranked pairs above — a different method named for the same Nicolaus Tideman (whose third appearance
+    here is the PSC paper in [single-transferable-vote](single-transferable-vote.md)).
 - **Ranked Robin** — Equal Vote's Condorcet method; scores by matchup wins (Copeland), then breaks ties by
   greatest sum of pairwise margins among the tied (their "total advantage"). Debuted Oct 2021 as **Ranked
   Advantage Voting**, renamed Nov 2021. Honest-ballot VSE: top of the Condorcet cluster, tie-ladder
