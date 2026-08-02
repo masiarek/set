@@ -896,6 +896,34 @@ contains rather than which candidate a *method* elects. Nothing here names a win
 
 ---
 
+## 11. Reading the literature
+
+Not voting terms — vocabulary for the papers themselves, kept here so the front matter resolves.
+
+- **JEL Classification** — the *Journal of Economic Literature* subject codes, maintained by the American
+  Economic Association and used to index working papers and articles in EconLit. A letter for the broad
+  field, digits to narrow it. Authors choose their own codes, so the list is best read as a claim about what
+  a paper takes itself to be doing, not as a neutral catalogue entry. The five that keep recurring on
+  social-choice papers:
+  - **C72** — Noncooperative Games (under C7, Game Theory and Bargaining Theory). Strategic voting modelled
+    as a game between voters.
+  - **D01** — Microeconomic Behavior: Underlying Principles (under D0, General). Where an axiomatic
+    treatment of preference itself goes.
+  - **D02** — Institutions: Design, Formation, Operations, and Impact. A voting rule as an institution to be
+    designed rather than a formula to be evaluated.
+  - **D72** — Political Processes: Rent-Seeking, Lobbying, Elections, Legislatures, and Voting Behavior
+    (under D7, Analysis of Collective Decision-Making). The application: elections.
+  - **D82** — Asymmetric and Private Information; Mechanism Design (under D8, Information, Knowledge, and
+    Uncertainty). The machinery: what a rule can extract from voters who may misreport.
+
+  Read the combination rather than the codes one at a time. **D72 + D82 is the Gibbard–Satterthwaite corner
+  of the scheme** — collective choice under misreporting — so the full set C72, D01, D02, D72, D82 announces
+  a paper about *strategic manipulation of a voting rule, treated axiomatically*, which is most of §5 and
+  §9. Absences say as much: nothing in D6 (welfare economics) means the paper is not arguing about which
+  outcome is *better*, and nothing in C9 (design of experiments) means no ballots were collected.
+
+---
+
 ## Sources
 
 - [*Cardinal voting systems* (electowiki)](https://electowiki.org/wiki/Cardinal_voting_systems) — the class
