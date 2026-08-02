@@ -366,6 +366,45 @@ The `ACB` voter ranks C above B, so showing up cost her the better outcome. Moul
 *possible* below four candidates, not about what any particular method does: one Condorcet method survives
 everything an exhaustive search can reach at m = 3, and another fails at eight voters.
 
+#### Cashing the theorem for Ranked Robin — a five-voter witness
+
+Moulin applies to **Ranked Robin**, which is Condorcet consistent, so a witness has to exist. It was worth
+finding rather than assuming, because the theorem is an existence result and says nothing about how small or
+how reachable the failure is. [`ranked_robin_noshow.py`](code/sep-voting-methods/ranked_robin_noshow.py)
+implements Ranked Robin the way **BetterVoting actually does** — Copeland with **½ for a pairwise tie**
+(`Util.ts:257`), then the two-way pairwise runoff rung, then random — and rejects any profile whose winner
+comes off the random rung, so the witness is deterministic under BV's own code:
+
+```
+2  C>B>A>D
+2  D>A>C>B      <- one of these two stays home
+1  B>A>D>C
+```
+
+| | A | B | C | D | contenders | winner |
+|---|---|---|---|---|---|---|
+| all five vote | 2 | **2** | 1 | 1 | {A, B}, B beats A | **B** |
+| one `D>A>C>B` abstains | 1.5 | **2** | **2** | 0.5 | {B, C}, C beats B | **C** |
+
+That voter ranks **C above B**, so staying home got her a better result than voting. **Five ballots, four
+candidates, no tiebreak anywhere** — both winners come off the pairwise-runoff rung. Hand-checked as well as
+computed.
+
+Two things make this more than an instance:
+
+- **Five voters is the minimum.** Exhaustive over all **26,561** anonymized four-candidate profiles with one
+  to five voters, and nothing smaller works.
+- **At three candidates Ranked Robin does not fail at all** — no no-show paradox in any of the **12,375**
+  anonymized three-candidate profiles up to eleven voters. So it sits with minimax rather than with Black's
+  Procedure, which fails at three candidates and eight voters. The same pattern the entry's own theorem
+  invites and never tests: the four-candidate bound is tight for *some* Condorcet methods and slack for
+  others, and which is which is not something the theorem tells you.
+
+At four candidates the failure is not rare either: **1.11%** of random four-candidate profiles with 4–15
+voters admit a no-show paradox for some bloc, both outcomes deterministic. Practical caveat before anyone
+quotes that — it is measured under impartial culture, which finding 10 records as a **worst case**, so read
+it as a ceiling and not as a rate for real electorates.
+
 ### 10. The impartial-culture numbers check out
 
 Section 5.1 quotes Riker's table: five candidates and seven voters gives a **21.5%** chance of a majority

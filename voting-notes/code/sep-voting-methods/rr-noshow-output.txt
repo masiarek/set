@@ -1,0 +1,71 @@
+Find a no-show paradox for BetterVoting's Ranked Robin.
+
+Moulin's theorem (SEP "Voting Methods", Section 3.3) says every Condorcet
+consistent method is susceptible to the no-show paradox once there are four or
+more candidates.  Ranked Robin is Condorcet consistent, so a witness must
+exist.  The SEP note quotes a witness for *minimax*; this searches for one that
+holds for Ranked Robin as BetterVoting actually implements it.
+
+The implementation mirrors packages/backend/src/Tabulators/RankedRobin.ts and
+Util.ts at Equal-Vote/bettervoting:
+
+  * pairwise winsAgainst is a strict majority
+  * copelandScore = +1 per win, +0.5 per pairwise tie, +0 per loss  (Util.ts:257)
+  * the candidates tied at the top copelandScore are the round's contenders
+      - exactly one contender            -> winner
+      - exactly two, pairwise decisive   -> the pairwise winner  (RankedRobin.ts)
+      - otherwise                        -> random tiebreak
+  * a profile whose winner comes from the random rung is REJECTED here, so every
+    witness printed is deterministic under BV's own code.
+
+No dependencies.  Run:  python3 ranked_robin_noshow.py
+
+
+==============================================================================
+Smallest no-show witness found for BetterVoting's Ranked Robin
+==============================================================================
+  5 voters, 4 candidates
+
+     2: C>B>A>D
+     2: D>A>C>B   <- the bloc that stays home
+     1: B>A>D>C
+
+  Copeland with them:    {'A': 2.0, 'B': 2.0, 'C': 1.0, 'D': 1.0}
+  winner with them:      B  (via runoff)
+  Copeland without them: {'A': 1.5, 'B': 2.0, 'C': 2.0, 'D': 0.5}
+  winner without them:   C  (via runoff)
+
+  1 voter(s) ranking D>A>C>B get C by staying home, and prefer it to B.
+  Both winners come from a deterministic rung: no random tiebreak involved.
+
+  verification:
+    PASS  winner with the bloc matches: 'B'
+    PASS  winner without the bloc matches: 'C'
+    PASS  the winners differ: True
+    PASS  the bloc prefers the abstention outcome: True
+    PASS  no random rung with them: True
+    PASS  no random rung without them: True
+
+==============================================================================
+Is five voters really the minimum?
+==============================================================================
+  exhaustively checked all 26,561 anonymized 4-candidate profiles with 1-5 voters
+  smallest witness has 5 voters -> the 5-voter profile above is minimal
+
+==============================================================================
+Three candidates: what Moulin's bound leaves open
+==============================================================================
+  exhaustively checked all 12,375 anonymized 3-candidate profiles with 1-11 voters
+  no no-show paradox found in any of them
+
+  So Ranked Robin behaves like minimax rather than like Black's Procedure:
+  the SEP note records minimax surviving all 12,369 three-candidate profiles
+  up to 11 voters while Black's fails at 8 voters.  Ranked Robin survives too.
+  Moulin's theorem is about what is possible at four, not about what every
+  Condorcet method does at three.
+
+==============================================================================
+How often, at four candidates
+==============================================================================
+    222/20000 =  1.11% of random 4-candidate profiles (4-15 voters)
+  admit a no-show paradox for some bloc, both outcomes deterministic.

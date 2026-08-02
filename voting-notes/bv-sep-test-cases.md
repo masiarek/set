@@ -87,20 +87,32 @@ This is the one that touches Adam's existing BV work most directly. Moulin's the
 more candidates, **every** Condorcet-consistent method has a no-show paradox. Ranked Robin is
 Condorcet-consistent, so the theorem applies to it — abstaining voters can be better off than voting.
 
-The verifier's witness is for **minimax**, not Ranked Robin:
+The search has now been run, against Ranked Robin as BV implements it — Copeland with ½ for a pairwise
+tie (`Util.ts:257`), then the two-way pairwise runoff rung, then random — rejecting any profile whose
+winner comes off the random rung. Witness, from
+[`code/sep-voting-methods/ranked_robin_noshow.py`](code/sep-voting-methods/ranked_robin_noshow.py):
 
 ```
-2: A>D>C>B    2: B>C>A>D    2: C>A>D>B    1: C>B>A>D
-1: D>A>B>C    1: D>B>A>C    2: D>B>C>A
+2: C>B>A>D
+2: D>A>C>B     <- one of these two stays home
+1: B>A>D>C
 ```
 
-with the two `A>D>C>B` voters staying home changing the winner from C to D — in their favour.
+| | A | B | C | D | contenders | winner |
+|---|---|---|---|---|---|---|
+| all five vote | 2 | **2** | 1 | 1 | {A, B}, B beats A | **B** |
+| one `D>A>C>B` abstains | 1.5 | **2** | **2** | 0.5 | {B, C}, C beats B | **C** |
 
-**Honest limit:** this witness is not known to work for Ranked Robin, and asserting it would be
-wrong. Finding a Ranked-Robin-specific one is a search over 4-candidate profiles, which the existing
-verifier infrastructure ([`code/sep-voting-methods/verify.py`](code/sep-voting-methods/verify.py) and
-[`code/thread136-claims/`](code/thread136-claims/)) can already do. That search is the prerequisite,
-not the filing.
+The abstaining voter ranks C above B, so voting cost her the better outcome. **Five ballots, four
+candidates, and no tiebreak on either side** — both winners come off the pairwise-runoff rung, so the
+assertion is deterministic and safe to commit as a test.
+
+Five voters is the **minimum**: exhaustive over all 26,561 anonymized four-candidate profiles with one
+to five voters. And at **three** candidates Ranked Robin does not fail at all — clean across all 12,375
+anonymized profiles up to eleven voters — so a three-candidate test would assert the wrong thing.
+
+This is the fixture worth filing, because it is a property of Ranked Robin that BV's suite has no test
+for and that Moulin's theorem guarantees is there.
 
 A smaller relative that *is* proved: Black's Procedure fails at **three** candidates and 8 voters —
 `1:A>C>B, 3:B>A>C, 4:C>B>A` elects B, and removing the `A>C>B` voter elects C, which that voter
@@ -152,14 +164,25 @@ contribution should follow the existing shape in that file rather than the impor
 > Plurality-with-Runoff → A, IRV → D, Coombs → B, Borda → B, and no Condorcet winner (Copeland ties B
 > and C). A cross-method fixture for RCV vs Ranked Robin on one ballot set.
 >
-> Happy to write both as PRs in the existing `IRV.test.ts` style. Also happy to be told the suite is
-> deliberately scoped to plumbing.
+> **3. No-show paradox in Ranked Robin (5 ballots, deterministic).** `2:C>B>A>D, 2:D>A>C>B, 1:B>A>D>C`
+> → Copeland A2 B2 C1 D1, contenders {A,B}, B beats A, **B wins**. Remove one `D>A>C>B` ballot →
+> Copeland A1.5 B2 C2 D0.5, contenders {B,C}, C beats B, **C wins** — and that voter ranks C above B,
+> so voting cost her the better outcome. Both winners come off the pairwise-runoff rung, so there is
+> no random tiebreak to make the test flaky. Moulin's theorem guarantees this exists for any
+> Condorcet-consistent method at four or more candidates; five voters is the minimum by exhaustive
+> search, and at three candidates Ranked Robin is clean across all 12,375 profiles up to 11 voters.
+> Not a bug — a documented property worth pinning so a future tiebreak change doesn't move it silently.
+>
+> Happy to write these as PRs in the existing `IRV.test.ts` / `RankedRobin.test.ts` style. Also happy
+> to be told the suite is deliberately scoped to plumbing.
 
 ## Related local material
 
 - [sep-voting-methods](sep-voting-methods.md) — the source note, findings 1, 8 and 9
 - [`code/sep-voting-methods/verify.py`](code/sep-voting-methods/verify.py) — where every number above
   is recomputed
+- [`code/sep-voting-methods/ranked_robin_noshow.py`](code/sep-voting-methods/ranked_robin_noshow.py) —
+  Ranked Robin as BV implements it, and the no-show search behind item 3
 - [ranked-robin-results-explained](ranked-robin-results-explained.md) — BV's tie-break ladder, and
   issue #1468, the closest existing work to item 3
 - [sep-star-suggestion-email](sep-star-suggestion-email.md) — the other outbound draft from this note
