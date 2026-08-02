@@ -281,7 +281,9 @@ A worked cross-check using it — 12 ballots where nine of eleven methods tie an
 - **Ranked ballots only.** No approval, score, or STAR — even though the author's own index page says he'd
   rather have Approval. So the site can't speak to the cardinal-vs-ordinal argument in
   [rcv-and-core-support.md](rcv-and-core-support.md); every method here is stuck in the ordinal world Ogren
-  argues is the wrong level of description.
+  argues is the wrong level of description. What the method he actually prefers does — and why its criterion
+  compliance depends on the voter model rather than the tabulation — is in
+  [approval-voting.md](approval-voting.md).
 - **Compliance claims are the author's**, presented without proofs. They match the standard results where
   I've checked, but treat the table as a map, not a citation.
 

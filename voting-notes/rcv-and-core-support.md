@@ -59,3 +59,5 @@ Should politicians care mainly about their core supporters, or about all voters 
 ## Related local material
 
 - `Voting 2021 mbair/` — STAR Voting tabulator project and background links
+- [approval-voting](approval-voting.md) — the simplest cardinal method, and the one place where "which
+  ballot you cast sincerely" is itself an open question

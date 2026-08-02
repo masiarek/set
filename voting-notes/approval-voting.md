@@ -1,0 +1,282 @@
+# Approval Voting
+
+Source: [Approval voting (Wikipedia)](https://en.wikipedia.org/wiki/Approval_voting) — read 2026-08-01
+
+## What it's about
+
+Approve as many candidates as you like; most approvals wins. It is the simplest cardinal method — a score
+ballot restricted to {0, 1} — and the only one on that list whose ballot is still a plurality ballot with the
+"vote for one" instruction removed. That is its whole pitch: kill vote-splitting without changing the ballot
+paper, the tabulator, or the summability of the count (one integer per candidate, addable precinct by
+precinct). Because the number of approvals is unlimited, an overvote is impossible by construction.
+
+This is the method LeGrand says he prefers to all sixteen ranked methods on his own site
+([legrand-ranked-ballot-methods](legrand-ranked-ballot-methods.md)), so it is worth knowing what it actually
+does.
+
+## Key takeaways
+
+### Mechanics and lineage
+
+- **Robert J. Weber coined the name in 1971**; Steven Brams (political scientist) and Peter Fishburn
+  (mathematician) published the full treatment in *American Political Science Review* in 1978. The 1983
+  Brams–Fishburn book *Approval Voting* is the standard reference and the source of most strategy results
+  below.
+- **Multiwinner is trivial but crude**: for ten seats, take the ten highest approval totals. That is
+  block approval, not proportional — [Sequential Proportional Approval Voting](https://en.wikipedia.org/wiki/Sequential_proportional_approval_voting)
+  (Sweden, early 20th c.) is the proportional variant.
+- **Score voting is approval with more levels** (0–5 instead of 0–1); combined approval voting uses three
+  (−1, 0, +1); the D21 – Janeček method caps you at two approvals plus one negative vote.
+
+### Where it has actually been used
+
+| Where | When | Notes |
+|---|---|---|
+| Papal conclaves | 1294–1621 | ~40 cardinals, repeated rounds until someone appears on ⅔ of ballots |
+| Republic of Venice (Doge) | 13th–18th c. | Multi-stage, mixed with sortition |
+| Greek legislative elections | 1864–1923 | Secret marble-drop boxes, one per candidate; replaced by party-list PR |
+| Swedish elections | early 20th c. | Sequential *proportional* approval; replaced by party-list PR |
+| UN Secretary-General straw polls | current | Approve / disapprove / no opinion; P5 disapproval acts as a veto |
+| Latvian Saeima | current | Inside open-list PR: positive, negative, or no vote on any number of candidates |
+| Fargo, ND | 2018–2025 | First US jurisdiction; see below |
+| St. Louis, MO | 2020– | Proposition D passed with 70%; approval used as a "unified primary" (top two advance) |
+
+- **Fargo** adopted approval by ballot initiative in 2018, after a 2015 commissioner race split six ways and
+  was won on a **22% plurality**. First election 9 June 2020: two commissioners from seven candidates, both
+  winners over 50% approval, **2.3 approvals per ballot**, 62% of polled voters happy with the change. June
+  2022: mayor re-elected from seven candidates at ~65% approval with **1.6 approvals per ballot**; the
+  commission race (two seats, fifteen candidates) drew **3.1 approvals per ballot**.
+- **Fargo is over.** A 2023 ban was vetoed by Governor Doug Burgum on home-rule grounds and the override
+  failed; in **April 2025 Governor Kelly Armstrong signed a bill banning both RCV and approval statewide**,
+  ending it in Fargo.
+- **St. Louis 2021 mayoral primary**: Tishaura Jones 57% and Cara Spencer 46% advanced; Lewis Reed 39% and
+  Andrew Jones 14% were eliminated. Four candidates, **1.6 approvals per ballot** — note the totals sum to
+  156%, which is what an approval result looks like.
+- **Organizations**: MAA (1986), IEEE and INFORMS' predecessor and ASA (all 1987), Society for Social Choice
+  and Welfare (1992), American Mathematical Society. Parties: American Solidarity, Greens of TX and OH,
+  Libertarian National Committee and LP-TX/CO/AZ/NY, Alliance 90/The Greens (Munich), Czech and German
+  Pirates.
+- **Two documented retreats, which are the interesting part.** IEEE dropped it in 2002 — the executive
+  director's stated reason was that "few of our members were using it." Dartmouth's alumni association
+  replaced it with runoffs by an 82–18 vote in 2009; Dartmouth students used it for student-body president
+  from 2011 and abandoned it before 2017, after winners kept landing under 40% (41% in 2011, 32% in 2012) and
+  *The Dartmouth* reported **over 80% of voters approving exactly one candidate** in 2014 and 2016. The
+  Independent Party of Oregon used it for nominations 2011–2016, then switched to STAR in 2020 after its 2016
+  presidential preference vote produced no nominee — nobody cleared 32%.
+
+  Universal bullet voting collapses approval into plurality. That is the practical failure mode, and it has
+  happened repeatedly in low-stakes, low-information elections.
+
+### Strategy: the defining problem
+
+- **There is no unique sincere vote.** Wikipedia's (Brams–Fishburn) definition: a vote is sincere if,
+  whenever it approves someone, it also approves everyone strictly preferred to them. With strict preferences
+  A > B > C > D that leaves five sincere votes — {}, {A}, {A,B}, {A,B,C}, {A,B,C,D} — and if B and C are tied
+  in the voter's esteem, {A,C} is sincere too. Every other method has one honest ballot; approval makes you
+  choose an **approval cutoff**, and that choice is inescapably strategic even when your preferences are
+  honest.
+- **Consequence**: with fixed voter preferences, approval can sincerely elect *any* candidate, including both
+  the Condorcet winner and the Condorcet loser. Saari and Van Newenhizen call this indeterminacy and treat it
+  as a defect that is "robust, not isolated"; they also wrote the rebuttal arguing it is really
+  responsiveness to cardinal utility rather than a bug. Brams' position is blunter: voters' pragmatic
+  judgments about who is *acceptable* should outrank the Condorcet criterion.
+- **Bullet voting / the chicken (Burr) dilemma** — approve only your favorite so you don't help your
+  second choice beat them. If both frontrunners' camps do it, a weaker third candidate wins. The Fargo 2020
+  poll run *by opponents* of approval found **30% of bullet voters did so strategically, 57% sincerely** —
+  which cuts both ways as evidence.
+- **Compromising** — approving someone you find unacceptable to stop someone worse. Approval's honest-favorite
+  version of lesser-evil voting; it never requires you to *demote* your favorite.
+- **What approval is immune to**: burying and push-over. You cannot reverse two candidates' order on an
+  approval ballot — only move the cutoff — so the ranked-method reversal strategies have no expression.
+- **Myerson–Weber rational voter model**: approve every candidate with a positive *prospective rating*
+  (utility weighted by pivot probabilities). Approving your favorite and rejecting your least favorite are
+  **dominant strategies**. Useful special cases:
+  - all pairwise ties equally likely ("zero info") → approve everyone with **above-average utility**;
+  - a clear expected winner and runner-up (**Laslier's leader rule**) → approve everyone you prefer to the
+    expected leader, plus the leader if you prefer them to the runner-up. *If everyone plays this, the
+    equilibrium elects the Condorcet winner when one exists.* Same result under trembling-hand ballots.
+  - With four or more candidates an optimal vote can require skipping a more-preferred candidate while
+    approving a less-preferred one — but only in inherently unstable configurations.
+- **Dichotomous preferences are the magic case.** If a voter genuinely sorts candidates into acceptable /
+  unacceptable with no ranking inside either group, approval is **strategyproof** — one uniquely best ballot
+  regardless of everyone else — and if all voters are like that, approval **always elects the Condorcet
+  winner**. Brams–Fishburn's own caveat: with more than a handful of voters and three-plus candidates, this
+  is not a realistic assumption.
+
+### Criterion compliance depends on the voter model, not the method
+
+This is the unusual bit — the compliance table has one row per *model of how voters set their cutoff*, not a
+single verdict.
+
+| Voter model | Majority | Monotone + Participation | Condorcet + Smith | IIA | Clone indep. | Reversal sym. | Sincere favorite | Strategyproof |
+|---|---|---|---|---|---|---|---|---|
+| Zero information | ✗ | ✓ | ✗ | ✗ | ✗ | ✓ | ✓ | ✗ |
+| Leader rule | ✓ | ✓ | ✓ | ✗ | — | — | ✓ | ✗ |
+| Trembling ballots | ✓ | ✓ | ✓ | ✗ | — | — | ✓ | ✗ |
+| Binary (dichotomous) preferences | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+
+(Wikipedia flags this table as incomplete; the blanks are blank there. ✗ on IIA for the three realistic rows
+is the honest headline.)
+
+- **Sincere favorite is satisfied in every row** — approval never punishes you for approving your favorite.
+  That is its strongest formal claim and the direct answer to
+  [favorite betrayal](glossary.md) under Hare/IRV.
+- **Monotonicity holds unconditionally** (more approvals never hurt), and approval **fails later-no-harm**
+  (approving a second candidate can beat your first). Brams' framing: those two facts are the same fact seen
+  from opposite sides, and the tension between them is exactly what the cutoff decision resolves.
+
+## Worked example 1 — Tennessee capital, five strategy scenarios
+
+Same electorate as the standard Condorcet example. Nashville is the Condorcet winner, Memphis the Condorcet
+loser. Wikipedia's von Neumann–Morgenstern utilities (0–100), with the average I need for the zero-info rule:
+
+| Faction (share) | Memphis | Nashville | Chattanooga | Knoxville | Average |
+|---|---|---|---|---|---|
+| Memphis (42%) | 100 | 15 | 10 | 0 | 31.25 |
+| Nashville (26%) | 0 | 100 | 20 | 15 | 33.75 |
+| Chattanooga (15%) | 0 | 15 | 100 | 35 | 37.5 |
+| Knoxville (17%) | 0 | 15 | 40 | 100 | 38.75 |
+
+**Zero-info** (approve above your own average) — worked through myself:
+
+- Memphis voters: only 100 > 31.25 → {Memphis}
+- Nashville voters: only 100 > 33.75 → {Nashville}
+- Chattanooga voters: 100 > 37.5, but Knoxville's 35 falls just short → {Chattanooga}
+- Knoxville voters: 100 and Chattanooga's 40 both clear 38.75 → {Chattanooga, Knoxville}
+
+Totals: **Memphis 42, Nashville 26, Chattanooga 32, Knoxville 17.** Memphis — the Condorcet *loser* — wins,
+on minority approval, with more voters disapproving than approving. Only one faction approved more than one
+candidate.
+
+All five scenarios from the article:
+
+| Expectations | Memphis | Nashville | Chattanooga | Knoxville | Winner |
+|---|---|---|---|---|---|
+| Zero-info | 42 | 26 | 32 | 17 | Memphis (Condorcet loser) |
+| Memphis leading Chattanooga | 42 | 58 | 58 | 58 | three-way tie |
+| Chattanooga leading Knoxville | 42 | 68 | 83 | 17 | Chattanooga |
+| Chattanooga leading Nashville | 42 | 68 | 32 | 17 | Nashville |
+| Nashville leading Memphis | 42 | 58 | 32 | 32 | Nashville |
+
+Only the last row is an equilibrium — the expected winner and runner-up match the actual ones — and there the
+Condorcet winner takes it. The second row collapses into a three-way tie precisely because the expected
+leader was the Condorcet loser and everyone who didn't rank Memphis first ranked it last.
+
+**The lesson**: with preferences held fixed, approval's outcome is a function of what voters *believe about
+the polls*. Polling error isn't noise around an approval result; it moves the result.
+
+## Worked example 2 — dichotomous cutoff and IIA
+
+The article's second example separates two cutoff rules that look similar and behave differently. Four
+candidates, approval percentages per bloc, voters approving anything above **50%** (a fixed, dichotomous
+cutoff) versus anything above **their own average** (a floating cutoff):
+
+| Bloc | A | B | C | D | Their average |
+|---|---|---|---|---|---|
+| 25% | 90 | 60 | 40 | 10 | 50 |
+| 35% | 10 | 90 | 60 | 40 | 50 |
+| 30% | 40 | 10 | 90 | 60 | 50 |
+| 10% | 60 | 40 | 10 | 90 | 50 |
+
+Both rules coincide here: **C wins with 65%**, over B 60%, D 40%, A 35%.
+
+Now drop a loser and recompute:
+
+- **A drops out, floating (above-average) cutoff** → the averages all shift and **B wins with 60%**, C 55%.
+  The winner changed because an irrelevant alternative left. IIA violated.
+- **A drops out, fixed 50% cutoff** → nobody's ballot changes; **C still wins**.
+- **D drops out, "approve your top 2"** → **B wins with 70%**, C and A on 65%. IIA violated again.
+- **D drops out, fixed 50% cutoff** → **C still wins**.
+
+So approval's IIA failure isn't in the tabulation — it's entirely in the cutoff rule. A voter with a genuinely
+fixed standard of acceptability gives approval IIA for free; a voter who recalibrates against the field does
+not. That is the same "your values shouldn't depend on who else is running" point Ogren makes about core
+support in [rcv-and-core-support](rcv-and-core-support.md), arriving from the opposite direction.
+
+## Empirical comparisons
+
+- **2002 French presidential, first round.** Actual: Chirac 19.9%, Le Pen 16.9%, Jospin 16.2% — Jospin
+  eliminated, and Le Pen then lost the runoff 82.2–17.8, which is about as clear a sign as exists that the
+  wrong two advanced. Laslier and Van der Straeten's in-precinct approval experiment: **Chirac 36.7%, Jospin
+  32.9%, Le Pen 25.1%** — Jospin advances, Le Pen doesn't. A textbook center-squeeze correction.
+- **2012 French presidential** (Baujard et al., approval and score): unifying candidates gained, polarizing
+  ones lost, relative to plurality.
+- **Brams and Herschbach (*Science*, 2001)**: approval should raise turnout, defuse spoilers, and reduce
+  negative campaigning — you're courting your opponents' approvals, not just your own base.
+- **1987 MAA presidential election, 5 candidates, 3,924 voters** (Brams' analysis): 79% approved exactly one,
+  16% two, 5% three, 1% four. Winner had **1,267 approvals = 32%**. Even among mathematicians who chose the
+  method, four out of five bullet voted.
+
+## How it sits against the rest of these notes
+
+- **vs. IRV/Hare**: approval cannot center-squeeze the way Hare does
+  ([hare-center-squeeze-examples](hare-center-squeeze-examples.md)) — nothing is eliminated, so no backup
+  support is ever discarded — and it passes sincere favorite outright. It pays for that with cutoff
+  indeterminacy, which IRV doesn't have.
+- **vs. Condorcet (Ranked Robin, Schulze, …)**: approval only reaches the Condorcet winner *conditionally* —
+  under the leader rule, trembling ballots, or dichotomous preferences. Ranked Robin
+  ([ranked-robin-results-explained](ranked-robin-results-explained.md)) gets there unconditionally from the
+  pairwise matrix. Approval's counterargument is that the ranked ballot never had the intensity information in
+  the first place.
+- **vs. STAR**: STAR is the "more expressive" branch — 0–5 scores plus an automatic runoff. The Independent
+  Party of Oregon walked exactly that path in 2020 after approval failed to produce a nominee. Whether the
+  extra levels help or just invite more strategy is the live disagreement; the criticism section here is
+  precisely that binary is under-expressive, and the reply is that grading invites strategy.
+- **vs. LeGrand's ranked-only world**: he prefers approval and never covers it, which is why his site can't
+  speak to the cardinal-vs-ordinal argument at all.
+
+## New ideas and terms
+
+- **Approval cutoff / acceptance threshold** — the line a voter draws through their own preference order.
+  The whole strategic content of an approval ballot. *Floating* (above-average, top-k) cutoffs break IIA;
+  *fixed* (dichotomous) cutoffs don't.
+- **Dichotomous preferences** — candidates sort into two indifference classes, acceptable and not. Under this
+  model approval is strategyproof and Condorcet-consistent. Unrealistic at scale.
+- **Sincere vote (approval sense)** — any ballot that, if it approves X, also approves everything strictly
+  above X. Deliberately admits many ballots per voter.
+- **Bullet voting** — approving only your favorite. The mechanism by which approval degenerates into
+  plurality.
+- **Chicken dilemma / Burr dilemma** — two allied frontrunners' camps each bullet-vote to protect their own
+  candidate and hand the win to a third. Named for the Jefferson–Burr tie of 1800.
+- **Compromising** — approving an unacceptable candidate to block a worse one. The honest-favorite cousin of
+  lesser-evil voting.
+- **Prospective rating (Myerson–Weber)** — utility weighted by the probability your vote is pivotal in each
+  pairwise tie. Approve everything positive.
+- **Leader rule (Laslier)** — approve everyone you prefer to the expected leader, plus the leader if you
+  prefer them to the runner-up. Its equilibrium is the Condorcet winner.
+- **Later-no-harm** — approving an additional candidate must not hurt your earlier ones. Approval **fails**
+  this, necessarily, and its monotonicity is the flip side of the same coin.
+- **Sincere favorite criterion** — approving your true favorite is never counterproductive. Approval passes
+  under every voter model.
+- **Summability** — a method is summable if a precinct can report one number per candidate. Approval is;
+  IRV isn't. An administrative property, not a fairness one, but it drives adoption.
+- **Unified primary** — a nonpartisan primary using approval, top two advance. St. Louis' Proposition D
+  variant.
+- **Overvote immunity** — no ballot can be spoiled by marking too many candidates, because there is no limit.
+
+## Links referenced in the article
+
+- [Brams & Fishburn, *Approval Voting* (1983)](https://archive.org/details/approvalvoting00bram) — the
+  standard reference; nearly every strategy claim above traces here
+- [Brams & Fishburn, "Going from Theory to Practice: The Mixed Success of Approval Voting" (2003)](https://web.archive.org/web/20181218010629/http://www.nyu.edu/gsas/dept/politics/faculty/brams/theory_to_practice.pdf)
+- [Laslier & Van der Straeten, "Approval Voting: An Experiment during the French 2002 Presidential Election"](https://web.archive.org/web/20050507223548/http://www.lse.ac.uk/collections/VPP/VPPpdf_Wshop2/jflkvdscaen.pdf)
+- [Baujard et al., "Who's favored by evaluative voting?" (2012 French election)](https://hal.archives-ouvertes.fr/hal-00803024/file/cahier_2013-05.pdf)
+- [Myerson & Weber, "A Theory of Voting Equilibria"](https://ghostarchive.org/archive/20221009/http://www.kellogg.northwestern.edu/research/math/papers/782.pdf)
+- [Laslier, "Strategic approval voting in a large electorate"](https://halshs.archives-ouvertes.fr/docs/00/12/17/51/PDF/stratapproval4.pdf)
+- [Nagel, "The Burr Dilemma in Approval Voting" (2007)](https://www.journals.uchicago.edu/doi/10.1111/j.1468-2508.2007.00493.x)
+- [Hamlin & Hua, "The case for approval voting" (2023)](https://doi.org/10.1007/s10602-022-09381-x)
+- [Center for Election Science — Fargo's first approval election](https://www.electionscience.org/commentary-analysis/fargos-first-approval-voting-election-results-and-voter-experience/)
+- [Center for Election Science — Fargo's second approval election](https://electionscience.org/commentary-analysis/fargos-second-approval-voting-election-runs-smoothly/)
+- [AP: North Dakota governor signs bill ending Fargo's voting system (April 2025)](https://apnews.com/article/fargo-north-dakota-legislature-voting-elections-8f85df3e17bf77fd7af41693569831ac)
+- [Score voting](https://en.wikipedia.org/wiki/Score_voting) ·
+  [Multiwinner approval](https://en.wikipedia.org/wiki/Multiwinner_approval_voting) ·
+  [Sequential proportional approval](https://en.wikipedia.org/wiki/Sequential_proportional_approval_voting) ·
+  [Unified primary](https://en.wikipedia.org/wiki/Unified_primary)
+
+## Related local material
+
+- [glossary.md](glossary.md) — all terms above are indexed there
+- [rcv-and-core-support](rcv-and-core-support.md) — the cardinal-vs-ordinal argument approval sits inside
+- [legrand-ranked-ballot-methods](legrand-ranked-ballot-methods.md) — the ranked-only site whose author
+  prefers approval to everything on it
+- [hare-center-squeeze-examples](hare-center-squeeze-examples.md) — the failure mode approval is immune to

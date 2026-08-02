@@ -18,8 +18,23 @@ those definitions are filled in here from the standard social-choice literature.
   placed below every ranked one and tied with each other.
 - **Ordinal preferences** — rankings only; silent about gaps between candidates.
 - **Cardinal preferences** — strength of preference; what any utility- or intensity-based argument requires.
+- **Approval ballot** — a 0/1 score per candidate: approve any number, no limit, so **overvoting is
+  impossible**. [→ [approval-voting](approval-voting.md)]
 - **Approval / score / STAR** — cardinal methods, outside LeGrand's ranked-only scope. STAR = Score Then
   Automatic Runoff (score everyone 0–5, top two by total score go to an automatic pairwise runoff).
+  Score voting is approval with more levels; **combined approval** uses three (−1, 0, +1).
+- **Approval cutoff (acceptance threshold)** — the line a voter draws through their own preference order to
+  turn it into an approval ballot. Approval's entire strategic content lives here, because it is the one
+  method with *many* sincere ballots per voter. A **fixed (dichotomous) cutoff** — "anyone I'd genuinely
+  accept" — is IIA-safe; a **floating** one (above-average utility, top-k) is not.
+  [→ [approval-voting](approval-voting.md)]
+- **Dichotomous preferences** — candidates fall into exactly two indifference classes, acceptable and not,
+  with no ranking inside either. Under this model approval is strategyproof *and* Condorcet-consistent;
+  Brams and Fishburn concede it is unrealistic beyond a handful of voters.
+  [→ [approval-voting](approval-voting.md)]
+- **Summability** — a precinct can report one integer per candidate and the totals just add. Plurality and
+  approval are summable; IRV is not, because eliminations need the whole ballot set. Administrative, not a
+  fairness property — but it drives adoption.
 
 ## 2. Pairwise machinery
 
@@ -108,6 +123,16 @@ the Smith set).
 - **Top Two IRV** — only the two first-choice leaders reach the runoff.
   [→ [rcv-and-core-support](rcv-and-core-support.md)]
 
+### Cardinal
+
+- **Approval** — approve any number of candidates, most approvals wins. Weber named it in 1971,
+  Brams and Fishburn formalised it in 1978. Its compliance depends on *how voters set their cutoff*, not on
+  the tabulation: Condorcet-consistent under the leader rule or dichotomous preferences, capable of electing
+  the Condorcet loser under a naive above-average cutoff. Used in Fargo ND 2018–2025 (banned statewide April
+  2025) and in St. Louis since 2020. [→ [approval-voting](approval-voting.md)]
+- **Unified primary** — nonpartisan primary run by approval, top two advance to the general. St. Louis'
+  Proposition D variant. [→ [approval-voting](approval-voting.md)]
+
 ## 5. Criteria and properties
 
 Every one of these appears as a row in LeGrand's compliance table with no definition given.
@@ -132,6 +157,17 @@ Every one of these appears as a row in LeGrand's compliance table with no defini
   verified Coombs counterexample is in the [note](legrand-ranked-ballot-methods.md).
 - **Nonmanipulability (strategy-proofness)** **[LeGrand]** — no voter ever gains by ranking insincerely.
   **Every** ranked method fails this; see Gibbard–Satterthwaite.
+- **Independence of irrelevant alternatives (IIA)** — adding or removing a losing candidate must not change
+  who wins. No ranked method satisfies it (Arrow); approval satisfies it only if voters keep a *fixed*
+  cutoff. [→ [approval-voting](approval-voting.md)]
+- **Later-no-harm** — expressing support for a later choice must not hurt your earlier ones. Approval
+  necessarily fails it — that failure is the same fact as its monotonicity, seen from the other side.
+  [→ [approval-voting](approval-voting.md)]
+- **Sincere favorite (favorite-betrayal) criterion** — supporting your true favorite must never be
+  counterproductive. Approval passes under every voter model; Hare fails it.
+  [→ [approval-voting](approval-voting.md)]
+- **Participation criterion** — casting a sincere ballot must never make the result worse for you than
+  staying home. Approval passes.
 - **Decisiveness** — how often a method needs a tiebreaker at all. Black is the most decisive of LeGrand's
   set, Copeland the least.
 - **Strategic straightforwardness** — how easy it is to vote honestly without regret; a softer, practical
@@ -147,6 +183,17 @@ Every one of these appears as a row in LeGrand's compliance table with no defini
 - **Lesser-evil coordination pressure** — voters for similar candidates must agree in advance whom to back;
   the plurality pathology that Carey reproduces.
 - **Candidate saturation** — flooding a race with similar candidates to exploit a clone-dependent method.
+- **Bullet voting** — approving (or ranking) only your favorite. Approval's characteristic degeneracy: if
+  everyone bullet votes, approval *is* plurality. 79% of voters did it in the 1987 MAA election, 80%+ in
+  Dartmouth's student elections. [→ [approval-voting](approval-voting.md)]
+- **Chicken dilemma / Burr dilemma** — two allied frontrunners' camps each bullet-vote to avoid helping the
+  other, and a third candidate wins. Named for the Jefferson–Burr tie of 1800.
+  [→ [approval-voting](approval-voting.md)]
+- **Compromising** — approving a candidate you find unacceptable to block a worse one. Unlike favorite
+  betrayal it never requires demoting your favorite. [→ [approval-voting](approval-voting.md)]
+- **Indeterminacy (Saari–Van Newenhizen)** — with voter preferences fixed, approval can *sincerely* elect
+  any candidate, Condorcet winner or Condorcet loser, depending only on where voters put their cutoffs.
+  Read as a defect by Saari, as responsiveness to intensity by Brams. [→ [approval-voting](approval-voting.md)]
 - **Bland-winner objection** — the claim that Condorcet methods elect inoffensive nobodies.
   [→ [rcv-and-core-support](rcv-and-core-support.md)]
 
@@ -168,6 +215,13 @@ All from [rcv-and-core-support](rcv-and-core-support.md).
 - **Gibbard–Satterthwaite theorem** — no deterministic ranked method with three or more candidates can be both
   non-dictatorial and strategy-proof. This is why LeGrand's "nonmanipulable?" row is uniformly NO: the design
   target is making manipulation *hard*, not impossible.
+- **Myerson–Weber voting equilibrium** — rational-voter model for approval: approve every candidate with a
+  positive **prospective rating** (utility weighted by the probability your vote is pivotal in each pairwise
+  tie). Approving your favorite and rejecting your least favorite are dominant strategies.
+  [→ [approval-voting](approval-voting.md)]
+- **Leader rule (Laslier)** — the practical special case: approve everyone you prefer to the expected
+  leader, plus the leader if you prefer them to the expected runner-up. If everyone plays it, the
+  equilibrium elects the Condorcet winner when one exists. [→ [approval-voting](approval-voting.md)]
 - **Arrow's impossibility theorem** — no ranked method can simultaneously satisfy unrestricted domain,
   Pareto, independence of irrelevant alternatives, and non-dictatorship. Applies to *methods*; arguments about
   an idealized preference-aggregation *standard* are not bound by it.
@@ -180,4 +234,6 @@ All from [rcv-and-core-support](rcv-and-core-support.md).
 - [LeGrand, *Ranked-ballot voting methods*](https://www.cs.angelo.edu/~rlegrand/rbvote/) — methods, examples,
   criterion table, calculator
 - [Ogren, *RCV and core support*](https://voting-in-the-abstract.medium.com/rcv-and-core-support-e0d1780a9184)
+- [*Approval voting* (Wikipedia)](https://en.wikipedia.org/wiki/Approval_voting) — history, use, strategy,
+  the model-dependent compliance table [→ [approval-voting](approval-voting.md)]
 - [Equal Vote / BetterVoting](https://bettervoting.com) — Ranked Robin in production
