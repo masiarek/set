@@ -20,7 +20,7 @@ verifier found instead sits one layer down: two definitions that break on the en
 stated with a redundant axiom, a proof that uses more than it needs, and an example presented as an instance
 of a theorem it doesn't quite instantiate.
 
-The reason to have it here is coverage. Sixteen notes in, this folder can work an election but has almost
+The reason to have it here is coverage. Two dozen notes in, this folder can work an election but has almost
 nothing on **why** a method might be the right one, and nothing at all on the possibility that a vote has a
 *correct* answer rather than merely a fair procedure. That is section 4.3 of this entry, and it has no
 counterpart anywhere else in these notes.
@@ -90,6 +90,92 @@ Two absences worth recording, since both came up when this note was scoped:
   the non-monotonic methods — but the worked monotonicity failure is for Plurality with Runoff, and the
   failure mode that decided [Alaska 2022](rcv-and-core-support.md) is never described. The most widely
   adopted reform method in the English-speaking world gets a definition and a mention.
+
+## The frame: careful about ranks, until Section 3
+
+Every source in this folder has to decide what a "preference" is, and most of them decide by accident.
+This one decides on purpose, and then a habit of the field reasserts itself two sections later. Both halves
+are worth recording, because the good half is rarer than the bad half.
+
+### What the entry gets right, explicitly
+
+Section 1.1 separates the **ballot** from the **opinion** before defining anything: *"the ballots used by a
+voting method are intended to reflect some aspect of the voters' opinions about the candidates."* It then
+names the ordinal reading as an assumption rather than a definition — *"A common assumption in the voting
+theory literature is that a ranking … expresses a voter's ordinal preference ordering"* — and immediately
+marks what that assumption costs: other ballots carry *"information that cannot be inferred directly from a
+voter's ordinal preference ordering, for example, by describing the **intensity** of a preference."*
+
+The care continues structurally. §2.1 is titled **Ranking Methods**, scoping itself in the heading. §2.2,
+**Voting by Grading**, is a real treatment rather than an appendix. §2.4 makes **information required from
+the voters** one of its four criteria for comparing methods at all, with the expressiveness-versus-usability
+trade-off stated plainly. And Arrow, in §4.2, is given for social welfare functions with the ordinal
+restriction intact.
+
+That last point deserves emphasis, because this folder has now caught the same fact dropped in both
+directions: [math-in-society-lippman](math-in-society-lippman.md) states Arrow for "a voting method" with the
+ordinal restriction deleted, one page before introducing approval voting;
+[cardinal-voting-systems](cardinal-voting-systems.md) keeps the restriction and then over-infers, concluding
+that cardinal methods therefore beat the theorem. **Pacuit is the third source and the first clean
+statement** — right where one source is too loose and the other too eager.
+
+### What happens anyway
+
+Section 3, the paradoxes, is 666 lines and the most cited part of the entry. Counting occurrences in it:
+
+| term | occurrences in Section 3 |
+|---|---|
+| approval | **0** |
+| score voting | **0** |
+| cardinal | **0** |
+| intensity | **0** |
+| grading methods | **2**, both Majority Judgement |
+
+Every paradox is posed on a profile of rankings. Condorcet's paradox, the monotonicity failures, the no-show
+and multiple-districts paradoxes, the multiple elections paradox — all are properties a method can exhibit
+only if its ballot is an ordering, or if a grading ballot is first collapsed into one. The two Majority
+Judgement appearances are parenthetical, both in the variable-population material.
+
+So the entry's own §2.4 criterion — *what information do the ballots convey* — is stated as a way of
+comparing methods and then never used to compare any. The comparison that actually happens across §3 and §4
+is criterion-satisfaction, and the criteria are defined over rankings.
+
+This is not a lapse so much as an inheritance: the paradox literature **is** ranking-based, and a survey
+reporting otherwise would be misreporting its field. The consequence is still real. A reader who takes §3 as
+"the problems with voting methods" — which is how it reads, and how it gets cited — comes away with a
+catalogue of problems that only ranking methods can have, having been told one section earlier that ballot
+expressiveness is one of the four things distinguishing methods.
+
+### The one place the entry shows the cost, and doesn't return to it
+
+§2.2's grading example is five voters grading three candidates 0–4, and **one ballot set gives three
+winners**: Score Voting elects A on the mean (2.6 to 2.4 to 1.8), Majority Judgement elects B on the median
+(3 to 2 to 2), and C beats both head-to-head 3–2. The disagreement is entirely about what to do with numbers
+a ranking never sees — collapse those grades to rankings and the mean and median, the two quantities the
+methods actually differ over, are gone.
+
+That example is the entry's own demonstration that the ordinal frame discards decision-relevant information.
+It appears in §2.2 and is never referred to again. (Worked in full under *What it gets right*, below.)
+
+### Why this matters for a reader of this folder
+
+The **grading ballot** is not a ranking with extra decoration; it is a different object, and the criteria
+apparatus cannot see most of it. Three consequences already visible elsewhere in these notes:
+
+- A criterion compliance claimed for a rated method is usually a claim about **voter behaviour**, not about
+  the tabulation — what [approval-voting](approval-voting.md) reaches from the cutoff side and
+  [brandl-peters-approval-characterizations](brandl-peters-approval-characterizations.md) from the axiom side.
+- **Rated IIA and ordinal IIA are different properties**, and conflating them is what
+  [cardinal-voting-systems](cardinal-voting-systems.md) convicts electowiki of.
+- Where a method's ballots admit many sincere expressions of one preference ordering, the method is **not a
+  function on Arrow's domain at all** — so "does it pass Arrow" is a category question before it is a
+  substantive one.
+
+The gap also has a practical shape. Because the taxonomy runs Ranking Methods (§2.1) / Grading Methods (§2.2)
+/ neither (§2.3, quadratic voting and liquid democracy), there is **no cell for a method that takes a grading
+ballot and finishes with a pairwise stage** — where STAR, Smith//Score and 3-2-1 live. That absence is the
+subject of [sep-star-suggestion-email](sep-star-suggestion-email.md), and it is a taxonomic consequence of
+the framing rather than an oversight about any one method.
 
 ## Findings
 
@@ -399,10 +485,8 @@ model behind it.
 - **Nanson, Coombs, Copeland, Schwartz, Black, Condorcet's Rule** are all defined, and all already in the
   [glossary](glossary.md) from LeGrand — this entry is the citation for the ones LeGrand names without
   attribution.
-- **Arrow** is stated correctly and for social welfare functions, with the ordinal restriction intact — the
-  thing [math-in-society-lippman](math-in-society-lippman.md) found dropped and
-  [cardinal-voting-systems](cardinal-voting-systems.md) found over-applied. Third source, first clean
-  statement.
+- **Arrow** is stated correctly and for social welfare functions, with the ordinal restriction intact —
+  third source, first clean statement, worked out under *The frame* above.
 
 ## Bottom line
 

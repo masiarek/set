@@ -24,6 +24,14 @@ is a definitional gap that breaks Hare and Coombs equally, one is a redundant ax
 two-candidate majority rule, and the rest are citations. There is no item whose acceptance would make
 any voting method look better or worse.
 
+**That property is worth protecting, and there is now something that could cost it.**
+[sep-star-suggestion-email](sep-star-suggestion-email.md) is a second draft to the same recipient,
+asking him to consider covering the score-plus-runoff family in a future revision — a request, about
+one method, carrying a disclosure. **Send this email first, on its own, and that one only if this
+exchange goes somewhere.** Sent together, or in the other order, the disclosure attached to that email
+colours these nine method-neutral items retroactively, which is precisely the failure the Lippman
+email's disclosure was placed to avoid.
+
 ## What stayed cut
 
 Three observations from the note that are **critiques rather than corrections**, and so do not belong
