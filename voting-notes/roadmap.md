@@ -13,7 +13,9 @@ does it suit the house method — claims checked against sources, worked small p
 
 ## Top tier
 
-1. **Condorcet–IRV hybrids: Smith//IRV, Benham, BTR-IRV, Woodall, Tideman's Alternative.**
+1. ✅ **Condorcet–IRV hybrids: Smith//IRV, Benham, BTR-IRV, Woodall, Tideman's Alternative.**
+   **Done 2026-08-02** — [condorcet-irv-hybrids](condorcet-irv-hybrids.md), with an exhaustive
+   3-candidate burial search that also delivers a down payment on item 2.
    The direct fix for the center-squeeze pathologies documented in
    [hare-center-squeeze-examples](hare-center-squeeze-examples.md), on the same ranked ballots.
    Smith//IRV exists here only as a VSE-table row; the others not at all. Green-Armytage's

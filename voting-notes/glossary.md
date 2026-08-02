@@ -14,6 +14,14 @@ those definitions are filled in here from the standard social-choice literature.
   in pairwise comparisons.
 - **Scored (cardinal) ballot** — a rating per candidate (`Palin 5, Begich 4, Peltola 0`). Carries *strength*
   of preference, which rankings cannot. [→ [rcv-and-core-support](rcv-and-core-support.md)]
+- **Grading ballot** — the same object under the name the SEP entry gives it, which treats the grades as a
+  shared *language* — a common scale meaning the same thing to every voter — rather than as arbitrary
+  numbers. The distinction earns its keep because a grade is then interpersonally comparable by
+  construction, which is what Sen's theorem says a cardinal method needs and what per-voter normalisation
+  destroys. **A grading ballot is not a ranking with decoration**: collapse it to the ranking it induces and
+  the mean and the median — the two quantities score voting and majority judgement actually differ over —
+  are both gone. [→ [sep-voting-methods](sep-voting-methods.md),
+  [cardinal-voting-systems](cardinal-voting-systems.md)]
 - **Truncated / bullet ballot** — a ballot ranking only some candidates. Unranked candidates are conventionally
   placed below every ranked one and tied with each other.
 - **Ordinal preferences** — rankings only; silent about gaps between candidates.
@@ -179,6 +187,23 @@ the Smith set).
   several European cities, parties and open-source projects.
 - **Tideman** **[LeGrand]** — **ranked pairs**: lock in pairwise victories strongest→weakest, skipping any
   that would contradict an already-locked stronger one. Produces a full ordering, not just a winner.
+- **Condorcet–IRV hybrids** — the family that bolts a pairwise gate onto Hare elimination: Condorcet
+  winner when one exists, IRV machinery otherwise. Burial against the eliminate-by-first-preferences
+  members can only ever reproduce sincere IRV's outcome, never steal beyond it — measured at 3–4× more
+  burial-resistant than minimax or Ranked Robin. [→ [condorcet-irv-hybrids](condorcet-irv-hybrids.md)]
+  - **Smith//IRV** — compute the Smith set once, delete everyone outside it, run IRV on the rest.
+  - **Benham** — run IRV, but before each elimination elect anyone who pairwise-beats all remaining.
+  - **Woodall (method)** — plain IRV eliminations untouched; elect the moment only one member of the
+    *original* Smith set survives. ⚠️ Same Douglas Woodall as the criteria author (mono-raise-delete,
+    later-no-harm) — different hat.
+  - **BTR-IRV** — bottom-two runoff: each round the two lowest first-preference candidates fight
+    pairwise, the matchup loser is eliminated. No Smith computation anywhere — and the one hybrid whose
+    *eliminations* read the (falsifiable) pairwise matrix, which makes it the family's weak member under
+    burial.
+  - **Tideman's Alternative** — a.k.a. Alternative Smith: restrict to the current Smith set, eliminate
+    the fewest-first-preferences candidate, recompute; repeat until one remains. ⚠️ Not "Tideman" =
+    ranked pairs above — a different method by the same Nicolaus Tideman (whose third appearance here is
+    the PSC paper in [single-transferable-vote](single-transferable-vote.md)).
 - **Ranked Robin** — Equal Vote's Condorcet method; scores by matchup wins (Copeland), then breaks ties by
   greatest sum of pairwise margins among the tied (their "total advantage"). Debuted Oct 2021 as **Ranked
   Advantage Voting**, renamed Nov 2021. Honest-ballot VSE: top of the Condorcet cluster, tie-ladder
@@ -200,6 +225,15 @@ scale. Equal ratings are allowed and blanks are meaningful, neither of which a r
   **"Cardinal" on its own predicts nothing about a method with a second stage** — which is the whole
   distance between the [score](score-voting.md) and [STAR](star-voting.md) compliance rows.
   [→ [cardinal-voting-systems](cardinal-voting-systems.md)]
+- **Score-then-runoff family** — methods taking a **grading ballot** and finishing with a *pairwise* stage:
+  **STAR** (top two by total score, then whichever more voters graded above the other), **Smith//Score**,
+  **3-2-1 voting** (Quinn: three semifinalists on "good" ratings, two finalists after dropping the one with
+  most "bad", then pairwise), and **Reverse STAR** (pairwise stage first). They exist to answer a problem
+  score voting has and the graders don't fix: once the finalists are set, exaggerating a grade cannot move
+  the result, so the min-max incentive that turns [score voting](score-voting.md) into plurality loses its
+  payoff. The family is the empty cell in the SEP entry's taxonomy — §2.1 Ranking Methods, §2.2 Voting by
+  Grading, and nothing where the two meet. [→ [sep-voting-methods](sep-voting-methods.md),
+  [star-voting](star-voting.md)]
 - **Gradation** — the number of steps *inside* the scale, as against its endpoints. Where the family gets its
   name: a cardinal ballot out-informs a ranking only when the gradations **exceed the candidate count**, so a
   0–5 ballot in a 7-way race is strictly *less* expressive than a ranking.
