@@ -246,7 +246,10 @@ gen-ed textbook that does exactly this, and then advertises the result as a majo
   32.9%, Le Pen 25.1%** — Jospin advances, Le Pen doesn't. A textbook center-squeeze correction.
 - **2012 French presidential** (Baujard et al., approval and score): unifying candidates gained, polarizing
   ones lost, relative to plurality.
-- **Brams and Herschbach (*Science*, 2001)**: approval should raise turnout, defuse spoilers, and reduce
+- **Brams and Herschbach, ["The Science of Elections"](https://www.science.org/doi/10.1126/science.292.5521.1449),
+  *Science* **292** (5521), p. 1449, 25 May **2001*** (verified 2026-08-01; electowiki dates it 2000 and is
+  wrong — the DOI encodes vol. 292 / iss. 5521 / p. 1449, and vol. 292 runs Apr–Jun 2001): approval should raise
+  turnout, defuse spoilers, and reduce
   negative campaigning — you're courting your opponents' approvals, not just your own base. **All three are
   predictions, and two are marked unevidenced by a friendly source.** Brams restates them as numbered points in
   his MIT alumni column, which CRV hosts with bracketed editor's notes: turnout is "probably true but…not
@@ -627,9 +630,15 @@ the answer splits cleanly.
   social-choice criteria; "Effect on elections" gives the criticism one clause and the rebuttal four sentences;
   Fargo is still listed as current usage with no mention of the April 2025 ban.
 
-**Two discrepancies against this note**, unresolved — check before citing either: electowiki dates the
-Brams–Herschbach *Science* paper to **2000** (this note, from Wikipedia, says 2001) and the Greek parliament
-usage to **1864–1926** (this note says 1864–1923).
+**Two discrepancies against this note. One resolved, one still open:**
+
+- **Brams–Herschbach date — resolved against electowiki.** It dates the *Science* paper to 2000; the paper is
+  ["The Science of Elections"](https://www.science.org/doi/10.1126/science.292.5521.1449), *Science* **292**
+  (5521), p. 1449, **25 May 2001**. The DOI encodes the volume, issue and page, and vol. 292 runs April–June
+  2001. This note's 2001 stands. Checked 2026-08-01.
+- **Greek parliament dates — open.** electowiki says 1864–**1926**, this note (from Wikipedia) says 1864–**1923**.
+  Neither side is sourced, so the 1923/1926 endpoint is unverified in both directions — don't cite the end year
+  from either without a primary source.
 
 ### Net
 
