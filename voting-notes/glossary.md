@@ -616,10 +616,15 @@ fixed number of seats."
   introducing it. And **"Arrow proves cycles are unavoidable"** confuses the theorem with the Condorcet
   paradox: the intransitivity belongs to the **pairwise majority relation**, which is one input a ranked
   method may or may not consult. Borda returns a three-way tie on the standard cycle; ranked pairs and
-  Schulze emit a transitive order on every profile. Approval, score, STAR and majority judgment all escape
-  Arrow, identically and for the same uninteresting reason — his theorem quantifies over ordinal rules and
-  none of them is one. What the escape costs is that the winner then depends on information the preference
-  profile doesn't contain; see **Indeterminacy** in §6.
+  Schulze emit a transitive order on every profile. Approval, score, STAR and majority judgment are all
+  outside the theorem's scope, since it quantifies over ordinal rules and none of them is one — but **outside
+  the theorem is not the same as satisfying its conditions**, which is the third over-reading and the one
+  cardinal advocacy makes. The escape is also not free: Sen extended the framework to cardinal utilities and
+  found that measurability alone doesn't buy anything — **without interpersonal comparability the
+  impossibility survives intact**. A cardinal method escapes by assuming your 5 and my 5 are the same
+  quantity, which Arrow's framework deliberately withholds and the ballot cannot enforce. That, plus a winner
+  depending on information the preference profile doesn't contain (see **Indeterminacy** in §6), is what the
+  escape actually costs.
   [→ [rcv-and-core-support](rcv-and-core-support.md), [math-in-society-lippman](math-in-society-lippman.md),
   [horn-three-virtues-approval](horn-three-virtues-approval.md)]
 - **Inada's condition (1969)** — under **dichotomous preferences** the majority relation is **transitive**,
