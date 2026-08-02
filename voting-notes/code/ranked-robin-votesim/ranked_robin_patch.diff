@@ -1,0 +1,102 @@
+diff --git a/votesim/votemethods/__init__.py b/votesim/votemethods/__init__.py
+index ecfa5ac..7f7622d 100644
+--- a/votesim/votemethods/__init__.py
++++ b/votesim/votemethods/__init__.py
+@@ -51,6 +51,7 @@ SMITH_MINIMAX = 'smith_minimax'
+ RANKED_PAIRS = 'ranked_pairs'
+ BLACK = 'black'
+ COPELAND = 'copeland'
++RANKED_ROBIN = 'ranked_robin'
+ IRV = 'irv'
+ IRV_STV = 'irv_stv'
+ STV_GREGORY = 'stv_gregory'
+@@ -67,6 +68,7 @@ ranked_methods[STV_GREGORY] = irv.stv_gregory
+ ranked_methods[TOP_TWO] = irv.top2runoff
+ ranked_methods[BORDA] = ranked.borda
+ ranked_methods[COPELAND] = condorcet.copeland
++ranked_methods[RANKED_ROBIN] = condorcet.ranked_robin
+ 
+ SCORE = 'score'
+ STAR = 'star'
+diff --git a/votesim/votemethods/condorcet.py b/votesim/votemethods/condorcet.py
+index 93e6ae4..a19bd09 100644
+--- a/votesim/votemethods/condorcet.py
++++ b/votesim/votemethods/condorcet.py
+@@ -21,9 +21,10 @@ from votesim.votemethods.condcalcs import (smith_set,
+ 
+ logger = logging.getLogger(__name__)
+ 
+-__all__ = ['smith_minimax', 
+-           'ranked_pairs', 
+-           'smith_score']
++__all__ = ['smith_minimax',
++           'ranked_pairs',
++           'smith_score',
++           'ranked_robin']
+ 
+ 
+ @multi_win_eliminate_decorator
+@@ -363,8 +364,62 @@ def black(data, numwin=1):
+         
+     
+     
++def ranked_robin(data, numwin=1):
++    """Ranked Robin: Copeland completed by summed pairwise margins.
++
++    Tabulation per https://electowiki.org/wiki/Ranked_Robin -- elect the
++    candidate with the most pairwise victories (Copeland). If several tie,
++    the tied candidates become finalists and the finalist with the greatest
++    sum of margins of victory against the other finalists is elected
++    (1st Degree tiebreaker). If still tied, greatest sum of margins against
++    ALL candidates (2nd Degree). Remaining ties are returned as ties for the
++    caller to break (eRunner breaks them randomly), which stands in for the
++    lots/new-election recommendation for deeper ties.
++
++    Parameters are as for `copeland`; single-winner only for the tiebreak
++    stages (numwin > 1 falls back to plain Copeland ranking).
++    """
++    m = pairwise_rank_matrix(data)
++    win_losses = m - m.T
++    r_matrix = np.sign(win_losses)
++    tally = r_matrix.sum(axis=1)
++    winners, ties = winner_check(tally, numwin=numwin)
++
++    output = {}
++    output['vote_matrix'] = m
++    output['margin_matrix'] = win_losses
++    output['tally'] = tally
++    output['tie_degree'] = 0
++
++    if numwin == 1 and len(winners) == 0 and len(ties) > 1:
++        finalists = np.asarray(ties)
++        # 1st Degree: sum of margins vs. the other finalists.
++        sub_tally = win_losses[np.ix_(finalists, finalists)].sum(axis=1)
++        output['finalists'] = finalists
++        output['finalist_tally'] = sub_tally
++        w1, t1 = winner_check(sub_tally, numwin=1)
++        if len(w1) == 1:
++            winners = finalists[w1]
++            ties = np.array([], dtype=int)
++            output['tie_degree'] = 1
++        else:
++            # 2nd Degree: sum of margins vs. all candidates.
++            remaining = finalists[t1]
++            all_tally = win_losses[remaining].sum(axis=1)
++            w2, t2 = winner_check(all_tally, numwin=1)
++            if len(w2) == 1:
++                winners = remaining[w2]
++                ties = np.array([], dtype=int)
++                output['tie_degree'] = 2
++            else:
++                winners = np.array([], dtype=int)
++                ties = remaining[t2]
++                output['tie_degree'] = 3
++    return winners, ties, output
++
++
+ def copeland(data, numwin=1):
+-    
++
+     m = pairwise_rank_matrix(data)
+     win_losses = m - m.T
+     

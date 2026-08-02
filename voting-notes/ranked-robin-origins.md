@@ -255,12 +255,16 @@ equal.vote brand has become the Condorcet umbrella Wolk described.
 - **Burying/compromising inside the finalist set** — Jack Waugh's Gibbard-flavored challenge.
   Ogren's Borda-strategy runs were mentioned secondhand but never posted, and no published
   strategy-resistance numbers for Ranked Robin exist (the electowiki article offers criteria
-  arguments, not simulation results).
+  arguments, not simulation results). Still open after
+  [my honest-ballot VSE run](ranked-robin-vse-run.md) — strategy runs need votesim's tactical
+  harness or vse-sim.
 - ~~VSE, published~~ — **resolved, negatively (2026-08-01):** nothing citable was ever published
   anywhere; the thread's DM screenshot is the only known VSE data for the method (details in the
-  VSE section above). Running Ranked Robin through a current fork of vse-sim or votesim would be
-  a genuine contribution — Huang's votesim even has an unused `copeland()` sitting there as a
-  starting point.
+  VSE section above). **Follow-up, same day:** I implemented Ranked Robin in Huang's votesim
+  (starting from its unused `copeland()`) and ran 18,000 spatial elections — it tops a
+  statistically indistinguishable Condorcet cluster, ~3.6 VSE points above honest IRV, and its
+  margins ladder turns out to be VSE-neutral but halves the unresolved-tie rate:
+  [ranked-robin-vse-run.md](ranked-robin-vse-run.md).
 - **3+-way Copeland ties in production:** the thread's showcase examples are a 3-way and a 5-way
   tie decided by total margins (the official 1st Degree), but BetterVoting's `RankedRobin.ts`
   ladder (per the [BV1550 note](ranked-robin-results-explained.md)) applies head-to-head only when

@@ -101,8 +101,10 @@ the Smith set).
   that would contradict an already-locked stronger one. Produces a full ordering, not just a winner.
 - **Ranked Robin** — Equal Vote's Condorcet method; scores by matchup wins (Copeland), then breaks ties by
   greatest sum of pairwise margins among the tied (their "total advantage"). Debuted Oct 2021 as **Ranked
-  Advantage Voting**, renamed Nov 2021. [→ [ranked-robin-results-explained](ranked-robin-results-explained.md),
-  [ranked-robin-origins](ranked-robin-origins.md)]
+  Advantage Voting**, renamed Nov 2021. Honest-ballot VSE: top of the Condorcet cluster, tie-ladder
+  VSE-neutral but the most decisive method in the votesim field.
+  [→ [ranked-robin-results-explained](ranked-robin-results-explained.md),
+  [ranked-robin-origins](ranked-robin-origins.md), [ranked-robin-vse-run](ranked-robin-vse-run.md)]
 - **Top Two IRV** — only the two first-choice leaders reach the runoff.
   [→ [rcv-and-core-support](rcv-and-core-support.md)]
 
