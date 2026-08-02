@@ -1,0 +1,35 @@
+69 ballots in 15 types reproduce all 30 published cells exactly.
+
+Copeland: Dre 3, Edith 3, Frank 3, Ben 3, Abby 3, Cici 0
+Finalists tied on 3 wins: Dre, Edith, Frank, Ben, Abby  -> 3+ tied, so RankedRobin.ts takes the random rung
+
+1st Degree (sum of margins among the five finalists):
+  Edith  +20 votes  +29.0%
+  Frank  +15 votes  +21.7%
+  Ben     -1 votes   -1.4%
+  Abby   -15 votes  -21.7%
+  Dre    -19 votes  -27.5%
+
+Spec winner: Edith, +29.0% -- matching the thread's own
+published totals (+29.0, +21.7, -1.4, -21.7, -27.5), which also confirms the
+image erratum: Dre is -27.5%, not the -34.8% printed in the PNG.
+
+--- BetterVoting sandbox (https://bettervoting.com/sandbox) ---
+Voting Method: Ranked Robin,  Number of winners: 1
+Candidates: Dre,Edith,Frank,Ben,Abby,Cici
+Votes:
+9:4,0,3,5,2,4
+8:2,3,3,5,1,4
+8:1,1,3,2,2,3
+7:4,2,3,1,5,0
+6:3,4,1,2,0,5
+6:4,1,2,3,3,0
+6:0,2,4,1,3,1
+5:3,5,1,5,1,4
+4:5,1,4,3,0,2
+2:3,1,2,1,5,0
+2:1,1,0,3,0,4
+2:2,3,0,2,4,1
+2:3,0,1,0,4,2
+1:3,5,2,0,4,1
+1:0,0,5,2,4,3

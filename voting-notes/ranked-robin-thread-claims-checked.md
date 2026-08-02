@@ -219,6 +219,26 @@ draw-induced ties like the [BV1550 Ann/Bob case](ranked-robin-results-explained.
 With equal ranks and truncation switched on — BetterVoting's actual ballot rules — three candidates
 split 37.9% two-way / **32.0% three-way** / 30.1% resolved outright.
 
+### The thread's own showcase example, as actual ballots
+
+Post 1 published its two worked examples as PNGs of a *preference matrix*; it never published
+ballots, and the sandbox needs ballots. Reconstructing them by annealing over weighted weak orders
+turns out to be possible **exactly** — a 69-ballot, 15-type profile reproduces all 30 cells of the
+5-cycle matrix ([five_cycle_repro.py](code/thread136-claims/five_cycle_repro.py)). Worth recording
+in its own right: the matrix in the image is a genuine ballot profile, not a hand-built table that
+no election could produce. It also re-confirms the [erratum](ranked-robin-origins.md#errata-both-example-images-have-arithmetic-slips)
+— Dre's total is −27.5%, not the −34.8% printed.
+
+Fed to the deployed tabulator (`POST /API/Sandbox`, 2026-08-01), all 30 `votesPreferredOver` cells
+come back matching the PNG, Copeland is Dre/Edith/Frank/Ben/Abby 3 and Cici 0 — and the result is
+`tieBreakType: "random"`, log *"picked in random tie-breaker, more robust tiebreaker not yet
+implemented"*. **All five finalists can win**: re-submitting the identical ballots with the
+candidates listed in a different order elects Edith, Frank, Ben or Abby in turn. The spec elects
+Edith outright at +29.0%. So the method's own flagship example — the one written to demonstrate
+that the margins tiebreaker handles a five-way tie as easily as a three-way one — is decided by
+listing order on the live site. Posted to
+[#1469](https://github.com/Equal-Vote/bettervoting/issues/1469).
+
 **Caveat on the generator.** Impartial culture is the worst case for cycles — real electorates are
 structured, and my [spatial-model VSE run](ranked-robin-vse-run.md) found ties there are ~95% clone
 dead heats rather than cycles, a completely different taxonomy. Both generators agree on the point
