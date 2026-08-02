@@ -41,6 +41,10 @@ does.
 | Fargo, ND | 2018–2025 | First US jurisdiction; see below |
 | St. Louis, MO | 2020– | Proposition D passed with 70%; approval used as a "unified primary" (top two advance) |
 
+Sourced from Wikipedia. A longer and looser list of claimed precedents — Sparta, the pre-12th-Amendment US,
+the USSR, China's National People's Congress — is CRV's, and is adjudicated in the CRV section below; the
+headline one does not survive.
+
 - **Fargo** adopted approval by ballot initiative in 2018, after a 2015 commissioner race split six ways and
   was won on a **22% plurality**. First election 9 June 2020: two commissioners from seven candidates, both
   winners over 50% approval, **2.3 approvals per ballot**, 62% of polled voters happy with the change. June
@@ -57,7 +61,10 @@ does.
   Libertarian National Committee and LP-TX/CO/AZ/NY, Alliance 90/The Greens (Munich), Czech and German
   Pirates.
 - **Two documented retreats, which are the interesting part.** IEEE dropped it in 2002 — the executive
-  director's stated reason was that "few of our members were using it." Dartmouth's alumni association
+  director's stated reason was that "few of our members were using it," and CRV puts a number on the same
+  reason: **"the large percentage (80%) of IEEE members who voted plurality-style"**
+  ([rangeVapp](https://rangevoting.org/rangeVapp.html), filed there under "A failure of approval voting in the
+  real world"). Dartmouth's alumni association
   replaced it with runoffs by an 82–18 vote in 2009; Dartmouth students used it for student-body president
   from 2011 and abandoned it before 2017, after winners kept landing under 40% (41% in 2011, 32% in 2012) and
   *The Dartmouth* reported **over 80% of voters approving exactly one candidate** in 2014 and 2016. The
@@ -240,18 +247,25 @@ gen-ed textbook that does exactly this, and then advertises the result as a majo
 - **2012 French presidential** (Baujard et al., approval and score): unifying candidates gained, polarizing
   ones lost, relative to plurality.
 - **Brams and Herschbach (*Science*, 2001)**: approval should raise turnout, defuse spoilers, and reduce
-  negative campaigning — you're courting your opponents' approvals, not just your own base.
+  negative campaigning — you're courting your opponents' approvals, not just your own base. **All three are
+  predictions, and two are marked unevidenced by a friendly source.** Brams restates them as numbered points in
+  his MIT alumni column, which CRV hosts with bracketed editor's notes: turnout is "probably true but…not
+  supported by direct evidence," and reduced negative campaigning is "not supported by any evidence I know of.
+  And indeed there is some evidence against it" — Nagel's Burr dilemma being the counter-mechanism. See the CRV
+  section below.
 - **1987 MAA presidential election, 5 candidates, 3,924 voters** (Brams' analysis): 79% approved exactly one,
   16% two, 5% three, 1% four. Winner had **1,267 approvals = 32%**. Even among mathematicians who chose the
   method, four out of five bullet voted.
 
 ## How the advocacy organizations present it
 
-Six pages read on 2026-08-01 — three CES, one FairVote, two RCVRC. **None of the six discusses a downside of the
-method its organization exists to support.** The two campaigning orgs fail in mirror-image ways: each states a
-property that holds only under a favorable assumption as though it held unconditionally. CES: "no candidate can
-ever be a spoiler" (true only under dichotomous preferences). FairVote: "RCV is a majority system" (true only of
-continuing ballots). Everything needed to adjudicate them is already above, so this is mostly a lookup table.
+Seven pages read on 2026-08-01 — three CES, one FairVote, two RCVRC, one CRV. **Six of the seven discuss no
+downside of the method their organization exists to support**, and the seventh is the exception that explains the
+rule: CRV promotes *range* voting, so approval is its second choice and conceding approval's limits is how it
+sells the upgrade. The two campaigning orgs fail in mirror-image ways: each states a property that holds only
+under a favorable assumption as though it held unconditionally. CES: "no candidate can ever be a spoiler" (true
+only under dichotomous preferences). FairVote: "RCV is a majority system" (true only of continuing ballots).
+Everything needed to adjudicate them is already above, so this is mostly a lookup table.
 
 The useful surprise is that no org is uniformly worse, and that **accuracy does not track balance**. CES's
 flagship explainer is the weakest document here and its head-to-head page carries the worst single factual error,
@@ -260,8 +274,10 @@ sourced than all three CES pages combined and is right about approval's real wea
 its own method's central claim. And the most accurate pages of all belong to RCVRC, an organization that is
 *less* balanced than FairVote by construction, because it is scoped to one method and says so.
 
-Ranked by accuracy rather than balance: **RCVRC > CES "Differences" > FairVote > CES head-to-head > CES
-explainer.**
+Ranked by accuracy rather than balance: **RCVRC > CES "Differences" > FairVote > CRV > CES head-to-head > CES
+explainer.** CRV lands mid-table for a reason no other page manages: it repeats CES's false spoiler claim *and*
+names approval's cutoff problem in the same document, and it is the only page here that makes a checkable
+quantitative claim — so its errors are provable rather than arguable.
 
 ### CES — ["What is Approval Voting?"](https://electionscience.org/education/approval-voting) (Chris Raleigh, Jun 2024)
 
@@ -430,20 +446,140 @@ either campaigner makes.
   ([rcv-and-core-support](rcv-and-core-support.md)).
 - Self-description as "the premier source… nationally recognized for our expertise."
 
+### CRV — ["The Joys of Approval Voting"](https://rangevoting.org/approval.html) (Warren D. Smith, Center for Range Voting)
+
+The odd one out, and the most informative page in the survey for structural reasons. CRV advocates **range
+voting**, so approval is its *second* choice, and the variants list says so outright: "We could add intermediate
+options between full approval and full disapproval. When you do that, you get range voting." Everything below
+follows from that. It is the only page here that concedes a weakness of the method it is promoting, the only one
+that fact-checks its own guest author, and the only one that makes a quantitative argument at all — which means
+it is the only one I can check instead of adjudicate.
+
+It also declares its sources honestly, in a way no other page attempts: it names five people whose sentences it
+uses (Brams, Kimport, Ossipoff, Jennings, Lomax), warns that "Brams may not entirely agree with the present page,"
+and adds "We in turn do not entirely agree with that essay."
+
+**The voting-power table, checked — and it does not survive.** The page defines voting power as the number of
+candidate pairs your ballot can discriminate between, gives plurality *N*−1 and approval *N*²/4, and tabulates the
+ratio **N²/(4N−4)**: 1.125 at 3 candidates, 2.778 at 10, 25.25 at 100. Three problems, in increasing order of
+seriousness.
+
+1. **One row is simply wrong.** At *N* = 20 the page prints **5.363**; its own formula gives 400/76 = **5.263**.
+   Every other row matches to the digit, so this is a transposition, not a different model.
+2. **Every odd row overstates.** A ballot approving *k* of *N* discriminates *k*(*N*−*k*) pairs — plurality is
+   just the *k* = 1 case — so approval's maximum is ⌊N/2⌋⌈N/2⌉, not *N*²/4. For odd *N* that is (*N*²−1)/4, and
+   the correction is not cosmetic at the small end:
+
+   | *N* | Page | Integer-correct | |
+   |---|---|---|---|
+   | 3 | 1.125 | **1.000** | no gain at all |
+   | 5 | 1.563 | 1.500 | |
+   | 7 | 2.042 | 2.000 | |
+   | 9 | 2.531 | 2.500 | |
+   | 20 | 5.363 | 5.263 | even *N*, so this one is just the arithmetic slip above |
+
+   **In the canonical three-candidate spoiler scenario — the case the page's own opening argument is about — the
+   gain by this metric is exactly zero.** Approving 2 of 3 discriminates the same two pairs as approving 1 of 3.
+3. **It is an upper bound over ballots that voters demonstrably don't cast.** The maximum is reached only by
+   approving half the field; a bullet vote scores *N*−1, i.e. **plurality's power exactly**. Every measured approval
+   electorate in this note bullet-votes at roughly that rate — MAA 79%, Dartmouth over 80%, and IEEE ~80%
+   "plurality-style" *by CRV's own account* (see below). So the advertised power ratio is the value of a ballot
+   four voters in five decline to cast.
+
+   And the metric's premise is the zero-information model: it counts all pairs as equally likely to be the
+   pivotal one. That is precisely the assumption under which worked example 1 above
+   elects Memphis, the Condorcet *loser*. Under an informative poll only one pair is live — leader versus
+   runner-up — which plurality can also discriminate, by voting for the better frontrunner. What approval actually
+   buys there is that you needn't abandon your favorite to do it. That is the **sincere favorite criterion**,
+   which the note establishes above without a formula and which holds in every row of the compliance table. The
+   power table is a weaker, breakable version of a claim CRV already has in stronger form.
+
+**The overclaim is CES's, word for word in substance:** "With approval voting, spoilers do not happen." False as
+stated, refuted the same way — IIA ✗ in three of four rows, and worked example 2 is a constructed instance. The
+same sentence continues "approving your true favorite is never strategically unwise," which is **true**; the
+compound sentence welds an unconditional falsehood to a genuine theorem.
+
+> **The refutation is on CRV's own site, disabled.** Its sub-page
+> [EarlyUS.html](https://rangevoting.org/EarlyUS.html) contains, inside an HTML comment and therefore invisible in
+> a browser, a paragraph in Smith's voice ending: "'vote splitting' effects *can* still occur in approval voting —
+> contrary to some advertising." A second comment on the same page hides the remainder of Nagel's abstract, the
+> part urging researchers toward instant-runoff options. These are the only two substantive comments on the page,
+> and both cut against approval; the main approval page has none. I record this as a fact about the source —
+> commented-out text is often just a draft the author disabled — and make no claim about why.
+
+**The history list is the page's weakest section and its most-copied one.** Its summary sentence — Venice,
+Sparta, papal conclaves, "1000s of elections in the USSR," "the first 4 USA presidencies," UN Secretary-General —
+carries a single hedge: "(Approximately. The rules were slightly different in most of these cases…)" naming only
+the vice-presidential twist. Verdicts on the claims not already in the table above:
+
+| Claim | Verdict |
+|---|---|
+| Sparta was **range**, Venice **approval** | Correctly assigned, and more careful than most retellings — the Spartan shout is a loudness rating, not a set |
+| "Used to elect the first 4 USA presidencies" | **Not approval.** Article II gave each elector **exactly two** votes, for two different persons, one of whom had to be from another state — mandatory *k* = 2 with a residency constraint, where approval's defining property is that *k* is unlimited. Nagel's own phrasing, which the page quotes, is "a variant of approval voting" |
+| — and the hedge names the wrong twist | The VP consolation prize is the *second* problem. CRV's own sub-page concedes the first: "the early USA was not precisely using approval voting because there was a 2-vote limit," and that 1796, with 13 candidates, is "more dubious" |
+| USSR, "1000s of elections" | Real, and better sourced than anything on the page — the sub-page cites five NYT pieces and an FEC report for the 21 June 1987 vote across ~5% of the USSR's 50,000 localities. But it was **disapproval** voting (cross names off), and the page says so itself |
+| China's NPC since 1979 | Offered without comment as a credential |
+| Econometric Society fellows (1980), NAS final ballot (1981), PA Democratic straw poll (1983), ND Senate bill (1987), Oregon five-option advisory referendum (1990) | Brams–Fishburn material, consistent with the published record; not independently checked here |
+| Societies "beginning in 1987" | The table above dates MAA to 1986. One-year discrepancy, unadjudicated |
+
+**The fourth of those four US elections is the Jefferson–Burr tie of 1800** — the event that gives the **Burr
+dilemma** its name in the glossary above, and the reason the 12th Amendment exists. CRV's flagship American
+precedent for approval is the system whose collapse supplies approval's signature strategic pathology. The
+sub-page argues the tie was not really a pathology (both men won) while conceding the mechanism.
+
+**The membership arithmetic is stale in the same way CES's Fargo page is.** The adopters list totals ~466,000
+members, of which **IEEE's 377,000 is 81%** — and IEEE dropped approval in 2002. The page presents it in the
+present tense and closes "at least several hundred thousand individuals have had direct experience with AV," a
+figure that is mostly one defector. CRV is not unaware: a separate page,
+[FeerstTheory](https://rangevoting.org/FeerstTheory.html), documents the abandonment, carries Unger's account
+that IEEE adopted approval to stop one insurgent candidate and dropped it when he died, has Brams confirming the
+2002 decision, and elsewhere gives the ~80% plurality-style voting figure. **That is an approval-friendly source
+independently corroborating this note's bullet-voting thesis** — and it is the third measured electorate, after
+MAA and Dartmouth, to land near 80%. It is also where you learn that **Jack Nagel — author of the Burr-dilemma
+critique — was one of the two people who got IEEE to adopt approval in the first place.**
+
+**Where it is honest — and whose honesty it is.** Three genuine concessions:
+
+- **The cutoff problem, named.** "Although AV encourages sincere voting, it does not altogether eliminate
+  strategic calculations… the voter is still faced with the decision of where to draw the line between acceptable
+  and nonacceptable candidates," and "the voter's calculus and its effects on outcomes is not yet entirely
+  understood." Only FairVote otherwise names this.
+- **A recommendation against its own method**: "in elections with more than one winner AV is not recommended if
+  the goal is to mirror a diversity of views, especially of minorities."
+- Both are Brams's sentences, lightly edited, from his MIT alumni column
+  ([BramsWM](https://rangevoting.org/BramsWM.html), c. 2002 — datable from "Arrow… 51 years ago" and the 2000
+  election). Brams wrote "not yet **well** understood for either AV or other voting procedures"; CRV prints "not
+  yet **entirely** understood either for AV or **especially for more complicated** voting procedures," turning a
+  confession into a comparative. **Every hedge on the page is borrowed; the unhedged prose is CRV's own.**
+
+**And then it fact-checks its guest.** The Brams column is hosted with four bracketed editor's notes, all
+correcting *against* approval — the only instance of this in the survey:
+
+| Brams claims | CRV's editor's note |
+|---|---|
+| Condorcet candidates "almost always win under AV" | "'almost always' was too strong: three of the five 2001–2005 Debian leader elections featured different Approval and Condorcet winners" |
+| AV "will reduce negative campaigning" | "not supported by any evidence I know of. And indeed there is some evidence against it" — citing Nagel's Burr dilemma |
+| AV "will increase voter turnout" | "probably is true but is not supported by direct evidence" |
+| AV gives minority candidates "their proper due" | Still "distorts the vote totals heavily against them… range voting experimentally gives such candidates far higher vote counts" |
+
+Two of those are the Brams–Herschbach predictions listed under empirical comparisons
+above, marked unevidenced by a sympathetic source. And the fourth note shows the mechanism plainly: the
+correction terminates in range voting. **CRV concedes accurately, and every concession is an advertisement.**
+
 ### Net
 
-Scored across all six pages, the three organizations are wrong in different registers.
+Scored across all seven pages, the four organizations are wrong in different registers.
 
-| | CES | FairVote | RCVRC |
-|---|---|---|---|
-| Role | Approval advocacy | RCV advocacy | RCV implementation support |
-| Audience | Voters | Voters, legislators | Election administrators |
-| Sourcing | None on any of three pages | Extensive, though RCV evidence is largely self-citation — and `rankedchoicevoting.org` is the same org under another domain, so it can read as corroboration it isn't | Thin, and routes impact research to FairVote |
-| Best page | The neutral explainer | The comparison page — one-sided but falsifiable | The FAQ and the UOCAVA material |
-| Worst failure | Alaska misdiagnosed as vote-splitting; "no spoiler ever" | "RCV is a majority system"; omits exhaustion entirely | "Why adopt RCV?" with no counterpart; center squeeze never named |
-| Concedes anything? | Yes — "RCV does not inherently favor any group" | No | Yes — exhaustion, "strong plurality", election-night uncertainty |
-| Right about the opponent? | Yes on summability, count opacity, round-1-is-plurality | Yes on bullet voting, later-no-harm, cutoff subjectivity | Declines to discuss other methods at all |
-| Currency | Fargo still shelved as a success story post-ban (Apr 2025) | Data stops Aug 2022 | Current (2025 UOCAVA figures) |
+| | CES | FairVote | RCVRC | CRV |
+|---|---|---|---|---|
+| Role | Approval advocacy | RCV advocacy | RCV implementation support | **Range** advocacy; approval is its second choice |
+| Audience | Voters | Voters, legislators | Election administrators | Reform-curious generalists, online voting-theory readers |
+| Sourcing | None on any of three pages | Extensive, though RCV evidence is largely self-citation — and `rankedchoicevoting.org` is the same org under another domain, so it can read as corroboration it isn't | Thin, and routes impact research to FairVote | None inline, but sub-pages carry real citations (five NYT pieces for the USSR claim) and the arithmetic is shown, so it is checkable |
+| Best page | The neutral explainer | The comparison page — one-sided but falsifiable | The FAQ and the UOCAVA material | The hosted Brams column, for the editor's notes correcting it |
+| Worst failure | Alaska misdiagnosed as vote-splitting; "no spoiler ever" | "RCV is a majority system"; omits exhaustion entirely | "Why adopt RCV?" with no counterpart; center squeeze never named | "Spoilers do not happen"; a voting-power table wrong in every odd row and one even one |
+| Concedes anything? | Yes — "RCV does not inherently favor any group" | No | Yes — exhaustion, "strong plurality", election-night uncertainty | Yes — the cutoff problem and multiwinner unsuitability, in Brams's borrowed words |
+| Right about the opponent? | Yes on summability, count opacity, round-1-is-plurality | Yes on bullet voting, later-no-harm, cutoff subjectivity | Declines to discuss other methods at all | Right about *approval* — bullet voting, the cutoff, IEEE's reversal are all documented on the site, just not on this page |
+| Currency | Fargo still shelved as a success story post-ban (Apr 2025) | Data stops Aug 2022 | Current (2025 UOCAVA figures) | IEEE listed as a user 24 years after it quit; **Fargo and St. Louis appear nowhere on the page** |
 
 **The two campaigners each name the other's real problem accurately and deny their own.** FairVote correctly
 identifies that approval's cutoff is subjective and that bullet voting collapses it toward plurality — the two
@@ -451,22 +587,33 @@ things this note documents best — while claiming a majority guarantee its own 
 correctly identifies that IRV is unsummable, opaque to audit, and plurality-like in round 1 — all true — while
 claiming a spoiler-freedom its own compliance table denies.
 
-**RCVRC is the lesson about what "balanced" buys you.** It is the narrowest of the three — one method, by
+**RCVRC is the lesson about what "balanced" buys you.** It is the narrowest of the four — one method, by
 charter, with a "why adopt" page and no "why not" — and it is also the most accurate, because its questions are
 operational and operational questions have uncontested answers. Balance and accuracy came apart here: the page
 most willing to say "your ballot becomes exhausted and will not count" is the one least interested in comparing
 methods at all.
 
-Practical use: for approval's genuine weaknesses read FairVote; for IRV's genuine weaknesses read the CES
-head-to-head, then correct its Alaska paragraph before quoting it; for anything about how RCV is actually run —
-ballot design, tabulation, audits, UOCAVA — read RCVRC and ignore its "why adopt" page. None is usable as a
-summary of the comparison, and the disagreement between the campaigners is narrower than either admits: both are
-arguing against plurality, and both are right about that.
+**CRV is the lesson about where candor comes from.** It is the only page in the survey that names a weakness of
+the method it is promoting, and the reason is not virtue but position: approval is its *second* choice, so every
+concession is a step toward range voting. It concedes the cutoff problem in Brams's borrowed sentences, corrects
+Brams four times in its own, and each correction ends by pointing at the upgrade. Advocacy pages concede exactly
+when the concession sells something — which is also why the two pure campaigners concede nothing.
 
-**The gap none of them fills.** Across six pages and three organizations, not one discusses a downside of the
-method it exists to support. Nothing here surveys the field neutrally, and nothing here reports a failure of its
-own method — which is why this section is a lookup table rather than a reading list. For that, the academic
-sources above and the Bipartisan Policy Center's
+And **the two approval advocates fail on Fargo in opposite directions**: CES still shelves it as a success story
+after the April 2025 ban, while CRV — which has been arguing for approval since the 2000s — never mentions that
+the only two US jurisdictions ever to adopt it exist.
+
+Practical use: for approval's genuine weaknesses read FairVote, then CRV's sub-pages (not its approval page) for
+the ones FairVote can't be bothered to document; for IRV's genuine weaknesses read the CES head-to-head, then
+correct its Alaska paragraph before quoting it; for anything about how RCV is actually run — ballot design,
+tabulation, audits, UOCAVA — read RCVRC and ignore its "why adopt" page. None is usable as a summary of the
+comparison, and the disagreement between the campaigners is narrower than any admits: all four are arguing
+against plurality, and all four are right about that.
+
+**The gap none of them fills.** Across seven pages and four organizations, only CRV discusses a downside of the
+method it is promoting, and only because it is promoting something else. Nothing here surveys the field
+neutrally, and nothing here reports a failure of its *first* choice — which is why this section is a lookup table
+rather than a reading list. For that, the academic sources above and the Bipartisan Policy Center's
 [*Reform Meets Reality*](https://bipartisanpolicy.org/report/reform-meets-reality-how-ranked-choice-voting-impacts-election-administration/)
 are the substitutes.
 
@@ -525,12 +672,26 @@ are the substitutes.
 - **Unified primary** — a nonpartisan primary using approval, top two advance. St. Louis' Proposition D
   variant.
 - **Overvote immunity** — no ballot can be spoiled by marking too many candidates, because there is no limit.
+- **Voting power, pair-discrimination sense (CRV)** — the number of candidate pairs a ballot separates:
+  *k*(*N*−*k*) for a ballot approving *k* of *N*. Plurality is the *k* = 1 case, so the two methods are the same
+  function under different constraints. An upper bound over available ballots, not a property the method
+  delivers — a bullet vote scores exactly plurality — and at *N* = 3 the maximum gain is nil.
+- **Disapproval voting** — the Soviet 1987 form: every candidate is approved unless you cross the name off.
+  Logically identical to approval, psychologically the reverse, and CRV says so itself.
+- **DYN (Simmons) / SODA (Quinn)** — approval plus delegation: approve candidates, or hand them your ballot to
+  place. Sold on immunity to manipulated poll data, which matters exactly because the leader rule makes
+  approval's winner a function of published expectations.
 
 ## Links referenced in the article
 
 - [Brams & Fishburn, *Approval Voting* (1983)](https://archive.org/details/approvalvoting00bram) — the
   standard reference; nearly every strategy claim above traces here
-- [Brams & Fishburn, "Going from Theory to Practice: The Mixed Success of Approval Voting" (2003)](https://web.archive.org/web/20181218010629/http://www.nyu.edu/gsas/dept/politics/faculty/brams/theory_to_practice.pdf)
+- Brams & Fishburn, "Going from Theory to Practice: The Mixed Success of Approval Voting" — published in
+  *Social Choice and Welfare* **25 (2–3), 2005, 457–474**,
+  [doi:10.1007/s00355-005-0013-y](https://doi.org/10.1007/s00355-005-0013-y). The freely readable
+  [NYU PDF](https://web.archive.org/web/20181218010629/http://www.nyu.edu/gsas/dept/politics/faculty/brams/theory_to_practice.pdf)
+  is the preprint, often cited as 2003; not collated against the published text here. Source of most of the
+  society-adoption dates that CRV repeats — and its title is the hedge CRV drops.
 - [Laslier & Van der Straeten, "Approval Voting: An Experiment during the French 2002 Presidential Election"](https://web.archive.org/web/20050507223548/http://www.lse.ac.uk/collections/VPP/VPPpdf_Wshop2/jflkvdscaen.pdf)
 - [Baujard et al., "Who's favored by evaluative voting?" (2012 French election)](https://hal.archives-ouvertes.fr/hal-00803024/file/cahier_2013-05.pdf)
 - [Myerson & Weber, "A Theory of Voting Equilibria"](https://ghostarchive.org/archive/20221009/http://www.kellogg.northwestern.edu/research/math/papers/782.pdf)
@@ -540,6 +701,21 @@ are the substitutes.
 - [Center for Election Science — Fargo's first approval election](https://www.electionscience.org/commentary-analysis/fargos-first-approval-voting-election-results-and-voter-experience/)
 - [Center for Election Science — Fargo's second approval election](https://electionscience.org/commentary-analysis/fargos-second-approval-voting-election-runs-smoothly/)
 - [AP: North Dakota governor signs bill ending Fargo's voting system (April 2025)](https://apnews.com/article/fargo-north-dakota-legislature-voting-elections-8f85df3e17bf77fd7af41693569831ac)
+- **CRV / rangevoting.org**, read 2026-08-01 —
+  ["The Joys of Approval Voting"](https://rangevoting.org/approval.html) (the page proper) ·
+  [Approval executive summary](https://rangevoting.org/AppExec.html) ·
+  [Range vs. approval, items 12–13](https://rangevoting.org/rangeVapp.html) (approval's real-world failure and
+  Burr's dilemma, in CRV's own words) ·
+  [the first four US presidential elections](https://rangevoting.org/EarlyUS.html) (with the two-vote limit
+  conceded, and two passages disabled in HTML comments) ·
+  [Soviet use](https://rangevoting.org/SovietApp.html) (the best-sourced claim on the site) ·
+  [why IEEE abandoned it](https://rangevoting.org/FeerstTheory.html) (Unger, with a note from Brams)
+- [Brams, "Approval Voting: A Better Way to Select a Winner"](https://rangevoting.org/BramsWM.html) — the MIT
+  alumni "What Matters" column, c. 2002, which supplies CRV's page with its hedges; hosted with four editor's
+  notes correcting it against approval
+- Brams & Nagel, "Approval Voting in Practice", *Public Choice* **71 (1–2), 1991, 1–17**,
+  [doi:10.1007/BF00138446](https://doi.org/10.1007/BF00138446) — the IEEE adoption written up by the two people
+  who arranged it, one of whom later wrote [the Burr dilemma paper](https://www.journals.uchicago.edu/doi/10.1111/j.1468-2508.2007.00493.x)
 - [Score voting](https://en.wikipedia.org/wiki/Score_voting) ·
   [Multiwinner approval](https://en.wikipedia.org/wiki/Multiwinner_approval_voting) ·
   [Sequential proportional approval](https://en.wikipedia.org/wiki/Sequential_proportional_approval_voting) ·
