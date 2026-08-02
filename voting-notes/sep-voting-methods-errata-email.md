@@ -2,8 +2,10 @@
 
 Companion to [sep-voting-methods.md](sep-voting-methods.md).
 
-**Status: drafted, Gmail draft created, not sent.** Nine items: five substantive, one bundle of
-wording, one definitional inconsistency, and the bibliography list.
+**Status: drafted, not sent. No Gmail draft exists** — an earlier revision of this file claimed one
+had been created; checked against the mailbox on 2026-08-02 and it had not. The only draft to this
+recipient is an unrelated one from 2023. Nine items: five substantive, one bundle of wording, one
+definitional inconsistency, and the bibliography list.
 
 ## Where it goes
 
