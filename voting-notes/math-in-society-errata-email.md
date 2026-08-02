@@ -2,9 +2,9 @@
 
 Companion to [math-in-society-lippman.md](math-in-society-lippman.md).
 
-**Status: pure errata.** An earlier draft carried a third section suggesting the chapter cover more
-cardinal methods, behind a COI disclosure. That section was cut deliberately — see *Why section 3 was
-cut* below. What remains makes no request about which methods the book should teach.
+**Status: drafted, not sent.** Three errata plus a list of minor items. An earlier version carried a
+fourth ask — that the chapter consider covering score voting — which stays cut; see *What stayed cut*
+below.
 
 ## Where it goes
 
@@ -18,31 +18,40 @@ and/or curated by David Lippman (The OpenTextBookStore) via source content that 
 style and standards of the LibreTexts platform."* An erratum accepted only at LibreTexts leaves the
 upstream book wrong, and one accepted only upstream leaves the LibreTexts copy wrong.
 
-## Why section 3 was cut
+## The §2.14 item, and why it carries a disclosure
 
-The dropped section disclosed a COI (volunteer contributor to software used by the Equal Vote
-Coalition, which advocates STAR) and then suggested the chapter note that §2.14's approval failure
-depends on an assumed cutoff, and consider a section on score voting.
+Item 3 is the §2.14 cutoff point. It is included as a **correction**, not a request: the claim is that
+Example 13 does not demonstrate what it says it demonstrates, which is checkable in three lines of
+arithmetic and true whatever anyone thinks of approval voting.
 
-Three reasons it is better gone:
+It still carries a one-sentence COI disclosure, for a reason worth being honest about: **the
+correction happens to soften a criticism of a rated method**, and you have a connection to an
+organisation promoting one. Someone who learned that later would think it relevant. Disclosed, it
+costs a sentence; discovered, it discredits items 1 and 2 retroactively.
 
-1. **It changed what the email is.** Two verified corrections with a method suggestion attached reads
-   as an advocacy email that opens politely. Without it, there is nothing to weigh motives against —
-   both remaining items are wrong on their own terms and neither favors any method.
-2. **The strongest item is in chapter 4**, and has nothing to do with voting methods at all. Leading
-   an apportionment correction into a request about ballot types wastes it.
-3. **It was not needed.** The book is CC BY-SA 3.0 on a platform built for remixing. If chapter 2
-   should cover score voting, that can be done in a LibreTexts remix without anyone's permission —
-   which is a better route than asking, and a reason not to ask.
+The disclosure is placed **at item 3, not at the top**. Items 1, 2 and 4 are method-neutral — item 2
+is about apportionment and does not touch voting methods at all — and a header-level disclosure would
+colour them for no reason.
 
-The §2.14 cutoff observation is still worth making some day. It belongs in its own email, after this
-one has been answered, or not at all.
+Accept the tradeoff knowingly: the pure-errata version was a cleaner document. This one is more
+useful and slightly more arguable.
+
+## What stayed cut
+
+The suggestion that the chapter add a section on score voting. Reasons unchanged:
+
+1. It converts a correction into a request, which is a different kind of email.
+2. It was not needed. The book is CC BY-SA 3.0 on a platform built for remixing — if chapter 2 should
+   cover score voting, that can be done in a LibreTexts remix without anyone's permission, which is a
+   better route than asking.
+3. Item 3 already puts the interesting fact about cardinal ballots in front of him. If he takes it,
+   the door is open on its own.
 
 ---
 
 ## The email
 
-Subject: **Two errata in *Math in Society*: Arrow's theorem (§2.12) and Balinski–Young (§4.4)**
+Subject: **Three errata in *Math in Society*, chapters 2–4**
 
 ---
 
@@ -50,8 +59,9 @@ Dear Professor Lippman,
 
 I have been working through *Math in Society* chapters 2–4 in some detail, checking the worked
 examples computationally as I went. Almost everything reproduces exactly — Nassau County, the Scottish
-Parliament power indices, and the chapter 2 preference schedules all check out. Two statements do not,
-and both are boxed theorem statements, which is why I thought they were worth writing to you about.
+Parliament power indices, and the chapter 2 preference schedules all check out. Three statements do
+not, and the first two are boxed theorem statements, which is why I thought they were worth writing to
+you about.
 
 **1. §2.12 states Arrow's theorem without the restriction to ranked methods, one page before approval
 voting is introduced.**
@@ -119,7 +129,48 @@ Suggested wording:
 > that avoids the population paradox, but only if we are willing to give up the guarantee of
 > following the quota rule.
 
-**3. Three smaller things, take or leave.**
+**3. §2.14's majority-criterion failure is produced by an assumption about voters, not by approval
+voting.**
+
+A disclosure first, since unlike the other two items this one touches a method rather than a matter of
+record: I am a volunteer contributor to software used by the Equal Vote Coalition, which advocates for
+a rated voting method. Please weigh this item accordingly. It is a correction and not a request — I am
+not asking that the chapter cover any additional method, and items 1, 2 and 4 stand independently of
+it.
+
+§2.14 opens "Approval voting can very easily violate the Majority Criterion," and Example 13
+demonstrates it on:
+
+     80 voters:  A > B > C
+     15 voters:  B > C > A
+      5 voters:  C > B > A
+
+A holds a strict majority of first preferences, 80 of 100, and is also the Condorcet winner. The
+demonstration then supposes that "every voter marked approval of their top two candidates," which
+gives A 80, B 100, C 20, and elects B.
+
+That supposition is doing all the work. On the same preference profile:
+
+    approve top two (as supposed):  A 80,  B 100,  C 20   → B wins, majority criterion fails
+    bullet vote:                    A 80,  B  15,  C  5   → A wins, majority criterion holds
+    approve all three:              A 100, B 100, C 100   → no winner at all
+
+Same preferences, same tabulation rule, three different outcomes. So Example 13 does not show that
+approval voting violates the majority criterion; it shows that approval voting *together with a
+particular cutoff rule* does.
+
+This is a real and well-studied feature of approval rather than an oversight in the example: the
+tabulation is fixed but the ballot is not, so many of approval's criterion compliances are properties
+of voter behaviour rather than of the method. Saari and Van Newenhizen (*Public Choice* 59, 1988) make
+it a formal result; Brams reads the same fact as a virtue rather than a defect.
+
+The opening sentence is not wrong — approval *can* fail the majority criterion. The issue is that the
+example as written invites a student to attribute to the method something the supposition supplied. A
+clause would fix it: noting that the outcome depends on where voters set their cutoff, and that these
+same voters bullet-voting would elect A, is a more interesting lesson than the one currently drawn and
+costs about a sentence.
+
+**4. Three smaller things, take or leave.**
 
 - §4.2 says Hamilton's method "was approved by Congress in 1791, but was vetoed by President
   Washington." The bill passed the House on 21 February 1792 and the Senate on 12 March 1792, and
