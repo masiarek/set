@@ -16,6 +16,10 @@ recommendation for ranked ballots, Sara Wolk coined the name "Ranked Robin" on 2
 *citation needed*), and Sass created the electowiki page on 2021-11-08 — a week before announcing
 the name in the thread.
 
+The thread's four *testable* claims — Sass's IIA defense, the "identical to Borda" coda, the
+one-sentence tally, and Waugh's tie-rate intuition — are checked against computation in a companion
+note: [ranked-robin-thread-claims-checked.md](ranked-robin-thread-claims-checked.md).
+
 A scraping note: the thread's five key exhibits are **PNG uploads, invisible to text extraction**
 (the ballot language, both worked examples, the Condorcet-winner display, and the first VSE
 numbers). Everything below is transcribed from the images, and the arithmetic re-checked — which

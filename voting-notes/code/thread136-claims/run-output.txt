@@ -1,0 +1,118 @@
+
+==========================================================================
+C1a  A candidate who loses every matchup never changes the 1st-degree
+     result -- Sass's '+1 win to everyone' argument, tested
+==========================================================================
+  6,631 profiles where X loses all four matchups: the 1st-degree
+  outcome is identical with and without X, every time.
+  Reason it is a theorem, not luck: X's presence adds exactly +1 to every
+  other candidate's Copeland score, so the ranking by wins -- and hence the
+  finalist set -- is untouched; X is never a finalist, so the margins summed
+  among finalists never see it.
+
+==========================================================================
+C1b  The same all-losing candidate can flip the 2nd-degree tiebreak
+==========================================================================
+  Six ballots (truncation and equal ranks both in play):
+    A
+    C > B > D
+    C > A > B > X=D
+    C > B > D > A
+    A > X > C > D > B
+    D=A > X > B > C
+  Copeland: A 3.5, B 2.0, C 3.5, D 1.0, X 0.0   -> X loses all four matchups, is never a finalist
+  Finalists ['A', 'C'], and they are pairwise tied (3-3), so the 1st degree cannot separate them.
+  2nd degree, margins summed over all candidates:
+    without X:  A +3, C +6   -> C
+    with X:     A +8, C +7   -> A
+    the whole difference is the margin against X: A beats X by 5, C by only 1.
+  A candidate who wins nothing decides the election. This is the case Sass
+  himself flagged in post 28 -- confirmed.
+  Rate: 176 flips in 21,980 random profiles where X loses every
+  matchup (0.80%) -- rare, and it needs the 1st degree to have
+  tied first, which is itself the rare case (see C4).
+
+==========================================================================
+C1c  A candidate with 2% of first preferences flips the winner
+==========================================================================
+  100 ballots:  49 A>B>C   2 C>A>B   49 B>C>A
+    A vs B: 51-49   A vs C: 49-51   B vs C: 98-2
+  Without C: A beats B 51-49  ->  winner A
+  With C:    3-cycle, all three tie on 1 win ['A', 'B', 'C'], margins A 0, B +94, C -94  ->  winner B
+  C takes 2 first preferences and loses to B by 96 votes. It is 'weak' by
+  any ordinary meaning -- but it beats A, so it does NOT hand every
+  contender the same +1, and the winner changes. Sass's argument covers
+  only candidates who lose to everyone; the spoilers that matter are
+  exactly the ones that don't. (Every Condorcet method fails here -- this
+  is IIA failure, not a Ranked Robin defect.)
+
+==========================================================================
+C2  'Sum every candidate's margins over all others' IS Borda
+==========================================================================
+  Identity holds on 20,000 random profiles, with equal ranks and
+  truncation switched on:
+      sum of x's margins  ==  2 * Borda(x)  -  (m-1) * V
+  The subtracted term is the same for every candidate, so the two rankings
+  are identical, not merely correlated. Post 40's one-line reply is exactly
+  right -- and stays right under equal ranking and truncation, provided
+  Borda is scored tournament-style (half a point per pairwise tie, unranked
+  tied last). Waugh's simplification deletes the Copeland gate, and the
+  gate is the only thing separating Ranked Robin from Borda.
+
+==========================================================================
+C3  The one-sentence pitch is equivalent only under two conventions
+    the sentence does not state
+==========================================================================
+  (i) Rank gaps. 100 ballots, two candidates:
+        51 voters mark A 1st, B 2nd
+        49 voters mark B 1st and A 9th (ranks 2-8 skipped)
+      Method (skipped ranks ignored): A beats B 51-49, elects A
+      Average rank as the voter WROTE it:  A 4.92, B 1.51  -> B looks better
+      Average rank with gaps collapsed:    A 1.49, B 1.51  -> A, matching the method
+      A voter who takes 'best average rank' literally gets the opposite
+      winner. Sass's objection in post 18 was correct.
+
+  (ii) Which election is the average taken over? Ballots:
+       C > A > B > D
+       C > A > B > D
+       D > B > A > C
+       C > B > A > D
+       B > D > C > A
+       D > A > C > B
+       D > B > C > A
+       A > B > D > C
+       A > B > C > D
+      Finalists tied on wins: ['A', 'B']
+      Average rank over the FULL ballot: A 2.44, B 2.33  -> B
+      Margins among the finalists only (the actual rule) -> A
+      Same sentence, two readings, two winners. The equivalence
+      holds only when the average is taken within the finalist set,
+      which is what post 18's 'among' has to carry on its own.
+
+==========================================================================
+C4  Tie rates against electorate size, 4 candidates, impartial culture
+==========================================================================
+   voters  trials  no Condorcet w  Copeland tied  after 1st deg  after 2nd deg
+        5   20000         13.70%        13.70%         4.81%         2.51%
+       15   20000         16.50%        16.50%         2.12%         0.66%
+       51   12000         17.05%        17.05%         1.20%         0.27%
+      201    5000         17.22%        17.22%         0.76%         0.00%
+     1001    1500         16.73%        16.73%         0.20%         0.00%
+  The first two columns are equal in every row, and that is forced, not luck:
+  with m candidates and no pairwise ties, the scores sum to m(m-1)/2, so a
+  unique top score of m-2 needs m^2-3m+1 >= m(m-1)/2, i.e. m >= 5. For four
+  or fewer candidates, 'no Condorcet winner' and 'Copeland tie' are the same
+  event -- every cycle reaches the margins rung. From five candidates up they
+  come apart:
+    m=5, 101 voters: no Condorcet winner 24.0%; of those, 14.5% still have a
+      unique Copeland winner, so the tiebreaker never runs at all.
+    m=6, 101 voters: no Condorcet winner 32.0%; of those, 25.8% still have a
+      unique Copeland winner, so the tiebreaker never runs at all.
+  Copeland ties stay common at every size -- they are structural (cycles and
+  symmetric standoffs), not an artifact of small electorates. The margins
+  rung is what melts away with V: it needs an exact integer coincidence,
+  which gets rarer as the numbers get bigger. Waugh's post-13 intuition,
+  confirmed: the extra information Ranked Robin keeps is exactly what
+  converts a persistent tie rate into a vanishing one.
+
+All assertions passed.
