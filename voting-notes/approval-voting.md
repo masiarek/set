@@ -604,6 +604,9 @@ the answer splits cleanly.
   not just per-candidate totals. No other page qualifies this.
 - **The Equilibrium section is genuinely sophisticated**, including that "it is not possible to figure out who
   the CW is from Approval ballots."
+- **"Connection to Condorcet methods" is the page's largest section and its best technical content** — worked
+  out below, because it contains a provable identity, a fair statement of the strongest pro-approval argument,
+  and an arithmetic slip.
 
 **And the worst factual hygiene in the survey:**
 
@@ -639,6 +642,47 @@ the answer splits cleanly.
 - **Greek parliament dates — open.** electowiki says 1864–**1926**, this note (from Wikipedia) says 1864–**1923**.
   Neither side is sourced, so the 1923/1926 endpoint is unverified in both directions — don't cite the end year
   from either without a primary source.
+
+#### Worth taking from it: approval *is* a Condorcet method, on ballots that rank everyone 1st or last
+
+The page's framing, and it is exactly right: treat an approval ballot as a ranked ballot with every approved
+candidate tied 1st and every other tied last, count pairwise, and you have run a Condorcet method. What makes
+this more than a curiosity is that the resulting matrix is **not** informative in the way a real pairwise matrix
+is — and there is a one-line identity behind that.
+
+Count each pair the "negative vote-counting" way: X's score against Y is the number of ballots approving X and
+not Y. Ballots approving *both* or *neither* contribute to neither side, so
+
+> margin(X, Y) = (X, not Y) − (Y, not X) = **approvals(X) − approvals(Y)**
+
+Every margin is just the difference of two approval totals. Three consequences, none of which the page states in
+one place:
+
+- The pairwise ranking **is** the approval ranking, necessarily. Same order, no new information.
+- **Cycles are impossible** — the margins are differences of a single number per candidate, so the relation is
+  transitive by construction. This is the same structural fact as the dichotomous-preference row of the
+  compliance table above (Inada 1969), arrived at from the ballot side rather than the preference side.
+- Which is precisely why "it is not possible to figure out who the CW is from Approval ballots." The matrix
+  looks like pairwise data and carries none: it is one number per candidate, wearing a matrix as a costume.
+
+**The worked example has two bad cells.** 30 `AB`, 20 `BC`, 10 `ADE`, 20 `BCE` — approvals B 70, A 40, C 40,
+E 30, D 10, and the page's ranking (B; A = C; E; D) is right. But of the 20 off-diagonal cells, **18 are correct
+and two are not**: B-vs-A is given as 20 where it is **40**, and B-vs-D as 50 where it is **70**. Both are short
+by exactly 20 — the `20 BCE` ballots dropped out of row B twice — and both are detectable from the identity
+above, since they are the only two cells whose margin isn't the difference of the approval totals. Verified
+2026-08-01 against all 20 cells. The conclusion survives, because the ranking comes from the totals column
+rather than the matrix.
+
+**And it states the strongest argument for approval that this note has encountered**, fairly and in one
+sentence: when voters are honest you get a utilitarian outcome, and when they are strategic you at least get the
+Condorcet winner — so you are covered at both ends. The page adds, against interest, that this is "not as much
+the case with Score voting or STAR voting."
+
+The gap is the middle, and the page documents it elsewhere without connecting the two. Strategic approval
+voters can always **deny** the pairwise loser of any matchup, but "can not always make the pairwise winner…
+win," and this is "most easily seen in chicken dilemma-type situations." A real electorate is neither uniformly
+honest nor uniformly strategic; it is a mix, which is the regime the Burr dilemma occupies, and the disjunction
+covers the two endpoints while the failure mode lives between them.
 
 ### Net
 
@@ -705,7 +749,11 @@ are the substitutes.
   under the leader rule, trembling ballots, or dichotomous preferences. Ranked Robin
   ([ranked-robin-results-explained](ranked-robin-results-explained.md)) gets there unconditionally from the
   pairwise matrix. Approval's counterargument is that the ranked ballot never had the intensity information in
-  the first place.
+  the first place. The best version of it is electowiki's, above: **honest voters give a utilitarian winner,
+  strategic voters give the Condorcet winner, so you are covered at both ends** — with the gap being that real
+  electorates are a mix, and the mix is where the chicken dilemma lives. Note also that approval *is* a
+  Condorcet method on {1st, last} ballots; it just can't tell you who the Condorcet winner is, because its
+  pairwise margins are only differences of approval totals.
 - **vs. [STAR](star-voting.md)**: the "more expressive" branch — 0–5 scores plus an automatic runoff. The
   Independent Party of Oregon walked exactly that path in 2020 after approval failed to produce a nominee.
   Whether the extra levels help or just invite more strategy is the live disagreement; the criticism section
@@ -751,6 +799,10 @@ are the substitutes.
   *k*(*N*−*k*) for a ballot approving *k* of *N*. Plurality is the *k* = 1 case, so the two methods are the same
   function under different constraints. An upper bound over available ballots, not a property the method
   delivers — a bullet vote scores exactly plurality — and at *N* = 3 the maximum gain is nil.
+- **Negative vote-counting (approval as a Condorcet method)** — score each pair by ballots approving X and not
+  Y. Ballots approving both or neither cancel, so every margin collapses to approvals(X) − approvals(Y): the
+  pairwise order *is* the approval order, cycles cannot occur, and the matrix holds nothing the totals didn't.
+  The reason approval ballots cannot identify the Condorcet winner.
 - **Disapproval voting** — the Soviet 1987 form: every candidate is approved unless you cross the name off.
   Logically identical to approval, psychologically the reverse, and CRV says so itself.
 - **DYN (Simmons) / SODA (Quinn)** — approval plus delegation: approve candidates, or hand them your ballot to

@@ -65,6 +65,12 @@ those definitions are filled in here from the standard social-choice literature.
 - **Condorcet cycle** — A beats B beats C beats A. The reason pairwise methods need a completion rule at all.
 - **Margin** — winner's votes minus loser's votes in a matchup. **Winning votes** — just the winner's total.
   Methods differ on which they use; the choice changes results when ballots are truncated.
+- **Negative vote-counting** — building the pairwise matrix from approval ballots: X scores against Y the
+  ballots approving X and not Y. Ballots approving both or neither cancel, so every margin collapses to
+  approvals(X) − approvals(Y). Approval is therefore a Condorcet method on ballots ranking everyone 1st or
+  last — one whose matrix is transitive by construction and carries no information the approval totals didn't,
+  which is why approval ballots cannot identify the Condorcet winner.
+  [→ [approval-voting](approval-voting.md)]
 - **Beatpath** — a chain of pairwise victories `A>B>C>D`. Its **strength** is that of its *weakest* link.
 - **Copeland score** — pairwise victories, a tie counting ½. Ceiling is *n* − 1, regardless of how many people
   voted — the source of the "12 ballots, 1 win" confusion.
