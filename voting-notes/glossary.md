@@ -145,7 +145,16 @@ the Smith set).
   [→ [score-voting](score-voting.md), [star-voting](star-voting.md)]
 - **Sum vs. average vs. average-with-quorum** — three rules sharing the name "score voting". Identical while
   every voter rates every candidate, different the moment a ballot has a blank, and they can elect different
-  winners. Pirate Party Bavaria uses average-with-quorum. [→ [score-voting](score-voting.md)]
+  winners. Pirate Party Bavaria uses average-with-quorum. Majority judgment's answer is a fourth: the
+  **median**. [→ [score-voting](score-voting.md), [majority-judgment](majority-judgment.md)]
+- **Mean vs. median** — the mean moves with every ballot in proportion to how extreme it is, so
+  exaggeration pays; the median only moves when a ballot crosses it, so it doesn't. The whole cardinal
+  family sorts on this choice, and by the point-summing theorem it is also the participation/strategy
+  trade. **Trimmed mean** (Olympic figure skating) is the practical hybrid.
+  [→ [majority-judgment](majority-judgment.md)]
+- **Grades as language** — Balinski and Laraki's premise that "Excellent" carries an absolute shared meaning
+  a private 0–5 scale does not, so ballots can be *compared* rather than merely added. *Judge, don't vote.*
+  [→ [majority-judgment](majority-judgment.md)]
 - **Blank vs. zero** — an unrated candidate versus one rated 0: the same mark on paper, different states in
   a tabulator, and the thing sum-vs-average turns on. [→ [score-voting](score-voting.md)]
 - **Absolute vs. normalised scoring** — score against a fixed internal standard, or rescale so your favourite
@@ -214,9 +223,22 @@ Every one of these appears as a row in LeGrand's compliance table with no defini
   narrowly: equal-rating your favorite with a compromise usually suffices, and a genuine violation needs a
   profile where it doesn't. [→ [approval-voting](approval-voting.md), [star-voting](star-voting.md)]
 - **Participation criterion** — casting a sincere ballot must never make the result worse for you than
-  staying home. Approval and score pass; **STAR fails** — a bloc's middle score can lift a rival into the
-  runoff past their own favorite, so turning out costs them the win.
-  [→ [score-voting](score-voting.md), [star-voting](star-voting.md)]
+  staying home. Approval and score pass; **STAR and majority judgment fail**. Under STAR a bloc's middle
+  score can lift a rival into the runoff past their own favorite. Under MJ the failure is *forced*: by
+  Balinski and Laraki's own theorem the only methods satisfying participation plus continuity are
+  **point-summing** methods, so any non-summing rule has no-show paradoxes by construction.
+  [→ [score-voting](score-voting.md), [star-voting](star-voting.md),
+  [majority-judgment](majority-judgment.md)]
+- **Point-summing method** — Σ *f*(score) for a monotonic *f*: score voting and the positional rules.
+  Balinski and Laraki proved these are the *only* consistent methods, and the only ones satisfying
+  participation plus continuity — which is why the mean-vs-median choice is really a
+  participation-vs-strategy-resistance choice. [→ [majority-judgment](majority-judgment.md)]
+- **Median voter criterion** — the winner should be the candidate nearest the median voter. Majority
+  judgment, the highest-*median-grade* rule, **fails** it: on Laslier's 650-voter left–right example it
+  elects Left while the Condorcet winner and the score winner are both Center, because its tiebreak rewards
+  the larger homogeneous wing. [→ [majority-judgment](majority-judgment.md)]
+- **No-show paradox** — a bloc turns out and gets a worse result than by staying home; the concrete form of
+  a participation failure. [→ [majority-judgment](majority-judgment.md)]
 - **Decisiveness** — how often a method needs a tiebreaker at all. Black is the most decisive of LeGrand's
   set, Copeland the least.
 - **Strategic straightforwardness** — how easy it is to vote honestly without regret; a softer, practical
@@ -300,6 +322,9 @@ All from [rcv-and-core-support](rcv-and-core-support.md).
 - [*Score voting* (Wikipedia)](https://en.wikipedia.org/wiki/Score_voting) — the baseline the other two are
   defined against; uncited properties section and an unsettled sum-vs-average definition
   [→ [score-voting](score-voting.md)]
+- [*Majority judgment* (Wikipedia)](https://en.wikipedia.org/wiki/Majority_judgment) — the median answer,
+  Balinski and Laraki's point-summing theorem, and Laslier's median-voter critique
+  [→ [majority-judgment](majority-judgment.md)]
 - [Equal Vote Coalition](https://www.equal.vote/) / [STAR Voting](https://www.starvoting.org/) — origin of
   both STAR and Ranked Robin
 - [Equal Vote / BetterVoting](https://bettervoting.com) — Ranked Robin in production

@@ -33,6 +33,7 @@ Found by recomputing rather than by reading. Where a note has a verifier, the er
 | **The lead and the worked example use different rules.** "Highest *average* score" in sentence one; the example computes *totals*. They diverge as soon as any ballot has a blank, and can elect different winners. | Score voting (Wikipedia) | The article's own example can't expose it — all 100 voters rate all 4 cities | [score-voting](score-voting.md) |
 | **The same historical elections claimed by two method articles.** Venice, Greece 1864–1923, Sweden, the UN and Latvia appear as *approval* on one page and *score* on the other, sometimes citing the same page of the same source. | Approval vs. Score (Wikipedia) | Read "X used our method" as a claim about rated methods generally | [score-voting](score-voting.md) |
 | **Percentage doesn't match the count.** Lane County Measure 20-290 is 74,408 to 82,157 = 47.53%, printed as 47.6%. | STAR voting (Wikipedia) | Cosmetic | [star-voting](star-voting.md) |
+| **A load-bearing clause that reads like a throwaway.** The Tennessee grading rule has two parts — mileage bands, *and* "the farthest city gets Poor". Apply only the bands and Nashville voters grade Memphis *fair* instead of *poor* (194.2 miles, boundary at 200). | Majority judgment (Wikipedia) | MJ then elects **Memphis, the Condorcet loser**, 42 fair+ beating Nashville's 26 fair+ | [majority-judgment](majority-judgment.md) |
 | **Criteria asserted with no examples, and partly uncited** — mutual majority and reversal symmetry tagged citation-needed; the whole Properties section of the score article has no citations; both articles lean on the advocacy organisations that invented the methods. | STAR & Score (Wikipedia) | The failures had to be constructed locally to check them | [star-voting](star-voting.md), [score-voting](score-voting.md) |
 | **Showcase images fail a zero-sum sanity check** — both the 3-cycle and 5-cycle diagrams in the origin thread. | Ranked Robin origin thread | Winners survive correction | [ranked-robin-origins](ranked-robin-origins.md) |
 | **Four claims nobody had ever run numbers against**, including "adding a weak candidate changes nothing" (true only for candidates who lose *every* matchup) and a "best average rank" one-liner that elects the other candidate under either convention it fails to state. | Ranked Robin origin thread | A 2%-of-first-preferences candidate flips the winner | [ranked-robin-thread-claims-checked](ranked-robin-thread-claims-checked.md) |
@@ -60,8 +61,9 @@ verifier.
 Three things recur often enough to be worth naming:
 
 1. **Nearly every failure is a middle candidate problem.** Center squeeze, the clone taking a runoff slot,
-   the majority favourite who never reaches round 2 — all are a broadly acceptable candidate losing to the
-   structure of the count rather than to the voters.
+   the majority favourite who never reaches round 2, majority judgment handing a left–right election to the
+   larger wing instead of the centre — all are a broadly acceptable candidate losing to the structure of the
+   count rather than to the voters. The methods disagree about almost nothing else.
 2. **Adoption reverses more often than it sticks.** IEEE, Dartmouth twice, the Independent Party of Oregon,
    Fargo by state pre-emption. The interesting question is rarely "does the method work" but "does it
    survive its first few elections."

@@ -280,13 +280,15 @@ for that, and running STAR through the same votesim harness is the obvious next 
 - [89th Academy Awards rules (PDF)](https://www.oscars.org/sites/oscars/files/89aa_rules.pdf#page=32) — Rule
   22, reweighted range voting for the Visual Effects nominees
 - [Majority judgment](https://en.wikipedia.org/wiki/Majority_judgment) — the median-based alternative to
-  averaging, still unwritten here
+  averaging, written up in [majority-judgment](majority-judgment.md)
 
 ## Related local material
 
 - [`code/score-voting/verify.py`](code/score-voting/verify.py) — every claim above, checked
 - [approval-voting](approval-voting.md) — the two-level case; same IIA caveat, arrived at from the cutoff side
 - [star-voting](star-voting.md) — score plus a runoff, and what that trade costs
+- [majority-judgment](majority-judgment.md) — the median instead of the mean: the other answer to
+  section 3's question, and the theorem saying you can't have both it and participation
 - [ranked-robin-vse-run](ranked-robin-vse-run.md) — the spatial-model harness that could put a real number on
   section 6
 - [rcv-and-core-support](rcv-and-core-support.md) — Ogren's cardinal argument, and the standards-that-

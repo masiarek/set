@@ -345,7 +345,8 @@ through it is the obvious next job.
 - [Lane County 2018 official results (PDF)](https://apps.lanecounty.org/currentelection/20181106_Results.pdf)
 - [Oakridge 2024 measure results](https://www.ci.oakridge.or.us/city-council-candidates-2024/page/2024-city-council-ballot-measures-election-results)
 - [Highest median voting rules](https://en.wikipedia.org/wiki/Highest_median_voting_rules) — the median-based
-  cousin (Majority Judgment and friends), still unwritten here
+  cousin, written up in [majority-judgment](majority-judgment.md): the other way to stop exaggeration
+  paying, and it costs participation too
 
 ## Related local material
 
