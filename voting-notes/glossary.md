@@ -124,7 +124,9 @@ Every one of these appears as a row in LeGrand's compliance table with no defini
   **candidate-saturation incentive**: parties gain by running extra similar candidates.
 - **Monotonicity** **[LeGrand]** — ranking the winner *higher*, changing nothing else, must never make them
   lose (and ranking a loser lower must never make them win). IRV and every Borda-elimination method fail this.
-- **Reverse symmetry** **[LeGrand]** — reverse every ballot and the unique winner must not still win.
+- **Reverse symmetry** **[LeGrand]** — reverse every ballot and the unique winner must not still win. Nine of
+  LeGrand's 13 scored methods fail it; verified counterexamples for all nine are in the
+  [note](reverse-symmetry-examples.md).
 - **Reinforcement (consistency)** **[LeGrand]** — if the same candidate wins two separate electorates, they
   must win the combined electorate. **Borda is the only method on LeGrand's chart that satisfies it** — a
   verified Coombs counterexample is in the [note](legrand-ranked-ballot-methods.md).

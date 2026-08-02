@@ -230,7 +230,9 @@ server, no applet, so it still works and can be read as source. Input is one bal
 - **Tiebreaking ranking** — supply one and results become deterministic and reproducible. Leave it blank
   and it draws a random ballot, so *the same input can give different winners on different clicks*.
   Winners decided this way are flagged with an asterisk in the output — always check for it.
-- **Reverse all rankings** — flips every ballot, for testing reverse-symmetry violations.
+- **Reverse all rankings** — flips every ballot *and the tiebreaking ranking*, for testing reverse-symmetry
+  violations. Worked counterexamples for all nine methods that fail the criterion, plus the procedure for running
+  the test properly, are in [reverse-symmetry-examples.md](reverse-symmetry-examples.md).
 
 Three things the page doesn't tell you, found by reading the source:
 
