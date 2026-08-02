@@ -573,6 +573,71 @@ Two of those are the Brams–Herschbach predictions listed under empirical compa
 above, marked unevidenced by a sympathetic source. And the fourth note shows the mechanism plainly: the
 correction terminates in range voting. **CRV concedes accurately, and every concession is an advertisement.**
 
+#### The AppCW theorem — sound proof, oversold conclusion
+
+CRV's sharpest technical page is ["Approval yields Condorcet winners in
+practice"](https://www.rangevoting.org/AppCW.html), and it is the formal backing for the "for practical
+purposes, Approval is a Condorcet method" line. It deserves working through, because the proof is correct and
+the headline is not what the proof establishes. Verified with
+[code/appcw-threshold/verify.py](code/appcw-threshold/verify.py); output in
+[run-output.txt](code/appcw-threshold/run-output.txt).
+
+**The claim.** Voters rank the candidates, pick a threshold, approve everything above it, and — if the approval
+winner *A* and the Condorcet winner *C* would differ — place that threshold between *A* and *C*. Then, the page
+says, no election exists in which *A* ≠ *C*.
+
+**The proof, in full**: suppose *A* ≠ *C*. Voters threshold between them. A majority prefers *C* to *A*, so *C*
+is approved more often than *A*. So *A* was not the approval winner. Contradiction.
+
+**The step is exactly right, and its reason is the identity from the electowiki section below.** Ballots
+approving both or neither of the two frontrunners cancel, so the approval margin between them *is* their
+pairwise margin. Checked over all 3-candidate profiles up to 12 voters against every frontrunner belief —
+**111,378 cases, zero violations.** This is not an approximation; it is the same algebra.
+
+**The leap is not.** "*A* is not the winner" is not "*C* is the winner," and the proof never closes that gap. A
+third candidate sitting above both camps' thresholds can outpoll both. A 100-voter witness, three candidates:
+
+| Ballots | | Pairwise |
+|---|---|---|
+| 51 | `C > D > A` | C beats A 51–49 |
+| 49 | `D > A > C` | C beats D 51–49 |
+
+***C* is the Condorcet winner.** Now let the poll say the race is *A* versus *C*, with *A* ahead — a wrong poll,
+since the true top two are *C* and *D*. Every voter plays the leader rule against that belief:
+
+| Belief | A | C | D | Winner |
+|---|---|---|---|---|
+| *A* leads *C* | 49 | 51 | **100** | **D** — approved on every ballot, and not the Condorcet winner |
+| *C* leads *A* | 49 | 51 | 49 | C |
+| *C* leads *D* (true pair) | 49 | 51 | 49 | C |
+| *D* leads *C* (true pair) | 0 | 51 | 49 | C |
+
+Nobody voted insincerely, nobody's preferences changed, and the theorem's own strategy was followed to the
+letter. Name the wrong pair and the Condorcet winner loses to a candidate every single ballot approved. Across
+all profiles with a Condorcet winner up to 12 voters, **27.3% of (profile, belief) combinations fail to elect it
+outright** — inflated by counting ties as failures, so read the witness rather than the percentage, but the
+direction is not in doubt.
+
+**So the theorem is a fixed point, not a result about elections.** Its hypothesis is not an assumption about how
+voters behave — it is the assumption that voters' beliefs about the top two are *correct*, which is the thing
+the election is held to determine. Stated honestly it reads: *approval has an equilibrium at the Condorcet
+winner.* That is Laslier's leader-rule result, already in the strategy section above, and CRV's own authorship
+note concedes the priority chain — Smith Aug 2006, Laslier independently Dec 2006, and "it already had been
+stated in Laurent Mann's PhD thesis at Ecole Polytechnique in Palaiseau 1995" (that thesis I could not locate;
+recorded as CRV's claim).
+
+**And the hypothesis is the exact negation of the chicken dilemma.** "Place your threshold between the top two"
+presumes there are two plausible winners. The Burr situation is the three-viable-candidate case, where no such
+pair exists — so the theorem is silent precisely where approval's best-documented pathology lives. CRV knows
+this: its own [range-vs-approval page](https://rangevoting.org/rangeVapp.html) lists Burr's dilemma as item 13,
+one item after "A failure of approval voting in the real world." The two pages never meet.
+
+> **A second disabled passage, same pattern as EarlyUS.** An HTML comment on AppCW records Mike Ossipoff
+> pointing out that the result may already appear in Niemi & Riker, "The Choice of Voting Systems", *Scientific
+> American* **234** (6), June 1976, 21–27 — a real article, citation verified 2026-08-01. Invisible in a
+> browser. That makes two rangevoting.org pages whose only substantive commented-out text is a concession
+> against the page's own framing.
+
 ### electowiki — ["Approval voting"](https://electowiki.org/wiki/Approval_voting)
 
 Not an organization — a community wiki, running since 2005, and **the only source in this survey that declares
@@ -750,8 +815,10 @@ are the substitutes.
   ([ranked-robin-results-explained](ranked-robin-results-explained.md)) gets there unconditionally from the
   pairwise matrix. Approval's counterargument is that the ranked ballot never had the intensity information in
   the first place. The best version of it is electowiki's, above: **honest voters give a utilitarian winner,
-  strategic voters give the Condorcet winner, so you are covered at both ends** — with the gap being that real
-  electorates are a mix, and the mix is where the chicken dilemma lives. Note also that approval *is* a
+  strategic voters give the Condorcet winner, so you are covered at both ends** — with two gaps. Real
+  electorates are a mix, and the mix is where the chicken dilemma lives; and the strategic branch is an
+  *equilibrium*, not a guarantee — CRV's AppCW theorem delivers the Condorcet winner only when voters' expected
+  top two are the actual top two, and a wrong poll can elect a third candidate outright. Note also that approval *is* a
   Condorcet method on {1st, last} ballots; it just can't tell you who the Condorcet winner is, because its
   pairwise margins are only differences of approval totals.
 - **vs. [STAR](star-voting.md)**: the "more expressive" branch — 0–5 scores plus an automatic runoff. The
@@ -785,7 +852,9 @@ are the substitutes.
 - **Prospective rating (Myerson–Weber)** — utility weighted by the probability your vote is pivotal in each
   pairwise tie. Approve everything positive.
 - **Leader rule (Laslier)** — approve everyone you prefer to the expected leader, plus the leader if you
-  prefer them to the runner-up. Its equilibrium is the Condorcet winner.
+  prefer them to the runner-up. Its equilibrium is the Condorcet winner — where **"equilibrium" is
+  load-bearing**: the result is a fixed point requiring the expected top two to *be* the top two. Believe the
+  wrong pair and a third candidate can win outright, on every ballot (the AppCW witness above).
 - **Later-no-harm** — approving an additional candidate must not hurt your earlier ones. Approval **fails**
   this, necessarily, and its monotonicity is the flip side of the same coin.
 - **Sincere favorite criterion** — approving your true favorite is never counterproductive. Approval passes

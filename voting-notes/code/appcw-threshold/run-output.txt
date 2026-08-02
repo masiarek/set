@@ -1,0 +1,18 @@
+WITNESS  51 C>D>A , 49 D>A>C
+  A vs C: 49-51
+  A vs D: 0-100
+  C vs D: 51-49
+  Condorcet winner: C
+  poll: A leads C -> {'A': 49, 'C': 51, 'D': 100} winner D   <-- Condorcet winner LOSES
+  poll: C leads A -> {'A': 49, 'C': 51, 'D': 49} winner C
+  poll: C leads D -> {'A': 49, 'C': 51, 'D': 49} winner C
+  poll: D leads C -> {'A': 0, 'C': 51, 'D': 49} winner C
+
+STEP  approval margin == pairwise margin, for the two believed frontrunners:
+  111378 (profile, belief) pairs checked, 0 violations
+
+LEAP  profiles with a Condorcet winner, over all frontrunner beliefs:
+  91476 cases, 24936 in which the believed pair does not elect the Condorcet winner outright (27.3%)
+
+  (Ties count as failures here; the point is only that the belief, not the
+   profile, decides. Beliefs that name the true top two do elect the CW.)
