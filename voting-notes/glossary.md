@@ -32,11 +32,13 @@ those definitions are filled in here from the standard social-choice literature.
   with no ranking inside either. Under this model approval is strategyproof *and* Condorcet-consistent;
   Brams and Fishburn concede it is unrealistic beyond a handful of voters. But the domain does more than
   flatter approval — on it approval is the *only* rule left standing. Brandl and Peters (2022) give eight
-  characterizations, each pairing **consistency with variable electorates** (merge two electorates and the
-  commonly chosen alternatives are what the merged electorate chooses) with one further axiom:
-  strategyproofness, majority agreement, independence of clones, or invariance under removing inferior
-  alternatives. Read the assumption as a *domain restriction with a uniqueness theorem attached*, not as a
-  thumb on the scale. [→ [approval-voting](approval-voting.md)]
+  characterizations, every one built on **consistency with variable electorates** (merge two electorates and
+  the commonly chosen alternatives are what the merged electorate chooses) plus a headline axiom —
+  strategyproofness, Condorcet, clone independence, and five others — plus housekeeping axioms that vary by
+  theorem (anonymity, neutrality, faithfulness, continuity, non-triviality), none of them droppable. Read
+  the assumption as a *domain restriction with a uniqueness theorem attached*, not as a thumb on the scale.
+  Note too that on this domain the majority relation is **transitive** (Inada 1969) and orders candidates by
+  approval score, so Condorcet cycles cannot occur at all. [→ [approval-voting](approval-voting.md)]
 - **Summability** — a precinct can report one integer per candidate and the totals just add. Plurality and
   approval are summable; IRV is not, because eliminations need the whole ballot set. Administrative, not a
   fairness property — but it drives adoption.
