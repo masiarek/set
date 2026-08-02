@@ -449,12 +449,52 @@ fixed number of seats."
   so the theorem's hypothesis does not reach them. Lippman's *Math in Society* states it for "a voting
   method" one page before introducing approval voting.
   [→ [math-in-society-lippman](math-in-society-lippman.md)]
+- **Helly's theorem (1913/1921)** — n > d convex sets in ℝᵈ, every d+1 of which share a point, all share a
+  point. At d = 1 it is just "pairwise intersecting intervals have a common point", and that is the whole
+  engine behind the agreement results below. [→ [agreeable-societies](agreeable-societies.md)]
+- **Super-Agreeable Linear Society Theorem (Berg–Norine–Su–Thomas–Wollan 2010)** — if every *pair* of voters
+  approves some common platform, then some platform is approved by *everyone*. Helly at d = 1, read as
+  voting. Fails on a **circular** spectrum, where pairwise agreement buys only a strict majority.
+  [→ [agreeable-societies](agreeable-societies.md)]
+- **Agreeable Linear Society Theorem (same authors)** — in a **(k,m)-agreeable** linear society of n voters,
+  some platform has the approval of at least n(k−1)/(m−1) voters. So "of every three voters, two agree
+  somewhere" forces a platform acceptable to half the electorate. A corollary of their sharper clique bound
+  ⌈(n−ρ)/q⌉, which is strictly stronger about 80% of the time.
+  [→ [agreeable-societies](agreeable-societies.md)]
 - **Balinski–Young impossibility theorem** — no apportionment method satisfies the **quota rule** and
   **population monotonicity** together. Often misquoted as ruling out quota plus *any* paradox: quota with
   **house** monotonicity (no Alabama paradox) is achievable, and Balinski & Young built such a method
   themselves (the Quota method, 1975; Still 1979 characterises the whole class). Same Balinski as
   Balinski–Laraki [majority judgment](majority-judgment.md).
   [→ [math-in-society-lippman](math-in-society-lippman.md)]
+
+---
+
+## 10. Agreement models
+
+Vocabulary from the geometric side of approval theory, which asks how much agreement an *electorate*
+contains rather than which candidate a *method* elects. Nothing here names a winner.
+[→ [agreeable-societies](agreeable-societies.md)]
+
+- **Society (X, V, 𝒜)** — a **spectrum** X of possible positions, a finite voter set V, and each voter's
+  **approval set** A_v ⊆ X. Each element of X is a **platform**. A **linear** society has X ⊆ ℝ closed and
+  interval approval sets; an **ℝᵈ-convex** society has convex approval sets in ℝᵈ; a **d-box** society has
+  products of d intervals. The linear results use only the *order* on ℝ, never a distance.
+- **Agreement number / agreement proportion** — how many voters approve the most-approved platform, and that
+  count divided by n.
+- **(k, m)-agreeable** — among *every* m voters, some k share a platform. **(2,2) = super-agreeable**,
+  **(2,3) = agreeable**. A hypothesis about the electorate, not something readable off ballots.
+- **Agreement graph** — voters as vertices, an edge when two approval sets intersect. For a linear society
+  it is an **interval graph**, and its clique number equals the agreement number.
+- **Perfect graph** — χ(H) = ω(H) on every induced subgraph. Interval graphs are perfect, which is what lets
+  a colouring bound become an agreement bound; box agreement graphs are not (C₅ is realisable with five
+  rectangles).
+- **Tolerance graph** — an interval graph in which an edge requires overlap of at least the smaller
+  *tolerance*. Burkhart's two-level ("approve / maybe / disapprove") societies are tolerance graphs when the
+  maybe regions are symmetric, **bitolerance** graphs otherwise.
+- **Piercing number** — the fewest platforms needed so that every voter approves at least one.
+- **Boxicity** — the least d making a graph the agreement graph of a d-box society. Recognising boxicity ≤ 1
+  is interval-graph recognition (easy); deciding boxicity ≤ d is NP-hard for every d ≥ 2.
 
 ---
 
@@ -479,6 +519,10 @@ fixed number of seats."
 - [*Single transferable vote* (Wikipedia)](https://en.wikipedia.org/wiki/Single_transferable_vote) — the
   first multi-winner method here; quotas, surplus transfers, and a century of real use
   [→ [single-transferable-vote](single-transferable-vote.md)]
+- [Berg, Norine, Su, Thomas & Wollan, *Voting in agreeable societies*](http://arxiv.org/abs/0811.3245),
+  *Amer. Math. Monthly* 117 (2010) — Helly's theorem read as voting; agreement numbers, (k,m)-agreeability,
+  and the interval/perfect-graph machinery. With Burkhart's 2012 HMC thesis on a third approval level
+  [→ [agreeable-societies](agreeable-societies.md)]
 - [Equal Vote Coalition](https://www.equal.vote/) / [STAR Voting](https://www.starvoting.org/) — origin of
   both STAR and Ranked Robin
 - [Equal Vote / BetterVoting](https://bettervoting.com) — Ranked Robin in production
