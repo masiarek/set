@@ -1,0 +1,172 @@
+
+==============================================================================
+1. The stated preference profile
+==============================================================================
+PASS  blocs sum to Riker's House
+        got  426
+        want 426
+NOTE  percentages as printed vs. recomputed
+        {'big taxers': (132, '30.99%'), 'pragmatists': (67, '15.73%'), 'small taxers': (130, '30.52%'), 'anti-tax A': (49, '11.50%'), 'anti-tax B': (48, '11.27%')}
+NOTE  paper's restatement of the 30% bloc
+        printed 'They are yxz or "Small Taxers"' -- the line it restates says yzx; the same paragraph also collapses zxy (49) + zyx (48) into 'zyx'
+PASS  a majority, not a plurality, prefers some increase to the status quo
+        got  329
+        want 329
+NOTE  that share
+        77.2% -- the paper says 'a plurality'
+
+==============================================================================
+2. The sequential agenda manipulation Horn describes actually works
+==============================================================================
+PASS  sincere amendment vote x vs y
+        got  (181, 245)
+        want (181, 245)
+PASS  sincere final vote y vs z
+        got  (329, 97)
+        want (329, 97)
+PASS  sincere sequential outcome
+        got  y
+        want y
+PASS  strategic amendment vote x vs y
+        got  (229, 197)
+        want (229, 197)
+PASS  strategic final vote x vs z
+        got  (199, 227)
+        want (199, 227)
+PASS  strategic sequential outcome
+        got  z
+        want z
+
+==============================================================================
+3. The approval mapping over-counts its own bloc
+==============================================================================
+FAIL  99 + 66 against a bloc of 132
+        got  165
+        want 132
+NOTE  implied electorate
+        459
+PASS  published totals reproduce from 165 big taxers, not 132
+        got  {'x': 232, 'y': 296, 'z': 293}
+        want {'x': 232, 'y': 296, 'z': 293}
+PASS  published margin y over z
+        got  3
+        want 3
+NOTE  bloc repaired to 132, 33 approve {x,z}
+        {'x': 199, 'y': 296, 'z': 260} -> y wins by 36
+NOTE  bloc repaired to 132, 33 bullet x
+        {'x': 199, 'y': 296, 'z': 227} -> y wins by 69
+
+==============================================================================
+4. Three stipulated approval sets contradict the paper's own rule II.B
+==============================================================================
+FAIL  Section III approval sets consistent with rule II.B
+        got  {'big taxers, 66': [('z', 'y')]}
+        want {}
+FAIL  Section IV table cells consistent with rule II.B
+        got  {'P': [['x', 'z']], 'Q': [['x', 'y']], 'R': [['y', 'z']]}
+        want {}
+
+==============================================================================
+5. The 'generalizable' result, as stated, is self-contradicting
+==============================================================================
+PASS  conjunctive reading: triples where the antecedent holds and y wins
+        got  0
+        want 0
+NOTE  why
+        AV elects argmax; Ax > Ay and Ax > Az means x wins by definition
+PASS  disjunctive reading: counterexamples exist
+        got  True
+        want True
+NOTE  smallest disjunctive counterexample (Ax, Ay, Az)
+        (2, 1, 2)
+NOTE  the paper's own example against the antecedent
+        Ax=232 is LESS than both Ay=296 and Az=293, so the example does not satisfy the rule it is offered as an instance of
+
+==============================================================================
+6. On the same profile, every simultaneous method defeats the manipulation
+==============================================================================
+PASS  plurality
+        got  {'x': 132, 'y': 197, 'z': 97}
+        want {'x': 132, 'y': 197, 'z': 97}
+PASS  Borda (2/1/0)
+        got  {'x': 380, 'y': 574, 'z': 324}
+        want {'x': 380, 'y': 574, 'z': 324}
+PASS  Borda points conserved
+        got  1278
+        want 1278
+PASS  IRV winner
+        got  y
+        want y
+PASS  Condorcet winner
+        got  y
+        want y
+PASS  x is the Condorcet loser
+        got  [(181, 245), (199, 227)]
+        want [(181, 245), (199, 227)]
+NOTE  conclusion
+        the compromise y wins under plurality, Borda, IRV and pairwise majority when all three options are voted on at once -- the defence against agenda-setting is simultaneity, not approval
+
+==============================================================================
+7. Sincere approval on the same profile can elect the status quo
+==============================================================================
+PASS  achievable outcomes over all 32 sincere cutoff profiles
+        got  [('x',), ('y',), ('z',)]
+        want [('x',), ('y',), ('z',)]
+NOTE    x wins in 5 of 32
+        e.g. cutoffs {'big taxers': 1, 'pragmatists': 2, 'small taxers': 1, 'anti-tax A': 1, 'anti-tax B': 1} -> {'x': 199, 'y': 197, 'z': 97}
+NOTE    y wins in 24 of 32
+        e.g. cutoffs {'big taxers': 1, 'pragmatists': 1, 'small taxers': 1, 'anti-tax A': 1, 'anti-tax B': 1} -> {'x': 132, 'y': 197, 'z': 97}
+NOTE    z wins in 3 of 32
+        e.g. cutoffs {'big taxers': 1, 'pragmatists': 1, 'small taxers': 2, 'anti-tax A': 1, 'anti-tax B': 1} -> {'x': 132, 'y': 197, 'z': 227}
+NOTE  the status quo winning on wholly sincere ballots
+        cutoffs {'big taxers': 1, 'pragmatists': 1, 'small taxers': 2, 'anti-tax A': 1, 'anti-tax B': 1} -> {'x': 132, 'y': 197, 'z': 227}; z wins although 329/426 prefer a tax increase to no change and y is the Condorcet winner -- the manipulators' outcome, with nobody misrepresenting anything and no agenda to set
+NOTE  and the Condorcet loser winning on wholly sincere ballots
+        cutoffs {'big taxers': 1, 'pragmatists': 2, 'small taxers': 1, 'anti-tax A': 1, 'anti-tax B': 1} -> {'x': 199, 'y': 197, 'z': 97}
+
+==============================================================================
+8. Footnote 20's combinatorics
+==============================================================================
+PASS  options per voter after the truncation
+        got  {'P': 3, 'Q': 3, 'R': 3}
+        want {'P': 3, 'Q': 3, 'R': 3}
+PASS  footnote 20: ways x gets exactly two votes
+        got  12
+        want 12
+PASS  footnote 20: x wins outright in two
+        got  2
+        want 2
+PASS  footnote 20: x ties in eight
+        got  8
+        want 8
+PASS  footnote 20: x loses to each other candidate once
+        got  {'y': 1, 'z': 1}
+        want {'y': 1, 'z': 1}
+PASS  sincere options per voter
+        got  {'P': 2, 'Q': 2, 'R': 2}
+        want {'P': 2, 'Q': 2, 'R': 2}
+FAIL  ways x gets exactly two votes, insincere cells removed
+        got  4
+        want 12
+NOTE  recount
+        {'x_two': 4, 'x_sole': 1, 'tie': 3, 'loses_to': {'y': 0, 'z': 0}}
+
+==============================================================================
+9. Cycles are a property of pairwise majority, not of every ranked method
+==============================================================================
+PASS  the cycle is real: x>y, y>z, z>x by majority
+        got  [('x', 'y', (2, 1)), ('y', 'z', (2, 1)), ('z', 'x', (2, 1))]
+        want [('x', 'y', (2, 1)), ('y', 'z', (2, 1)), ('z', 'x', (2, 1))]
+PASS  Borda's social ordering on the cycle is complete and transitive (a 3-way tie)
+        got  {'x': 3, 'y': 3, 'z': 3}
+        want {'x': 3, 'y': 3, 'z': 3}
+NOTE  so
+        Borda, Schulze and ranked pairs all return a transitive social order on this profile; 'this sort of cycle is unavoidable under every type of minimally democratic preferentist voting mechanism' overstates it -- the intransitivity belongs to the pairwise majority relation, which is one input a ranked method may or may not use
+
+==============================================================================
+Summary
+==============================================================================
+48 checks recorded, 4 discrepancies with the paper:
+  - 99 + 66 against a bloc of 132: got 165, paper implies 132
+  - Section III approval sets consistent with rule II.B: got {'big taxers, 66': [('z', 'y')]}, paper implies {}
+  - Section IV table cells consistent with rule II.B: got {'P': [['x', 'z']], 'Q': [['x', 'y']], 'R': [['y', 'z']]}, paper implies {}
+  - ways x gets exactly two votes, insincere cells removed: got 4, paper implies 12
