@@ -517,7 +517,10 @@ fixed number of seats."
   [→ [approval-voting](approval-voting.md)]
 - **Leader rule (Laslier)** — the practical special case: approve everyone you prefer to the expected
   leader, plus the leader if you prefer them to the expected runner-up. If everyone plays it, the
-  equilibrium elects the Condorcet winner when one exists. [→ [approval-voting](approval-voting.md)]
+  equilibrium elects the Condorcet winner when one exists — where **"equilibrium" is load-bearing**. It is a
+  fixed point requiring the expected top two to *be* the top two; believe the wrong pair and a third candidate
+  can win on every ballot while the Condorcet winner loses. CRV's AppCW page states this as a theorem about
+  elections, which it is not. [→ [approval-voting](approval-voting.md)]
 - **Arrow's impossibility theorem** — no ranked method can simultaneously satisfy unrestricted domain,
   Pareto, independence of irrelevant alternatives, and non-dictatorship. Applies to *methods*; arguments about
   an idealized preference-aggregation *standard* are not bound by it.
