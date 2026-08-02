@@ -867,6 +867,11 @@ are the substitutes.
 
 - [brandl-peters-approval-characterizations](brandl-peters-approval-characterizations.md) — the axiomatic
   half of this note: what approval is *forced* to be, and on what domain
+- [agreeable-societies](agreeable-societies.md) — the geometric half: approval sets as intervals on a
+  political spectrum, asking how much agreement an *electorate* contains rather than which candidate wins.
+  Its **(k,m)-agreeable** hypothesis is the same species of domain restriction as dichotomous preferences
+  above — strong theorems, unobservable premise — and unlike the advocacy pages surveyed here, its authors
+  say so themselves
 - [glossary.md](glossary.md) — all terms above are indexed there
 - [rcv-and-core-support](rcv-and-core-support.md) — the cardinal-vs-ordinal argument approval sits inside
 - [legrand-ranked-ballot-methods](legrand-ranked-ballot-methods.md) — the ranked-only site whose author
