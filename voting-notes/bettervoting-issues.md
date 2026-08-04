@@ -59,6 +59,31 @@ at all — it only catches draw-induced ties like the BV1550 Ann/Bob case.
   (`i < 2 ? m : null`), so the dashed line stops before the row that most visibly crosses it. Figures
   and reasoning: [results-chart-denominators](results-chart-denominators.md).
 
+## Sent as a pull request
+
+- **[#1474, 2026-08-04](https://github.com/Equal-Vote/bettervoting/pull/1474)** — a Bloc STAR help page
+  for docs.bettervoting.com (`docs/help/bloc_star.md`), plus one line giving `tips.bloc_multi_winner`
+  the `learn_link` it was the only method tip to lack. The gap it fills: BetterVoting *runs* Bloc STAR
+  (STAR + **Basic Multi-Winner**) but documents it nowhere — the ballot text sits inside
+  `paper_ballots.md`, `faq.md` never says "multi-winner", and the at-large / Section 2 Voting Rights
+  Act warning from [starvoting.org/multi_winner](https://www.starvoting.org/multi_winner) appears on no
+  BV page at all. Related to [#1086](https://github.com/Equal-Vote/bettervoting/issues/1086) (results
+  page links "How STAR voting works" for a Bloc race, issue suggests electowiki) — the PR gives that
+  link a first-party target but does not touch the results page, so #1086 stays open.
+
+  The worked example is the 3-ballot `Over_50_percent_bloc` profile, re-run here through the vendored
+  `starvote` engine: A wins seat 1 outright, then the seat-2 runoff **ties 1–1 with one no-preference
+  ballot** and the score rung elects C. Worth keeping in mind whenever "elects majority preferred
+  winners" is quoted: C's seat rests on one voter in three, and the runoff percentage is a share of the
+  two voters who expressed a preference between *those* finalists — the same denominator question as
+  [#1471](https://github.com/Equal-Vote/bettervoting/issues/1471)
+  ([results-chart-denominators](results-chart-denominators.md)).
+
+  One wording deviation flagged in the PR: starvoting.org says at-large bloc voting "was banned in the
+  Voting Rights Act". The page says instead that such systems have repeatedly been struck down **under
+  Section 2** where they diluted minority voting strength, which is what the record supports. The
+  recommendation is unchanged.
+
 ## Checked and deliberately *not* filed
 
 Recording these matters as much as the filings — it stops the same non-bug being re-reported later.
