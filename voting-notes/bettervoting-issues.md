@@ -165,7 +165,9 @@ Recording these matters as much as the filings — it stops the same non-bug bei
   correctly today, and the #1471 comment above links it as the regression fixture for whichever fix
   lands. BV agrees with LH line for line (A wins; 15 / 1 / 0; runoff 3–0, no Equal Support;
   `tieBreakType: "none"`). Two-seat twin: BV1815 `fk38pk`. Case files in star-voting-library at
-  `01_STAR/02_Examples/cases/over_50_percent_star_c3_b3.yaml`.
+  `01_STAR/02_Examples/cases/bv2263_xw23m9_over_50_percent.yaml` (renamed from
+  `over_50_percent_star_c3_b3` once it stopped being LH-only; the old page URL — the one baked into
+  xw23m9's permanent description — is kept alive by a `redirect_maps` entry in `mkdocs.yml`).
 
 ## Related local material
 
