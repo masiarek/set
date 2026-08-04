@@ -90,9 +90,9 @@ Winners — Bloc STAR Voting Method (2 winners)
 ```
 
 <details>
-<summary>And the single-winner control — one candidate holding every point on every ballot (no BV election for this one)</summary>
+<summary>And the single-winner control — one candidate holding every point on every ballot</summary>
 
-Worth having as a regression fixture for whichever fix lands: it is the case where all three denominators agree, so a correct chart must still show 100% with the marker at ½ and no Equal Support bar.
+Now live as well, so it can be checked in the UI rather than taken on trust: [`xw23m9`](https://bettervoting.com/xw23m9/results). Worth having as a regression fixture for whichever fix lands — it is the case where all three denominators agree, so a correct chart must still show 100%, the marker at ½ of the same axis, and an empty Equal Support bar. It renders correctly today.
 
 ```text
 --- STAR Voting Method (single winner) ---

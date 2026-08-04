@@ -157,6 +157,16 @@ Recording these matters as much as the filings — it stops the same non-bug bei
   the guest `temp_id` `61abacb9-15a6-49f2-b8bd-16c8764783f4`; administering or closing it needs that
   set as the `temp_id` cookie on bettervoting.com, or the election claimed from a signed-in account.
 
+- **xw23m9** — [results](https://bettervoting.com/xw23m9/results), "BV2263 — Over 50%: every point on
+  every ballot", minted 2026-08-04 with `create_bv_test_election.py` (owner = the real BV account, not
+  a guest). Three voters, three candidates, A scored 5 by every voter: score share, ballot share and
+  decided-voter share all read 100%, which makes it the **control** for the denominator work — the one
+  configuration where the runoff chart's labels and its majority marker cannot disagree. It renders
+  correctly today, and the #1471 comment above links it as the regression fixture for whichever fix
+  lands. BV agrees with LH line for line (A wins; 15 / 1 / 0; runoff 3–0, no Equal Support;
+  `tieBreakType: "none"`). Two-seat twin: BV1815 `fk38pk`. Case files in star-voting-library at
+  `01_STAR/02_Examples/cases/over_50_percent_star_c3_b3.yaml`.
+
 ## Related local material
 
 - [ranked-robin-results-explained](ranked-robin-results-explained.md) — the results-page note where
