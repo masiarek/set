@@ -75,6 +75,23 @@ at all — it only catches draw-induced ties like the BV1550 Ann/Bob case.
   export for `fk38pk` — same winners, same runoff counts, same `tieBreakType`); the chart readings come
   from screenshots taken 2026-08-04 and match `ResultsBarChart.tsx` on `main`; no proposed fix tested.
 
+- **[#904 comment, 2026-08-04](https://github.com/Equal-Vote/bettervoting/issues/904#issuecomment-5178824529)**
+  — **retracting my own Should-Be.** #904 (open since April 2025) asks for one string: the display name
+  for STAR under Basic Multi-Winner. It proposes **"STAR Bloc Voting"**. Five sources say **"Bloc
+  STAR"**, adjective first — the BPML naming doc the issue itself links, technical specifications
+  1.c/1.e, starvoting.org/multi_winner, electowiki, and `starvote`'s own `Bloc_STAR_Voting`. So does
+  the house pattern: `en.yaml:161` already ships the sibling as **Proportional STAR Voting**, and the
+  two render one above the other in the same list. And the help page in #1474 uses "Bloc STAR"
+  throughout, so shipping "STAR Bloc" would put two names for one method on one site. Sources and the
+  local propagation (`star-voting-library` publishes under `02_STAR_Bloc/`):
+  [bloc-star-bpml-fixtures](bloc-star-bpml-fixtures.md).
+
+  Nothing in the [sizing note](https://github.com/masiarek/bettervoting-qa/blob/master/issues/904-star-bloc-naming.md)
+  changes — same chokepoint, same three render sites, same E2E selector, still display-only, still
+  about half a day. Only the string does. **Blocked on an upstream answer** rather than on code: worth
+  hearing whether Equal Vote has a house preference before opening the PR, since renaming a user-facing
+  label twice is worse than asking once.
+
 ## Sent as a pull request
 
 - **[#1474, 2026-08-04](https://github.com/Equal-Vote/bettervoting/pull/1474)** — a Bloc STAR help page
@@ -90,8 +107,7 @@ at all — it only catches draw-induced ties like the BV1550 Ann/Bob case.
   The worked example is the 3-ballot `Over_50_percent_bloc` profile, re-run here through the vendored
   `starvote` engine: A wins seat 1 outright, then the seat-2 runoff **ties 1–1 with one no-preference
   ballot** and the score rung elects C. Worth keeping in mind whenever "elects majority preferred
-  winners" is quoted: C's seat rests on one voter in three, and the runoff percentage is a share of the
-  two voters who expressed a preference between *those* finalists — the same denominator question as
+  winners" is quoted: C's seat rests on one voter in three — the same denominator question as
   [#1471](https://github.com/Equal-Vote/bettervoting/issues/1471)
   ([results-chart-denominators](results-chart-denominators.md)).
 
@@ -99,6 +115,15 @@ at all — it only catches draw-induced ties like the BV1550 Ann/Bob case.
   Voting Rights Act". The page says instead that such systems have repeatedly been struck down **under
   Section 2** where they diluted minority voting strength, which is what the record supports. The
   recommendation is unchanged.
+
+  **Corrected 2026-08-04 (`fe6c1773`), after the PR was opened.** The page had said a runoff
+  percentage is "a share of the voters who expressed a preference between *those two finalists*, not a
+  share of everyone who voted" — which is the **opposite** of #1471. The bar labels divide by every
+  ballot cast; it is the dashed majority threshold that divides by the preference-expressing subset
+  (`ResultsBarChart.tsx:85` drops the last row from the marker's denominator only). Documenting the
+  reverse of an issue filed from the same desk would have been the worst version of this mistake. The
+  replacement also names the on-screen category, **Equal Support** (`en.yaml:304`), so a reader can
+  find it on the chart. This paragraph carried the same error and has been fixed above.
 
 ## Checked and deliberately *not* filed
 

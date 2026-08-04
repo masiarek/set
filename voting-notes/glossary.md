@@ -375,9 +375,18 @@ to "who should be represented".
 - **District magnitude** — seats per district. The real determinant of how proportional a result is; three
   seats means a 25% threshold. Shrinking districts is how a government tunes STV toward large parties
   without appearing to change the rules. [→ [single-transferable-vote](single-transferable-vote.md)]
-- **Bloc methods (bloc approval / bloc score / bloc STAR)** — top *k* totals win, no reweighting. The
-  cardinal analogue of block plurality, and **not proportional**: a coherent majority takes every seat. The
-  reason the sequential family below exists. [→ [cardinal-voting-systems](cardinal-voting-systems.md)]
+- **Bloc methods (bloc approval / bloc score / bloc STAR)** — elect *k* winners with no reweighting:
+  taking a seat never changes how the remaining seats are counted. The cardinal analogue of block
+  plurality, and **not proportional**: a coherent majority takes every seat. The reason the sequential
+  family below exists.
+  Bloc approval and bloc score really are "top *k* totals win". *Bloc STAR is not* — it repeats the
+  whole score-then-runoff count once per seat, so a runoff can overturn a score lead and the winner set
+  can differ from the top *k* scorers. Five ballots suffice: `3× (A3 B5 C4)`, `2× (A5 B0 C0)` scores
+  A 19, B 15, C 12 and elects B then C, leaving the highest scorer with no seat at all.
+  Canonical name is *Bloc STAR Voting* (equivalently *Basic Multi-Winner STAR Voting*) — adjective
+  first, matching *Proportional STAR Voting*; "STAR Bloc" appears in BetterVoting's tracker but in no
+  specification. [→ [cardinal-voting-systems](cardinal-voting-systems.md),
+  [bloc-star-bpml-fixtures](bloc-star-bpml-fixtures.md)]
 - **Sequential proportional cardinal methods** — elect one at a time, **reweighting** ballots that already
   helped elect someone, which is the surplus transfer's cardinal analogue. RRV (picks the Academy's Visual
   Effects nominees), SPAV, Sequentially Spent Score, Allocated Score, Sequential Monroe, Sequential
