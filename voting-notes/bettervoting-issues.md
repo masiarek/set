@@ -125,6 +125,35 @@ at all — it only catches draw-induced ties like the BV1550 Ann/Bob case.
   replacement also names the on-screen category, **Equal Support** (`en.yaml:304`), so a reader can
   find it on the chart. This paragraph carried the same error and has been fixed above.
 
+  **Then reverted and restored, same day.** A later commit on the branch rewrote the whole file from a
+  copy taken before `fe6c1773`, putting the wrong claim back for about ten minutes; restored verbatim in
+  `745a4a3`. Cause worth carrying: the GitHub **contents API PUT is a whole-file overwrite**, and
+  passing the current blob `sha` only proves nobody wrote *since you read it* — re-`GET` the remote
+  file and patch that string, never upload a cached copy.
+
+  **Final commit, from reading the actual specification.** `starvoting.org/technical_specifications`
+  serves a scanned PDF (v1.3, 2024-12-20) with no text layer; pulled out of the font-encoded streams,
+  **§3.d prescribes different ballot wording than the paper-ballot text BV ships**: *"the **finalist**
+  preferred by the most voters wins"* against *"the **candidate** with the most votes is elected."* The
+  circulated clause is the one that invites reading stars as votes and concluding the top scorer wins.
+  §3.e licenses paraphrase "with the meaning unchanged", so neither is off-spec — but that is the clause
+  where the meaning arguably is. The page now carries both. Offered in the PR thread and **not** done:
+  the same correction in `docs/help/paper_ballots.md`, so BV's two docs agree.
+
+- **[#1475, 2026-08-04](https://github.com/Equal-Vote/bettervoting/pull/1475)** — **draft on purpose**,
+  the results-page half of [#1086](https://github.com/Equal-Vote/bettervoting/issues/1086). Three lines
+  in `Results.tsx` derive `star_bloc` when a STAR race has `num_winners > 1`, plus a `methods.star_bloc`
+  block in `en.yaml`, so the label reads "Voting Method: **Bloc STAR Voting**" and the help link stops
+  pointing at the single-winner explainer. **Must not merge before #1474** — its `learn_link` targets the
+  page #1474 adds, so merging first ships a 404. If #1474 is declined it still works, pointed at
+  electowiki as #1086 originally proposed.
+
+  Scope deliberately narrow, and stated in the PR: the **stored** `votingMethod: "STAR"` + `num_winners`
+  is left alone (the name is a *derived* label — the [BV129 note](https://github.com/masiarek/star-voting-library/blob/master/02_STAR_Bloc/02_Examples/bv129_1086_method_name_note.md)
+  argument), the Edit Race modal is left alone (its adjective composition generalizes across every
+  method — see #904, #912), and `useSubstitutedTranslation`'s `methodKey` is left alone. So #1086 should
+  lose one of its three problem areas, not close.
+
 - **[#1476, 2026-08-04](https://github.com/Equal-Vote/bettervoting/pull/1476)** — the Polish
   translation, `packages/frontend/src/i18n/pl.yaml`, against my own
   [#762](https://github.com/Equal-Vote/bettervoting/issues/762). All 844 keys of `en.yaml`, where the
