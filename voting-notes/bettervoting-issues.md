@@ -50,6 +50,15 @@ at all — it only catches draw-induced ties like the BV1550 Ann/Bob case.
   Stated in the comment and worth repeating: the **tabulation** was computed and hand-checked, the
   **display** behaviour was not tested against this profile.
 
+- **[#1471 comment, 2026-08-03](https://github.com/Equal-Vote/bettervoting/issues/1471#issuecomment-5173488984)**
+  — the screenshots the original report was missing, taken from two live elections rather than the
+  sandbox: [2dm864](https://bettervoting.com/2dm864/results) (STAR) and
+  [hx848r](https://bettervoting.com/hx848r/results) (IRV). Adds three things not in the issue: STAR's
+  legend names its denominator less clearly than IRV's; a "majority of all voters" line would fall
+  **off the right edge** of the STAR plot; and the marker is set on only the first two rows
+  (`i < 2 ? m : null`), so the dashed line stops before the row that most visibly crosses it. Figures
+  and reasoning: [results-chart-denominators](results-chart-denominators.md).
+
 ## Checked and deliberately *not* filed
 
 Recording these matters as much as the filings — it stops the same non-bug being re-reported later.
