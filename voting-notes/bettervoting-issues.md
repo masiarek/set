@@ -163,10 +163,25 @@ at all — it only catches draw-induced ties like the BV1550 Ann/Bob case.
   literally today. The Polish string uses the correct form. Left out of the PR to keep it
   translation-only, so **`en.yaml` is still wrong**.
 
-  Verification limit: structural only. YAML parses, all 844 `en.yaml` keys resolve, every `!tip()`
-  target exists, and the placeholder delta per key was diffed. The frontend was **not** built —
-  `node_modules` is not installed in the local clone — so nothing here confirms the vite YAML loader
-  or the rendered pages. No screenshots for the same reason.
+  Verification, in two stages. Locally, structural only: YAML parses, all 844 `en.yaml` keys resolve,
+  every `!tip()` target exists, and the placeholder delta per key was diffed — but the frontend was
+  **not** built, because `node_modules` is not installed in the local clone. **Resolved by CI on the
+  PR**: `build (24.x)` and `test` both pass, and the Netlify deploy preview
+  ([deploy-preview-1476](https://deploy-preview-1476--bettervoting.netlify.app/?lng=pl), `?lng=pl`
+  drives the language detector) renders Polish live. Spot-checked there: the landing hero, the beta
+  warning, the STAR demo ballot's *Najgorszy* / *Najlepszy* column headers, and the full footer —
+  including that a markdown link inside a translated string (`[Darowizny](…)`) and the blank-line
+  paragraph breaks in `footer.project_description` both survive the YAML block scalar. So the vite
+  loader and the render path are confirmed, not assumed.
+
+  **Found while looking at the preview, and worth its own issue:** a set of nav strings bypass `t()`
+  entirely and are hardcoded English in `components/Header.tsx` — `'Voting Methods'` (line 55),
+  `'Paper Ballots'` (90 and 99), `'Stories'` (111), and `'Create Election'` (115, via
+  `createWizardNav`). They sit beside siblings that *are* wired up (`t('nav.about')`,
+  `t('nav.public_elections')`), so the top nav renders half-Polish. The browse page has more of the
+  same — "Loading Elections…" and the public-archive banner. This is not a `pl.yaml` gap and no
+  translation can fix it: **`es.yaml` and `pt-BR.yaml` are hitting it too**, which may be part of why
+  translation coverage there looks better than it reads on screen. Not filed yet.
 
 ## Checked and deliberately *not* filed
 
