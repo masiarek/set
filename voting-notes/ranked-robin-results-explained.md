@@ -279,3 +279,8 @@ anyway, the choice of what to do with it afterwards is a separate decision — a
 - **"Is it 12 voters or 2 voters?"** The wins chart sums to 2 (1 + 1 + 0), which looks like a tiny
   electorate. That 2 is *decided matchups*, not people; the 12 voters sit inside each matchup bar.
 - **A 50% bar doesn't mean half the voters.** It means half the *possible matchups* (1 of 2).
+
+The same family of defect on a different results chart: STAR's and IRV's runoff bars label percentages
+against every ballot cast while the "majority threshold" marker is drawn against a smaller denominator
+— [results-chart-denominators](results-chart-denominators.md), filed as
+[bettervoting#1471](https://github.com/Equal-Vote/bettervoting/issues/1471).

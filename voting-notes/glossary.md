@@ -576,6 +576,11 @@ The four axioms every characterization result starts from, and the two it usuall
 - **Exhausted ballot** — no usable preference left, so it stops transferring and sits out the rest of the
   count. Enough exhaustion lets STV candidates win on partial quotas.
   [→ [single-transferable-vote](single-transferable-vote.md)]
+- **Equal Support** — STAR's name for a ballot that scores both finalists the same and so casts no vote in
+  the automatic runoff. The scored-ballot analogue of an exhausted ballot: counted, but unable to help
+  either finalist. Note that "preference" in BetterVoting's runoff legend means a *strict* preference
+  between the two finalists, not "ranked or scored anyone at all".
+  [→ [results-chart-denominators](results-chart-denominators.md)]
 - **Decisiveness** — how often a method needs a tiebreaker at all. Black is the most decisive of LeGrand's
   set, Copeland the least.
 - **Strategic straightforwardness** — how easy it is to vote honestly without regret; a softer, practical
