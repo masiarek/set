@@ -73,6 +73,45 @@ actually names its denominator, where STAR's "½ of voters with preference" leav
 whether "preference" means *ranked anyone at all* or *strictly preferred one finalist to the other*.
 It is the latter. Neither wording rescues the picture, because the labels never state theirs.
 
+## Bloc STAR: the same chart once per seat, and a tie sitting on the line
+
+`STARResultSummaryWidget` takes a `roundIndex` and renders one card per seat, so a Bloc race draws this
+chart N times. [`fk38pk`](https://bettervoting.com/fk38pk/results) — an old QA election, 3 candidates,
+2 seats, 3 ballots — happens to hold the best and worst cases of the whole issue in one election, one
+click apart.
+
+**Seat 1** is the control. A wins the runoff 3–0 and nobody rates the two finalists equally, so the
+label denominator (`3 + 0 + 0`) and the marker denominator (`(3 + 0)/2`) are the same three voters: the
+bar reads 100%, the line sits at 50% of that axis, and the picture is honest.
+
+![Seat 1: runoff A 100%, marker at mid-bar](img/bv1471-bloc-seat1-fk38pk.png)
+
+**Seat 2** is the degenerate case. With A elected and removed, C and B each hold one preference and one
+voter rates them equally — bars `1 / 1 / 1`.
+
+| Seat 2 runoff | Votes | Labelled |
+|---|---|---|
+| C | 1 | **33%** |
+| B | 1 | **33%** |
+| Equal Support | 1 | 33% |
+
+Labels divide by **3**; the marker is half of the 2 decided voters = **1 vote**, which is exactly the
+height of *both* candidate bars. So two bars touch a line labelled "majority threshold" in a runoff
+**neither of them won** — the seat went to the score rung, and the page's own headline says so ("Tied!
+A and C won after tiebreaker").
+
+![Seat 2: runoff C 33%, B 33%, Equal Support 33%, both bars reaching the marker](img/bv1471-bloc-seat2-fk38pk.png)
+
+Two things follow that the single-winner figures above don't show:
+
+- **A Bloc race repeats the defect per seat, and later seats are where it should bite hardest.** Each
+  elected candidate is removed, so the pairs left for later seats are the ones voters were least
+  decided between — exactly when the Equal Support bar, and therefore the gap, is largest.
+- **`m = sum / 2` is half, not a majority.** At an even number of decided voters, a bar that *reaches*
+  the line has exactly ½ — tied, not winning. Fixing only the denominator would leave this seat drawn
+  as 50% / 50% with both bars ending on "majority threshold"; the marker wants
+  `Math.floor(sum/2) + 1` (whole votes) or a line drawn just past ½ at the same time.
+
 ## Where the honest 50% line would be
 
 The sharpest way to see the size of the gap: ask where a line at *half of all voters* would fall.

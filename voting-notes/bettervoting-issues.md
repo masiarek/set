@@ -59,6 +59,22 @@ at all — it only catches draw-induced ties like the BV1550 Ann/Bob case.
   (`i < 2 ? m : null`), so the dashed line stops before the row that most visibly crosses it. Figures
   and reasoning: [results-chart-denominators](results-chart-denominators.md).
 
+- **[#1471 comment, 2026-08-04](https://github.com/Equal-Vote/bettervoting/issues/1471#issuecomment-5178781174)**
+  — the **Bloc STAR** half, on the live QA election [fk38pk](https://bettervoting.com/fk38pk/results)
+  (BV1815 — 3 candidates, 2 seats, 3 ballots), which carries the best and worst case of the issue one
+  click apart: seat 1 has no Equal Support, so both denominators agree and the chart is honest; seat 2
+  draws all three bars at 33% with the marker at **1 vote**, level with *both* candidate bars, in a
+  runoff nobody won (the seat went to the score rung). Two points new to the issue: the widget renders
+  once per `roundIndex`, so a Bloc race repeats the defect per seat and later seats should show it
+  worst; and `m = sum/2` is **half, not a majority**, so a denominator-only fix still ends both bars on
+  the line. Carries the LH reports for the seat pair and for a single-winner control. Text as sent:
+  [bv-1471-bloc-comment-posted](bv-1471-bloc-comment-posted.md); figures added to
+  [results-chart-denominators](results-chart-denominators.md).
+
+  Verification split, as stated in the comment: tabulation checked two ways (LH engine + BV's own
+  export for `fk38pk` — same winners, same runoff counts, same `tieBreakType`); the chart readings come
+  from screenshots taken 2026-08-04 and match `ResultsBarChart.tsx` on `main`; no proposed fix tested.
+
 ## Sent as a pull request
 
 - **[#1474, 2026-08-04](https://github.com/Equal-Vote/bettervoting/pull/1474)** — a Bloc STAR help page
