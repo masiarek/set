@@ -125,6 +125,49 @@ at all — it only catches draw-induced ties like the BV1550 Ann/Bob case.
   replacement also names the on-screen category, **Equal Support** (`en.yaml:304`), so a reader can
   find it on the chart. This paragraph carried the same error and has been fixed above.
 
+- **[#1476, 2026-08-04](https://github.com/Equal-Vote/bettervoting/pull/1476)** — the Polish
+  translation, `packages/frontend/src/i18n/pl.yaml`, against my own
+  [#762](https://github.com/Equal-Vote/bettervoting/issues/762). All 844 keys of `en.yaml`, where the
+  file previously carried 205.
+
+  The number worth recording is what "first pass of Polish has been pushed" (ArendPeter, 2025-11-11)
+  actually amounted to. `pl.yaml` was a **truncated copy of `en.yaml`** — it stopped partway through
+  the `keyword:` section, so everything from `nav:` onward was simply absent, and of the 205 keys it
+  did contain only **39 held Polish text**. Real coverage was ~5%, not the ~25% the 12 KB / 55 KB file
+  sizes imply. Anyone auditing translation progress by file size on this repo will get the same wrong
+  answer for `es.yaml` (13 KB) and `pt-BR.yaml` (13 KB); neither was checked here.
+
+  **The structural finding, and the reason this is filed under notes rather than just shipped.**
+  `useSubstitutedTranslation` (`components/util.tsx:176`) injects `{{election}}`, `{{candidate}}`,
+  `{{ballot}}` in the **nominative case only**, deriving `{{capital_*}}` by capitalising the same
+  string, and swaps the whole set between election terms (*wybory*, *kandydat*) and poll terms
+  (*ankieta*, *opcja*). Those two sets differ in gender **and** number, so no Polish sentence built
+  around the placeholder can agree with both: `Te {{election}} wykorzystują…` reads correctly as "Te
+  **wybory** wykorzystują" and ungrammatically as "Te **ankieta** wykorzystują". Sixty strings hit
+  this. Where a nominative-only phrasing existed I used it — usually an appositive dash, `{{name}} —
+  {{capital_candidate}} bez konkurencji`, or a label/value split, `{{capital_election}} — początek:
+  {{datetime, datetime}}` — and where none did, the placeholder is dropped and that string loses the
+  election/poll distinction. Every such spot carries a `# PL:` comment. This is not a Polish quirk:
+  Czech, Slovak, Russian and Ukrainian will all break the same way, and any of them would need the
+  locale to supply case forms rather than one nominative. Raised in the PR and in the issue; not yet
+  its own issue.
+
+  Two smaller couplings to remember. `spelled_numbers` now holds **accusative masculine-personal**
+  forms (*jednego, dwóch, trzech*) rather than citation forms, because its only consumer is
+  `{{spelled_count}} $t(winner.winner)` → *dwóch zwycięzców*; if that list is ever reused elsewhere it
+  will read wrong. And `winner.winner` needed `_few` / `_many` added — Polish has four i18next plural
+  categories where English has two, so the existing `_one` / `_other` pair silently under-specifies.
+
+  Found in passing: `tabulation_logs.star.pairwise_advance_to_runoff` in `en.yaml` has
+  `{{runner_up_votes}` — one closing brace short, so the English string renders the placeholder
+  literally today. The Polish string uses the correct form. Left out of the PR to keep it
+  translation-only, so **`en.yaml` is still wrong**.
+
+  Verification limit: structural only. YAML parses, all 844 `en.yaml` keys resolve, every `!tip()`
+  target exists, and the placeholder delta per key was diffed. The frontend was **not** built —
+  `node_modules` is not installed in the local clone — so nothing here confirms the vite YAML loader
+  or the rendered pages. No screenshots for the same reason.
+
 ## Checked and deliberately *not* filed
 
 Recording these matters as much as the filings — it stops the same non-bug being re-reported later.
